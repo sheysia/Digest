@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Digest — 每周精选 AI 应用洞察</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F1;
+    --bg-warm: #F0EDE7;
+    --card: #FFFFFF;
+    --text: #1A1A2E;
+    --text-body: #3A3A4A;
+    --text-light: #7A7A8A;
+    --accent: #2A9D8F;
+    --accent-dark: #1E7A6F;
+    --orange: #E8643B;
+    --blue: #3A7BD4;
+    --green: #5A8E5A;
+    --purple: #9B6DB7;
+    --border: #E0DCD7;
+    --border-light: #EBE8E3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--bg);
+    color: var(--text-body);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== NAV ========== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,245,241,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .nav-inner {
+    max-width: 900px; margin: 0 auto;
+    padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700; color: var(--text);
+    letter-spacing: 1px; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-light); text-decoration: none;
+    font-weight: 400; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ========== HERO ========== */
+  .hero {
+    max-width: 900px; margin: 0 auto;
+    padding: 120px 24px 60px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 700; color: var(--text);
+    line-height: 1.2; margin-bottom: 16px;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.4s;
+  }
+  .hero-title em {
+    font-style: normal;
+    background: linear-gradient(120deg, var(--accent) 0%, var(--blue) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 16px; color: var(--text-light);
+    max-width: 520px; margin: 0 auto 32px;
+    font-weight: 300; line-height: 1.9;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.6s;
+  }
+  .hero-tags {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.8s;
+  }
+  .hero-tag {
+    font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--text-light); background: var(--card);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========== ABOUT ========== */
+  .about {
+    max-width: 900px; margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+  }
+  .about-grid-bottom {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    max-width: 600px; margin: 20px auto 0;
+  }
+  .about-card {
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .about-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .about-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin: 0 auto 10px;
+  }
+  .about-icon.i1 { background: #FDF0EB; }
+  .about-icon.i2 { background: #EBF2FD; }
+  .about-icon.i3 { background: #EFF5EC; }
+  .about-icon.i4 { background: #F5EFF8; }
+  .about-icon.i5 { background: #E8F6F3; }
+  .about-card h3 {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .about-card p {
+    font-size: 13px; color: var(--text-light); line-height: 1.7;
+  }
+
+  /* ========== DIVIDER ========== */
+  .divider {
+    max-width: 900px; margin: 0 auto;
+    padding: 0 24px;
+  }
+  .divider-line {
+    height: 1px; background: var(--border);
+    margin-bottom: 48px;
+  }
+
+  /* ========== LATEST ISSUE ========== */
+  .latest {
+    max-width: 900px; margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+  .latest-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 20px;
+  }
+  .latest-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+  }
+  .latest-date { font-size: 12px; color: var(--text-light); }
+
+  .latest-card {
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .latest-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+  .latest-banner {
+    background: linear-gradient(135deg, var(--text) 0%, #2A2A4E 100%);
+    padding: 36px 32px;
+    color: white;
+  }
+  .latest-banner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 700; margin-bottom: 6px;
+  }
+  .latest-banner p {
+    font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 300;
+  }
+  .latest-body { padding: 24px 32px; }
+  .latest-items { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+  .latest-item {
+    font-size: 13px; color: var(--text-body); padding: 6px 0;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .latest-item .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--text-light); min-width: 18px;
+  }
+  .latest-item .tag-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    display: inline-block; flex-shrink: 0;
+    position: relative; top: -1px;
+  }
+  .tag-dot.tool { background: var(--orange); }
+  .tag-dot.trend { background: var(--blue); }
+  .tag-dot.scene { background: var(--green); }
+  .tag-dot.tip { background: var(--purple); }
+  .tag-dot.daily { background: var(--accent); }
+
+  .latest-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px; padding: 10px 20px;
+    background: var(--accent); color: white;
+    border-radius: 6px; font-size: 13px; font-weight: 500;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .latest-cta:hover { background: var(--accent-dark); }
+
+  /* ========== ARCHIVE ========== */
+  .archive {
+    max-width: 900px; margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+  .archive-header {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-light); font-weight: 600; margin-bottom: 20px;
+  }
+  .archive-list { list-style: none; }
+  .archive-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-light);
+    text-decoration: none; color: inherit;
+    transition: padding-left 0.2s;
+  }
+  .archive-item:hover { padding-left: 8px; }
+  .archive-item:first-child { border-top: 1px solid var(--border-light); }
+  .archive-title {
+    font-size: 15px; font-weight: 500; color: var(--text);
+  }
+  .archive-meta {
+    font-size: 12px; color: var(--text-light);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .archive-count {
+    background: var(--bg-warm); padding: 2px 8px; border-radius: 10px;
+    font-size: 11px;
+  }
+  .archive-empty {
+    text-align: center; padding: 40px;
+    color: var(--text-light); font-size: 14px;
+    background: var(--card); border-radius: 10px;
+    border: 1px dashed var(--border);
+  }
+
+  /* ========== WHO ========== */
+  .who {
+    background: var(--bg-warm);
+    padding: 60px 24px;
+  }
+  .who-inner {
+    max-width: 900px; margin: 0 auto;
+  }
+  .who-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 16px;
+  }
+  .who h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 700; color: var(--text);
+    margin-bottom: 16px; line-height: 1.4;
+  }
+  .who p {
+    font-size: 14px; color: var(--text-light);
+    max-width: 600px; line-height: 1.9; margin-bottom: 10px;
+  }
+  .who-tags {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;
+  }
+  .who-tag {
+    font-size: 12px; padding: 6px 14px;
+    border-radius: 20px; background: var(--card);
+    color: var(--text-light); border: 1px solid var(--border);
+  }
+  .who-en {
+    font-size: 13px; color: var(--text-light);
+    font-style: italic; line-height: 1.9;
+    max-width: 600px; margin-bottom: 24px;
+    padding-top: 12px; border-top: 1px solid var(--border);
+  }
+  .who-product {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin: 24px 0 8px;
+  }
+  .who-product-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--card); border: 1px solid var(--border-light);
+    border-radius: 8px; padding: 14px 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .who-product-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  }
+  .who-product-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .who-product-item strong {
+    display: block; font-size: 13px; color: var(--text);
+    margin-bottom: 2px;
+  }
+  .who-product-desc {
+    font-size: 12px; color: var(--text-light); line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .who-product { grid-template-columns: 1fr; }
+  }
+
+  /* ========== DMV VOICE ========== */
+  .dmv-voice {
+    background: linear-gradient(180deg, var(--bg) 0%, #E8E4DF 100%);
+    padding: 60px 24px 48px;
+  }
+  .dmv-voice-inner {
+    max-width: 900px; margin: 0 auto;
+    text-align: center;
+  }
+  .voice-badge {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: white; font-weight: 600;
+    padding: 6px 20px; border-radius: 20px;
+    background: var(--accent);
+    margin-bottom: 20px;
+  }
+  .voice-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 700; color: var(--text);
+    margin-bottom: 28px; line-height: 1.3;
+    letter-spacing: 1px;
+  }
+  .voice-by {
+    font-weight: 400; font-style: italic;
+    color: var(--text-light); font-size: 22px;
+  }
+  .voice-philosophy {
+    max-width: 580px; margin: 0 auto 28px;
+    text-align: center;
+  }
+  .voice-divider-v { display: none; }
+  .voice-col {}
+  .voice-zh {
+    font-size: 13.5px; color: var(--text-body);
+    line-height: 2; margin-bottom: 12px;
+  }
+  .voice-en {
+    font-size: 14px; color: var(--text-light);
+    line-height: 2; margin-bottom: 14px;
+    font-style: italic;
+  }
+  .voice-values {
+    display: flex; justify-content: center; align-items: center;
+    gap: 8px; flex-wrap: wrap;
+    font-size: 12px; color: var(--text-light);
+    margin-top: 8px;
+  }
+  .voice-value { font-weight: 500; color: var(--text-body); }
+  .voice-value-dot { color: var(--border); }
+
+  @media (max-width: 640px) {
+    .voice-philosophy {
+      max-width: 100%;
+    }
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    max-width: 900px; margin: 0 auto;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  footer .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 700; color: var(--text);
+    letter-spacing: 1px; margin-bottom: 8px;
+  }
+  footer p {
+    font-size: 12px; color: var(--text-light); line-height: 1.7;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
+    .latest-items { grid-template-columns: 1fr; }
+    .latest-banner { padding: 28px 20px; }
+    .latest-body { padding: 20px; }
+    .nav-links { gap: 16px; }
+    .hero { padding: 100px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">AI Digest</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#latest">Latest</a>
+      <a href="#archive">Archive</a>
+      <a href="#who">Who</a>
+      <a href="#voice">Voice</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Weekly AI Application Insights</div>
+  <h1 class="hero-title">每周精选<br><em>AI 应用洞察</em></h1>
+  <p class="hero-sub">
+    面向 DMV 高学历职场女性 | AI 简报与讨论分享<br>
+    源于生活，立足应用
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">工具上新</span>
+    <span class="hero-tag">趋势信号</span>
+    <span class="hero-tag">场景拆解</span>
+    <span class="hero-tag">用法洞察</span>
+    <span class="hero-tag">日报速递</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-icon i1">🔍</div>
+      <h3>精选而非搬运</h3>
+    </div>
+    <div class="about-card">
+      <div class="about-icon i2">📍</div>
+      <h3>贴合本地生态</h3>
+    </div>
+    <div class="about-card">
+      <div class="about-icon i3">💪</div>
+      <h3>女性增强视角</h3>
+    </div>
+  </div>
+  <div class="about-grid-bottom">
+    <div class="about-card">
+      <div class="about-icon i4">💬</div>
+      <h3>讨论拒绝焦虑</h3>
+    </div>
+    <div class="about-card">
+      <div class="about-icon i5">🌱</div>
+      <h3>多元背景融合</h3>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- LATEST ISSUE -->
+<section class="latest" id="latest">
+  <div class="latest-header">
+    <span class="latest-label">Latest Issue</span>
+    <span class="latest-date">Apr 14–20, 2026</span>
+  </div>
+  <a href="issues/001.html" class="latest-card">
+    <div class="latest-banner">
+      <h2>Issue #001</h2>
+      <p>9 weekly picks + 4 daily updates · 13 items total</p>
+    </div>
+    <div class="latest-body">
+      <div class="latest-items">
+        <div class="latest-item"><span class="num">01</span><span class="tag-dot tool"></span> Claude Design — 不会设计也能出原型</div>
+        <div class="latest-item"><span class="num">02</span><span class="tag-dot tool"></span> Claude Code 大重构 + Routines</div>
+        <div class="latest-item"><span class="num">03</span><span class="tag-dot tool"></span> GPT-5.4 能自己操作电脑了</div>
+        <div class="latest-item"><span class="num">04</span><span class="tag-dot trend"></span> AI 定价崩塌</div>
+        <div class="latest-item"><span class="num">05</span><span class="tag-dot trend"></span> Gemini 全面追赶</div>
+        <div class="latest-item"><span class="num">06</span><span class="tag-dot scene"></span> Lovable — 说话就能出 App</div>
+        <div class="latest-item"><span class="num">07</span><span class="tag-dot scene"></span> NotebookLM + Gemini + Notion 闭环</div>
+        <div class="latest-item"><span class="num">08</span><span class="tag-dot tip"></span> 中英混搭 Prompt 有论文背书</div>
+        <div class="latest-item"><span class="num">09</span><span class="tag-dot tip"></span> TextGrad — AI 自己优化 Prompt</div>
+        <div class="latest-item"><span class="num">10</span><span class="tag-dot daily"></span> ChatGPT 全球宕机</div>
+        <div class="latest-item"><span class="num">11</span><span class="tag-dot daily"></span> MD 州长召集 AI 安全会议</div>
+        <div class="latest-item"><span class="num">12</span><span class="tag-dot daily"></span> Stanford 2026 AI Index</div>
+        <div class="latest-item"><span class="num">13</span><span class="tag-dot daily"></span> OpenAI $200 亿 Cerebras 芯片</div>
+      </div>
+      <span class="latest-cta">阅读本期 →</span>
+    </div>
+  </a>
+</section>
+
+<!-- ARCHIVE -->
+<section class="archive" id="archive">
+  <div class="archive-header">Past Issues</div>
+
+  <!-- 未来期数会加在这里 -->
+  <!--
+  <ul class="archive-list">
+    <a href="issues/002.html" class="archive-item">
+      <span class="archive-title">Issue #002 — Apr 21–27, 2026</span>
+      <span class="archive-meta"><span class="archive-count">8 picks</span> Apr 27</span>
+    </a>
+  </ul>
+  -->
+
+  <div class="archive-empty">
+    Issue #001 是创刊号 🎉<br>
+    更多期数即将到来，敬请期待
+  </div>
+</section>
+
+<!-- WHO + PRODUCT -->
+<section class="who" id="who">
+  <div class="who-inner">
+    <div class="who-label">Who We Are & What We Do</div>
+    <h2>AI Digest <span style="font-weight:400;color:var(--text-light);font-size:20px;">by</span> Syneira</h2>
+    <p>
+      面向在 Washington D.C. 都会区（DMV）工作和生活的女性——有技术背景的工程师和开发者，也有非技术背景的政界、律师、医疗、金融分析等各领域专业人士。
+    </p>
+    <p>
+      共同点是：高等教育背景，每天使用着 AI，审慎然而积极面对。我们研究和探讨 AI 怎么真正帮到自己的工作和生活——在时代洪流中坚持涓涓清流，不贩卖焦虑，不堆砌术语。每周十分钟，留下真实的体验。
+    </p>
+    <p class="who-en">
+      For professional women across the DMV — engineers, developers, attorneys, healthcare administrators, financial analysts, policy professionals, and beyond. United by advanced education, daily AI use, and a shared commitment to learning with intention, not anxiety. Ten minutes a week. Only what's real.
+    </p>
+    <div class="who-product">
+      <div class="who-product-item">
+        <span class="who-product-icon">📬</span>
+        <div>
+          <strong>Weekly Digest</strong>
+          <span class="who-product-desc">每周精选 5-10 条 AI 应用洞察，中英双语，说人话</span>
+        </div>
+      </div>
+      <div class="who-product-item">
+        <span class="who-product-icon">⚡</span>
+        <div>
+          <strong>Daily Signal</strong>
+          <span class="who-product-desc">不定期日报，追踪当天最值得关注的 AI 动态</span>
+        </div>
+      </div>
+      <div class="who-product-item">
+        <span class="who-product-icon">🤝</span>
+        <div>
+          <strong>Local Circle</strong>
+          <span class="who-product-desc">社群讨论、经验分享、线下活动，彼此陪伴成长</span>
+        </div>
+      </div>
+      <div class="who-product-item">
+        <span class="who-product-icon">🧪</span>
+        <div>
+          <strong>Evolith Lab</strong>
+          <span class="who-product-desc">工具评测、工作流指南、实操 PDF，从试用到落地</span>
+        </div>
+      </div>
+    </div>
+    <div class="who-tags">
+      <span class="who-tag">Data Engineering</span>
+      <span class="who-tag">Healthcare</span>
+      <span class="who-tag">Finance</span>
+      <span class="who-tag">Legal</span>
+      <span class="who-tag">Policy</span>
+      <span class="who-tag">Education</span>
+      <span class="who-tag">Consulting</span>
+      <span class="who-tag">Research</span>
+    </div>
+  </div>
+</section>
+
+<!-- DMV VOICE -->
+<section class="dmv-voice" id="voice">
+  <div class="dmv-voice-inner">
+    <div class="voice-badge">DMV Voice</div>
+    <h2 class="voice-title">AI Digest</h2>
+    <div class="voice-philosophy">
+      <p class="voice-en">
+        We start from life, not from technology. We don't ask "what model just dropped?" — we ask "Can this save me two hours?" "Can I use it without writing code?"
+      </p>
+      <p class="voice-en">
+        A clear signal in the noise — no hype, no jargon walls, no FOMO. Five minutes a week, only what's genuinely useful to you.
+      </p>
+      <p class="voice-en">
+        No one here will tell you "learn AI or get left behind." What you'll find is a circle of smart women, learning at their own pace, turning AI into a tool that works for them.
+      </p>
+    </div>
+    <div class="voice-values">
+      <span class="voice-value">实用 > 炫酷</span>
+      <span class="voice-value-dot">·</span>
+      <span class="voice-value">能用 > 能看</span>
+      <span class="voice-value-dot">·</span>
+      <span class="voice-value">源于生活</span>
+      <span class="voice-value-dot">·</span>
+      <span class="voice-value">立足应用</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">✦ AI Digest by Syneira ✦</div>
+  <p>
+    由社群成员精选 · 每周一期 · 中英双语<br>
+    筛选标准：实用 > 炫酷 · 能用 > 能看<br><br>
+    Built with ❤️ in DMV<br>
+    <a href="https://github.com/你的用户名/ai-digest" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+<script>
+// Nav shadow on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
