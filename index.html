@@ -60,7 +60,7 @@
   }
   .nav-brand svg { display: block; }
   .nav-lockup {
-    width: clamp(158px, 22vw, 186px);
+    width: clamp(138px, 18vw, 160px);
     height: auto;
   }
   .brand-lockup-text {
@@ -70,8 +70,8 @@
     letter-spacing: 2.6px;
   }
   .hero-logo {
-    width: min(320px, 74vw);
-    margin-bottom: 16px;
+    width: min(210px, 48vw);
+    margin-bottom: 8px;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.45s;
   }
@@ -81,8 +81,8 @@
     height: auto;
   }
   .hero-logo-wrap {
-    padding: 14px 18px;
-    border-radius: 20px;
+    padding: 10px 14px;
+    border-radius: 16px;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(144, 144, 216, 0.14);
     box-shadow: 0 10px 40px rgba(0,0,0,0.18);
@@ -110,14 +110,14 @@
   /* ========== MOTION HERO ========== */
   .hero {
     position: relative;
-    min-height: 92vh;
+    min-height: 360px;
     padding-top: 72px;
     overflow: hidden;
     background: #0B0B1A;
   }
   .hero-motion {
     position: relative;
-    min-height: calc(92vh - 72px);
+    min-height: 288px;
     overflow: hidden;
   }
   .hero-bg-gradient {
@@ -146,25 +146,25 @@
     animation: heroOrbFloat 12s ease-in-out infinite;
   }
   .hero-orb-1 {
-    width: 400px; height: 400px;
+    width: 280px; height: 280px;
     background: radial-gradient(circle, #6C63FF 0%, transparent 70%);
     top: 16%; left: 8%;
     animation-delay: 0s;
   }
   .hero-orb-2 {
-    width: 350px; height: 350px;
+    width: 240px; height: 240px;
     background: radial-gradient(circle, #A855F7 0%, transparent 70%);
     top: 48%; right: 4%;
     animation-delay: 2s;
   }
   .hero-orb-3 {
-    width: 300px; height: 300px;
+    width: 220px; height: 220px;
     background: radial-gradient(circle, #3B82F6 0%, transparent 70%);
     bottom: 8%; left: 28%;
     animation-delay: 4s;
   }
   .hero-orb-4 {
-    width: 200px; height: 200px;
+    width: 160px; height: 160px;
     background: radial-gradient(circle, #C084FC 0%, transparent 70%);
     top: 10%; right: 24%;
     animation-delay: 1s;
@@ -230,7 +230,7 @@
   .hero-content {
     position: relative;
     z-index: 3;
-    min-height: calc(92vh - 72px);
+    min-height: 288px;
     max-width: 980px;
     margin: 0 auto;
     padding: 48px 24px 56px;
@@ -253,12 +253,12 @@
   }
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(44px, 8vw, 72px);
+    font-size: clamp(20px, 3vw, 32px);
     font-weight: 700;
     color: #fff;
     letter-spacing: 2px;
     line-height: 1.1;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 1.4s;
   }
@@ -269,10 +269,10 @@
     background-clip: text;
   }
   .hero-sub {
-    font-size: 18px;
+    font-size: 15px;
     color: rgba(255,255,255,0.68);
     letter-spacing: 4px;
-    margin: 0 auto 16px;
+    margin: 0 auto 8px;
     font-weight: 300;
     line-height: 1.8;
     opacity: 0;
@@ -284,18 +284,18 @@
     color: rgba(167, 139, 250, 0.78);
     font-style: italic;
     letter-spacing: 0.8px;
-    margin-bottom: 28px;
+    margin-bottom: 10px;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 2.5s;
   }
   .hero-divider {
     width: 0; height: 1px;
     background: linear-gradient(90deg, transparent, #6C63FF, #A855F7, transparent);
-    margin-bottom: 26px;
+    margin-bottom: 10px;
     animation: heroLineGrow 1s ease forwards 3s;
   }
   @keyframes heroLineGrow {
-    to { width: 220px; }
+    to { width: 160px; }
   }
   .hero-tags {
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
@@ -308,23 +308,49 @@
     color: rgba(255,255,255,0.66); background: rgba(167, 139, 250, 0.05);
     backdrop-filter: blur(4px);
   }
-  .hero-byline {
-    position: absolute;
-    bottom: 28px;
-    font-size: 12px; font-weight: 300;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 3px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 4s;
-  }
-  .hero-byline span {
-    color: rgba(167, 139, 250, 0.75);
-    font-weight: 500;
-  }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+
+  .digest-topics {
+    position: relative;
+    margin-top: -6px;
+    padding: 0 0 24px;
+    z-index: 3;
+  }
+  .digest-topics-shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .digest-topics-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .digest-topic-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--white);
+    border: 1px solid rgba(112,112,196,0.14);
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 14px rgba(24, 20, 48, 0.03);
   }
 
 
@@ -358,7 +384,7 @@
   .about-icon {
     width: 40px; height: 40px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px; margin: 0 auto 12px;
+    font-size: 15px; margin: 0 auto 12px;
   }
   .about-icon.i1 { background: #FDF0EB; }
   .about-icon.i2 { background: #EBF2FD; }
@@ -516,7 +542,7 @@
   }
   .who-tag {
     font-size: 12px; padding: 6px 14px;
-    border-radius: 20px; background: var(--card);
+    border-radius: 16px; background: var(--card);
     color: var(--text-light); border: 1px solid var(--border);
   }
   .who-en {
@@ -572,7 +598,7 @@
   .voice-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 36px; font-weight: 700; color: var(--text);
-    margin-bottom: 28px; line-height: 1.3;
+    margin-bottom: 16px; line-height: 1.3;
     letter-spacing: 1px;
   }
   .voice-by {
@@ -628,7 +654,7 @@
   /* ========== RESPONSIVE ========== */
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .hero-content { padding: 40px 24px 52px; }
+    .hero-content { padding: 20px 24px 28px; }
   }
   @media (max-width: 640px) {
     .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -638,18 +664,45 @@
     .latest-body { padding: 20px; }
     .nav-links { gap: 16px; }
     .nav-links { display: none; }
-    .hero { min-height: 86vh; padding-top: 64px; }
-    .hero-motion, .hero-content { min-height: calc(86vh - 64px); }
+    .hero { min-height: 48vh; padding-top: 64px; }
+    .hero-motion, .hero-content { min-height: calc(48vh - 64px); }
     .hero-sub { font-size: 15px; letter-spacing: 2px; }
-    .hero-note { font-size: 12px; margin-bottom: 22px; }
-    .hero-byline { bottom: 18px; }
+    .hero-note { font-size: 12px; margin-bottom: 8px; }
+    
   }
 
   @media (max-width: 640px) {
     .nav-lockup { width: 154px; }
-    .hero-logo { width: min(280px, 84vw); margin-bottom: 14px; }
-    .hero-logo-wrap { padding: 12px 14px; border-radius: 18px; }
+    .hero-logo { width: min(190px, 68vw); margin-bottom: 6px; }
+    .hero-logo-wrap { padding: 7px 10px; border-radius: 12px; }
     .footer-lockup { width: min(210px, 78vw); }
+  }
+
+
+  @media (max-width: 860px) {
+    .digest-topics { margin-top: -4px; padding-bottom: 22px; }
+    .digest-topics-row {
+      padding: 0;
+      justify-content: center;
+    }
+  }
+  @media (max-width: 640px) {
+    .hero { min-height: 280px; padding-top: 64px; }
+    .hero-motion, .hero-content { min-height: 216px; }
+    .digest-topics-shell { padding: 0 16px; }
+    .digest-topics-row {
+      gap: 10px;
+      padding: 0;
+      background: transparent;
+    }
+    .digest-topic-pill {
+      width: calc(50% - 5px);
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+    .digest-topic-pill:last-child {
+      width: 100%;
+    }
   }
 
 </style>
@@ -700,11 +753,10 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="/" class="nav-brand" aria-label="AI Digest home">
-      <svg class="nav-lockup" viewBox="0 0 240 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by Syneira">
+      <svg class="nav-lockup" viewBox="0 0 210 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by DMV Voice">
         <use href="#mark-iris" x="0" y="0" width="52" height="52" transform="translate(1,3)"></use>
-        <text x="60" y="28" class="brand-lockup-text" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="700" fill="#1A1A2E">AI Digest</text>
-        <text x="61" y="43" class="brand-lockup-sub" font-family="'Noto Sans SC', sans-serif" font-size="8.8" font-weight="400" fill="#7A7A8A">BY DMV VOICE</text>
-      </svg>
+        <text x="60" y="28" class="brand-lockup-text" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="700" fill="#1A1A2E">AI Digest</text>
+              </svg>
     </a>
     <div class="nav-links">
       <a href="#about">About</a>
@@ -738,26 +790,29 @@
     <div class="hero-content">
       <div class="hero-logo">
         <div class="hero-logo-wrap">
-          <svg viewBox="0 0 300 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by Syneira">
-            <use href="#mark-light" x="0" y="0" width="62" height="62" transform="translate(0,5)"></use>
-            <text x="72" y="34" font-family="'Cormorant Garamond', serif" font-size="34" font-weight="700" fill="#F7F5F1" letter-spacing="0.5">AI Digest</text>
-            <text x="73" y="52" font-family="'Noto Sans SC', sans-serif" font-size="10.5" font-weight="400" fill="rgba(247,245,241,0.56)" letter-spacing="3.2">BY DMV VOICE</text>
+          <svg viewBox="0 0 240 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest">
+            <use href="#mark-light" x="0" y="0" width="48" height="48" transform="translate(0,5)"></use>
+            <text x="58" y="34" font-family="'Cormorant Garamond', serif" font-size="30" font-weight="700" fill="#F7F5F1" letter-spacing="0.5">AI Digest</text>
           </svg>
         </div>
       </div>
       <div class="hero-eyebrow">DMV Voice</div>
-      <h1 class="hero-title">AI Digest<br><em>每周精选 · AI 应用洞察</em></h1>
+      <h1 class="hero-title"><em>每周精选 · AI 应用洞察</em></h1>
       <p class="hero-sub">源于生活，立足应用</p>
       <div class="hero-note">Smart women, real tools, no noise.</div>
       <div class="hero-divider"></div>
-      <div class="hero-tags">
-        <span class="hero-tag">工具上新</span>
-        <span class="hero-tag">趋势信号</span>
-        <span class="hero-tag">场景拆解</span>
-        <span class="hero-tag">用法洞察</span>
-        <span class="hero-tag">日报速递</span>
-      </div>
-      <div class="hero-byline">by <span>Syneira</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="digest-topics" aria-label="Digest topics">
+  <div class="digest-topics-shell">
+    <div class="digest-topics-row">
+      <span class="digest-topic-pill">工具上新</span>
+      <span class="digest-topic-pill">趋势信号</span>
+      <span class="digest-topic-pill">场景拆解</span>
+      <span class="digest-topic-pill">用法洞察</span>
+      <span class="digest-topic-pill">日报速递</span>
     </div>
   </div>
 </section>
@@ -851,7 +906,7 @@
 <section class="who" id="who">
   <div class="who-inner">
     <div class="who-label">Who We Are & What We Do</div>
-    <h2>AI Digest <span style="font-weight:400;color:var(--text-light);font-size:20px;">by</span> Syneira</h2>
+    <h2>AI Digest <span style="font-weight:400;color:var(--text-light);font-size:20px;">by</span> DMV Voice</h2>
     <p>
       面向在 Washington D.C. 都会区（DMV）工作和生活的女性——有技术背景的工程师和开发者，也有非技术背景的政界、律师、医疗、金融分析等各领域专业人士。
     </p>
@@ -935,7 +990,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand-wrap">
-    <svg class="footer-lockup" viewBox="0 0 240 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by Syneira">
+    <svg class="footer-lockup" viewBox="0 0 240 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by DMV Voice">
       <use href="#mark-iris" x="0" y="0" width="52" height="52" transform="translate(1,3)"></use>
       <text x="60" y="28" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="700" fill="#1A1A2E" letter-spacing="0.5">AI Digest</text>
       <text x="61" y="43" font-family="'Noto Sans SC', sans-serif" font-size="8.8" font-weight="400" fill="#7A7A8A" letter-spacing="2.8">BY DMV VOICE</text>
