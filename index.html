@@ -109,22 +109,25 @@
 
   /* ========== ABOUT ========== */
   .about {
-    max-width: 900px; margin: 0 auto;
+    max-width: 1100px; margin: 0 auto;
     padding: 0 24px 60px;
   }
   .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
-  }
-  .about-grid-bottom {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    max-width: 600px; margin: 20px auto 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
   }
   .about-card {
     background: var(--card);
     border: 1px solid var(--border-light);
     border-radius: 10px;
-    padding: 24px 20px;
+    padding: 20px 16px 18px;
+    min-height: 170px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .about-card:hover {
@@ -134,7 +137,7 @@
   .about-icon {
     width: 40px; height: 40px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px; margin: 0 auto 10px;
+    font-size: 18px; margin: 0 auto 12px;
   }
   .about-icon.i1 { background: #FDF0EB; }
   .about-icon.i2 { background: #EBF2FD; }
@@ -144,9 +147,13 @@
   .about-card h3 {
     font-size: 14px; font-weight: 700; color: var(--text);
     margin-bottom: 6px;
+    line-height: 1.45;
   }
-  .about-card p {
-    font-size: 13px; color: var(--text-light); line-height: 1.7;
+  .about-card .about-en {
+    font-size: 11px;
+    color: var(--text-light);
+    line-height: 1.5;
+    letter-spacing: 0.2px;
   }
 
   /* ========== DIVIDER ========== */
@@ -398,9 +405,12 @@
   footer a { color: var(--accent); text-decoration: none; }
 
   /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
   @media (max-width: 640px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .about-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
+    .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .about-card { min-height: 150px; padding: 18px 14px 16px; }
     .latest-items { grid-template-columns: 1fr; }
     .latest-banner { padding: 28px 20px; }
     .latest-body { padding: 20px; }
@@ -448,24 +458,27 @@
     <div class="about-card">
       <div class="about-icon i1">🔍</div>
       <h3>精选而非搬运</h3>
+      <div class="about-en">Curated, not copied</div>
     </div>
     <div class="about-card">
       <div class="about-icon i2">📍</div>
       <h3>贴合本地生态</h3>
+      <div class="about-en">Rooted in the local community</div>
     </div>
     <div class="about-card">
       <div class="about-icon i3">💪</div>
       <h3>女性增强视角</h3>
+      <div class="about-en">An empowering women-first lens</div>
     </div>
-  </div>
-  <div class="about-grid-bottom">
     <div class="about-card">
       <div class="about-icon i4">💬</div>
       <h3>讨论拒绝焦虑</h3>
+      <div class="about-en">Discussion without anxiety</div>
     </div>
     <div class="about-card">
       <div class="about-icon i5">🌱</div>
       <h3>多元背景融合</h3>
+      <div class="about-en">Where diverse backgrounds meet</div>
     </div>
   </div>
 </section>
