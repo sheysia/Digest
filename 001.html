@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Digest Issue #001 | Apr 14–20, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 2cm 2.2cm; }
+  @page :first { margin-top: 1.5cm; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Sans SC", "Noto Sans CJK SC", "WenQuanYi Zen Hei", "Helvetica Neue", sans-serif;
+    color: #2C2C2C;
+    line-height: 1.8;
+    font-size: 9.5pt;
+    background: #FAF8F5;
+  }
+
+  /* Back nav */
+  .issue-nav {
+    max-width: 720px; margin: 0 auto;
+    padding: 16px 24px 0;
+  }
+  .issue-nav a {
+    font-size: 13px; color: #2A9D8F; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .issue-nav a:hover { text-decoration: underline; }
+
+  .issue-wrapper {
+    max-width: 720px; margin: 0 auto;
+    padding: 12px 24px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding-bottom: 16pt;
+    border-bottom: 2pt solid #2A9D8F;
+    margin-bottom: 18pt;
+  }
+  .header-brand { font-size: 9pt; letter-spacing: 4pt; color: #888; text-transform: uppercase; margin-bottom: 6pt; }
+  .header-title { font-size: 22pt; font-weight: 700; color: #1A1A2E; margin-bottom: 4pt; }
+  .header-meta { font-size: 9pt; color: #888; }
+  .header-sub { font-size: 9pt; color: #2A9D8F; margin-top: 8pt; font-style: italic; }
+
+  /* Section headers */
+  .section-banner {
+    display: flex; align-items: center; gap: 10pt;
+    padding: 8pt 14pt;
+    border-radius: 4pt;
+    margin: 18pt 0 12pt 0;
+    page-break-after: avoid;
+  }
+  .section-banner.tool { background: #FDF0EB; border-left: 4pt solid #E8643B; }
+  .section-banner.trend { background: #EBF2FD; border-left: 4pt solid #3A7BD4; }
+  .section-banner.scene { background: #EFF5EC; border-left: 4pt solid #5A8E5A; }
+  .section-banner.tip { background: #F5EFF8; border-left: 4pt solid #9B6DB7; }
+  .section-banner.daily { background: #E8F6F3; border-left: 4pt solid #2A9D8F; }
+  .section-banner h2 { font-size: 12pt; font-weight: 700; margin: 0; }
+  .section-banner.tool h2 { color: #E8643B; }
+  .section-banner.trend h2 { color: #3A7BD4; }
+  .section-banner.scene h2 { color: #5A8E5A; }
+  .section-banner.tip h2 { color: #9B6DB7; }
+  .section-banner.daily h2 { color: #2A9D8F; }
+
+  /* Cards */
+  .card {
+    border: 1pt solid #E0DCD7;
+    border-radius: 6pt;
+    padding: 14pt 16pt;
+    margin-bottom: 14pt;
+    page-break-inside: avoid;
+    background: #FEFEFE;
+  }
+
+  .card-head {
+    display: flex; align-items: center; gap: 8pt;
+    margin-bottom: 8pt;
+  }
+  .tag {
+    font-size: 7.5pt; font-weight: 600;
+    padding: 2pt 8pt; border-radius: 20pt;
+    display: inline-block;
+  }
+  .tag-tool { background: #FDF0EB; color: #D4603A; }
+  .tag-trend { background: #EBF2FD; color: #3A7BD4; }
+  .tag-scene { background: #EFF5EC; color: #5A8E5A; }
+  .tag-tip { background: #F5EFF8; color: #9B6DB7; }
+  .tag-daily { background: #E8F6F3; color: #2A9D8F; }
+
+  .card-num { font-size: 8pt; color: #AAA; font-weight: 600; }
+
+  .card-title {
+    font-size: 12pt; font-weight: 700; color: #1A1A2E;
+    margin-bottom: 4pt; line-height: 1.5;
+  }
+
+  .card-source {
+    font-size: 7.5pt; color: #999;
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    margin-bottom: 10pt;
+  }
+  .card-source a { color: #999; text-decoration: none; }
+
+  .label { font-size: 8pt; font-weight: 700; letter-spacing: 0.5pt; text-transform: uppercase; margin-bottom: 4pt; }
+  .label-highlight { color: #D4603A; }
+  .label-sowhat { color: #3A7BD4; }
+  .label-who { color: #5A8E5A; }
+
+  .card p { font-size: 9.5pt; line-height: 1.8; margin-bottom: 8pt; color: #333; }
+  .card p:last-child { margin-bottom: 0; }
+  .card strong { font-weight: 700; }
+
+  .badge {
+    display: inline-block; font-size: 7.5pt; font-weight: 500;
+    padding: 2pt 7pt; border-radius: 4pt;
+    background: #F5F3F0; color: #777; border: 0.5pt solid #E0DCD7;
+    margin-right: 3pt;
+  }
+
+  /* TOC */
+  .toc {
+    background: #F9F8F6; border: 1pt solid #E0DCD7; border-radius: 6pt;
+    padding: 14pt 16pt; margin-bottom: 18pt;
+  }
+  .toc-title { font-size: 8pt; font-weight: 700; letter-spacing: 1.5pt; color: #888; text-transform: uppercase; margin-bottom: 8pt; }
+  .toc-item { font-size: 8.5pt; padding: 2pt 0; display: flex; align-items: baseline; gap: 6pt; }
+  .toc-num { font-size: 7.5pt; color: #AAA; font-family: monospace; min-width: 16pt; }
+  .toc-tag { font-size: 6.5pt; font-weight: 600; padding: 1pt 5pt; border-radius: 10pt; }
+
+  /* Tip box */
+  .tip {
+    background: #F5EFF8; border-left: 3pt solid #9B6DB7;
+    padding: 8pt 12pt; margin: 8pt 0;
+    font-size: 9pt; color: #6B4D7D; border-radius: 0 4pt 4pt 0;
+  }
+
+  /* Page break */
+  .page-break { page-break-before: always; }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding-top: 16pt;
+    border-top: 1pt solid #E0DCD7; margin-top: 20pt;
+    font-size: 8pt; color: #AAA;
+  }
+  .footer-brand { font-size: 9pt; letter-spacing: 2pt; color: #555; font-weight: 700; margin-bottom: 4pt; }
+</style>
+</head>
+<body>
+
+<div class="issue-nav">
+  <a href="../index.html">← 返回首页 / Back to Home</a>
+</div>
+
+<div class="issue-wrapper">
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+  <div class="header-brand">✦ AI DIGEST ✦</div>
+  <div class="header-title">Issue #001</div>
+  <div class="header-meta">Weekly: Apr 14–19, 2026 + Daily: Apr 20, 2026 · 13 picks</div>
+  <div class="header-sub">每周精选 AI 应用洞察 · 只说跟你有关的</div>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="toc">
+  <div class="toc-title">本期目录</div>
+  <div class="toc-item"><span class="toc-num">01</span><span class="toc-tag tag-tool">工具</span> Claude Design — 不会设计也能出原型</div>
+  <div class="toc-item"><span class="toc-num">02</span><span class="toc-tag tag-tool">工具</span> Claude Code 大重构 — 多任务并行 + Routines</div>
+  <div class="toc-item"><span class="toc-num">03</span><span class="toc-tag tag-tool">工具</span> GPT-5.4 — 能自己操作你的电脑了</div>
+  <div class="toc-item"><span class="toc-num">04</span><span class="toc-tag tag-trend">趋势</span> AI 定价崩塌 — 前沿能力变白菜价</div>
+  <div class="toc-item"><span class="toc-num">05</span><span class="toc-tag tag-trend">趋势</span> Gemini 全面追赶 — 便宜大碗还在变强</div>
+  <div class="toc-item"><span class="toc-num">06</span><span class="toc-tag tag-scene">场景</span> Lovable — 说话就能出 App</div>
+  <div class="toc-item"><span class="toc-num">07</span><span class="toc-tag tag-scene">场景</span> NotebookLM + Gemini + Notion 学习闭环</div>
+  <div class="toc-item"><span class="toc-num">08</span><span class="toc-tag tag-tip">洞察</span> 中英混搭 Prompt 有论文背书了</div>
+  <div class="toc-item"><span class="toc-num">09</span><span class="toc-tag tag-tip">洞察</span> TextGrad — 让 AI 自己优化 Prompt</div>
+  <div style="border-top:1pt dashed #DDD; margin:6pt 0;"></div>
+  <div class="toc-item"><span class="toc-num">10</span><span class="toc-tag tag-daily">日报</span> ChatGPT 今天全球宕机</div>
+  <div class="toc-item"><span class="toc-num">11</span><span class="toc-tag tag-daily">日报</span> Maryland 州长召集 AI 高管讨论网络安全</div>
+  <div class="toc-item"><span class="toc-num">12</span><span class="toc-tag tag-daily">日报</span> Stanford 2026 AI Index 发布</div>
+  <div class="toc-item"><span class="toc-num">13</span><span class="toc-tag tag-daily">日报</span> OpenAI 花 $200 亿买 Cerebras 芯片</div>
+</div>
+
+<!-- ==================== 工具上新 ==================== -->
+<div class="section-banner tool"><h2>工具上新</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude Design — 不会设计也能出原型了</div>
+  <div class="card-source">📌 techcrunch.com · Apr 17</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>Anthropic 出了个新产品叫 Claude Design——打字描述你要什么，它直接帮你生成原型图、演示 deck、one-pager。做完可以导出 PDF、PPTX，或者直接丢进 Canva 继续改。还能读你公司的设计规范，保持品牌一致性。目前是 research preview，Pro/Max/Team/Enterprise 用户可用。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>如果你是 PM、consultant、或任何需要"快速把想法变成能看的东西"的人——以前要等设计师排期或者自己硬啃 Canva。现在打字就出。Figma 股价当天跌了 7%，市场信号很明确。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">通用</span><span class="badge">非技术背景获益最大</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#02</span></div>
+  <div class="card-title">Claude Code 大重构 — 多任务并行 + 定时自动化</div>
+  <div class="card-source">📌 macrumors.com · Apr 15</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>Claude Code 桌面版彻底重做了：支持多个 session 并排跑、侧边栏管理所有任务、内置终端和文件编辑器。更重要的是新出了 <strong>Routines</strong>——把自动化任务打包成一个配置，定时跑、API 触发、或者 GitHub 事件触发，你的电脑关了也能在云端继续执行。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>对技术人来说，这是从"跟 AI 一对一聊"到"同时指挥多个 AI 并行干活"的跳跃。Routines 意味着每天自动审查代码、跑测试、生成日报这种事可以完全后台运行。对非技术人暂时用不上，但代表了方向——AI 从对话助手变成自动化员工。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">技术背景</span><span class="badge">工程管理者</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#03</span></div>
+  <div class="card-title">GPT-5.4 — 能自己操作你的电脑了</div>
+  <div class="card-source">📌 howdoiuseai.com · Apr 16</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>GPT-5.4 加了 computer use 功能：它可以自己导航软件界面、点按钮、填表单、跨应用执行多步操作。不是概念演示——它真的能从一个系统拉数据、处理、然后录入另一个系统。ChatGPT Plus 和 Pro 用户都能用。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>你每天重复的那些"打开系统 A 导出 → Excel 整理 → 粘到系统 B"的操作，现在可以让 AI 帮你做了。特别适合日常涉及多系统操作的人。注意 Claude 也有 computer use（通过 Cowork），两家在赛跑。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">通用</span><span class="badge">多系统操作的职场人尤其受益</span></p>
+</div>
+
+<!-- ==================== 趋势信号 ==================== -->
+<div class="section-banner trend"><h2>趋势信号</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">趋势信号</span><span class="card-num">#04</span></div>
+  <div class="card-title">AI 定价崩塌 — 前沿能力正在变白菜价</div>
+  <div class="card-source">📌 blog.mean.ceo · Apr 16</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>Google 的 Gemini Flash-Lite 定价降到每百万 token $0.25，开源的 DeepSeek V4 Lite 更低。多个前沿模型的上下文窗口突破 100 万 token。一年前要花几美元处理的内容量，现在几美分就够了。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>"AI 太贵用不起"这个借口正在消失。想做 AI 副业或小产品的人，基础设施成本几乎可以忽略不计。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">通用</span><span class="badge">关注创业方向的人</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">趋势信号</span><span class="card-num">#05</span></div>
+  <div class="card-title">Gemini 全面追赶 — 便宜大碗还在变强</div>
+  <div class="card-source">📌 微信公众号（Gemini 2.5 Pro 全面对标分析）</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>Google 不再只做"便宜大碗"了。Gemini 2.5 Pro 在编程、推理、多模态上全线补课，部分 benchmark 追平 Claude Opus 和 GPT-5 级别。API 定价依然是 Claude/GPT 的 1/3 到 1/5。更关键的是——直接嵌入 Gmail、Docs、Sheets、Calendar 全家桶。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>选模型的实用框架：<strong>最难的任务用 Claude，日常批量任务用 Gemini，创意内容用 GPT</strong>——不必忠于一家。如果团队用 Google Workspace，Gemini 是阻力最小的 AI 入门路径。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">通用</span><span class="badge">Google 生态用户</span><span class="badge">关注 AI 成本的人</span></p>
+</div>
+
+<!-- ==================== 场景拆解 ==================== -->
+<div class="section-banner scene"><h2>场景拆解</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景拆解</span><span class="card-num">#06</span></div>
+  <div class="card-title">Lovable — 说话就能出 App，两个月 $20M 年收入</div>
+  <div class="card-source">📌 howdoiuseai.com · Apr 16</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>用自然语言描述你要什么应用，Lovable 直接生成完整的全栈 App——数据库、用户登录、部署，全包。两个月内达到 $20M 年化收入，AI app builder 赛道增长最快。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>如果你有一个小工具的想法——内部 tracker、客户表单、MVP 验证——以前需要找开发者或自学编程。现在门槛大幅降低。不能替代正式产品开发，但"从 0 到能用"的速度是革命性的。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">非技术背景想做产品的人</span><span class="badge">技术人快速验证想法</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景拆解</span><span class="card-num">#07</span></div>
+  <div class="card-title">NotebookLM + Gemini + Notion — 三件套学习闭环</div>
+  <div class="card-source">📌 微信公众号（原文用 Obsidian，本文改编为 Notion 版）</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>三个免费工具组成闭环：<strong>NotebookLM 负责消化</strong>（丢进 PDF/YouTube/网页，自动出摘要和播客音频）→ <strong>Gemini 或 Claude 负责深挖</strong>（追问、拆解、举例）→ <strong>Notion 负责沉淀</strong>（结构化笔记，团队共享）。Notion 比 Obsidian 更适合多人协作——免费版支持 10 个协作者，实时同步，不需要学 Markdown。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>特别适合学习型社群：非技术成员用 NotebookLM 降低"读长文"门槛，技术成员用 Claude 做代码级深挖，所有人把收获写进共享 Notion。知识不再散落在各自的聊天记录里。详见附件《三件套学习法》PDF。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">通用</span><span class="badge">信息密集型工作者</span><span class="badge">学习型社群</span></p>
+</div>
+
+<!-- ==================== 用法洞察 ==================== -->
+<div class="section-banner tip"><h2>用法洞察</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">用法洞察</span><span class="card-num">#08</span></div>
+  <div class="card-title">中英混搭 Prompt 怎么写？学术论文给了答案</div>
+  <div class="card-source">📌 arxiv.org · "Lost in the Mix" · MBZUAI &amp; Ecole Polytechnique</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>研究发现：在英文里混入其他语言的词汇会让 LLM 理解力下降，但反过来——<strong>以其他语言为主体框架、关键术语保留英文</strong>——反而能提升 LLM 的理解和推理能力。测试覆盖中文、阿拉伯语、法语、德语与英文的混搭，结论一致。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>对中英双语用户来说，直接验证了一个实操技巧：<strong>用中文写主体框架和指令，关键概念/术语保留英文原词</strong>。比如写"请分析这个 claim denial 的 root cause"比"请分析这个索赔拒绝的根本原因"更可能得到高质量回答。明天就能用。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">通用</span><span class="badge">中英双语 prompt 用户必看</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">用法洞察</span><span class="card-num">#09</span></div>
+  <div class="card-title">TextGrad — 让 AI 自己优化你的 Prompt</div>
+  <div class="card-source">📌 微信公众号（TextGrad 框架详解）</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>你写的 prompt 不够好？TextGrad 让 AI 自己批改自己的 prompt。原理：AI 跑一遍任务 → 另一个 AI 看结果给文字反馈"哪里不好、怎么改" → 根据反馈自动修改 prompt → 重复直到效果满意。本质上就是 <strong>AI 当自己的 prompt 教练</strong>。不需要微调模型，不需要花大钱。</p>
+  <div class="label label-sowhat">💡 So What · 跟你有什么关系</div>
+  <p>你现在就能借鉴核心思路：<strong>让 Claude 评价自己的输出质量，然后根据评价重写</strong>——这就是手动版的 TextGrad。比如写了一个数据分析的 prompt 模板，让 Claude 先跑一遍，再问"这个输出有什么问题？请改进 prompt"。重复两三轮，质量显著提升。</p>
+  <div class="label label-who">👩‍💻 适合谁</div>
+  <p><span class="badge">通用</span><span class="badge">重度 prompt 用户获益最大</span></p>
+</div>
+
+<!-- ==================== DAILY ==================== -->
+<div class="section-banner daily"><h2>Daily Digest · Apr 20, 2026 (Mon)</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">日报</span><span class="card-num">#10</span></div>
+  <div class="card-title">🔴 ChatGPT 今天全球宕机了</div>
+  <div class="card-source">📌 techradar.com · Apr 20</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>ChatGPT 今天上午经历大规模 partial outage，影响范围包括对话、登录、语音模式和图片生成，高峰期英国超 8700 人报告问题，美国近 1900 人。目前已修复并在监控恢复中。</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>社交媒体上大量用户反应是"ChatGPT 挂了我没法工作了"——说明很多人已经完全依赖单一工具。<strong>建议至少熟悉两个平台</strong>（Claude + ChatGPT，或加 Gemini），关键工作不要只有一条路。</p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">日报</span><span class="card-num">#11</span></div>
+  <div class="card-title">🏛️ Maryland 州长请 AI 高管们来家里开会了</div>
+  <div class="card-source">📌 techstartups.com · Apr 20</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>Maryland 州长 Wes Moore 在官邸召集 AI 公司高管，讨论在"Mythos 时代"如何应对不断上升的网络安全风险。这是去年他与多家 AI 公司私下交流的延续。</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>DMV 地区的朋友注意——Maryland 正在主动定位自己在 AI 安全领域的角色。对 DMV 的 AI 社群来说，这是政策层面的信号，未来可能有活动/合作/政策参与的机会值得跟踪。</p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">日报</span><span class="card-num">#12</span></div>
+  <div class="card-title">📊 Stanford 2026 AI Index 报告发布 — 几个关键数字</div>
+  <div class="card-source">📌 MIT Technology Review · Apr 16</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>Stanford 年度 AI 全景报告出炉。核心数字：AI 的普及速度超过了个人电脑和互联网；美中模型性能几乎持平，Anthropic 目前领先；22-25 岁软件开发者就业率自 2022 年下降近 20%；三分之一的组织预计未来一年 AI 将缩减劳动力；AI 在客服领域提升生产力 14%，软件开发领域提升 26%。</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>两个层面：第一，AI 对就业的影响已有数据支撑，不是猜测；第二，"最好的模型差距很小，竞争转向成本、可靠性和实际好用程度"——对个人来说，<strong>选哪个模型没那么重要，重要的是你会不会用。</strong></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">日报</span><span class="card-num">#13</span></div>
+  <div class="card-title">💰 OpenAI 花 $200 亿买 Cerebras 芯片</div>
+  <div class="card-source">📌 radicaldatascience.wordpress.com · Apr 17</div>
+  <div class="label label-highlight">✹ 亮点说人话</div>
+  <p>OpenAI 将在三年内支付 Cerebras 超过 200 亿美元使用其芯片服务器，这笔交易还可能让 OpenAI 获得 Cerebras 的股权。OpenAI 还提供约 10 亿美元帮助 Cerebras 建设数据中心。</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>AI 大厂正在从"买 NVIDIA 的卡"转向"投资自己的算力供应链"。长期来看 AI 使用成本还会继续降，对终端用户是好事。Cerebras 也在准备 IPO，整个 AI 芯片赛道正在加速分化。</p>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <div class="footer-brand">✦ AI DIGEST ✦</div>
+  <p>
+    由社群成员精选 · 每周一期 + 不定期日报<br>
+    筛选标准：实用 > 炫酷 · 能用 > 能看<br><br>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具上新</span>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">趋势信号</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">场景拆解</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">用法洞察</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">日报速递</span>
+    <br><br>
+    💬 看到好内容？随手转发到群里，下期可能就收录了
+  </p>
+</div>
+
+</div><!-- close issue-wrapper -->
+
+<div class="issue-nav" style="padding-bottom: 40px; text-align: center;">
+  <a href="../index.html">← 返回首页 / Back to Home</a>
+</div>
+
+</body>
+</html>
