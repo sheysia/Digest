@@ -297,6 +297,55 @@
   @keyframes heroLineGrow {
     to { width: 160px; }
   }
+  .hero-topic-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0;
+    row-gap: 4px;
+    margin-top: 12px;
+    max-width: 980px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 2.9s;
+  }
+  .hero-topic-pill {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 0;
+    min-width: auto;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1.35;
+  }
+  .hero-topic-pill strong {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.94);
+    letter-spacing: 0.05px;
+  }
+  .hero-topic-pill small {
+    display: inline;
+    margin-top: 0;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.58);
+    letter-spacing: 0;
+  }
+  .hero-topic-pill::after {
+    content: "|";
+    margin: 0 10px;
+    color: rgba(167, 139, 250, 0.38);
+    font-size: 11px;
+    font-weight: 300;
+  }
+  .hero-topic-pill:last-child::after {
+    display: none;
+  }
   .hero-tags {
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
     opacity: 0; animation: fadeUp 0.8s ease forwards 3.5s;
@@ -327,9 +376,8 @@
     padding: 0 24px;
   }
   .digest-topics-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 12px;
     padding: 0;
     background: transparent;
@@ -339,18 +387,29 @@
     -webkit-backdrop-filter: none;
   }
   .digest-topic-pill {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px 18px;
-    border-radius: 999px;
-    background: var(--white);
-    border: 1px solid rgba(99,199,203,0.16);
+    gap: 3px;
+    min-height: 78px;
+    padding: 14px 12px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid rgba(99,199,203,0.18);
     color: var(--text);
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
+    text-align: center;
     box-shadow: 0 4px 14px rgba(24, 20, 48, 0.03);
+  }
+  .digest-topic-pill strong {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+  }
+  .digest-topic-pill small {
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 0.3px;
   }
 
 
@@ -361,7 +420,7 @@
   }
   .about-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 18px;
   }
   .about-card {
@@ -516,6 +575,57 @@
     border: 1px dashed var(--border);
   }
 
+
+  /* ========== SECTION HUBS ========== */
+  .section-shell {
+    max-width: 900px; margin: 0 auto; padding: 0 24px 60px;
+  }
+  .section-header-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 20px;
+  }
+  .issues-grid, .tutorial-grid {
+    display: grid; gap: 18px;
+  }
+  .issues-grid { grid-template-columns: 1fr 1fr; }
+  .issue-tile, .tutorial-card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--border-light);
+    border-radius: 14px; padding: 24px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .issue-tile:hover, .tutorial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    border-color: rgba(99,199,203,0.28);
+  }
+  .issue-live {
+    background: linear-gradient(135deg, rgba(112,112,196,0.06), rgba(99,199,203,0.05) 60%, #fff 100%);
+  }
+  .issue-ready {
+    background: linear-gradient(135deg, rgba(99,199,203,0.08), rgba(255,255,255,1) 70%);
+  }
+  .issue-kicker, .tutorial-tag {
+    display: inline-block; margin-bottom: 12px; padding: 4px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.4px;
+    background: rgba(99,199,203,0.12); color: var(--accent-dark);
+  }
+  .issue-tile h3, .tutorial-card h3 {
+    font-size: 22px; color: var(--text); margin-bottom: 8px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .issue-tile p, .tutorial-card p, .tutorial-lead p {
+    font-size: 13px; color: var(--text-light); line-height: 1.8;
+  }
+  .issue-tile span, .tutorial-card span {
+    display: inline-block; margin-top: 14px; font-size: 12px; color: var(--accent-dark); font-weight: 600;
+  }
+  .tutorial-lead { margin-bottom: 18px; }
+  .tutorial-lead h2 {
+    font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--text); margin-bottom: 8px;
+  }
+  .tutorial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   /* ========== WHO ========== */
   .who {
     background: var(--bg-warm);
@@ -655,6 +765,7 @@
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .hero-content { padding: 20px 24px 28px; }
+    .digest-topics-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media (max-width: 640px) {
     .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -668,7 +779,25 @@
     .hero-motion, .hero-content { min-height: calc(48vh - 64px); }
     .hero-sub { font-size: 15px; letter-spacing: 2px; }
     .hero-note { font-size: 12px; margin-bottom: 8px; }
-    
+    .hero-topic-pills {
+      margin-top: 10px;
+      max-width: 92vw;
+      row-gap: 3px;
+      line-height: 1.55;
+    }
+    .hero-topic-pill {
+      padding: 0;
+      min-width: auto;
+      gap: 4px;
+    }
+    .hero-topic-pill strong { font-size: 10.5px; }
+    .hero-topic-pill small { font-size: 9.5px; }
+    .hero-topic-pill::after {
+      margin: 0 7px;
+      font-size: 9px;
+    }
+    .issues-grid, .tutorial-grid { grid-template-columns: 1fr; }
+    .section-shell { padding: 0 16px 44px; }
   }
 
   @media (max-width: 640px) {
@@ -691,18 +820,17 @@
     .hero-motion, .hero-content { min-height: 216px; }
     .digest-topics-shell { padding: 0 16px; }
     .digest-topics-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       padding: 0;
       background: transparent;
     }
     .digest-topic-pill {
-      width: calc(50% - 5px);
-      padding: 10px 12px;
-      font-size: 14px;
+      min-height: 74px;
+      padding: 12px 10px;
     }
-    .digest-topic-pill:last-child {
-      width: 100%;
-    }
+    .digest-topic-pill strong { font-size: 14px; }
+    .digest-topic-pill small { font-size: 10px; }
   }
 
 </style>
@@ -761,6 +889,8 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#latest">Latest</a>
+      <a href="#issues">Issues</a>
+      <a href="#tutorials">Tutorials</a>
       <a href="#archive">Archive</a>
       <a href="#who">Who</a>
       <a href="#voice">Voice</a>
@@ -800,21 +930,15 @@
       <h1 class="hero-title"><em>每周精选 · AI 应用洞察</em></h1>
       <p class="hero-sub">源于生活，立足应用</p>
       <div class="hero-note">Smart women, real tools, no noise.</div>
+      <div class="hero-topic-pills" aria-label="Digest focus areas">
+        <div class="hero-topic-pill"><strong>工具上新</strong><small>Tool Updates</small></div>
+        <div class="hero-topic-pill"><strong>趋势信号</strong><small>Trend Signals</small></div>
+        <div class="hero-topic-pill"><strong>场景拆解</strong><small>Use Cases</small></div>
+        <div class="hero-topic-pill"><strong>用法洞察</strong><small>Workflow Insights</small></div>
+        <div class="hero-topic-pill"><strong>日报速递</strong><small>Daily Briefs</small></div>
+      </div>
       <div class="hero-divider"></div>
     </div>
-  </div>
-</section>
-
-<section class="digest-topics" aria-label="Digest topics">
-  <div class="digest-topics-shell">
-    <div class="digest-topics-row">
-      <span class="digest-topic-pill">工具上新</span>
-      <span class="digest-topic-pill">趋势信号</span>
-      <span class="digest-topic-pill">场景拆解</span>
-      <span class="digest-topic-pill">用法洞察</span>
-      <span class="digest-topic-pill">日报速递</span>
-    </div>
-  </div>
 </section>
 
 <!-- ABOUT -->
@@ -845,61 +969,127 @@
       <h3>多元背景融合</h3>
       <div class="about-en">Where diverse backgrounds meet</div>
     </div>
+    <div class="about-card">
+      <div class="about-icon i2">🗓️</div>
+      <h3>线上线下活动</h3>
+      <div class="about-en">Online & offline events</div>
+    </div>
   </div>
 </section>
 
 <div class="divider"><div class="divider-line"></div></div>
 
+
+
+
+
+
+
+
 <!-- LATEST ISSUE -->
 <section class="latest" id="latest">
   <div class="latest-header">
     <span class="latest-label">Latest Issue</span>
-    <span class="latest-date">Apr 14–20, 2026</span>
+    <span class="latest-date">Apr 21–22, 2026</span>
   </div>
-  <a href="issues/001.html" class="latest-card">
+  <a href="issues/002.html" class="latest-card">
     <div class="latest-banner">
-      <h2>Issue #001</h2>
-      <p>9 weekly picks + 4 daily updates · 13 items total</p>
+      <h2>Issue #002</h2>
+      <p>8 picks + 3 deep-dive guides · 11 highlights</p>
     </div>
     <div class="latest-body">
       <div class="latest-items">
-        <div class="latest-item"><span class="num">01</span><span class="tag-dot tool"></span> Claude Design — 不会设计也能出原型</div>
-        <div class="latest-item"><span class="num">02</span><span class="tag-dot tool"></span> Claude Code 大重构 + Routines</div>
-        <div class="latest-item"><span class="num">03</span><span class="tag-dot tool"></span> GPT-5.4 能自己操作电脑了</div>
-        <div class="latest-item"><span class="num">04</span><span class="tag-dot trend"></span> AI 定价崩塌</div>
-        <div class="latest-item"><span class="num">05</span><span class="tag-dot trend"></span> Gemini 全面追赶</div>
-        <div class="latest-item"><span class="num">06</span><span class="tag-dot scene"></span> Lovable — 说话就能出 App</div>
-        <div class="latest-item"><span class="num">07</span><span class="tag-dot scene"></span> NotebookLM + Gemini + Notion 闭环</div>
-        <div class="latest-item"><span class="num">08</span><span class="tag-dot tip"></span> 中英混搭 Prompt 有论文背书</div>
-        <div class="latest-item"><span class="num">09</span><span class="tag-dot tip"></span> TextGrad — AI 自己优化 Prompt</div>
-        <div class="latest-item"><span class="num">10</span><span class="tag-dot daily"></span> ChatGPT 全球宕机</div>
-        <div class="latest-item"><span class="num">11</span><span class="tag-dot daily"></span> MD 州长召集 AI 安全会议</div>
-        <div class="latest-item"><span class="num">12</span><span class="tag-dot daily"></span> Stanford 2026 AI Index</div>
-        <div class="latest-item"><span class="num">13</span><span class="tag-dot daily"></span> OpenAI $200 亿 Cerebras 芯片</div>
+        <div class="latest-item"><span class="num">01</span><span class="tag-dot tool"></span> ChatGPT Images 2.0</div>
+        <div class="latest-item"><span class="num">02</span><span class="tag-dot tool"></span> OpenAI Codex 扩展到更多场景</div>
+        <div class="latest-item"><span class="num">03</span><span class="tag-dot tool"></span> Nano Banana Pro 科研级流程图</div>
+        <div class="latest-item"><span class="num">04</span><span class="tag-dot tip"></span> AI 写论文 / 长文工作流</div>
+        <div class="latest-item"><span class="num">05</span><span class="tag-dot tip"></span> AI 做 PPT + Report + 配图</div>
+        <div class="latest-item"><span class="num">06</span><span class="tag-dot tip"></span> AI 自动求职助手</div>
+        <div class="latest-item"><span class="num">07</span><span class="tag-dot scene"></span> 万能 Prompt 模板</div>
+        <div class="latest-item"><span class="num">08</span><span class="tag-dot scene"></span> Hermes Agent</div>
       </div>
       <span class="latest-cta">阅读本期 →</span>
     </div>
   </a>
 </section>
 
+<!-- TUTORIALS -->
+<section class="tutorials-hub" id="tutorials">
+  <div class="section-shell">
+    <div class="section-header-row">
+      <span class="latest-label">实例分享</span>
+      <span class="latest-date">Practical examples & walkthroughs</span>
+    </div>
+    <div class="tutorial-lead">
+      <h2>实例分享</h2>
+      <p>把值得单独展开、值得反复参考的内容，从每期 Issue 中抽出来，沉淀成可以长期复用的案例与教程。</p>
+    </div>
+    <div class="tutorial-grid">
+      <a class="tutorial-card" href="tutorials/001.html">
+        <div class="tutorial-tag">Tutorial 001</div>
+        <h3>AI 做 PPT / Report / 配图指南</h3>
+        <p>一篇打包讲清内容结构、视觉表达和配图工作流。</p>
+        <span>tutorials/001.html</span>
+      </a>
+      <a class="tutorial-card" href="tutorials/002.html">
+        <div class="tutorial-tag">Tutorial 002</div>
+        <h3>AI 自动求职助手指南</h3>
+        <p>从岗位筛选到投递辅助，适合做长期可复用的求职 workflow。</p>
+        <span>tutorials/002.html</span>
+      </a>
+      <a class="tutorial-card" href="tutorials/003.html">
+        <div class="tutorial-tag">Tutorial 003</div>
+        <h3>AI 写论文 / 长文工作流指南</h3>
+        <p>把资料整理、写作推进和定稿润色串成完整流程。</p>
+        <span>tutorials/003.html</span>
+      </a>
+      <a class="tutorial-card" href="tutorials/004.html">
+        <div class="tutorial-tag">Tutorial 004</div>
+        <h3>NotebookLM + Gemini + Notion 学习法</h3>
+        <p>适合学习整理、知识沉淀和个人内容系统搭建。</p>
+        <span>tutorials/004.html</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ISSUES -->
+<section class="issues-hub" id="issues">
+  <div class="section-shell">
+    <div class="section-header-row">
+      <span class="latest-label">Issues</span>
+      <span class="latest-date">Issue archive & navigation</span>
+    </div>
+    <div class="issues-grid">
+      <a class="issue-tile issue-live" href="issues/002.html">
+        <div class="issue-kicker">Live now</div>
+        <h3>Issue #002</h3>
+        <p>Apr 21–22, 2026 · 8 picks + 3 deep-dive guides</p>
+        <span>Open issue →</span>
+      </a>
+      <a class="issue-tile issue-ready" href="issues/001.html">
+        <div class="issue-kicker">Archive</div>
+        <h3>Issue #001</h3>
+        <p>创刊号 · 9 weekly picks + 4 daily updates</p>
+        <span>Browse issue →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ARCHIVE -->
 <section class="archive" id="archive">
   <div class="archive-header">Past Issues</div>
-
-  <!-- 未来期数会加在这里 -->
-  <!--
   <ul class="archive-list">
     <a href="issues/002.html" class="archive-item">
-      <span class="archive-title">Issue #002 — Apr 21–27, 2026</span>
-      <span class="archive-meta"><span class="archive-count">8 picks</span> Apr 27</span>
+      <span class="archive-title">Issue #002 — Apr 21–22, 2026</span>
+      <span class="archive-meta"><span class="archive-count">11 highlights</span> Latest</span>
+    </a>
+    <a href="issues/001.html" class="archive-item">
+      <span class="archive-title">Issue #001 — Apr 14–20, 2026</span>
+      <span class="archive-meta"><span class="archive-count">13 items</span> Archive</span>
     </a>
   </ul>
-  -->
-
-  <div class="archive-empty">
-    Issue #001 是创刊号 🎉<br>
-    更多期数即将到来，敬请期待
-  </div>
 </section>
 
 <!-- WHO + PRODUCT -->
@@ -941,7 +1131,7 @@
       <div class="who-product-item">
         <span class="who-product-icon">🧪</span>
         <div>
-          <strong>Evolith Lab</strong>
+          <strong>Syneira Lab</strong>
           <span class="who-product-desc">工具评测、工作流指南、实操 PDF，从试用到落地</span>
         </div>
       </div>
