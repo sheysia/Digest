@@ -40,6 +40,160 @@
     -webkit-font-smoothing: antialiased;
   }
 
+
+.bottom-cta {
+  margin: 72px 0 40px;
+}
+
+.bottom-cta__inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  min-height: 360px;
+  border: 1px solid rgba(116, 102, 255, 0.10);
+  background:
+    linear-gradient(90deg, rgba(248, 249, 252, 0.96) 0%, rgba(248, 249, 252, 0.92) 28%, rgba(248, 249, 252, 0.74) 48%, rgba(248, 249, 252, 0.18) 72%, rgba(248, 249, 252, 0.06) 100%),
+    url("assets/images/community-cta.png") center right / cover no-repeat;
+  box-shadow: 0 16px 40px rgba(26, 22, 66, 0.08);
+}
+
+.bottom-cta__content {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+  padding: 52px 44px;
+}
+
+.bottom-cta__eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6f76b8;
+}
+
+.bottom-cta h2 {
+  margin: 0 0 16px;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #23253f;
+}
+
+.bottom-cta__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5d6387;
+  max-width: 520px;
+}
+
+.bottom-cta__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.bottom-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.bottom-cta__button.primary {
+  background: linear-gradient(135deg, #6fc7c5, #7e73ff);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(111, 199, 197, 0.22);
+}
+
+.bottom-cta__button.primary:hover {
+  transform: translateY(-1px);
+}
+
+.bottom-cta__button.secondary {
+  background: rgba(255, 255, 255, 0.72);
+  color: #2a2d47;
+  border: 1px solid rgba(116, 102, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.bottom-cta__button.secondary:hover {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 900px) {
+  .bottom-cta__inner {
+    min-height: 320px;
+    background:
+      linear-gradient(180deg, rgba(248, 249, 252, 0.92) 0%, rgba(248, 249, 252, 0.82) 42%, rgba(248, 249, 252, 0.24) 100%),
+      url("assets/images/community-cta.png") center right / cover no-repeat;
+  }
+
+  .bottom-cta__content {
+    max-width: 100%;
+    padding: 34px 24px;
+  }
+
+  .bottom-cta h2 {
+    font-size: 26px;
+  }
+
+  .bottom-cta__text {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 640px) {
+  .bottom-cta {
+    margin: 56px 0 28px;
+  }
+
+  .bottom-cta__inner {
+    min-height: 280px;
+    border-radius: 22px;
+    background:
+      linear-gradient(180deg, rgba(248, 249, 252, 0.94) 0%, rgba(248, 249, 252, 0.86) 48%, rgba(248, 249, 252, 0.30) 100%),
+      url("assets/images/community-cta.png") 72% center / cover no-repeat;
+  }
+
+  .bottom-cta__content {
+    padding: 24px 18px;
+  }
+
+  .bottom-cta h2 {
+    font-size: 22px;
+    line-height: 1.28;
+  }
+
+  .bottom-cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bottom-cta__button {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+ 
   /* ========== NAV ========== */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -1181,6 +1335,33 @@
   </div>
 </section>
 
+
+
+<section class="bottom-cta">
+  <div class="bottom-cta__inner">
+    <div class="bottom-cta__content">
+      <p class="bottom-cta__eyebrow">Beyond the Digest</p>
+      <h2>把 AI 内容，延伸到更真实的交流与实践</h2>
+      <p class="bottom-cta__text">
+        从每期 Digest，到实例分享、工作流拆解，再到未来的线上线下活动，
+        AI Digest by Syneira Lab 希望把有用的工具、温和的判断与真实的应用场景连接起来。
+      </p>
+
+      <div class="bottom-cta__actions">
+        <a class="bottom-cta__button primary" href="issues/002.html">Read Latest Issue</a>
+        <a class="bottom-cta__button secondary" href="tutorials/">Browse 实例分享</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+ 
+
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand-wrap">
