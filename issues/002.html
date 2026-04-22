@@ -3,455 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 自动求职助手完整指南 | AI Digest by Syneira</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<title>AI Digest Issue #002 | Apr 21–22, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #F7F5F1;
-    --card: #FFFFFF;
-    --text: #1A1A2E;
-    --body: #3A3A4A;
-    --light: #7A7A8A;
-    --accent: #2A9D8F;
-    --orange: #E8643B;
-    --blue: #3A7BD4;
-    --green: #5A8E5A;
-    --purple: #9B6DB7;
-    --border: #E0DCD7;
-  }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Noto Sans SC', sans-serif;
-    background: var(--bg); color: var(--body);
-    line-height: 1.85; font-size: 15px;
-  }
+  body { font-family:'Noto Sans SC',sans-serif; color:#2C2C2C; line-height:1.85; font-size:15px; background:#FAF8F5; }
 
-  /* Nav */
-  .back-nav {
-    max-width: 720px; margin: 0 auto; padding: 16px 24px;
-  }
-  .back-nav a {
-    font-size: 13px; color: var(--accent); text-decoration: none;
-  }
-  .back-nav a:hover { text-decoration: underline; }
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .nav a { font-size:13px; color:#2A9D8F; text-decoration:none; }
+  .nav a:hover { text-decoration:underline; }
 
-  /* Article */
-  .article {
-    max-width: 720px; margin: 0 auto; padding: 0 24px 60px;
-  }
+  .wrap { max-width:720px; margin:0 auto; padding:12px 24px 60px; }
 
-  /* Header */
-  .art-header {
-    text-align: center; padding-bottom: 24px;
-    border-bottom: 2px solid var(--accent);
-    margin-bottom: 32px;
-  }
-  .art-tag {
-    display: inline-block; font-size: 11px; font-weight: 600;
-    padding: 4px 14px; border-radius: 20px;
-    background: #EFF5EC; color: var(--green);
-    margin-bottom: 12px;
-  }
-  .art-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px; font-weight: 700; color: var(--text);
-    line-height: 1.3; margin-bottom: 8px;
-  }
-  .art-sub {
-    font-size: 15px; color: var(--light);
-    font-style: italic;
-  }
-  .art-meta {
-    font-size: 12px; color: var(--light); margin-top: 12px;
-  }
+  .header { text-align:center; padding-bottom:16px; border-bottom:2.5px solid #2A9D8F; margin-bottom:24px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:#999; text-transform:uppercase; margin-bottom:6px; }
+  .header-title { font-size:28px; font-weight:700; color:#1A1A2E; margin-bottom:4px; }
+  .header-meta { font-size:12px; color:#999; }
+  .header-sub { font-size:13px; color:#2A9D8F; margin-top:8px; font-style:italic; }
 
-  /* Section headers */
-  .sec {
-    padding: 10px 16px; border-radius: 6px;
-    margin: 36px 0 16px;
-  }
-  .sec-green { background: #EFF5EC; border-left: 4px solid var(--green); }
-  .sec-blue { background: #EBF2FD; border-left: 4px solid var(--blue); }
-  .sec-purple { background: #F5EFF8; border-left: 4px solid var(--purple); }
-  .sec-orange { background: #FDF0EB; border-left: 4px solid var(--orange); }
-  .sec-teal { background: #E8F6F3; border-left: 4px solid var(--accent); }
-  .sec h2 { font-size: 18px; font-weight: 700; margin: 0; }
-  .sec-green h2 { color: var(--green); }
-  .sec-blue h2 { color: var(--blue); }
-  .sec-purple h2 { color: var(--purple); }
-  .sec-orange h2 { color: var(--orange); }
-  .sec-teal h2 { color: var(--accent); }
+  .section { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .section.tool { background:#FDF0EB; border-left:4px solid #E8643B; }
+  .section.trend { background:#EBF2FD; border-left:4px solid #3A7BD4; }
+  .section.scene { background:#EFF5EC; border-left:4px solid #5A8E5A; }
+  .section.tip { background:#F5EFF8; border-left:4px solid #9B6DB7; }
+  .section h2 { font-size:16px; font-weight:700; }
+  .section.tool h2 { color:#E8643B; }
+  .section.trend h2 { color:#3A7BD4; }
+  .section.scene h2 { color:#5A8E5A; }
+  .section.tip h2 { color:#9B6DB7; }
 
-  p { margin-bottom: 14px; }
-  strong { font-weight: 700; color: var(--text); }
+  .card { background:#FFF; border:1px solid #E0DCD7; border-radius:10px; padding:18px 20px; margin-bottom:16px; }
+  .card-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .tag-tool { background:#FDF0EB; color:#D4603A; }
+  .tag-trend { background:#EBF2FD; color:#3A7BD4; }
+  .tag-scene { background:#EFF5EC; color:#5A8E5A; }
+  .tag-tip { background:#F5EFF8; color:#9B6DB7; }
+  .card-num { font-size:11px; color:#AAA; font-weight:600; }
+  .card-title { font-size:17px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.4; }
+  .card-source { font-size:11px; color:#999; margin-bottom:12px; }
 
-  /* Flow steps */
-  .flow {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 20px 24px;
-    margin: 16px 0 20px;
-  }
-  .flow-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 2px;
-    color: var(--light); text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .step {
-    display: flex; gap: 14px; padding: 12px 0;
-    border-bottom: 1px dashed var(--border);
-  }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    width: 28px; height: 28px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 12px; font-weight: 700;
-    flex-shrink: 0; margin-top: 2px;
-  }
-  .step-num.g { background: var(--green); }
-  .step-num.b { background: var(--blue); }
-  .step-num.p { background: var(--purple); }
-  .step-num.o { background: var(--orange); }
-  .step-num.t { background: var(--accent); }
-  .step-content { flex: 1; }
-  .step-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .step-desc { font-size: 14px; color: var(--body); line-height: 1.8; }
-  .step-tool { font-size: 12px; color: var(--blue); font-weight: 500; margin-top: 6px; }
+  .label { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .label-h { color:#D4603A; }
+  .label-s { color:#3A7BD4; }
+  .label-w { color:#5A8E5A; }
 
-  /* Tool card */
-  .tool {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 20px 24px; margin: 14px 0;
-  }
-  .tool-name { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .tool-tags { margin-bottom: 8px; }
-  .ttag {
-    display: inline-block; font-size: 11px; font-weight: 500;
-    padding: 3px 10px; border-radius: 12px; margin-right: 4px;
-  }
-  .ttag-free { background: #E8F6F3; color: var(--accent); }
-  .ttag-paid { background: #FDF0EB; color: var(--orange); }
-  .ttag-easy { background: #EFF5EC; color: var(--green); }
-  .ttag-adv { background: #F5EFF8; color: var(--purple); }
+  .card p { font-size:14px; line-height:1.85; margin-bottom:10px; color:#444; }
+  .card strong { font-weight:700; color:#1A1A2E; }
 
-  /* Tip / Warning */
-  .tip {
-    background: #F5EFF8; border-left: 4px solid var(--purple);
-    padding: 14px 18px; margin: 18px 0; border-radius: 0 8px 8px 0;
-    font-size: 14px; color: #5A3D6E;
-  }
-  .tip-title { font-weight: 700; margin-bottom: 6px; }
-  .warn {
-    background: #FDF0EB; border-left: 4px solid var(--orange);
-    padding: 14px 18px; margin: 18px 0; border-radius: 0 8px 8px 0;
-    font-size: 14px; color: #8B3A1F;
-  }
-  .warn-title { font-weight: 700; margin-bottom: 6px; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5F3F0; color:#777; border:0.5px solid #E0DCD7; margin-right:4px; }
 
-  /* Comparison table */
-  .comp {
-    width: 100%; border-collapse: collapse;
-    margin: 16px 0; font-size: 13px;
-  }
-  .comp th {
-    background: #F0EDE7; padding: 10px 12px;
-    text-align: left; font-weight: 700; color: #555;
-    border-bottom: 2px solid #DDD;
-  }
-  .comp td {
-    padding: 10px 12px; border-bottom: 1px solid #EEE;
-    color: #444; vertical-align: top;
-  }
-  .comp tr:nth-child(even) td { background: #FAFAF8; }
+  .read-more { display:inline-block; font-size:12px; color:#2A9D8F; font-weight:600; text-decoration:none; margin-top:6px; }
+  .read-more:hover { text-decoration:underline; }
 
-  /* VS grid */
-  .vs {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    margin: 16px 0;
-  }
-  .vs-box {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 20px;
-  }
-  .vs-box h3 {
-    font-size: 15px; font-weight: 700; color: var(--text);
-    margin-bottom: 10px; padding-bottom: 8px;
-    border-bottom: 2px solid var(--border);
-  }
-  .vs-box.best h3 { border-bottom-color: var(--accent); }
-  .vs-item { font-size: 13px; color: #555; padding: 4px 0; line-height: 1.7; }
-
-  /* Footer */
-  .art-footer {
-    text-align: center; padding-top: 24px;
-    border-top: 1px solid var(--border); margin-top: 32px;
-    font-size: 12px; color: var(--light);
-  }
-
-  @media (max-width: 640px) {
-    .art-title { font-size: 24px; }
-    .vs { grid-template-columns: 1fr; }
-    .comp { font-size: 12px; }
-    .comp th, .comp td { padding: 8px; }
-  }
+  .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
+  .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
 </style>
 </head>
 <body>
 
-<div class="back-nav">
-  <a href="../issues/002.html">← 返回 Issue #002</a>
+<div class="nav"><a href="../index.html">← 返回首页 / Back to Home</a></div>
+
+<div class="wrap">
+
+<div class="header">
+  <div class="header-brand">✦ AI DIGEST by Syneira ✦</div>
+  <div class="header-title">Issue #002</div>
+  <div class="header-meta">Apr 21–22, 2026 · 8 picks + 3 deep-dive guides</div>
+  <div class="header-sub">从会聊天到能干活 — AI 实用四件套</div>
 </div>
 
-<div class="article">
+<!-- ===== 工具上新 ===== -->
+<div class="section tool"><h2>工具上新</h2></div>
 
-<!-- HEADER -->
-<div class="art-header">
-  <div class="art-tag">场景拆解</div>
-  <h1 class="art-title">AI 自动求职助手<br>让 AI 每天帮你刷 20 个匹配岗位</h1>
-  <div class="art-sub">两条路线：零代码 5 分钟上手 / 技术版全自动 Agent</div>
-  <div class="art-meta">AI Digest Issue #002 · By Syneira Lab · Apr 2026</div>
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#01</span></div>
+  <div class="card-title">🔥 ChatGPT Images 2.0 — 昨天刚出，AI 作图进入"文艺复兴"</div>
+  <div class="card-source">📌 openai.com · Apr 21, 2026</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p>OpenAI 昨天（4/21）发布了 ChatGPT Images 2.0，底层模型叫 gpt-image-2。12 小时内登顶 Image Arena 所有类别第一名，领先第二名 242 分——这是该排行榜有史以来最大差距。核心升级：<strong>文字渲染准确率从 ~90% 跳到 99%</strong>（终于不会把 "WELCOME" 写成 "WELCOOMM" 了）、支持 4K 分辨率、内建推理能力（会"想"再画）、多轮编辑保持一致性。Sam Altman 说"这是从 GPT-3 直接跳到 GPT-5 的感觉。"</p>
+  <div class="label label-s">💡 So What</div>
+  <p>对你意味着：<strong>做海报、信息图、产品 mockup、社交媒体配图终于可以靠 AI 了</strong>——以前文字一乱就没法用，现在文字准了。免费用户有 Instant 模式，付费用户有 Thinking 模式（质量更高但稍慢）。Nano Banana Pro 之后又多了一个强选择。DALL-E 2/3 将在 5 月 12 日正式退役。</p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">所有人</span><span class="badge">需要做配图的人尤其受益</span></p>
 </div>
 
-<!-- PAIN POINT -->
-<div class="sec sec-orange"><h2>痛点</h2></div>
-
-<p>
-  秋招 / 跳槽季，每天打开 LinkedIn、Indeed、Google Jobs 刷岗位，从几百条里找几个靠谱的，然后逐个改简历——这件事每天要花 1-3 小时。在 DMV 尤其如此：联邦合同、咨询公司、healthcare、fintech 岗位大量但分散，关键词稍微不对就漏掉。
-</p>
-<p>
-  <strong>核心问题不是"没有好岗位"，而是"筛选 + 匹配 + 改简历"这个流程太耗时。</strong>AI 能自动化的恰恰是这些重复性工作。
-</p>
-
-<!-- ROUTE A -->
-<div class="sec sec-green"><h2>路线 A：零代码版 — 5 分钟上手，80% 效果</h2></div>
-
-<p>不需要写代码，不需要 API key。用现成工具组合就能做到。</p>
-
-<div class="flow">
-  <div class="flow-label">推荐工作流</div>
-  <div class="step">
-    <div class="step-num g">1</div>
-    <div class="step-content">
-      <div class="step-title">设置自动推送</div>
-      <div class="step-desc">在 LinkedIn / Indeed / Google Jobs 里设好 Job Alert：输入你的目标职位 + 地点（比如 "Data Engineer" + "Washington DC" 或 "Healthcare Analyst" + "Rockville MD"），选择"每日推送"。每天早上邮箱里就有新岗位。</div>
-      <div class="step-tool">🔧 LinkedIn Job Alerts + Indeed Alerts + Google Jobs Alerts · 全部免费</div>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num g">2</div>
-    <div class="step-content">
-      <div class="step-title">AI 分析匹配度</div>
-      <div class="step-desc">看到感兴趣的岗位，把 JD 粘贴进 Claude（或 ChatGPT），加上你的简历，问：<strong>"请分析这个 JD 和我的简历的匹配度，打分 0-100，列出我缺少的关键词，给出 3-5 条针对性简历修改建议。"</strong> 10 秒出结果。</div>
-      <div class="step-tool">🔧 Claude 免费版 / ChatGPT 免费版 · 够用</div>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num g">3</div>
-    <div class="step-content">
-      <div class="step-title">用 Teal 追踪和管理</div>
-      <div class="step-desc">Teal 是一个免费的求职管理平台：Chrome 扩展一键保存 LinkedIn 上的岗位、Kanban 看板追踪申请进度（Saved → Applied → Interview → Offer）、AI 分析简历和 JD 的关键词匹配度（免费版就有基础版）。把求职当项目管理来做。</div>
-      <div class="step-tool">🔧 Teal 免费版 · tealhq.com · Chrome 扩展 · 不需要信用卡</div>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num g">4</div>
-    <div class="step-content">
-      <div class="step-title">AI 生成针对性 cover letter</div>
-      <div class="step-desc">把 JD + 你的简历 + 目标公司信息一起喂给 Claude，让它生成一封针对性的 cover letter。<strong>关键 prompt：</strong>"Based on my resume and this JD, write a cover letter that highlights the 3 most relevant experiences. Tone: professional but warm. Length: 250 words."</div>
-      <div class="step-tool">🔧 Claude / ChatGPT · 或 Teal+ 内建 cover letter 生成器</div>
-    </div>
-  </div>
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#02</span></div>
+  <div class="card-title">OpenAI Codex "for almost everything" — 不只写代码了</div>
+  <div class="card-source">📌 openai.com · Apr 16, 2026</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p>OpenAI 的 Codex 桌面端大更新：新增 <strong>computer use</strong>（能自己操作你的 Mac 界面）、内置浏览器、90+ 插件（Jira/Notion/Slack/GitHub/Salesforce 等全接上了）、记忆功能、定时自动化任务。两周内从 300 万周活跃用户涨到 400 万。本质上从"代码助手"变成了"全能工作 Agent"。</p>
+  <div class="label label-s">💡 So What</div>
+  <p>和上期 #001 讲的 Claude Code Routines 是直接竞品。<strong>两边都在做同一件事：让 AI 从"你问它答"变成"后台自动干活"。</strong>如果你公司已经用 OpenAI/ChatGPT 生态，Codex 不需要换工具就能用。如果更偏技术深度和推理质量，Claude Code 仍然领先。非技术成员暂时用不上，但方向值得关注。</p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">技术背景</span><span class="badge">关注方向的所有人</span></p>
 </div>
 
-<div class="tip">
-  <div class="tip-title">💡 每天时间投入</div>
-  早上收到 alert → 花 10 分钟扫一遍 → 挑 2-3 个感兴趣的 → Claude 分析匹配度 + 改简历建议 → 提交申请。<strong>总计 15-20 分钟，替代以前 1-3 小时。</strong>
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#03</span></div>
+  <div class="card-title">Nano Banana Pro — 用 Gemini 画科研级流程图和信息图</div>
+  <div class="card-source">📌 blog.google · Gemini 3 Pro Image</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p>Google 的 Gemini 图像模型 Nano Banana Pro 能从自然语言生成流程图、架构图、信息图——文字清晰、逻辑自动排版。生成后还能对话式修改（"把箭头改成红色""加一个分支"）。免费通过 Gemini app 使用。英文文字渲染最好，中文可能乱码。</p>
+  <div class="label label-s">💡 So What</div>
+  <p>以前做一张流程图要开 Visio/Lucidchart 拖半小时。现在打字就出。<strong>在 DMV 工作场景下特别好用</strong>——report 里的 methodology diagram、项目架构图、对比信息图，英文标注正好是优势。配合刚出的 ChatGPT Images 2.0，你可以两个都试试看谁出的图更好。</p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">所有人</span><span class="badge">需要在 report/PPT 里配图的人</span></p>
 </div>
 
-<!-- ROUTE B -->
-<div class="sec sec-blue"><h2>路线 B：技术版 — 全自动 Agent，你只看邮件</h2></div>
+<!-- ===== 场景拆解 ===== -->
+<div class="section scene"><h2>场景拆解</h2></div>
 
-<p>如果你有技术背景（会用命令行、了解 API），可以搭一个完全自动化的求职 agent。灵感来自小红书 @一门儿儿 的 n8n 方案，这里做了 DMV 适配和成本优化。</p>
-
-<div class="flow">
-  <div class="flow-label">自动化架构</div>
-  <div class="step">
-    <div class="step-num b">1</div>
-    <div class="step-content">
-      <div class="step-title">定时搜索岗位</div>
-      <div class="step-desc"><strong>n8n</strong>（开源自动化编排平台）每天定时触发 → 调用 <strong>SerpApi</strong> 搜索 Google Jobs。你设好关键词（"Data Engineer Washington DC"、"Healthcare Analyst Rockville MD"）和过滤条件（24 小时内发布、全职、remote/hybrid）。每天拉 20-50 个新岗位。</div>
-      <div class="step-tool">🔧 n8n Cloud ($20/月) 或自建 (免费) + SerpApi (免费 100 次/月, 超出 $50/月)</div>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num b">2</div>
-    <div class="step-content">
-      <div class="step-title">AI 匹配打分</div>
-      <div class="step-desc">n8n 把每个岗位的 JD 发给 <strong>Claude API</strong>，连同你的简历，让它返回结构化 JSON：匹配分数（0-100）、匹配理由、3-5 条简历修改建议、关键缺失关键词。按分数排序，只保留 70 分以上的。</div>
-      <div class="step-tool">🔧 Claude API (Sonnet: ~$0.003/次, 20 个岗位/天 ≈ $2/月)</div>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num b">3</div>
-    <div class="step-content">
-      <div class="step-title">生成邮件 + 存档</div>
-      <div class="step-desc">n8n 把排好序的岗位列表打包成 HTML 邮件，通过 <strong>Gmail</strong> 发到你自己邮箱。同时把数据存进 <strong>Google Sheets</strong>，方便追踪历史。每天早上起床看邮件就行。</div>
-      <div class="step-tool">🔧 Gmail API (免费) + Google Sheets API (免费)</div>
-    </div>
-  </div>
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景拆解</span><span class="card-num">#04</span></div>
+  <div class="card-title">AI 写论文/长文 — 从文献到定稿的完整工作流</div>
+  <div class="card-source">📌 By Syneira · 深度指南 · Tutorial 003</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p>两条路线：<strong>路线 A（零代码）</strong> Perplexity 找文献 → Elicit 做证据表 → Claude 写大纲和正文（用中英混搭 prompt）→ Writefull 学术润色 → thesify 当你的 AI 审稿人 → Zotero 管引用。<strong>路线 B（进阶）</strong> Claude Code 直接生成 LaTeX → Overleaf 协作。11 个工具对比表 + 底线原则（哪些绝对不能让 AI 做）。</p>
+  <div class="label label-s">💡 So What</div>
+  <p>核心原则：<strong>AI 帮你表达和组织思路，不帮你生成论点。你的分析是你的。</strong>这份指南不推荐一个"万能工具"，而是让每个工具做最擅长的事——你是导演，AI 是剧组。</p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">写论文/长文的人</span><span class="badge">在读研究生</span><span class="badge">考虑读博的人</span></p>
+  <a href="../tutorials/003.html" class="read-more">Read more → Tutorial 003</a>
 </div>
 
-<div class="tool">
-  <div class="tool-name">成本估算（技术版全自动）</div>
-  <table class="comp">
-    <tr><th>组件</th><th>方案</th><th>月费</th></tr>
-    <tr><td>自动化编排</td><td>n8n Cloud</td><td>$20</td></tr>
-    <tr><td>岗位搜索</td><td>SerpApi 免费版（100 次/月 ≈ 3 天量）</td><td>$0</td></tr>
-    <tr><td></td><td>SerpApi 付费版（5000 次/月）</td><td>$50</td></tr>
-    <tr><td></td><td>替代：Google Custom Search API（100 次/天免费）</td><td>$0</td></tr>
-    <tr><td>AI 分析</td><td>Claude API Sonnet（20 岗位/天）</td><td>~$2</td></tr>
-    <tr><td>邮件 + 存档</td><td>Gmail + Google Sheets</td><td>$0</td></tr>
-    <tr style="font-weight:700;"><td>合计（省钱版）</td><td>n8n + Google CSE + Claude API</td><td>~$22/月</td></tr>
-    <tr style="font-weight:700;"><td>合计（全配版）</td><td>n8n + SerpApi + Claude API</td><td>~$72/月</td></tr>
-  </table>
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景拆解</span><span class="card-num">#05</span></div>
+  <div class="card-title">AI 做 PPT + 高级感 Report + 配图 — 三合一工作流</div>
+  <div class="card-source">📌 By Syneira · 深度指南 · Tutorial 001</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p><strong>PPT 三条路线：</strong>Gamma（60 秒出稿，免费）→ Canva AI（已有习惯不换工具）→ Claude Design / Copilot in PPT（正式对外）。<strong>Report 三条路径：</strong>Claude Artifacts（你正在看的这份 digest 就是这么做的）→ Notion AI → Gamma Document。<strong>配图：</strong>Nano Banana Pro / Claude Mermaid / Canva。附三套推荐组合：$0 版 / $38/月版 / 企业版。</p>
+  <div class="label label-s">💡 So What</div>
+  <p>核心原则：<strong>你给骨架（大纲/要点），AI 填肉（排版/视觉/文案润色）。</strong>不要让 AI 从零生成——先想清楚"我要说什么、给谁看"，再让 AI 帮你做得好看、做得快。</p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">所有人</span><span class="badge">非技术背景获益最大</span></p>
+  <a href="../tutorials/001.html" class="read-more">Read more → Tutorial 001</a>
 </div>
 
-<div class="tip">
-  <div class="tip-title">💡 省钱技巧</div>
-  SerpApi 最贵但可以替代——用 Google Custom Search API 每天免费 100 次，够覆盖 3-5 组关键词搜索。n8n 也可以自建在自己的服务器上（免费），但需要维护。<strong>最省钱方案：$2/月，只花 Claude API 的钱。</strong>
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景拆解</span><span class="card-num">#06</span></div>
+  <div class="card-title">AI 自动求职助手 — 让 AI 每天帮你刷 20 个匹配岗位</div>
+  <div class="card-source">📌 小红书 @一门儿儿 · DMV 适配增强版 · Tutorial 002</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p><strong>零代码版：</strong>LinkedIn Job Alert + Claude 分析匹配度 + Teal 追踪管理，每天 15 分钟替代以前 1-3 小时。<strong>技术版：</strong>n8n + SerpApi + Claude API 全自动 agent，每天只看邮件。详细指南包含 DMV 专属关键词组合（联邦合同、healthcare、fintech 等）、USAJobs.gov 适配、成本估算（$0 到 $72/月）。</p>
+  <div class="label label-s">💡 So What</div>
+  <p>DMV 大量 H1B/绿卡持有者在找工作或跳槽。AI 能自动化的恰恰是搜索、匹配、改简历这些重复劳动。<strong>省下来的时间花在 networking 和面试准备上。</strong></p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">在找工作/考虑跳槽的人</span><span class="badge">帮朋友/家人找工作的人</span></p>
+  <a href="../tutorials/002.html" class="read-more">Read more → Tutorial 002</a>
 </div>
 
-<!-- COMPARISON -->
-<div class="sec sec-purple"><h2>两条路线对比</h2></div>
+<!-- ===== 用法洞察 ===== -->
+<div class="section tip"><h2>用法洞察</h2></div>
 
-<div class="vs">
-  <div class="vs-box best">
-    <h3>路线 A · 零代码版</h3>
-    <div class="vs-item">⏱ 每天 15-20 分钟</div>
-    <div class="vs-item">💰 $0（全免费工具）</div>
-    <div class="vs-item">🎯 80% 效果</div>
-    <div class="vs-item">📱 手动但有结构</div>
-    <div class="vs-item">👩‍💻 所有人都能用</div>
-    <div class="vs-item" style="color:var(--accent);font-weight:600;">✅ 推荐大多数人</div>
-  </div>
-  <div class="vs-box">
-    <h3>路线 B · 技术自动版</h3>
-    <div class="vs-item">⏱ 每天 5 分钟（看邮件）</div>
-    <div class="vs-item">💰 $22-72/月</div>
-    <div class="vs-item">🎯 95% 自动化</div>
-    <div class="vs-item">🤖 全自动推送</div>
-    <div class="vs-item">👩‍💻 需要技术背景</div>
-    <div class="vs-item" style="color:var(--blue);font-weight:600;">⚡ 适合工程师/开发者</div>
-  </div>
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">用法洞察</span><span class="card-num">#07</span></div>
+  <div class="card-title">万能 Prompt 模板 — 一个框架通吃论文/PPT/Report/求职</div>
+  <div class="card-source">📌 By Syneira · 实操总结</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p>不管你让 AI 做什么，都可以用这个框架：<strong>角色</strong>（你是一个专业的 [行业] [角色]）→ <strong>上下文</strong>（给 [受众] 看的 [文档类型]，目的是 [什么]）→ <strong>任务</strong>（基于以下大纲生成 [具体产出]）→ <strong>格式</strong>（排版/配色/语言偏好）→ <strong>约束</strong>（篇幅/风格/禁止事项）。</p>
+  <div class="label label-s">💡 So What</div>
+  <p>大多数人用 AI 效果不好，不是模型的问题，是 prompt 太模糊。<strong>同样的模型，好的 prompt 和差的 prompt 产出差距可以是 10 倍。</strong>这个框架配合 Issue #001 的中英混搭技巧和 TextGrad 自我优化，就是一套完整的 prompt 方法论。</p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">所有人</span><span class="badge">今天就能用</span></p>
 </div>
 
-<!-- TOOLS -->
-<div class="sec sec-teal"><h2>工具速查表</h2></div>
+<!-- ===== 趋势信号 ===== -->
+<div class="section trend"><h2>趋势信号</h2></div>
 
-<table class="comp">
-  <tr><th>工具</th><th>做什么</th><th>费用</th><th>门槛</th></tr>
-  <tr>
-    <td><strong>Teal</strong></td>
-    <td>求职追踪 + AI 简历匹配 + Chrome 扩展一键保存岗位</td>
-    <td>免费 / $9-29/月</td>
-    <td>零门槛</td>
-  </tr>
-  <tr>
-    <td><strong>Claude / ChatGPT</strong></td>
-    <td>分析 JD 匹配度、生成简历修改建议、写 cover letter</td>
-    <td>免费版够用</td>
-    <td>零门槛</td>
-  </tr>
-  <tr>
-    <td><strong>LinkedIn Job Alerts</strong></td>
-    <td>按关键词 + 地点每日推送新岗位</td>
-    <td>免费</td>
-    <td>零门槛</td>
-  </tr>
-  <tr>
-    <td><strong>Jobscan</strong></td>
-    <td>ATS 关键词优化，简历 vs JD 匹配报告</td>
-    <td>5 次免费/月 / $50/月</td>
-    <td>零门槛</td>
-  </tr>
-  <tr>
-    <td><strong>n8n</strong></td>
-    <td>自动化编排平台，串联所有 API</td>
-    <td>自建免费 / Cloud $20/月</td>
-    <td>需技术背景</td>
-  </tr>
-  <tr>
-    <td><strong>SerpApi</strong></td>
-    <td>搜索 Google Jobs / LinkedIn 岗位的 API</td>
-    <td>100 次免费 / $50/月</td>
-    <td>需技术背景</td>
-  </tr>
-  <tr>
-    <td><strong>Writefull / Grammarly</strong></td>
-    <td>简历和 cover letter 的语法/语气润色</td>
-    <td>$7-12/月</td>
-    <td>零门槛</td>
-  </tr>
-</table>
-
-<!-- DMV SPECIFICS -->
-<div class="sec sec-green"><h2>DMV 特别适配</h2></div>
-
-<p>DMV 求职有一些特殊性，值得在搜索关键词和策略上做针对性调整：</p>
-
-<div class="tool">
-  <div class="tool-name">联邦合同 / 政府相关岗位</div>
-  <p style="font-size:14px;">除了 LinkedIn 和 Indeed，一定要看 <strong>USAJobs.gov</strong>（联邦政府岗位）和 <strong>ClearanceJobs.com</strong>（需要安全许可的岗位）。很多 DMV 的高薪技术岗位在这两个平台上，LinkedIn 上看不到。AI 同样可以分析这些 JD。</p>
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">趋势信号</span><span class="card-num">#08</span></div>
+  <div class="card-title">Hermes Agent — AI 终于能"记住怎么干活"了</div>
+  <div class="card-source">📌 小红书 @kusengo · GitHub: NousResearch/hermes-agent</div>
+  <div class="label label-h">✹ 亮点说人话</div>
+  <p>以前用 AI 就像每次请一个新实习生——你得从头教。Hermes Agent 有内建学习闭环：<strong>执行任务 → 自动复盘 → 沉淀成 Skill → 下次直接调用</strong>。三层记忆（会话/持久/Skill），GitHub 两个月冲到 10 万 Star。但才 v0.x，不适合生产环境。</p>
+  <div class="label label-s">💡 So What</div>
+  <p>即使你不装 Hermes，这个趋势值得关注——AI 正在从"一次性对话"变成"长期合作伙伴"。Claude memory、ChatGPT custom instructions、Codex memory、这周的 Hermes，都是同一方向。<strong>未来选 AI 工具，"它能不能记住我、越用越懂我"会成为核心竞争维度。</strong></p>
+  <div class="label label-w">👩‍💻 适合谁</div>
+  <p><span class="badge">技术背景可以直接试</span><span class="badge">非技术背景关注趋势</span></p>
 </div>
 
-<div class="tool">
-  <div class="tool-name">关键词建议（DMV 常用搜索组合）</div>
-  <p style="font-size:14px;">
-    <strong>技术岗：</strong>"Data Engineer" + "Washington DC" / "Rockville MD" / "Reston VA"<br>
-    <strong>Healthcare：</strong>"Healthcare Analyst" + "Bethesda MD" / "Silver Spring MD"<br>
-    <strong>金融：</strong>"Financial Analyst" + "Tysons VA" / "McLean VA"<br>
-    <strong>咨询：</strong>"Management Consultant" + "Arlington VA" / "Washington DC"<br>
-    <strong>Legal：</strong>"Legal Analyst" + "Washington DC" / "K Street"<br>
-    别忘了加 "remote" 或 "hybrid" 过滤——DMV 很多公司现在都是 hybrid。
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="footer-brand">✦ AI DIGEST by Syneira ✦</div>
+  <p>
+    由社群成员精选 · 每周一期 + 不定期深度指南<br>
+    筛选标准：实用 > 炫酷 · 能用 > 能看<br><br>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具上新</span>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">趋势信号</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">场景拆解</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">用法洞察</span>
+    <br><br>
+    💬 看到好内容？随手转发到群里，下期可能就收录了
   </p>
 </div>
 
-<div class="tool">
-  <div class="tool-name">ATS 现实：75% 的简历在系统层就被过滤掉了</div>
-  <p style="font-size:14px;">
-    DMV 大公司和政府合同商几乎都用 ATS（Workday、Taleo、Greenhouse 等）。这意味着你的简历里<strong>必须包含 JD 里的关键词</strong>，不然连人都看不到。这正是 AI 分析匹配度最有价值的地方——它能告诉你"这个 JD 要求了 project management，但你简历里没提"。
-  </p>
+</div><!-- wrap -->
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html">← 返回首页 / Back to Home</a>
 </div>
-
-<!-- BOTTOM LINE -->
-<div class="sec sec-orange"><h2>⚠️ 注意事项</h2></div>
-
-<div class="warn">
-  <div class="warn-title">AI 打分只是参考</div>
-  AI 不知道公司文化、团队氛围、管理风格、实际工作强度。匹配分数高 ≠ 你会喜欢这份工作。用 AI 节省"初筛"时间，但最终决定——尤其是要不要接 offer——永远是你自己的判断。
-</div>
-
-<div class="warn">
-  <div class="warn-title">AI 生成的 cover letter 必须改</div>
-  直接用 AI 写的 cover letter 投出去，招聘方看得出来。AI 帮你起草，你<strong>必须加入你自己的经历细节、你对这家公司的具体了解、你的真实动机</strong>。把 AI 输出当初稿，不是终稿。
-</div>
-
-<div class="warn">
-  <div class="warn-title">不要海投</div>
-  有了 AI 工具后容易陷入"一天投 50 个"的陷阱。质量永远比数量重要。<strong>推荐节奏：每天精投 3-5 个经过 AI 分析和简历定制的岗位</strong>，比海投 30 个效果好得多。
-</div>
-
-<div class="tip">
-  <div class="tip-title">💡 一句话总结</div>
-  <strong>AI 做初筛和匹配，你做判断和定制。</strong>最好的求职策略不是让 AI 替你找工作，而是让 AI 替你做那些无聊的重复劳动——搜索、对比、改格式——你把省下来的时间花在 networking、面试准备和真正了解你想去的公司上。
-</div>
-
-<!-- FOOTER -->
-<div class="art-footer">
-  By Syneira Lab · A Syneira Project · AI Digest Issue #002<br>
-  筛选标准：实用 > 炫酷 · 能用 > 能看 · 源于生活，立足应用
-</div>
-
-</div><!-- .article -->
 
 </body>
 </html>
