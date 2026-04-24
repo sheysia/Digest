@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="星星打卡">
+<meta name="theme-color" content="#0b0e1a">
+<title>星星打卡</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0e1a;
+  --bg-card: #111527;
+  --bg-card-hover: #161b33;
+  --star-dim: #2a2f4a;
+  --star-lit: #fbbf24;
+  --star-glow: #f59e0b;
+  --star-super: #fde68a;
+  --text-primary: #c8cad4;
+  --text-secondary: #5a5e7a;
+  --text-muted: #3a3e5a;
+  --accent: #818cf8;
+  --accent-dim: #4f46e5;
+  --border: #1e2240;
+  --success: #34d399;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh; min-height: 100dvh;
+  max-width: 430px; margin: 0 auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Starfield background */
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.15), transparent),
+    radial-gradient(1px 1px at 30% 65%, rgba(255,255,255,0.1), transparent),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.12), transparent),
+    radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.08), transparent),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.1), transparent),
+    radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.07), transparent),
+    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.09), transparent),
+    radial-gradient(1.5px 1.5px at 25% 45%, rgba(251,191,36,0.15), transparent),
+    radial-gradient(1.5px 1.5px at 75% 25%, rgba(129,140,248,0.12), transparent),
+    radial-gradient(1.5px 1.5px at 45% 55%, rgba(251,191,36,0.1), transparent);
+  pointer-events: none; z-index: 0;
+}
+
+.app { position: relative; z-index: 1; padding: 0 0 40px; }
+
+/* Header */
+.header {
+  padding: 60px 24px 20px;
+  text-align: center;
+}
+.header-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+/* Star constellation display - the week view */
+.constellation {
+  padding: 16px 20px 24px;
+}
+.constellation-label {
+  font-size: 11px; color: var(--text-muted);
+  letter-spacing: 2px; margin-bottom: 16px;
+  text-align: center;
+}
+.week-row {
+  display: flex; gap: 6px; justify-content: center; align-items: center;
+}
+.day-col {
+  flex: 1; max-width: 52px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  cursor: pointer;
+  padding: 8px 4px; border-radius: 12px;
+  transition: background 0.2s;
+}
+.day-col:active { background: var(--bg-card); }
+.day-col.selected { background: var(--bg-card); border: 1px solid var(--border); }
+.day-col.today .day-label { color: var(--accent); font-weight: 500; }
+
+.day-stars {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 2px; width: 36px; height: 28px; align-items: center;
+}
+.mini-star {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--star-dim);
+  transition: all 0.4s ease;
+}
+.mini-star.lit {
+  background: var(--star-lit);
+  box-shadow: 0 0 4px var(--star-glow), 0 0 8px rgba(251,191,36,0.2);
+}
+.day-label {
+  font-size: 10px; color: var(--text-muted); letter-spacing: 1px;
+}
+.day-date-num {
+  font-size: 9px; color: var(--text-muted); opacity: 0.6;
+}
+
+/* Today's progress */
+.progress-section {
+  padding: 0 20px 8px;
+  text-align: center;
+}
+.progress-ring-wrap {
+  position: relative; width: 100px; height: 100px; margin: 0 auto 12px;
+}
+.progress-ring-wrap svg { transform: rotate(-90deg); }
+.progress-ring-bg { stroke: var(--star-dim); }
+.progress-ring-fill {
+  stroke: var(--star-lit);
+  transition: stroke-dashoffset 0.6s ease;
+  filter: drop-shadow(0 0 6px rgba(251,191,36,0.4));
+}
+.progress-text {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 300; color: var(--star-lit);
+}
+.progress-subtitle {
+  font-size: 11px; color: var(--text-secondary); letter-spacing: 1px;
+}
+
+/* Habit list */
+.habits {
+  padding: 20px 16px 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.habit-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-user-select: none; user-select: none;
+  position: relative; overflow: hidden;
+}
+.habit-card:active { transform: scale(0.97); }
+.habit-card.done {
+  border-color: rgba(251,191,36,0.2);
+  background: linear-gradient(135deg, var(--bg-card), rgba(251,191,36,0.04));
+}
+
+.habit-star {
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  transition: all 0.4s ease;
+  position: relative;
+}
+.habit-star .star-icon { transition: all 0.3s ease; }
+.habit-card.done .habit-star .star-icon {
+  filter: drop-shadow(0 0 8px rgba(251,191,36,0.6));
+  animation: starPop 0.4s ease;
+}
+
+@keyframes starPop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.4) rotate(15deg); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Sparkle burst on tap */
+.sparkle-burst {
+  position: absolute; top: 50%; left: 26px;
+  pointer-events: none;
+}
+.sparkle {
+  position: absolute; width: 3px; height: 3px;
+  background: var(--star-lit); border-radius: 50%;
+  animation: sparkleOut 0.5s ease forwards;
+}
+@keyframes sparkleOut {
+  0% { opacity: 1; transform: translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+}
+
+.habit-info { flex: 1; }
+.habit-label {
+  font-size: 14px; font-weight: 400;
+  color: var(--text-primary);
+  transition: color 0.3s;
+}
+.habit-card.done .habit-label { color: var(--star-lit); }
+.habit-time {
+  font-size: 11px; color: var(--text-secondary); margin-top: 2px;
+}
+
+.habit-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px solid var(--star-dim);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.habit-card.done .habit-check {
+  border-color: var(--star-lit);
+  background: var(--star-lit);
+}
+.habit-check-inner {
+  color: var(--bg); font-size: 12px; opacity: 0;
+  transition: opacity 0.2s;
+}
+.habit-card.done .habit-check-inner { opacity: 1; }
+
+/* Week stats */
+.week-stats {
+  padding: 28px 20px 0; text-align: center;
+}
+.week-stats-label {
+  font-size: 11px; color: var(--text-muted);
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+.week-stats-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300;
+  color: var(--star-lit);
+}
+.week-stats-total {
+  font-size: 12px; color: var(--text-secondary);
+}
+.streak-badge {
+  display: inline-block; margin-top: 10px;
+  padding: 4px 14px; border-radius: 20px;
+  background: rgba(251,191,36,0.08);
+  border: 1px solid rgba(251,191,36,0.15);
+  font-size: 12px; color: var(--star-lit);
+}
+
+/* Footer message */
+.footer-msg {
+  text-align: center; padding: 24px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-weight: 300;
+  color: var(--text-secondary);
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Settings toggle */
+.settings-area {
+  padding: 8px 20px 20px;
+  display: flex; justify-content: center; gap: 12px;
+}
+.settings-btn {
+  background: none; border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 11px;
+  padding: 6px 14px; border-radius: 8px;
+  cursor: pointer; font-family: inherit;
+  transition: all 0.2s;
+}
+.settings-btn:active { background: var(--bg-card); color: var(--text-secondary); }
+
+/* Edit modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7); z-index: 100;
+  align-items: flex-end; justify-content: center;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px 20px 0 0;
+  width: 100%; max-width: 430px;
+  padding: 24px 20px 40px;
+  max-height: 80vh; overflow-y: auto;
+}
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; color: var(--text-primary);
+  text-align: center; margin-bottom: 20px;
+}
+.modal-habit {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.modal-input {
+  flex: 1; background: transparent; border: none;
+  color: var(--text-primary); font-size: 14px;
+  font-family: inherit; outline: none;
+}
+.modal-input::placeholder { color: var(--text-muted); }
+.modal-time-input {
+  width: 80px; background: transparent; border: none;
+  color: var(--text-secondary); font-size: 11px;
+  font-family: inherit; outline: none; text-align: right;
+}
+.modal-actions {
+  display: flex; gap: 10px; margin-top: 20px;
+}
+.modal-btn {
+  flex: 1; padding: 12px; border-radius: 10px;
+  font-family: inherit; font-size: 13px; cursor: pointer;
+  border: none;
+}
+.modal-btn.cancel { background: var(--border); color: var(--text-secondary); }
+.modal-btn.save { background: var(--accent-dim); color: white; }
+
+/* All day complete celebration */
+.celebration {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none; z-index: 50;
+}
+.shooting-star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: var(--star-lit);
+  border-radius: 50%;
+  animation: shoot 1s ease-out forwards;
+}
+.shooting-star::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 40px; height: 1px;
+  background: linear-gradient(to left, transparent, var(--star-lit));
+}
+@keyframes shoot {
+  0% { opacity: 1; transform: translate(0,0) rotate(-30deg); }
+  100% { opacity: 0; transform: translate(-200px, 120px) rotate(-30deg); }
+}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<!-- Edit modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<div class="celebration" id="celebration"></div>
+
+<script>
+// ===== CONFIG =====
+const DEFAULT_HABITS = [
+  { id:"supp_am", label:"补剂 早", icon:"⭐", time:"早餐时" },
+  { id:"supp_pm", label:"补剂 晚", icon:"⭐", time:"晚餐时" },
+  { id:"supp_fasting", label:"补剂 空腹", icon:"🌟", time:"晨起30min前" },
+  { id:"water", label:"喝水 ≥8杯", icon:"💧", time:"全天" },
+  { id:"workout", label:"锻炼", icon:"✨", time:"计划时间" },
+  { id:"sleep", label:"早睡", icon:"🌙", time:"晚间" },
+];
+
+// ===== STATE =====
+let data = {};       // { "2026-04-23": { "supp_am": true, ... } }
+let habits = [];     // current habit config
+let selectedDate = getDateKey();
+
+// ===== UTILS =====
+function getDateKey(d) {
+  d = d || new Date();
+  return d.getFullYear() + '-' +
+    String(d.getMonth()+1).padStart(2,'0') + '-' +
+    String(d.getDate()).padStart(2,'0');
+}
+
+function getWeekDates() {
+  const now = new Date();
+  const day = now.getDay();
+  const diff = now.getDate() - day + (day === 0 ? -6 : 1); // Monday
+  const mon = new Date(now);
+  mon.setDate(diff);
+  mon.setHours(0,0,0,0);
+  return Array.from({length:7}, (_, i) => {
+    const d = new Date(mon);
+    d.setDate(mon.getDate() + i);
+    return d;
+  });
+}
+
+const WEEKDAY_ZH = ['一','二','三','四','五','六','日'];
+const MONTH_ZH = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+
+function isToday(dateKey) { return dateKey === getDateKey(); }
+
+function load() {
+  try {
+    const raw = localStorage.getItem('star-tracker-data');
+    if (raw) data = JSON.parse(raw);
+  } catch {}
+  try {
+    const raw = localStorage.getItem('star-tracker-habits');
+    if (raw) habits = JSON.parse(raw);
+  } catch {}
+  if (!habits || !habits.length) habits = JSON.parse(JSON.stringify(DEFAULT_HABITS));
+}
+
+function save() {
+  localStorage.setItem('star-tracker-data', JSON.stringify(data));
+  localStorage.setItem('star-tracker-habits', JSON.stringify(habits));
+}
+
+function toggleHabit(habitId) {
+  if (!data[selectedDate]) data[selectedDate] = {};
+  data[selectedDate][habitId] = !data[selectedDate][habitId];
+  save();
+
+  const wasAllDone = habits.every(h => data[selectedDate]?.[h.id]);
+
+  render();
+
+  // If just completed all, celebrate
+  if (wasAllDone) {
+    celebrate();
+  }
+}
+
+function getStreak() {
+  let count = 0;
+  const today = new Date();
+  for (let i = 0; i < 365; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const key = getDateKey(d);
+    const dayData = data[key];
+    if (dayData) {
+      const checked = habits.filter(h => dayData[h.id]).length;
+      if (checked >= Math.ceil(habits.length * 0.67)) { count++; }
+      else if (i > 0) break;
+      else break;
+    } else if (i > 0) break;
+    else break;
+  }
+  return count;
+}
+
+function getWeekLitCount() {
+  const week = getWeekDates();
+  let total = 0;
+  week.forEach(d => {
+    const key = getDateKey(d);
+    const dayData = data[key];
+    if (dayData) total += habits.filter(h => dayData[h.id]).length;
+  });
+  return total;
+}
+
+// ===== CELEBRATION =====
+function celebrate() {
+  const el = document.getElementById('celebration');
+  el.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const star = document.createElement('div');
+    star.className = 'shooting-star';
+    star.style.top = (Math.random() * 40) + '%';
+    star.style.left = (60 + Math.random() * 40) + '%';
+    star.style.animationDelay = (i * 0.15) + 's';
+    el.appendChild(star);
+  }
+  setTimeout(() => { el.innerHTML = ''; }, 2000);
+}
+
+// ===== SPARKLE =====
+function createSparkles(cardEl) {
+  const burst = cardEl.querySelector('.sparkle-burst');
+  if (!burst) return;
+  burst.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const angle = (Math.PI * 2 / 6) * i + (Math.random() * 0.5);
+    const dist = 15 + Math.random() * 15;
+    s.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    s.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    burst.appendChild(s);
+  }
+}
+
+// ===== RENDER =====
+function render() {
+  const today = getDateKey();
+  const weekDates = getWeekDates();
+  const dayData = data[selectedDate] || {};
+  const doneCount = habits.filter(h => dayData[h.id]).length;
+  const progress = habits.length ? doneCount / habits.length : 0;
+  const streak = getStreak();
+  const weekLit = getWeekLitCount();
+  const weekMax = habits.length * 7;
+
+  // Date display
+  const selD = new Date(selectedDate + 'T12:00:00');
+  const dateStr = MONTH_ZH[selD.getMonth()] + ' ' + selD.getDate() + '日';
+  const dayOfWeek = '星期' + WEEKDAY_ZH[selD.getDay() === 0 ? 6 : selD.getDay() - 1];
+
+  // Progress ring
+  const circumference = 2 * Math.PI * 42;
+  const offset = circumference * (1 - progress);
+
+  let h = '';
+
+  // Header
+  h += `<div class="header">
+    <div class="header-date">${dayOfWeek} · ${dateStr}</div>
+    <div class="header-title">${isToday(selectedDate) ? '今夜星空' : dateStr}</div>
+  </div>`;
+
+  // Constellation - week view
+  h += `<div class="constellation">
+    <div class="constellation-label">本 周 星 图</div>
+    <div class="week-row">`;
+  weekDates.forEach((d, i) => {
+    const key = getDateKey(d);
+    const dd = data[key] || {};
+    const litCount = habits.filter(hb => dd[hb.id]).length;
+    const isSel = key === selectedDate;
+    const isT = key === today;
+    h += `<div class="day-col${isSel?' selected':''}${isT?' today':''}" onclick="selectDay('${key}')">
+      <div class="day-stars">`;
+    habits.forEach((hb, j) => {
+      h += `<div class="mini-star${dd[hb.id]?' lit':''}"></div>`;
+    });
+    h += `</div>
+      <div class="day-label">${WEEKDAY_ZH[i]}</div>
+      <div class="day-date-num">${d.getDate()}</div>
+    </div>`;
+  });
+  h += `</div></div>`;
+
+  // Progress ring
+  h += `<div class="progress-section">
+    <div class="progress-ring-wrap">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle class="progress-ring-bg" cx="50" cy="50" r="42" fill="none" stroke-width="3" />
+        <circle class="progress-ring-fill" cx="50" cy="50" r="42" fill="none" stroke-width="3"
+          stroke-linecap="round"
+          stroke-dasharray="${circumference}"
+          stroke-dashoffset="${offset}" />
+      </svg>
+      <div class="progress-text">${doneCount}/${habits.length}</div>
+    </div>
+    <div class="progress-subtitle">已点亮的星星</div>
+  </div>`;
+
+  // Habit cards
+  h += `<div class="habits">`;
+  habits.forEach(habit => {
+    const done = !!dayData[habit.id];
+    h += `<div class="habit-card${done?' done':''}" onclick="onHabitTap('${habit.id}', this)">
+      <div class="habit-star">
+        <span class="star-icon">${done ? habit.icon : '☆'}</span>
+        <div class="sparkle-burst"></div>
+      </div>
+      <div class="habit-info">
+        <div class="habit-label">${habit.label}</div>
+        <div class="habit-time">${habit.time}</div>
+      </div>
+      <div class="habit-check">
+        <span class="habit-check-inner">✓</span>
+      </div>
+    </div>`;
+  });
+  h += `</div>`;
+
+  // Week stats
+  h += `<div class="week-stats">
+    <div class="week-stats-label">本 周 点 亮</div>
+    <div class="week-stats-num">${weekLit}</div>
+    <div class="week-stats-total">/ ${weekMax} 颗星</div>`;
+  if (streak > 1) {
+    h += `<div class="streak-badge">🔥 连续达标 ${streak} 天</div>`;
+  }
+  h += `</div>`;
+
+  // Footer
+  const msg = progress >= 1 ? '✦ 今夜星空全部点亮 ✦'
+    : progress >= 0.5 ? '星光渐明，继续加油'
+    : isToday(selectedDate) ? '点亮今天的第一颗星'
+    : '';
+  if (msg) h += `<div class="footer-msg">${msg}</div>`;
+
+  // Settings
+  h += `<div class="settings-area">
+    <button class="settings-btn" onclick="openEditor()">编辑习惯</button>
+    <button class="settings-btn" onclick="exportData()">导出数据</button>
+    <button class="settings-btn" onclick="resetData()">重置</button>
+  </div>`;
+
+  document.getElementById('app').innerHTML = h;
+}
+
+// ===== INTERACTIONS =====
+function selectDay(key) {
+  selectedDate = key;
+  render();
+}
+
+function onHabitTap(habitId, el) {
+  const wasDone = data[selectedDate]?.[habitId];
+  if (!wasDone) createSparkles(el);
+  toggleHabit(habitId);
+}
+
+// ===== EDITOR =====
+function openEditor() {
+  const modal = document.getElementById('editModal');
+  const content = document.getElementById('modalContent');
+  let h = `<div class="modal-title">编辑打卡项</div>`;
+  habits.forEach((habit, i) => {
+    h += `<div class="modal-habit">
+      <span style="font-size:18px; width:28px; text-align:center">${habit.icon}</span>
+      <input class="modal-input" id="edit-label-${i}" value="${habit.label}" placeholder="习惯名称">
+      <input class="modal-time-input" id="edit-time-${i}" value="${habit.time}" placeholder="时间">
+    </div>`;
+  });
+  h += `<div class="modal-habit" style="border:none; justify-content:center">
+    <button class="settings-btn" onclick="addHabit()" style="font-size:13px">+ 添加一项</button>
+    <button class="settings-btn" onclick="removeLastHabit()" style="font-size:13px; color:#ef4444; border-color:rgba(239,68,68,0.2)">- 删除末项</button>
+  </div>`;
+  h += `<div class="modal-actions">
+    <button class="modal-btn cancel" onclick="closeEditor()">取消</button>
+    <button class="modal-btn save" onclick="saveEditor()">保存</button>
+  </div>`;
+  content.innerHTML = h;
+  modal.classList.add('show');
+}
+
+function closeEditor() {
+  document.getElementById('editModal').classList.remove('show');
+}
+
+function saveEditor() {
+  habits.forEach((habit, i) => {
+    const labelEl = document.getElementById('edit-label-' + i);
+    const timeEl = document.getElementById('edit-time-' + i);
+    if (labelEl) habit.label = labelEl.value || habit.label;
+    if (timeEl) habit.time = timeEl.value || habit.time;
+  });
+  save();
+  closeEditor();
+  render();
+}
+
+function addHabit() {
+  if (habits.length >= 10) return;
+  const newId = 'custom_' + Date.now();
+  habits.push({ id: newId, label: '新习惯', icon: '⭐', time: '' });
+  save();
+  openEditor(); // refresh modal
+}
+
+function removeLastHabit() {
+  if (habits.length <= 1) return;
+  if (confirm('删除 "' + habits[habits.length-1].label + '"？')) {
+    habits.pop();
+    save();
+    openEditor();
+  }
+}
+
+// ===== EXPORT / RESET =====
+function exportData() {
+  const exportObj = { habits, data, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(exportObj, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'star-tracker-' + getDateKey() + '.json'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function resetData() {
+  if (confirm('确定清除所有打卡数据吗？（习惯配置保留）')) {
+    data = {};
+    save();
+    render();
+  }
+}
+
+// ===== INIT =====
+load();
+render();
+
+// Click outside modal to close
+document.getElementById('editModal').addEventListener('click', function(e) {
+  if (e.target === this) closeEditor();
+});
+</script>
+</body>
+</html>
