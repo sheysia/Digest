@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="邮轮攻略">
+<meta name="theme-color" content="#0c1426">
+<title>Disney Wish · Very Merrytime 邮轮攻略</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚢</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+SC:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c1426;
+  --bg-card: #111d35;
+  --bg-card-alt: #152240;
+  --border: #1e3055;
+  --text: #c8d4e8;
+  --text-dim: #6b7fa0;
+  --text-muted: #3e506e;
+  --accent: #64b5f6;
+  --accent-warm: #ffb74d;
+  --accent-green: #66bb6a;
+  --accent-pink: #f48fb1;
+  --accent-red: #ef5350;
+  --gold: #ffd54f;
+  --snow: #e3f2fd;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.08), transparent),
+    radial-gradient(1px 1px at 45% 15%, rgba(255,255,255,0.06), transparent),
+    radial-gradient(1px 1px at 75% 35%, rgba(255,255,255,0.07), transparent),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.05), transparent),
+    radial-gradient(1.5px 1.5px at 60% 85%, rgba(100,181,246,0.08), transparent),
+    radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,213,79,0.06), transparent);
+  pointer-events: none; z-index: 0;
+}
+.app { position: relative; z-index: 1; }
+
+.hero {
+  padding: 70px 24px 36px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(30,48,85,0.4) 0%, transparent 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero-ship { font-size: 48px; margin-bottom: 8px; }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300;
+  color: var(--snow);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-weight: 300;
+  color: var(--accent);
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  font-size: 12px; color: var(--text-dim);
+}
+.hero-tag {
+  padding: 4px 12px; border-radius: 20px;
+  background: rgba(100,181,246,0.08);
+  border: 1px solid rgba(100,181,246,0.15);
+}
+
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; overflow-x: auto; gap: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav a {
+  flex-shrink: 0;
+  padding: 12px 14px;
+  font-size: 12px; font-weight: 500;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.nav a:hover, .nav a.active { color: var(--accent); border-color: var(--accent); }
+
+.section {
+  padding: 32px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.section-icon { font-size: 28px; margin-bottom: 8px; }
+.section-title {
+  font-size: 20px; font-weight: 500;
+  color: var(--snow);
+  margin-bottom: 4px;
+}
+.section-sub {
+  font-size: 12px; color: var(--text-dim);
+  letter-spacing: 1px; margin-bottom: 20px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--snow); margin-bottom: 6px;
+}
+.card-text { font-size: 13px; color: var(--text); line-height: 1.8; }
+.card-tag {
+  display: inline-block;
+  padding: 2px 8px; border-radius: 6px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.5px; margin-right: 4px;
+}
+.tag-tip { background: rgba(100,181,246,0.12); color: var(--accent); }
+.tag-warn { background: rgba(239,83,80,0.12); color: var(--accent-red); }
+.tag-save { background: rgba(102,187,106,0.12); color: var(--accent-green); }
+.tag-fun { background: rgba(244,143,177,0.12); color: var(--accent-pink); }
+
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before {
+  content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.tl-item { position: relative; margin-bottom: 20px; }
+.tl-dot {
+  position: absolute; left: -21px; top: 4px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.tl-dot.gold { background: var(--gold); }
+.tl-dot.green { background: var(--accent-green); }
+.tl-dot.pink { background: var(--accent-pink); }
+.tl-day {
+  font-size: 15px; font-weight: 500;
+  color: var(--snow); margin-bottom: 4px;
+}
+.tl-detail { font-size: 13px; color: var(--text); line-height: 1.8; }
+.tl-port {
+  display: inline-block; padding: 2px 10px;
+  border-radius: 6px; font-size: 11px; font-weight: 600;
+  background: rgba(255,213,79,0.1); color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.resto-grid { display: flex; flex-direction: column; gap: 8px; }
+.resto-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.resto-name { font-size: 14px; font-weight: 600; color: var(--snow); }
+.resto-type { font-size: 11px; color: var(--accent); margin-bottom: 4px; }
+.resto-desc { font-size: 12px; color: var(--text); line-height: 1.7; }
+.resto-meta {
+  display: flex; gap: 12px; margin-top: 6px;
+  font-size: 11px; color: var(--text-dim);
+}
+.resto-stars { color: var(--gold); }
+
+.checklist { display: flex; flex-direction: column; gap: 6px; }
+.check-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-user-select: none; user-select: none;
+}
+.check-item:active { transform: scale(0.98); }
+.check-item.done { opacity: 0.5; }
+.check-item.done .check-label { text-decoration: line-through; }
+.check-box {
+  width: 20px; height: 20px; border-radius: 6px;
+  border: 1.5px solid var(--text-muted);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.2s;
+  font-size: 12px; color: var(--bg);
+}
+.check-item.done .check-box {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+.check-label { font-size: 13px; color: var(--text); }
+.check-sub { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+
+.tips-grid { display: flex; flex-direction: column; gap: 8px; }
+.tip-card {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.tip-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(100,181,246,0.1);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; flex-shrink: 0;
+}
+.tip-content { flex: 1; }
+.tip-title { font-size: 13px; font-weight: 600; color: var(--snow); margin-bottom: 2px; }
+.tip-desc { font-size: 12px; color: var(--text); line-height: 1.7; }
+
+.map-visual {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.map-visual svg { width: 100%; height: auto; }
+
+.cost-table { width: 100%; border-collapse: collapse; }
+.cost-table th, .cost-table td {
+  padding: 8px 12px; text-align: left;
+  font-size: 13px; border-bottom: 1px solid var(--border);
+}
+.cost-table th { color: var(--text-dim); font-weight: 500; font-size: 11px; letter-spacing: 0.5px; }
+.cost-table td { color: var(--text); }
+.cost-table .total td { color: var(--gold); font-weight: 600; border-top: 2px solid var(--border); }
+
+.footer {
+  text-align: center; padding: 32px 24px 48px;
+  font-size: 11px; color: var(--text-muted);
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+.progress-bar-wrap {
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+.progress-label { font-size: 11px; color: var(--text-dim); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.progress-track { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-green));
+  border-radius: 2px; transition: width 0.4s;
+}
+
+.snowflakes { position: relative; height: 40px; overflow: hidden; }
+.flake {
+  position: absolute; color: rgba(227,242,253,0.15);
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(50px) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ship">🚢</div>
+  <div class="hero-title">Disney Wish</div>
+  <div class="hero-subtitle">❄️ VERY MERRYTIME CRUISE ❄️</div>
+  <div class="snowflakes" id="snowflakes"></div>
+  <div class="hero-meta">
+    <span class="hero-tag">Nov 16–20, 2026</span>
+    <span class="hero-tag">4 晚</span>
+    <span class="hero-tag">Port Canaveral</span>
+    <span class="hero-tag">Stateroom 9999</span>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-bar-wrap">
+  <div class="progress-label">
+    <span>准备进度</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#overview">概览</a>
+  <a href="#itinerary">行程</a>
+  <a href="#merrytime">圣诞活动</a>
+  <a href="#dining-port">港口美食</a>
+  <a href="#onboard">船上攻略</a>
+  <a href="#kids">亲子</a>
+  <a href="#tips">实用锦囊</a>
+  <a href="#packing">行李清单</a>
+  <a href="#budget">预算</a>
+  <a href="#prep">准备清单</a>
+</nav>
+
+<!-- ===== 概览 ===== -->
+<div class="section" id="overview">
+  <div class="section-icon">📋</div>
+  <div class="section-title">行程概览</div>
+  <div class="section-sub">一图看全貌</div>
+
+  <div class="card">
+    <div class="card-title">🚢 关于这艘船</div>
+    <div class="card-text">
+      Disney Wish — 迪士尼最新邮轮（2022 年首航），可容纳约 4,000 名乘客、1,555 名船员。独家亮点：AquaMouse 水上过山车、Star Wars: Hyperspace Lounge 星战酒廊、Marvel Super Hero Academy 漫威学院，以及三场 Broadway 级别的驻船演出。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏠 Stateroom 9999</div>
+    <div class="card-text">
+      Deluxe Family Oceanview with Verandah（豪华家庭海景阳台房）— 约 375 sqft（含阳台）。最多容纳 5 人。配有分离式卫浴（浴缸 + 独立淋浴/马桶间）、折叠上铺和私人阳台。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗺️ 航线</div>
+    <div class="card-text">
+      Port Canaveral → Castaway Cay（迪士尼私人岛屿）→ Lookout Cay at Lighthouse Point（迪士尼最新巴哈马岛屿）→ 海上巡航日 → 返回 Port Canaveral。这就是传说中的「Double-Dip」双私岛行程 — 一次航行造访两座迪士尼专属岛屿。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌡️ 十一月中旬天气</div>
+    <div class="card-text">
+      <strong>巴哈马白天：</strong>26–28°C（79–82°F），夜间 20–22°C（68–72°F）<br>
+      <strong>海水温度：</strong>25–26°C（77–79°F）— 穿 rashguard 防晒衣下水很舒适<br>
+      <strong>体感：</strong>相当于舒适的深秋。白天短袖足够，晚上甲板加一件薄外套。零飓风风险。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 行程 ===== -->
+<div class="section" id="itinerary">
+  <div class="section-icon">🗓️</div>
+  <div class="section-title">每日行程</div>
+  <div class="section-sub">4 晚航程 · 逐日详解</div>
+
+  <!-- 航线图 -->
+  <div class="map-visual">
+    <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="460" height="200" fill="#0a1628" rx="10"/>
+      <path d="M60,30 L100,30 L105,50 L108,80 L95,120 L80,130 L75,100 L65,60 Z" fill="#1e3055" stroke="#2a4070" stroke-width="1"/>
+      <text x="70" y="25" fill="#6b7fa0" font-size="9" font-family="DM Sans">Florida</text>
+      <ellipse cx="250" cy="80" rx="20" ry="8" fill="#1e3055" stroke="#2a4070"/>
+      <text x="240" y="105" fill="#6b7fa0" font-size="8" font-family="DM Sans">Nassau</text>
+      <ellipse cx="300" cy="110" rx="14" ry="6" fill="#1e3055" stroke="#2a4070"/>
+      <text x="278" y="132" fill="#ffd54f" font-size="8" font-family="DM Sans" font-weight="600">Castaway Cay</text>
+      <ellipse cx="370" cy="140" rx="16" ry="7" fill="#1e3055" stroke="#2a4070"/>
+      <text x="345" y="162" fill="#ffd54f" font-size="8" font-family="DM Sans" font-weight="600">Lookout Cay</text>
+      <circle cx="95" cy="75" r="5" fill="#64b5f6"/>
+      <text x="105" y="78" fill="#64b5f6" font-size="8" font-family="DM Sans" font-weight="600">Port Canaveral</text>
+      <path d="M95,80 Q200,130 300,115" fill="none" stroke="#64b5f6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+      <path d="M300,115 Q340,130 370,140" fill="none" stroke="#ffd54f" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+      <path d="M370,140 Q300,170 95,80" fill="none" stroke="#66bb6a" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+      <text x="170" y="120" fill="#64b5f6" font-size="8" font-family="DM Sans" opacity="0.8">第 2 天</text>
+      <text x="330" y="125" fill="#ffd54f" font-size="8" font-family="DM Sans" opacity="0.8">第 3 天</text>
+      <text x="200" y="175" fill="#66bb6a" font-size="8" font-family="DM Sans" opacity="0.8">第 4 天 海上</text>
+      <text x="82" y="70" font-size="14">🚢</text>
+    </svg>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-day">第 0 天 · 11 月 15 日（六）</div>
+      <div class="tl-port">✈️ 飞抵 Orlando</div>
+      <div class="tl-detail">
+        DCA/BWI → MCO 航班。入住 Port Canaveral 附近酒店。傍晚去 The Cove 吃一顿海鲜（详见「港口美食」）。早睡早起 — 明天是登船日！
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot gold"></div>
+      <div class="tl-day">第 1 天 · 11 月 16 日（一）</div>
+      <div class="tl-port">🚢 登船日 EMBARKATION</div>
+      <div class="tl-detail">
+        Port Canaveral Terminal 4。登船时间 12:00–3:30 PM（越早到排队越短）。上船先去 Marceline Market 自助午餐。下午 5 点 Sail Away 甲板派对。晚上第一顿 Rotational Dining。Grand Hall 圣诞树点灯仪式！
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot gold"></div>
+      <div class="tl-day">第 2 天 · 11 月 17 日（二）</div>
+      <div class="tl-port">🏝️ CASTAWAY CAY 私人岛屿</div>
+      <div class="tl-detail">
+        迪士尼经典私人岛屿。Family Beach 家庭沙滩、Pelican Plunge 水上滑梯、自行车道。圣诞节主题装饰 — 岛上有圣诞树和「下雪」！岛上免费自助午餐。下午约 4:30 回船。今晚是 Pirate Night 海盗之夜 + 海上烟花！
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot gold"></div>
+      <div class="tl-day">第 3 天 · 11 月 18 日（三）</div>
+      <div class="tl-port">🏝️ LOOKOUT CAY at Lighthouse Point</div>
+      <div class="tl-detail">
+        迪士尼最新的巴哈马岛屿，位于 Eleuthera。融合巴哈马 Junkanoo 文化庆典、水上乐园区、海滩和 Cabana 包厢。比 Castaway Cay 更安静、人更少。灯塔景色绝美。下午约 4:30 回船。晚上圣诞主题甲板派对！
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot green"></div>
+      <div class="tl-day">第 4 天 · 11 月 19 日（四）</div>
+      <div class="tl-port">🌊 海上巡航日 DAY AT SEA</div>
+      <div class="tl-detail">
+        整天享受船上设施。AquaMouse 水上过山车、泳池、Quiet Cove 成人专区、Oceaneer Club 儿童俱乐部。Broadway 演出。今晚是 Very Merrytime 重头戏 — Mickey & Minnie's Holiday Party 甲板派对 + 甲板「飘雪」！
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot pink"></div>
+      <div class="tl-day">第 5 天 · 11 月 20 日（五）</div>
+      <div class="tl-port">🏠 下船 DISEMBARKATION</div>
+      <div class="tl-detail">
+        约 6:30 AM 到达 Port Canaveral。船上吃早餐。7:30–9:30 AM 下船。前往 MCO 机场。飞回家。（或者加一天 Disney World！）
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 圣诞活动 ===== -->
+<div class="section" id="merrytime">
+  <div class="section-icon">❄️</div>
+  <div class="section-title">Very Merrytime 圣诞活动</div>
+  <div class="section-sub">海上圣诞 · 独家体验</div>
+
+  <div class="card">
+    <div class="card-title">🎄 圣诞树点灯仪式</div>
+    <div class="card-text">
+      <span class="card-tag tag-fun">必看</span>
+      Grand Hall 中庭盛大点灯仪式 — 巨型圣诞树配合灯光秀华丽亮起。Disney Wish 独特设计：用金属银和蓝色装饰取代传统红绿，呼应 Cinderella 皇家主题。通常在登船当晚举行。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎅 Santa 见面会</div>
+    <div class="card-text">
+      圣诞老人全程驻船！可以排队合影、孩子递愿望清单。Mrs. Claus 在中庭讲圣诞故事。建议尽早预约 Photographer's Gallery 时段 — 排队会很长。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❄️ 甲板「飘雪」</div>
+    <div class="card-text">
+      <span class="card-tag tag-fun">孩子最爱</span>
+      Mickey & Minnie's Holiday Party — Deck 11 化身圣诞舞会，灯光音乐中泡沫「雪花」从天而降。角色穿节日盛装登场。通常在第 3 或第 4 天晚上。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎭 角色节日装扮</div>
+    <div class="card-text">
+      Mickey、Minnie、Goofy、Donald、Stitch — 全部换上圣诞毛衣、Santa 帽、节日服装。独家合影机会，这些装扮在陆上乐园看不到。全船有圣诞颂歌歌手巡回演唱。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍽️ 节日特别菜单</div>
+    <div class="card-text">
+      Rotational Dining 提供圣诞特别菜式：烤火鸡、薄荷冰淇淋圣代、糖果手杖装饰鸡尾酒。服务员戴 Santa 帽和驯鹿鹿角。全船设有热巧克力站。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎁 圣诞寻宝游戏</div>
+    <div class="card-text">
+      全船寻宝 — 孩子在船上各处寻找隐藏的节日装饰。青少年在他们的专属区域也有节日派对。圣诞手工坊：装饰圣诞袜、制作节日贺卡。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 港口美食 ===== -->
+<div class="section" id="dining-port">
+  <div class="section-icon">🍽️</div>
+  <div class="section-title">Port Canaveral 美食指南</div>
+  <div class="section-sub">登船前一晚吃什么</div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-text" style="font-size:12px">
+      <span class="card-tag tag-tip">提示</span>
+      所有餐厅距邮轮区酒店 10 分钟车程内。「The Cove」是港口旁的水岸餐饮区 — 大多数露台都能看到邮轮进出港。
+    </div>
+  </div>
+
+  <div class="resto-grid">
+    <div class="resto-card">
+      <div class="resto-name">Grills Seafood Deck & Tiki Bar</div>
+      <div class="resto-type">海鲜 · 水岸 · The Cove</div>
+      <div class="resto-desc">Port Canaveral 的标杆餐厅，1997 年开业。最出名的 Grouper Sandwich（石斑三明治）号称 Space Coast 第一。户外 Tiki Bar 可以看邮轮进出港。推荐试试辣虾古巴三明治。</div>
+      <div class="resto-meta">
+        <span class="resto-stars">★★★★☆</span>
+        <span>$$</span>
+        <span>~$20–35/人</span>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <div class="resto-name">Fishlips Waterfront Bar & Grill</div>
+      <div class="resto-type">海鲜 · 休闲 · The Cove</div>
+      <div class="resto-desc">轻松的水岸餐厅，有遮阳露台。对小孩很友好，有儿童菜单。运气好的话能在露台上看到 SpaceX Falcon 9 火箭发射！每日特价和好吃的 Fish Taco。</div>
+      <div class="resto-meta">
+        <span class="resto-stars">★★★★☆</span>
+        <span>$$</span>
+        <span>~$18–30/人</span>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <div class="resto-name">Rusty's Seafood & Oyster Bar</div>
+      <div class="resto-type">海鲜 · 实惠 · The Cove</div>
+      <div class="resto-desc">比邻居们更实惠。蛤蜊浓汤和生蚝很棒。露台有每日现场音乐。氛围随意轻松，经常能看到海豚和鹈鹕。</div>
+      <div class="resto-meta">
+        <span class="resto-stars">★★★★☆</span>
+        <span>$</span>
+        <span>~$15–25/人</span>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <div class="resto-name">El Leoncito</div>
+      <div class="resto-type">古巴菜 · 家庭经营 · Cocoa Beach</div>
+      <div class="resto-desc">Miami 到 Jacksonville 之间最正宗的古巴餐厅。份量超大，适合点菜分享。如果吃腻了海鲜换个口味非常好。距港口酒店约 10 分钟车程。</div>
+      <div class="resto-meta">
+        <span class="resto-stars">★★★★½</span>
+        <span>$</span>
+        <span>~$12–20/人</span>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <div class="resto-name">Pompano Grill</div>
+      <div class="resto-type">高档 · Farm-to-table · Cocoa Beach</div>
+      <div class="resto-desc">如果想在登船前来一顿仪式感晚餐。American Wagyu 牛排、手工意面、本地海鲜。精选酒单。建议提前预订 — 很热门。距港口约 15 分钟。</div>
+      <div class="resto-meta">
+        <span class="resto-stars">★★★★★</span>
+        <span>$$$</span>
+        <span>~$45–70/人</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 船上攻略 ===== -->
+<div class="section" id="onboard">
+  <div class="section-icon">🎭</div>
+  <div class="section-title">船上攻略</div>
+  <div class="section-sub">把这艘船玩透</div>
+
+  <div class="card">
+    <div class="card-title">🍽️ Rotational Dining 轮换餐厅</div>
+    <div class="card-text">
+      迪士尼独创制度：你每晚轮换到不同餐厅，但服务员跟着你走！Disney Wish 三家正餐厅：<strong>1923</strong>（典雅爵士风）、<strong>Arendelle</strong>（《冰雪奇缘》主题 + 现场表演）、<strong>Worlds of Marvel</strong>（漫威互动晚宴秀）。同一桌、同一组服务员 — 他们会记住你孩子的名字和口味偏好。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎢 AquaMouse 水上过山车</div>
+    <div class="card-text">
+      <span class="card-tag tag-fun">必玩</span>
+      迪士尼首个海上游乐设施 — 一边滑水一边在 LED 屏幕上看 Mickey & Friends 故事！最低身高要求 42"（约 107cm）。在港口日（大家都在岛上时）去玩人最少。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎬 Broadway 驻船演出（Wish 独家）</div>
+    <div class="card-text">
+      三场演出每晚轮换（全部免费）：<strong>Disney Seas the Adventure</strong>（Captain Minnie 主题）、<strong>Disney's Aladdin — A Musical Spectacular</strong>、<strong>Disney's The Little Mermaid</strong>。专业 Broadway 级别制作。提前预约 — 会满场。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍸 成人专属区域</div>
+    <div class="card-text">
+      <strong>Quiet Cove</strong> — 成人专属泳池和酒吧。<strong>Star Wars: Hyperspace Lounge</strong> — 太空船里喝鸡尾酒（需预约，登船日马上约）。<strong>Palo Steakhouse</strong> 和 <strong>Enchanté by Chef Arnaud Lallement</strong> — 高端成人餐厅（额外收费，提前预约）。<strong>Senses Spa</strong> — 热带雨林水疗房、双人护理。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏊 泳池和水上区域</div>
+    <div class="card-text">
+      Deck 11 家庭泳池。Toy Story Splash Zone 幼儿戏水区。Quiet Cove 成人无边泳池。所有泳池都是恒温的 — 11 月也完全舒适。各泳池区提供毛巾服务。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 亲子 ===== -->
+<div class="section" id="kids">
+  <div class="section-icon">👧</div>
+  <div class="section-title">亲子指南</div>
+  <div class="section-sub">按年龄分组 · 全家都有得玩</div>
+
+  <div class="card">
+    <div class="card-title">🦸 Oceaneer Club（3–12 岁）</div>
+    <div class="card-text">
+      <span class="card-tag tag-tip">免费 · 含在船票内</span>
+      迪士尼传奇儿童俱乐部。主题区：<strong>Marvel Super Hero Academy</strong>、<strong>Walt Disney Imagineering Lab</strong>、<strong>Star Wars: Cargo Bay</strong>、<strong>Fairy Tale Hall</strong>。由迪士尼训练有素的辅导员看管。随时送、随时接，开放时间 9 AM – 午夜。第一天注册 — 孩子佩戴追踪手环。
+      <br><br>
+      <span class="card-tag tag-warn">圣诞特别</span> Very Merrytime 期间有节日手工：装饰圣诞袜、制作贺卡、饼干装饰、角色穿节日装到访。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍼 It's a Small World Nursery（6 月–3 岁）</div>
+    <div class="card-text">
+      <span class="card-tag tag-warn">额外收费</span>
+      $9/小时/儿童。在 Booking Window 开放时预约（出发前约 75 天）。名额有限 — 开窗即抢。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏝️ 带娃上岛攻略</div>
+    <div class="card-text">
+      <strong>Castaway Cay：</strong>Pelican Plunge 浮台、Scuttle's Cove（3–12 岁有人看管的游乐区）、Family Beach 浅水区温柔平静。<br>
+      <strong>Lookout Cay：</strong>水上乐园区、文化体验活动、比 Castaway 更安静人更少。两座岛均提供：免费自助午餐、免费沙滩椅和遮阳伞、免费浮潜装备。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎂 船上过生日</div>
+    <div class="card-text">
+      <span class="card-tag tag-tip">提前预订</span>
+      出发前告知 Disney。选项：定制 Mickey 蛋糕（~$55）、房间装饰套餐（~$95）、生日徽章（免费 — 找 Guest Services 要）。服务员会在晚餐时全餐厅唱生日歌！
+    </div>
+  </div>
+</div>
+
+<!-- ===== 实用锦囊 ===== -->
+<div class="section" id="tips">
+  <div class="section-icon">💡</div>
+  <div class="section-title">实用锦囊</div>
+  <div class="section-sub">第一次坐邮轮必读</div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">1</div>
+      <div class="tip-content">
+        <div class="tip-title">通过 Costco Travel 订</div>
+        <div class="tip-desc">价格和 Disney 官网一样，但 Costco 返 ~8% 的 Cash Card。$7K 的船票约返 $560。Executive 会员额外 2% 年度返现。可以先在 Disney 官网锁房，30 天内 transfer 给 Costco。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">2</div>
+      <div class="tip-content">
+        <div class="tip-title">提前一天到</div>
+        <div class="tip-desc">绝对不要登船当天飞。航班延误 = 错过船。住 Port Canaveral 附近（不是 MCO）。Residence Inn Cape Canaveral、Homewood Suites、Country Inn 都在码头 10 分钟车程内。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">3</div>
+      <div class="tip-content">
+        <div class="tip-title">MCO → Port Canaveral 交通</div>
+        <div class="tip-desc">约 45 分钟车程。选项：Uber XL（$45–65，能坐 6 人 + 行李）、Lyft XL、或 Go Port 班车（$38/人）。佛州法律：5 岁以下必须使用 Car Seat，包括打车。自带或通过班车公司租。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">4</div>
+      <div class="tip-content">
+        <div class="tip-title">凌晨 12:01 抢 Online Check-in</div>
+        <div class="tip-desc">Disney Cruise App 的 check-in 在出发前 30 天开放。午夜 12:01 就做，抢最早的 Port Arrival 时段（11:00–11:30 AM）。越早上船，越多时间探索 + 避开人潮。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">5</div>
+      <div class="tip-content">
+        <div class="tip-title">第一天午餐窍门</div>
+        <div class="tip-desc">房间 1:30 PM 才能进，但中午就能登船。直奔 Marceline Market（Deck 11）吃自助午餐。全部免费，品质超好 — 烤肉、寿司、Pizza、沙拉吧。人没你想象的多。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">6</div>
+      <div class="tip-content">
+        <div class="tip-title">Booking Window 开窗抢位</div>
+        <div class="tip-desc">出发前约 75 天开放预约。第一天要抢的：Hyperspace Lounge 酒廊、Palo/Enchanté 成人餐厅、Nursery 托儿所（如需要）、Shore Excursion 岸上行程。设手机闹钟！</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">7</div>
+      <div class="tip-content">
+        <div class="tip-title">阳台安全</div>
+        <div class="tip-desc">带幼儿的家庭：登船第一天找 Guest Services 申请锁定阳台门。他们会禁用阳台滑门让小孩无法打开。滑门本身有翻转锁，但额外安全措施更安心。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">8</div>
+      <div class="tip-content">
+        <div class="tip-title">Castaway Cay 攻略</div>
+        <div class="tip-desc">早下船（8:30 AM）。先抢 Family Beach 的位置。沙滩椅和遮阳伞先到先得。免费 BBQ 自助午餐 11:30 开放 — 不用回船吃。带防晒霜（reef-safe）、水鞋、防水手机壳。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">9</div>
+      <div class="tip-content">
+        <div class="tip-title">行动不便的家人</div>
+        <div class="tip-desc">Disney Wish 无障碍设施非常好。所有楼层有电梯。Castaway Cay 有无障碍接驳车。Lookout Cay 有铺设好的步道和无障碍海滩区。如需轮椅协助可在港口申请 — 迪士尼船员的服务一流。</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">10</div>
+      <div class="tip-content">
+        <div class="tip-title">Fish Extender 礼物交换</div>
+        <div class="tip-desc">迪士尼邮轮传统！家庭在舱门挂钩上挂一个布制「鱼延伸器」，航行期间互相塞小礼物。加入你这班航次的 Facebook 群参与。预算：$5–10/份。孩子每天起床发现门口有惊喜，超开心！</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 行李清单 ===== -->
+<div class="section" id="packing">
+  <div class="section-icon">🧳</div>
+  <div class="section-title">行李清单</div>
+  <div class="section-sub">点击打勾 · 数据本地保存</div>
+
+  <div class="checklist" id="packingList"></div>
+</div>
+
+<!-- ===== 预算 ===== -->
+<div class="section" id="budget">
+  <div class="section-icon">💰</div>
+  <div class="section-title">预算参考</div>
+  <div class="section-sub">5 人出行 · 估算费用</div>
+
+  <table class="cost-table">
+    <thead>
+      <tr><th>项目</th><th>预估费用</th><th>备注</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>船票（5 人阳台房）</td><td>$6,000–8,000</td><td>取决于预订时间</td></tr>
+      <tr><td>机票（5 人往返）</td><td>$1,200–1,800</td><td>DCA/BWI → MCO</td></tr>
+      <tr><td>前一晚酒店</td><td>$150–250</td><td>Port Canaveral 附近</td></tr>
+      <tr><td>地面交通</td><td>$100–180</td><td>MCO↔Port 双程</td></tr>
+      <tr><td>旅行保险</td><td>$400–500</td><td>建议买 Cancel Anytime</td></tr>
+      <tr><td>船上额外消费</td><td>$200–500</td><td>酒水、SPA、照片、礼物</td></tr>
+      <tr class="total"><td>预估总计</td><td>$8,050–11,230</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">💡 省钱要点</div>
+    <div class="card-text">
+      <span class="card-tag tag-save">省</span> Costco Travel 返 ~$500–600 Cash Card（$7K+ 预订）<br>
+      <span class="card-tag tag-save">省</span> 船上所有正餐、自助餐全部免费（Palo/Enchanté 除外）<br>
+      <span class="card-tag tag-save">省</span> 软饮、水、咖啡、茶 — 全部免费<br>
+      <span class="card-tag tag-save">省</span> Kids Club、演出、泳池、水上乐园 — 全部免费<br>
+      <span class="card-tag tag-save">省</span> 两座岛屿的自助午餐 — 全部免费<br>
+      <span class="card-tag tag-tip">贴士</span> 自带红酒/香槟上船（迪士尼允许，无开瓶费）<br>
+      <span class="card-tag tag-tip">贴士</span> 跳过照片套餐 — 用手机 + Magic Shot 就够了
+    </div>
+  </div>
+</div>
+
+<!-- ===== 准备清单 ===== -->
+<div class="section" id="prep">
+  <div class="section-icon">✅</div>
+  <div class="section-title">出发准备清单</div>
+  <div class="section-sub">倒计时 · 按步骤来</div>
+
+  <div class="checklist" id="prepList"></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  用 ❄️ 和 Claude 制作 · by Sasha<br>
+  <a href="#">在 GitHub 上查看</a> · 更新于 2026 年 11 月
+</div>
+
+</div>
+
+<script>
+const PACKING = [
+  { id:'p1', label:'护照（回程后仍有 6 个月以上有效期）', sub:'每位家庭成员都要检查！' },
+  { id:'p2', label:'登船文件 / 订单确认单' },
+  { id:'p3', label:'Photo ID / 驾照' },
+  { id:'p4', label:'信用卡（用于船上账户绑定）' },
+  { id:'p5', label:'Reef-safe 防晒霜（SPF 50+）', sub:'Castaway/Lookout Cay 要求环保防晒' },
+  { id:'p6', label:'泳衣（每人 2 套）', sub:'一套穿一套晾' },
+  { id:'p7', label:'Rashguard 防晒泳衣', sub:'11 月水温 25°C — 穿上更能延长玩水时间' },
+  { id:'p8', label:'水鞋', sub:'Castaway Cay 有礁石区' },
+  { id:'p9', label:'薄外套或帽衫', sub:'晚上甲板温度约 20°C' },
+  { id:'p10', label:'正式 / 半正式服装', sub:'Disney 邮轮有一晚 Formal Night' },
+  { id:'p11', label:'舒适步行鞋' },
+  { id:'p12', label:'防水手机壳 / Dry Bag' },
+  { id:'p13', label:'插线板（非防浪涌型）', sub:'房间只有 2 个插座 — 带一个非 surge protector 的排插' },
+  { id:'p14', label:'磁吸挂钩', sub:'迪士尼舱房墙壁是金属的 — 磁铁能直接吸！' },
+  { id:'p15', label:'可重复使用水瓶' },
+  { id:'p16', label:'晕船药', sub:'Dramamine 或 Sea-Band，以防万一' },
+  { id:'p17', label:'第一天零食', sub:'房间 1:30 才开，但你可能想带点熟悉的小零食' },
+  { id:'p18', label:'孩子：最爱的毛绒玩具 / 安抚物' },
+  { id:'p19', label:'孩子：Car Seat（打车/班车用）', sub:'佛州法律：5 岁以下必须使用' },
+  { id:'p20', label:'充电宝' },
+  { id:'p21', label:'Ziploc 密封袋（装湿泳衣、沙鞋）' },
+  { id:'p22', label:'自带红酒或香槟', sub:'迪士尼允许带上船，无开瓶费！' },
+];
+
+const PREP = [
+  { id:'r1', label:'在 Disney.com 订船', sub:'先锁房间' },
+  { id:'r2', label:'30 天内 Transfer 到 Costco Travel', sub:'发邮件到 Cruise.Questions@costcotravel.com' },
+  { id:'r3', label:'订机票（DCA/BWI → MCO）', sub:'设 Google Flights 价格提醒' },
+  { id:'r4', label:'订 Port Canaveral 附近酒店', sub:'登船前一晚' },
+  { id:'r5', label:'确认所有护照有效期 6+ 个月', sub:'每位家庭成员都检查' },
+  { id:'r6', label:'下载 Disney Cruise Line App' },
+  { id:'r7', label:'Online Check-in（出发前 30 天开放）', sub:'凌晨 12:01 做，抢最早登船组' },
+  { id:'r8', label:'Booking Window 抢位（出发前 ~75 天）', sub:'餐厅、活动、岸上行程' },
+  { id:'r9', label:'预约 Hyperspace Lounge 星战酒廊' },
+  { id:'r10', label:'注册 Oceaneer Club 儿童俱乐部' },
+  { id:'r11', label:'如有生日：提前订蛋糕', sub:'Mickey 蛋糕 ~$55' },
+  { id:'r12', label:'安排 MCO → Port Canaveral 交通', sub:'Uber XL、班车或租车' },
+  { id:'r13', label:'购买旅行保险', sub:'带老人小孩建议买 Cancel Anytime' },
+  { id:'r14', label:'从 Disney App 打印行李标签' },
+  { id:'r15', label:'打包行李（参考上面的行李清单！）' },
+];
+
+let packState = {};
+let prepState = {};
+
+function load() {
+  try {
+    const p = localStorage.getItem('cruise-packing-zh');
+    if (p) packState = JSON.parse(p);
+    const r = localStorage.getItem('cruise-prep-zh');
+    if (r) prepState = JSON.parse(r);
+  } catch {}
+}
+
+function save() {
+  localStorage.setItem('cruise-packing-zh', JSON.stringify(packState));
+  localStorage.setItem('cruise-prep-zh', JSON.stringify(prepState));
+}
+
+function renderChecklist(items, state, containerId, stateKey) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map(item => {
+    const done = !!state[item.id];
+    return `<div class="check-item${done?' done':''}" onclick="toggle('${stateKey}','${item.id}')">
+      <div class="check-box">${done?'✓':''}</div>
+      <div>
+        <div class="check-label">${item.label}</div>
+        ${item.sub ? `<div class="check-sub">${item.sub}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggle(stateKey, id) {
+  const st = stateKey === 'pack' ? packState : prepState;
+  st[id] = !st[id];
+  save();
+  render();
+}
+
+function updateProgress() {
+  const total = PREP.length;
+  const done = PREP.filter(p => prepState[p.id]).length;
+  const pct = Math.round(done / total * 100);
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function render() {
+  renderChecklist(PACKING, packState, 'packingList', 'pack');
+  renderChecklist(PREP, prepState, 'prepList', 'prep');
+  updateProgress();
+}
+
+function initSnow() {
+  const el = document.getElementById('snowflakes');
+  for (let i = 0; i < 12; i++) {
+    const f = document.createElement('span');
+    f.className = 'flake';
+    f.textContent = '❄';
+    f.style.left = (Math.random() * 100) + '%';
+    f.style.fontSize = (8 + Math.random() * 8) + 'px';
+    f.style.animationDuration = (2 + Math.random() * 3) + 's';
+    f.style.animationDelay = (Math.random() * 3) + 's';
+    el.appendChild(f);
+  }
+}
+
+function initNav() {
+  const links = document.querySelectorAll('.nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+}
+
+load();
+render();
+initSnow();
+initNav();
+</script>
+</body>
+</html>
