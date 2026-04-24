@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Playground ✨ 微调面板</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC','DM Sans',sans-serif;background:#0f0f1a;color:#e0e0e8;min-height:100vh}
+
+/* Layout */
+.layout{display:flex;min-height:100vh}
+@media(max-width:800px){.layout{flex-direction:column}}
+
+/* Panel */
+.panel{
+  width:320px;flex-shrink:0;
+  background:#16162a;border-right:1px solid #2a2a4a;
+  padding:0;overflow-y:auto;
+  position:sticky;top:0;height:100vh;
+}
+@media(max-width:800px){
+  .panel{width:100%;height:auto;position:relative;border-right:none;border-bottom:1px solid #2a2a4a}
+}
+
+.panel-header{
+  padding:20px 20px 16px;
+  border-bottom:1px solid #2a2a4a;
+  display:flex;align-items:center;gap:10px;
+}
+.panel-header h2{font-size:16px;font-weight:600;color:#fff;flex:1}
+.panel-header .sparkle{font-size:20px}
+
+.panel-section{padding:16px 20px;border-bottom:1px solid #1e1e38}
+.panel-section-title{font-size:11px;font-weight:600;color:#7a7aaa;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+
+.slider-row{margin-bottom:14px}
+.slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.slider-name{font-size:12px;color:#b0b0cc}
+.slider-val{font-size:12px;color:#8b5cf6;font-weight:600;min-width:40px;text-align:right}
+input[type="range"]{
+  -webkit-appearance:none;width:100%;height:4px;
+  background:#2a2a4a;border-radius:2px;outline:none;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;
+  background:#8b5cf6;border-radius:50%;cursor:pointer;
+  border:2px solid #16162a;
+}
+input[type="range"]::-moz-range-thumb{
+  width:16px;height:16px;background:#8b5cf6;
+  border-radius:50%;cursor:pointer;border:2px solid #16162a;
+}
+
+.color-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.color-row label{font-size:12px;color:#b0b0cc;flex:1}
+.color-row input[type="color"]{
+  width:32px;height:24px;border:1px solid #3a3a5a;
+  border-radius:6px;background:transparent;cursor:pointer;padding:0;
+}
+
+.reset-btn{
+  display:block;width:100%;padding:10px;margin-top:4px;
+  background:#1e1e38;border:1px solid #2a2a4a;border-radius:8px;
+  color:#7a7aaa;font-size:12px;font-family:inherit;cursor:pointer;
+  transition:.2s;text-align:center;
+}
+.reset-btn:hover{background:#2a2a4a;color:#b0b0cc}
+
+.export-btn{
+  display:block;width:100%;padding:10px;margin-top:6px;
+  background:#8b5cf6;border:none;border-radius:8px;
+  color:#fff;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;
+  transition:.2s;text-align:center;
+}
+.export-btn:hover{background:#7c3aed}
+
+/* Preview area */
+.preview{flex:1;padding:32px 24px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:20px;overflow-y:auto}
+.preview-label{font-size:11px;color:#5a5a7a;letter-spacing:2px;text-transform:uppercase}
+
+/* Live preview card */
+.demo-card{
+  width:100%;max-width:420px;
+  transition:all .15s ease;
+}
+.demo-header{margin-bottom:12px}
+.demo-emoji{margin-bottom:4px}
+.demo-title{font-weight:700;color:#fff}
+.demo-subtitle{color:#8b5cf6;font-weight:500;letter-spacing:1px}
+
+.demo-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:12px}
+.demo-stat{text-align:center}
+.demo-stat-num{font-weight:700;color:#f472b6}
+.demo-stat-label{color:#7a7aaa}
+
+.demo-item{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:6px;transition:all .15s;
+}
+.demo-check{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid #4a4a6a;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:transparent;
+}
+.demo-item.done .demo-check{background:#34d399;border-color:#34d399;color:#0f0f1a}
+.demo-item-info{flex:1}
+.demo-item-name{font-weight:500;color:#e0e0e8}
+.demo-item-meta{color:#7a7aaa}
+.demo-badges{display:flex;gap:4px}
+.demo-badge{padding:2px 6px;border-radius:4px;font-weight:600}
+.demo-badge-a{background:rgba(96,165,250,.12);color:#60a5fa}
+.demo-badge-k{background:rgba(244,114,182,.12);color:#f472b6}
+
+.demo-tip{
+  margin-top:12px;padding:12px;
+  border-radius:10px;
+  background:rgba(139,92,246,.06);
+  border:1px solid rgba(139,92,246,.15);
+}
+.demo-tip-title{font-weight:600;color:#fff;margin-bottom:4px}
+.demo-tip-text{color:#b0b0cc}
+
+/* Export modal */
+.export-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center}
+.export-modal.show{display:flex}
+.export-content{background:#1e1e38;border:1px solid #2a2a4a;border-radius:16px;padding:24px;max-width:480px;width:90%;max-height:80vh;overflow-y:auto}
+.export-content h3{font-size:16px;color:#fff;margin-bottom:12px}
+.export-code{background:#0f0f1a;border:1px solid #2a2a4a;border-radius:8px;padding:14px;font-size:12px;font-family:'SF Mono','Fira Code',monospace;color:#a78bfa;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow-y:auto;line-height:1.6}
+.export-actions{display:flex;gap:8px;margin-top:14px}
+.export-actions button{flex:1;padding:10px;border-radius:8px;font-family:inherit;font-size:13px;cursor:pointer;border:none}
+.exp-copy{background:#8b5cf6;color:#fff}
+.exp-close{background:#2a2a4a;color:#b0b0cc}
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <!-- ===== PANEL ===== -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="sparkle">✨</span>
+      <h2>微调面板</h2>
+    </div>
+
+    <!-- Spacing -->
+    <div class="panel-section">
+      <div class="panel-section-title">间距 Spacing</div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">卡片内边距</span><span class="slider-val" id="v-padding">16px</span></div>
+        <input type="range" min="8" max="32" value="16" id="s-padding" oninput="update()">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">项目间距</span><span class="slider-val" id="v-gap">6px</span></div>
+        <input type="range" min="2" max="16" value="6" id="s-gap" oninput="update()">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">外边距</span><span class="slider-val" id="v-margin">0px</span></div>
+        <input type="range" min="0" max="24" value="0" id="s-margin" oninput="update()">
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="panel-section">
+      <div class="panel-section-title">字体 Typography</div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">标题字号</span><span class="slider-val" id="v-title-size">20px</span></div>
+        <input type="range" min="14" max="32" value="20" id="s-title-size" oninput="update()">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">正文字号</span><span class="slider-val" id="v-body-size">13px</span></div>
+        <input type="range" min="10" max="18" value="13" id="s-body-size" oninput="update()">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">行高</span><span class="slider-val" id="v-line-height">1.6</span></div>
+        <input type="range" min="12" max="24" value="16" id="s-line-height" oninput="update()">
+      </div>
+    </div>
+
+    <!-- Shape -->
+    <div class="panel-section">
+      <div class="panel-section-title">形状 Shape</div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">圆角</span><span class="slider-val" id="v-radius">14px</span></div>
+        <input type="range" min="0" max="28" value="14" id="s-radius" oninput="update()">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label"><span class="slider-name">边框宽度</span><span class="slider-val" id="v-border">1px</span></div>
+        <input type="range" min="0" max="4" value="1" id="s-border" oninput="update()">
+      </div>
+    </div>
+
+    <!-- Colors -->
+    <div class="panel-section">
+      <div class="panel-section-title">颜色 Colors</div>
+      <div class="color-row"><label>背景色</label><input type="color" id="c-bg" value="#1a0a2e" oninput="update()"></div>
+      <div class="color-row"><label>卡片背景</label><input type="color" id="c-card" value="#231245" oninput="update()"></div>
+      <div class="color-row"><label>边框色</label><input type="color" id="c-border" value="#3d2a6e" oninput="update()"></div>
+      <div class="color-row"><label>主题色</label><input type="color" id="c-accent" value="#8b5cf6" oninput="update()"></div>
+      <div class="color-row"><label>高亮色</label><input type="color" id="c-pink" value="#f472b6" oninput="update()"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="panel-section">
+      <button class="reset-btn" onclick="resetAll()">↻ 恢复默认</button>
+      <button class="export-btn" onclick="exportCSS()">📋 导出 CSS 变量</button>
+    </div>
+  </div>
+
+  <!-- ===== PREVIEW ===== -->
+  <div class="preview" id="previewArea">
+    <div class="preview-label">实时预览 Live Preview</div>
+
+    <div class="demo-card" id="demoCard">
+      <div class="demo-header">
+        <div class="demo-emoji" style="font-size:28px">🎂</div>
+        <div class="demo-title">Mickey's Birthday Party</div>
+        <div class="demo-subtitle">🎈 EVENT PLANNER</div>
+      </div>
+
+      <div class="demo-stat-grid">
+        <div class="demo-stat"><div class="demo-stat-num">5</div><div class="demo-stat-label">Families</div></div>
+        <div class="demo-stat"><div class="demo-stat-num">9</div><div class="demo-stat-label">Adults</div></div>
+        <div class="demo-stat"><div class="demo-stat-num">10</div><div class="demo-stat-label">Kids</div></div>
+      </div>
+
+      <div class="demo-item done">
+        <div class="demo-check">✓</div>
+        <div class="demo-item-info">
+          <div class="demo-item-name">The Maple Family</div>
+          <div class="demo-item-meta">Coco, Benny</div>
+        </div>
+        <div class="demo-badges"><span class="demo-badge demo-badge-a">2A</span><span class="demo-badge demo-badge-k">2K</span></div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-check"></div>
+        <div class="demo-item-info">
+          <div class="demo-item-name">The Clover Family</div>
+          <div class="demo-item-meta">Ziggy</div>
+        </div>
+        <div class="demo-badges"><span class="demo-badge demo-badge-a">2A</span><span class="demo-badge demo-badge-k">1K</span></div>
+      </div>
+
+      <div class="demo-item" style="border-left:3px solid #fbbf24;padding-left:8px;border-radius:4px">
+        <div class="demo-check"></div>
+        <div class="demo-item-info">
+          <div class="demo-item-name">The Pebble Family</div>
+          <div class="demo-item-meta">⚠️ tree nuts · Sunny, Dot</div>
+        </div>
+        <div class="demo-badges"><span class="demo-badge demo-badge-a">1A</span><span class="demo-badge demo-badge-k">2K</span></div>
+      </div>
+
+      <div class="demo-item">
+        <div class="demo-check"></div>
+        <div class="demo-item-info">
+          <div class="demo-item-name">The Starling Family</div>
+          <div class="demo-item-meta">Pippa, Theo, Roo</div>
+        </div>
+        <div class="demo-badges"><span class="demo-badge demo-badge-a">2A</span><span class="demo-badge demo-badge-k">3K</span></div>
+      </div>
+
+      <div class="demo-tip">
+        <div class="demo-tip-title">💡 Ordering Tips</div>
+        <div class="demo-tip-text">Adults eat ~3 slices, kids ~1.5 slices. Order 10–15% extra. Costco pizza $9.95 for 18" — best value.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Export Modal -->
+<div class="export-modal" id="exportModal">
+  <div class="export-content">
+    <h3>📋 导出的 CSS 变量</h3>
+    <div class="export-code" id="exportCode"></div>
+    <div class="export-actions">
+      <button class="exp-copy" onclick="copyExport()">复制</button>
+      <button class="exp-close" onclick="closeExport()">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULTS={
+  'padding':16,'gap':6,'margin':0,
+  'title-size':20,'body-size':13,'line-height':16,
+  'radius':14,'border':1,
+};
+const COLOR_DEFAULTS={
+  'bg':'#1a0a2e','card':'#231245','border':'#3d2a6e','accent':'#8b5cf6','pink':'#f472b6'
+};
+
+function val(id){return document.getElementById(id).value}
+function setVal(id,v){document.getElementById(id).textContent=v}
+
+function update(){
+  const p=val('s-padding'), g=val('s-gap'), m=val('s-margin');
+  const ts=val('s-title-size'), bs=val('s-body-size'), lh=(val('s-line-height')/10).toFixed(1);
+  const r=val('s-radius'), bw=val('s-border');
+  const cBg=val('c-bg'), cCard=val('c-card'), cBdr=val('c-border'), cAcc=val('c-accent'), cPink=val('c-pink');
+
+  setVal('v-padding',p+'px'); setVal('v-gap',g+'px'); setVal('v-margin',m+'px');
+  setVal('v-title-size',ts+'px'); setVal('v-body-size',bs+'px'); setVal('v-line-height',lh);
+  setVal('v-radius',r+'px'); setVal('v-border',bw+'px');
+
+  const card=document.getElementById('demoCard');
+  const preview=document.getElementById('previewArea');
+
+  // Apply to card
+  card.style.cssText=`
+    background:${cCard};
+    border:${bw}px solid ${cBdr};
+    border-radius:${r}px;
+    padding:${p}px;
+    margin:${m}px;
+  `;
+
+  // Preview bg
+  preview.style.background=cBg;
+
+  // Title
+  card.querySelector('.demo-title').style.fontSize=ts+'px';
+  card.querySelector('.demo-subtitle').style.cssText=`color:${cAcc};font-size:${Math.max(10,ts-8)}px`;
+
+  // Body text
+  card.querySelectorAll('.demo-item-name').forEach(el=>{el.style.fontSize=bs+'px'});
+  card.querySelectorAll('.demo-item-meta').forEach(el=>{el.style.fontSize=Math.max(9,bs-2)+'px'});
+  card.querySelector('.demo-tip-text').style.cssText=`font-size:${bs}px;line-height:${lh};color:#b0b0cc`;
+  card.querySelector('.demo-tip-title').style.fontSize=bs+'px';
+
+  // Items gap
+  card.querySelectorAll('.demo-item').forEach(el=>{el.style.marginBottom=g+'px'});
+
+  // Stat nums color
+  card.querySelectorAll('.demo-stat-num').forEach(el=>{el.style.color=cPink});
+
+  // Badge colors
+  card.querySelectorAll('.demo-badge-k').forEach(el=>{el.style.cssText=`background:${cPink}1f;color:${cPink}`});
+
+  // Tip box
+  const tip=card.querySelector('.demo-tip');
+  tip.style.cssText=`margin-top:${g*2}px;padding:${Math.max(8,p-4)}px;border-radius:${Math.max(4,r-4)}px;background:${cAcc}0f;border:1px solid ${cAcc}25`;
+
+  // Check done color
+  card.querySelectorAll('.demo-item.done .demo-check').forEach(el=>{el.style.background='#34d399';el.style.borderColor='#34d399'});
+
+  // Save to localStorage
+  const state={};
+  ['s-padding','s-gap','s-margin','s-title-size','s-body-size','s-line-height','s-radius','s-border'].forEach(id=>{state[id]=document.getElementById(id).value});
+  ['c-bg','c-card','c-border','c-accent','c-pink'].forEach(id=>{state[id]=document.getElementById(id).value});
+  localStorage.setItem('playground-state',JSON.stringify(state));
+}
+
+function resetAll(){
+  Object.entries(DEFAULTS).forEach(([k,v])=>{document.getElementById('s-'+k).value=v});
+  Object.entries(COLOR_DEFAULTS).forEach(([k,v])=>{document.getElementById('c-'+k).value=v});
+  localStorage.removeItem('playground-state');
+  update();
+}
+
+function loadState(){
+  try{
+    const raw=localStorage.getItem('playground-state');
+    if(!raw)return;
+    const state=JSON.parse(raw);
+    Object.entries(state).forEach(([id,v])=>{
+      const el=document.getElementById(id);
+      if(el)el.value=v;
+    });
+  }catch{}
+}
+
+function exportCSS(){
+  const p=val('s-padding'),g=val('s-gap'),m=val('s-margin');
+  const ts=val('s-title-size'),bs=val('s-body-size'),lh=(val('s-line-height')/10).toFixed(1);
+  const r=val('s-radius'),bw=val('s-border');
+  const cBg=val('c-bg'),cCard=val('c-card'),cBdr=val('c-border'),cAcc=val('c-accent'),cPink=val('c-pink');
+  const css=`:root {
+  /* Spacing */
+  --card-padding: ${p}px;
+  --item-gap: ${g}px;
+  --outer-margin: ${m}px;
+
+  /* Typography */
+  --title-size: ${ts}px;
+  --body-size: ${bs}px;
+  --line-height: ${lh};
+
+  /* Shape */
+  --border-radius: ${r}px;
+  --border-width: ${bw}px;
+
+  /* Colors */
+  --bg: ${cBg};
+  --card-bg: ${cCard};
+  --border-color: ${cBdr};
+  --accent: ${cAcc};
+  --highlight: ${cPink};
+}`;
+  document.getElementById('exportCode').textContent=css;
+  document.getElementById('exportModal').classList.add('show');
+}
+
+function copyExport(){
+  const text=document.getElementById('exportCode').textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.querySelector('.exp-copy');
+    btn.textContent='✓ 已复制';
+    setTimeout(()=>{btn.textContent='复制'},1500);
+  });
+}
+function closeExport(){document.getElementById('exportModal').classList.remove('show')}
+document.getElementById('exportModal').addEventListener('click',e=>{if(e.target===document.getElementById('exportModal'))closeExport()});
+
+// Init
+loadState();
+update();
+</script>
+</body>
+</html>
