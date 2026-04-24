@@ -1607,3 +1607,17 @@ a {
     line-height: 1.75;
   }
 }
+
+/* ---------- Placement override: product entry sits after Latest Issue ---------- */
+.bottom-cta {
+  max-width: 1120px;
+  margin: 24px auto 72px;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .bottom-cta {
+    margin: 20px auto 56px;
+    padding: 0;
+  }
+}
