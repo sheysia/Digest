@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Party Plan">
+<meta name="theme-color" content="#1a0a2e">
+<title>Mickey's Birthday Party Planner 🎂</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a0a2e;--bg2:#231245;--bg3:#2d1a5e;
+  --bdr:#3d2a6e;--bdr2:#4e3a8e;
+  --txt:#d8d0f0;--dim:#8878b0;--muted:#5a4a80;
+  --pink:#f472b6;--gold:#fbbf24;--green:#34d399;
+  --blue:#60a5fa;--red:#f87171;--purple:#a78bfa;
+  --orange:#fb923c;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);max-width:520px;margin:0 auto;min-height:100vh;line-height:1.6}
+
+/* Confetti bg */
+body::before{content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(2px 2px at 10% 15%,rgba(244,114,182,.12),transparent),
+    radial-gradient(2px 2px at 30% 45%,rgba(251,191,36,.1),transparent),
+    radial-gradient(2px 2px at 60% 20%,rgba(96,165,250,.1),transparent),
+    radial-gradient(2px 2px at 80% 60%,rgba(52,211,153,.08),transparent),
+    radial-gradient(2px 2px at 45% 80%,rgba(167,139,250,.1),transparent),
+    radial-gradient(1.5px 1.5px at 90% 30%,rgba(244,114,182,.08),transparent);
+  pointer-events:none;z-index:0}
+.app{position:relative;z-index:1}
+
+/* Hero */
+.hero{padding:56px 24px 28px;text-align:center;background:linear-gradient(180deg,rgba(45,26,94,.5),transparent);border-bottom:1px solid var(--bdr)}
+.hero-emoji{font-size:52px;margin-bottom:6px}
+.hero h1{font-family:'Fredoka',sans-serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:.5px}
+.hero-sub{font-size:13px;color:var(--pink);font-weight:500;margin:4px 0 16px;letter-spacing:1px}
+.hero-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.htag{padding:4px 12px;border-radius:20px;font-size:11px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.15);color:var(--purple)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:10;display:flex;overflow-x:auto;background:var(--bg);border-bottom:1px solid var(--bdr);scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex-shrink:0;padding:11px 13px;font-size:11px;font-weight:500;color:var(--dim);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:.2s}
+.nav a:hover,.nav a.active{color:var(--pink);border-color:var(--pink)}
+
+/* Section */
+.sec{padding:28px 18px;border-bottom:1px solid var(--bdr)}
+.sec-icon{font-size:26px;margin-bottom:6px}
+.sec-title{font-family:'Fredoka',sans-serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:2px}
+.sec-sub{font-size:11px;color:var(--dim);letter-spacing:1px;margin-bottom:16px}
+
+/* Card */
+.card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:14px 16px;margin-bottom:8px}
+.card-t{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px}
+.card-b{font-size:12px;color:var(--txt);line-height:1.7}
+.tag{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:600;letter-spacing:.3px;margin-right:3px}
+.t-tip{background:rgba(96,165,250,.12);color:var(--blue)}
+.t-warn{background:rgba(248,113,113,.12);color:var(--red)}
+.t-save{background:rgba(52,211,153,.12);color:var(--green)}
+.t-fun{background:rgba(244,114,182,.12);color:var(--pink)}
+
+/* Guest list */
+.guest-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
+.gs{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:10px 8px;text-align:center}
+.gs-n{font-family:'Fredoka';font-size:22px;font-weight:600;color:var(--pink)}
+.gs-l{font-size:10px;color:var(--dim)}
+
+.search-wrap{margin-bottom:10px}
+.search-wrap input{width:100%;padding:10px 14px;background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;color:var(--txt);font-size:13px;font-family:inherit;outline:none}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-wrap input:focus{border-color:var(--pink)}
+
+.tabs{display:flex;gap:4px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex-shrink:0;padding:6px 12px;border-radius:8px;border:1px solid var(--bdr);background:var(--bg2);color:var(--dim);font-size:11px;font-family:inherit;cursor:pointer;transition:.2s}
+.tabs button.act{background:var(--pink);color:#fff;border-color:var(--pink)}
+
+.gcard{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;margin-bottom:6px;cursor:pointer;transition:.15s;-webkit-user-select:none;user-select:none}
+.gcard:active{transform:scale(.98)}
+.gcard.arrived{border-color:rgba(52,211,153,.3);background:linear-gradient(135deg,var(--bg2),rgba(52,211,153,.04))}
+.gcard.allergy{border-left:3px solid var(--gold)}
+.gchk{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:.2s}
+.gcard.arrived .gchk{background:var(--green);border-color:var(--green);color:var(--bg)}
+.ginfo{flex:1;min-width:0}
+.gname{font-size:13px;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gmeta{font-size:11px;color:var(--dim)}
+.gbadge{display:flex;gap:4px}
+.gbadge span{padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600}
+.b-a{background:rgba(96,165,250,.12);color:var(--blue)}
+.b-k{background:rgba(244,114,182,.12);color:var(--pink)}
+.b-al{background:rgba(251,191,36,.12);color:var(--gold)}
+
+/* Pizza calc */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.calc-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:14px;text-align:center}
+.calc-card.full{grid-column:1/-1}
+.calc-num{font-family:'Fredoka';font-size:28px;font-weight:600;color:var(--pink)}
+.calc-label{font-size:11px;color:var(--dim);margin-top:2px}
+.calc-input-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.calc-input-row label{font-size:12px;color:var(--dim);flex:1}
+.calc-input-row input,.calc-input-row select{width:80px;padding:8px;background:var(--bg2);border:1px solid var(--bdr);border-radius:8px;color:var(--txt);font-size:13px;font-family:inherit;outline:none;text-align:center}
+.calc-input-row input:focus,.calc-input-row select:focus{border-color:var(--pink)}
+
+/* Timeline */
+.tl{position:relative;padding-left:22px}
+.tl::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;background:var(--bdr)}
+.tl-i{position:relative;margin-bottom:16px}
+.tl-dot{position:absolute;left:-19px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--pink);border:2px solid var(--bg)}
+.tl-dot.g{background:var(--green)}.tl-dot.b{background:var(--blue)}.tl-dot.o{background:var(--orange)}
+.tl-time{font-family:'Fredoka';font-size:13px;font-weight:500;color:var(--pink)}
+.tl-txt{font-size:12px;color:var(--txt);line-height:1.7}
+
+/* Checklist */
+.ck{display:flex;flex-direction:column;gap:5px}
+.ck-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg2);border:1px solid var(--bdr);border-radius:9px;cursor:pointer;-webkit-user-select:none;user-select:none;transition:.15s}
+.ck-item:active{transform:scale(.98)}
+.ck-item.done{opacity:.45}
+.ck-item.done .ck-label{text-decoration:line-through}
+.ck-box{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--bg);transition:.2s}
+.ck-item.done .ck-box{background:var(--green);border-color:var(--green)}
+.ck-label{font-size:12px;color:var(--txt)}
+.ck-sub{font-size:10px;color:var(--dim);margin-top:1px}
+
+/* Budget */
+.budget-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bdr);font-size:12px}
+.budget-row.total{border-top:2px solid var(--bdr);font-weight:600;color:var(--gold);margin-top:4px;padding-top:12px}
+.budget-cat{color:var(--txt)}.budget-amt{color:var(--dim)}
+.budget-row.total .budget-amt{color:var(--gold)}
+.budget-input{width:70px;padding:4px 6px;background:var(--bg3);border:1px solid var(--bdr);border-radius:6px;color:var(--gold);font-size:12px;font-family:inherit;text-align:right;outline:none}
+.budget-input:focus{border-color:var(--pink)}
+
+/* Footer */
+.footer{text-align:center;padding:28px 20px 44px;font-size:10px;color:var(--muted)}
+.footer a{color:var(--purple);text-decoration:none}
+
+/* Add guest modal */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;align-items:flex-end;justify-content:center}
+.modal-bg.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--bdr);border-radius:18px 18px 0 0;width:100%;max-width:520px;padding:22px 18px 36px;max-height:80vh;overflow-y:auto}
+.modal h3{font-family:'Fredoka';font-size:17px;color:#fff;margin-bottom:14px;text-align:center}
+.modal-field{margin-bottom:10px}
+.modal-field label{display:block;font-size:11px;color:var(--dim);margin-bottom:4px}
+.modal-field input,.modal-field select{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;color:var(--txt);font-size:13px;font-family:inherit;outline:none}
+.modal-field input:focus{border-color:var(--pink)}
+.modal-actions{display:flex;gap:8px;margin-top:16px}
+.mbtn{flex:1;padding:12px;border-radius:10px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;border:none}
+.mbtn-cancel{background:var(--bdr);color:var(--dim)}
+.mbtn-save{background:var(--pink);color:#fff}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="hero">
+  <div class="hero-emoji">🎂</div>
+  <h1>Mickey's Birthday Party</h1>
+  <div class="hero-sub">🎈 EVENT PLANNER 🎈</div>
+  <div class="hero-tags">
+    <span class="htag">📅 Edit your date</span>
+    <span class="htag">📍 Your venue</span>
+    <span class="htag">⏰ 4:00–6:00 PM</span>
+  </div>
+</div>
+
+<nav class="nav" id="nav">
+  <a href="#guests">Guest List</a>
+  <a href="#pizza">Pizza Calc</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#packing">Packing</a>
+  <a href="#budget">Budget</a>
+  <a href="#tips">Tips</a>
+</nav>
+
+<!-- ===== GUESTS ===== -->
+<div class="sec" id="guests">
+  <div class="sec-icon">👥</div>
+  <div class="sec-title">Guest List & Check-in</div>
+  <div class="sec-sub">TAP TO CHECK IN · SWIPE TO EXPLORE</div>
+  <div class="guest-stats" id="gstats"></div>
+  <div class="search-wrap"><input type="text" id="gsearch" placeholder="🔍 Search by name..."></div>
+  <div class="tabs" id="gtabs">
+    <button class="act" data-f="all">All</button>
+    <button data-f="pending">Pending</button>
+    <button data-f="arrived">Arrived ✓</button>
+    <button data-f="allergy">⚠ Allergy</button>
+  </div>
+  <div id="glist"></div>
+  <button onclick="openAddGuest()" style="width:100%;padding:12px;margin-top:8px;background:var(--bg3);border:1px dashed var(--bdr2);border-radius:10px;color:var(--purple);font-size:13px;font-family:inherit;cursor:pointer">+ Add Family</button>
+</div>
+
+<!-- ===== PIZZA CALC ===== -->
+<div class="sec" id="pizza">
+  <div class="sec-icon">🍕</div>
+  <div class="sec-title">Food Calculator</div>
+  <div class="sec-sub">HOW MUCH TO ORDER</div>
+  <div class="calc-input-row">
+    <label>Total guests</label>
+    <input type="number" id="calcGuests" value="30" min="1" max="200" onchange="calcFood()">
+  </div>
+  <div class="calc-input-row">
+    <label>Kids (% of total)</label>
+    <input type="number" id="calcKidsPct" value="50" min="0" max="100" onchange="calcFood()">
+  </div>
+  <div class="calc-input-row">
+    <label>Slices per pizza</label>
+    <select id="calcSlices" onchange="calcFood()">
+      <option value="8" selected>8 (standard)</option>
+      <option value="10">10 (large)</option>
+      <option value="12">12 (XL)</option>
+    </select>
+  </div>
+  <div class="calc-grid" id="calcResults"></div>
+  <div class="card" style="margin-top:12px">
+    <div class="card-t">💡 Ordering Tips</div>
+    <div class="card-b">
+      <span class="tag t-tip">TIP</span> Adults eat ~3 slices, kids ~1.5 slices on average<br>
+      <span class="tag t-tip">TIP</span> Order 10–15% extra to be safe<br>
+      <span class="tag t-tip">TIP</span> 70% cheese/pepperoni, 30% specialty works well<br>
+      <span class="tag t-save">SAVE</span> Costco pizza: $9.95 for 18" (12 slices) — best value<br>
+      <span class="tag t-fun">ADD</span> Chicken nuggets/tenders: ~3 per kid, 1 bag per 8 kids<br>
+      <span class="tag t-fun">ADD</span> Juice boxes: 1 per kid + 10% spare
+    </div>
+  </div>
+</div>
+
+<!-- ===== TIMELINE ===== -->
+<div class="sec" id="timeline">
+  <div class="sec-icon">⏰</div>
+  <div class="sec-title">Day-of Timeline</div>
+  <div class="sec-sub">CUSTOMIZE FOR YOUR EVENT</div>
+  <div class="tl">
+    <div class="tl-i"><div class="tl-dot b"></div><div class="tl-time">T-60 min</div><div class="tl-txt">Arrive at venue. Unload decorations, set up tables, inflate balloons. Confirm food order / delivery time.</div></div>
+    <div class="tl-i"><div class="tl-dot b"></div><div class="tl-time">T-30 min</div><div class="tl-txt">Layout table covers, plates, napkins, cups. Place goodie bags. Set up photo backdrop. Test music/speaker.</div></div>
+    <div class="tl-i"><div class="tl-dot"></div><div class="tl-time">Start Time</div><div class="tl-txt">Doors open! Greet guests, collect waivers (if venue requires). Guide to play area. Take group photos early while everyone's fresh.</div></div>
+    <div class="tl-i"><div class="tl-dot"></div><div class="tl-time">+45 min</div><div class="tl-txt">Transition activity — dance party, organized game, or venue-led activity. Good energy reset before food.</div></div>
+    <div class="tl-i"><div class="tl-dot o"></div><div class="tl-time">+60 min</div><div class="tl-txt">Party room time! Sing Happy Birthday 🎶 → blow candles → cut cake → serve pizza & food. Take photos of cake moment!</div></div>
+    <div class="tl-i"><div class="tl-dot o"></div><div class="tl-time">+80 min</div><div class="tl-txt">Open presents (optional — many families prefer opening at home). Distribute goodie bags to departing guests.</div></div>
+    <div class="tl-i"><div class="tl-dot g"></div><div class="tl-time">+100 min</div><div class="tl-txt">Start cleanup. Pack leftover food. Collect decorations. Tip venue host. Final head count of presents/belongings.</div></div>
+    <div class="tl-i"><div class="tl-dot g"></div><div class="tl-time">+120 min</div><div class="tl-txt">Venue checkout. Load car. Done! 🎉 Change kids into comfy clothes for the ride home.</div></div>
+  </div>
+</div>
+
+<!-- ===== PACKING ===== -->
+<div class="sec" id="packing">
+  <div class="sec-icon">📦</div>
+  <div class="sec-title">Packing Checklist</div>
+  <div class="sec-sub">TAP TO CHECK OFF · DON'T FORGET THE CAKE</div>
+  <div class="ck" id="packList"></div>
+</div>
+
+<!-- ===== BUDGET ===== -->
+<div class="sec" id="budget">
+  <div class="sec-icon">💰</div>
+  <div class="sec-title">Budget Tracker</div>
+  <div class="sec-sub">ENTER ACTUAL COSTS · TRACK SPENDING</div>
+  <div id="budgetList"></div>
+</div>
+
+<!-- ===== TIPS ===== -->
+<div class="sec" id="tips">
+  <div class="sec-icon">💡</div>
+  <div class="sec-title">Pro Tips</div>
+  <div class="sec-sub">FROM PARENTS WHO'VE BEEN THERE</div>
+  <div class="card"><div class="card-t">📸 Photo Strategy</div><div class="card-b">Take group photos in the first 15 minutes — kids are cleanest and most cooperative. Assign one adult to be the "photographer" so you can focus on hosting. Snap decor before guests arrive.</div></div>
+  <div class="card"><div class="card-t">🎁 Presents Protocol</div><div class="card-b">Consider opening presents at home — it saves 15 min, avoids jealousy drama, and lets you properly note who gave what for thank-you cards. Bring a large bag/bin to collect gifts.</div></div>
+  <div class="card"><div class="card-t">⚠️ Allergy Awareness</div><div class="card-b">Ask about allergies on your RSVP. Flag allergy families visually on your check-in list. Notify venue staff. Keep allergy-safe snacks separate and clearly labeled. Many trampoline/bounce venues are nut-free — confirm beforehand.</div></div>
+  <div class="card"><div class="card-t">💵 Host Tip</div><div class="card-b">For venue parties with a dedicated host, $30–50 cash tip is standard for parties of 20+ kids. Hand it directly at checkout with a thank-you.</div></div>
+  <div class="card"><div class="card-t">🧦 The Sock Reminder</div><div class="card-b">If your venue requires socks (trampoline parks, bounce houses), mention it on the invitation AND send a reminder the morning of. Parents always forget. Keep 5 spare pairs in your bag.</div></div>
+  <div class="card"><div class="card-t">🎈 Balloon Math</div><div class="card-b">Helium balloons: 1 per kid + 10 for decor. Regular balloons for arches/clusters: buy 2x what you think. They pop. A hand pump is $5 and saves your lungs.</div></div>
+</div>
+
+<div class="footer">
+  Built with 🎂 by Sasha · Powered by Claude<br>
+  <a href="#">View on GitHub</a>
+</div>
+
+</div><!-- /app -->
+
+<!-- Add Guest Modal -->
+<div class="modal-bg" id="addModal">
+  <div class="modal">
+    <h3>🎈 Add Family</h3>
+    <div class="modal-field"><label>Family / Child Name</label><input id="mName" placeholder="e.g. Emma's family"></div>
+    <div class="modal-field"><label>Adults</label><input type="number" id="mAdults" value="2" min="0" max="10"></div>
+    <div class="modal-field"><label>Kids</label><input type="number" id="mKids" value="1" min="0" max="10"></div>
+    <div class="modal-field"><label>Allergy (leave blank if none)</label><input id="mAllergy" placeholder="e.g. tree nuts, dairy"></div>
+    <div class="modal-field"><label>Phone (optional)</label><input id="mPhone" placeholder="e.g. 301-555-1234"></div>
+    <div class="modal-actions">
+      <button class="mbtn mbtn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="mbtn mbtn-save" onclick="saveGuest()">Add</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DEMO GUESTS =====
+const DEFAULT_GUESTS=[
+  {id:1,name:"Sophia Chen",adults:2,kids:2,allergy:"",phone:"",arrived:false},
+  {id:2,name:"Liam Park",adults:2,kids:1,allergy:"",phone:"",arrived:false},
+  {id:3,name:"Olivia Martinez",adults:1,kids:2,allergy:"tree nuts",phone:"",arrived:false},
+  {id:4,name:"Noah Kim",adults:2,kids:1,allergy:"",phone:"",arrived:false},
+  {id:5,name:"Emma Johnson",adults:2,kids:3,allergy:"",phone:"",arrived:false},
+  {id:6,name:"Ava Williams",adults:1,kids:1,allergy:"dairy",phone:"",arrived:false},
+  {id:7,name:"Lucas Brown",adults:2,kids:2,allergy:"",phone:"",arrived:false},
+  {id:8,name:"Mia Davis",adults:2,kids:1,allergy:"",phone:"",arrived:false},
+  {id:9,name:"Ethan Wilson",adults:1,kids:1,allergy:"",phone:"",arrived:false},
+  {id:10,name:"Isabella Lee",adults:2,kids:2,allergy:"",phone:"",arrived:false},
+];
+
+const PACK_ITEMS=[
+  {id:'d1',label:'🎨 Decorations box',sub:'Includes: tablecloths, banners, tape, scissors'},
+  {id:'d2',label:'🎈 Balloons + pump',sub:'Helium or hand pump'},
+  {id:'d3',label:'🎂 Cake (pick up en route!)',sub:'LAST in car, FIRST out'},
+  {id:'d4',label:'🕯️ Candles + lighter'},
+  {id:'d5',label:'🍽️ Plates, napkins, forks, cups',sub:'Count: guests + 10 spare'},
+  {id:'d6',label:'🎁 Goodie bags',sub:'One per family or per kid'},
+  {id:'d7',label:'🍕 Food: confirm order / pickup time'},
+  {id:'d8',label:'🧃 Drinks: juice boxes + water'},
+  {id:'d9',label:'🍪 Snacks / fruit'},
+  {id:'d10',label:'📸 Camera / phone charged',sub:'Designate a photographer'},
+  {id:'d11',label:'🧹 Trash bags (3+)'},
+  {id:'d12',label:'🧻 Wet wipes (2 packs)'},
+  {id:'d13',label:'🩹 Band-aids'},
+  {id:'d14',label:'✏️ Sharpie marker',sub:'Label cups with names'},
+  {id:'d15',label:'🔋 Portable charger'},
+  {id:'d16',label:'🧦 Spare socks (5 pairs)',sub:'If venue requires socks'},
+  {id:'d17',label:'👗 Change of clothes for birthday kid'},
+  {id:'d18',label:'👑 Birthday crown / sash'},
+  {id:'d19',label:'🎵 Speaker + playlist ready'},
+  {id:'d20',label:'🛍️ Large bag for collecting gifts'},
+];
+
+const BUDGET_ITEMS=[
+  {id:'b1',cat:'Venue rental',est:300},
+  {id:'b2',cat:'Food (pizza, nuggets, etc.)',est:120},
+  {id:'b3',cat:'Cake',est:50},
+  {id:'b4',cat:'Drinks & snacks',est:40},
+  {id:'b5',cat:'Decorations & balloons',est:50},
+  {id:'b6',cat:'Goodie bags',est:60},
+  {id:'b7',cat:'Paper goods (plates, napkins)',est:25},
+  {id:'b8',cat:'Host tip',est:40},
+  {id:'b9',cat:'Miscellaneous',est:30},
+];
+
+// ===== STATE =====
+let guests=[], filter='all', searchQ='', packState={}, budgetState={};
+
+function load(){
+  try{
+    const g=localStorage.getItem('bp-guests');
+    guests=g?JSON.parse(g):[...DEFAULT_GUESTS];
+    const p=localStorage.getItem('bp-pack');
+    if(p) packState=JSON.parse(p);
+    const b=localStorage.getItem('bp-budget');
+    if(b) budgetState=JSON.parse(b);
+  }catch{ guests=[...DEFAULT_GUESTS]; }
+}
+function save(){
+  localStorage.setItem('bp-guests',JSON.stringify(guests));
+  localStorage.setItem('bp-pack',JSON.stringify(packState));
+  localStorage.setItem('bp-budget',JSON.stringify(budgetState));
+}
+
+// ===== GUESTS =====
+function toggleGuest(id){
+  const g=guests.find(x=>x.id===id);
+  if(g){g.arrived=!g.arrived;save();renderGuests();}
+  if(navigator.vibrate)navigator.vibrate(15);
+}
+function removeGuest(id){
+  if(!confirm('Remove this family?'))return;
+  guests=guests.filter(x=>x.id!==id);save();renderGuests();
+}
+
+function renderGuests(){
+  const ta=guests.reduce((s,g)=>s+g.adults,0);
+  const tk=guests.reduce((s,g)=>s+g.kids,0);
+  const ar=guests.filter(g=>g.arrived).length;
+  document.getElementById('gstats').innerHTML=`
+    <div class="gs"><div class="gs-n">${guests.length}</div><div class="gs-l">Families</div></div>
+    <div class="gs"><div class="gs-n">${ta}</div><div class="gs-l">Adults</div></div>
+    <div class="gs"><div class="gs-n">${tk}</div><div class="gs-l">Kids</div></div>
+    <div class="gs"><div class="gs-n" style="color:var(--green)">${ar}</div><div class="gs-l">Arrived</div></div>`;
+
+  // Auto-sync pizza calc
+  document.getElementById('calcGuests').value=ta+tk;
+  document.getElementById('calcKidsPct').value=Math.round(tk/(ta+tk)*100)||50;
+  calcFood();
+
+  let list=guests;
+  if(searchQ){const q=searchQ.toLowerCase();list=list.filter(g=>g.name.toLowerCase().includes(q));}
+  if(filter==='pending')list=list.filter(g=>!g.arrived);
+  if(filter==='arrived')list=list.filter(g=>g.arrived);
+  if(filter==='allergy')list=list.filter(g=>g.allergy);
+
+  document.getElementById('glist').innerHTML=list.length?list.map(g=>`
+    <div class="gcard${g.arrived?' arrived':''}${g.allergy?' allergy':''}" onclick="toggleGuest(${g.id})">
+      <div class="gchk">${g.arrived?'✓':''}</div>
+      <div class="ginfo">
+        <div class="gname">${g.name}</div>
+        <div class="gmeta">${g.allergy?'⚠️ '+g.allergy:''}</div>
+      </div>
+      <div class="gbadge">
+        <span class="b-a">${g.adults}A</span>
+        <span class="b-k">${g.kids}K</span>
+      </div>
+    </div>
+  `).join(''):'<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">No families match</div>';
+
+  // Update tab labels
+  const pending=guests.filter(g=>!g.arrived).length;
+  const arrived=guests.filter(g=>g.arrived).length;
+  const allergy=guests.filter(g=>g.allergy).length;
+  const btns=document.querySelectorAll('#gtabs button');
+  btns[0].textContent=`All (${guests.length})`;
+  btns[1].textContent=`Pending (${pending})`;
+  btns[2].textContent=`Arrived ✓ (${arrived})`;
+  btns[3].textContent=`⚠ Allergy (${allergy})`;
+}
+
+// ===== PIZZA CALC =====
+function calcFood(){
+  const total=parseInt(document.getElementById('calcGuests').value)||30;
+  const kidsPct=parseInt(document.getElementById('calcKidsPct').value)||50;
+  const slicesPerPizza=parseInt(document.getElementById('calcSlices').value)||8;
+  const kids=Math.round(total*kidsPct/100);
+  const adults=total-kids;
+  const totalSlices=Math.ceil(adults*3+kids*1.5);
+  const pizzas=Math.ceil(totalSlices/slicesPerPizza*1.1);// +10% buffer
+  const nuggets=Math.ceil(kids*3);
+  const juiceBoxes=Math.ceil(kids*1.1);
+  const waterBottles=Math.ceil(adults*1.2);
+  document.getElementById('calcResults').innerHTML=`
+    <div class="calc-card"><div class="calc-num">${pizzas}</div><div class="calc-label">🍕 Pizzas</div></div>
+    <div class="calc-card"><div class="calc-num">${totalSlices}</div><div class="calc-label">Total slices needed</div></div>
+    <div class="calc-card"><div class="calc-num">${nuggets}</div><div class="calc-label">🍗 Nuggets/tenders</div></div>
+    <div class="calc-card"><div class="calc-num">${juiceBoxes}</div><div class="calc-label">🧃 Juice boxes</div></div>
+    <div class="calc-card"><div class="calc-num">${waterBottles}</div><div class="calc-label">💧 Water bottles</div></div>
+    <div class="calc-card"><div class="calc-num">$${Math.round(pizzas*12)}</div><div class="calc-label">Est. pizza cost (~$12 ea)</div></div>
+  `;
+}
+
+// ===== PACKING =====
+function renderPack(){
+  document.getElementById('packList').innerHTML=PACK_ITEMS.map(it=>{
+    const done=!!packState[it.id];
+    return`<div class="ck-item${done?' done':''}" onclick="togglePack('${it.id}')">
+      <div class="ck-box">${done?'✓':''}</div>
+      <div><div class="ck-label">${it.label}</div>${it.sub?`<div class="ck-sub">${it.sub}</div>`:''}</div>
+    </div>`;
+  }).join('');
+}
+function togglePack(id){packState[id]=!packState[id];save();renderPack();if(navigator.vibrate)navigator.vibrate(15);}
+
+// ===== BUDGET =====
+function renderBudget(){
+  let totalEst=0,totalAct=0;
+  let h=BUDGET_ITEMS.map(it=>{
+    const act=budgetState[it.id]||'';
+    totalEst+=it.est;
+    if(act)totalAct+=parseFloat(act)||0;
+    return`<div class="budget-row">
+      <span class="budget-cat">${it.cat}</span>
+      <span class="budget-amt">~$${it.est}</span>
+      <input class="budget-input" type="number" placeholder="$0" value="${act}" onchange="setBudget('${it.id}',this.value)">
+    </div>`;
+  }).join('');
+  h+=`<div class="budget-row total">
+    <span class="budget-cat">Total</span>
+    <span class="budget-amt">Est ~$${totalEst}</span>
+    <span class="budget-amt" style="width:70px;text-align:right">$${totalAct||'—'}</span>
+  </div>`;
+  document.getElementById('budgetList').innerHTML=h;
+}
+function setBudget(id,val){budgetState[id]=val;save();}
+
+// ===== ADD GUEST =====
+function openAddGuest(){document.getElementById('addModal').classList.add('show');document.getElementById('mName').focus();}
+function closeModal(){document.getElementById('addModal').classList.remove('show');}
+function saveGuest(){
+  const name=document.getElementById('mName').value.trim();
+  if(!name)return alert('Please enter a name');
+  const g={
+    id:Date.now(),
+    name,
+    adults:parseInt(document.getElementById('mAdults').value)||0,
+    kids:parseInt(document.getElementById('mKids').value)||0,
+    allergy:document.getElementById('mAllergy').value.trim(),
+    phone:document.getElementById('mPhone').value.trim(),
+    arrived:false
+  };
+  guests.push(g);save();renderGuests();closeModal();
+  document.getElementById('mName').value='';
+  document.getElementById('mAllergy').value='';
+  document.getElementById('mPhone').value='';
+}
+
+// ===== TABS / SEARCH =====
+document.querySelectorAll('#gtabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('#gtabs button').forEach(x=>x.classList.remove('act'));
+    b.classList.add('act');
+    filter=b.dataset.f;
+    renderGuests();
+  });
+});
+document.getElementById('gsearch').addEventListener('input',e=>{searchQ=e.target.value.trim();renderGuests();});
+document.getElementById('addModal').addEventListener('click',e=>{if(e.target===document.getElementById('addModal'))closeModal();});
+
+// ===== NAV HIGHLIGHT =====
+(function(){
+  const links=document.querySelectorAll('.nav a');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const a=document.querySelector(`.nav a[href="#${en.target.id}"]`);
+        if(a)a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-40% 0px -50% 0px'});
+  document.querySelectorAll('.sec').forEach(s=>obs.observe(s));
+})();
+
+// ===== INIT =====
+load();
+renderGuests();
+calcFood();
+renderPack();
+renderBudget();
+</script>
+</body>
+</html>
