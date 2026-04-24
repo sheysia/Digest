@@ -225,6 +225,17 @@
   }
 }
 
+   /* ========== tools pending ========== */
+ .sample-tools-inline a {
+  color: #5a88a8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(90, 136, 168, 0.35);
+  padding-bottom: 1px;
+}
+
+.sample-tools-inline a:hover {
+  color: #3f6f92;
+}
 
 
 
@@ -824,6 +835,101 @@
   }
   .tutorial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+
+/* =======mini tools=========== */ 
+ .mini-tools-strip {
+  max-width: 1120px;
+  margin: 28px auto 10px;
+  padding: 0 24px;
+}
+
+.mini-tools-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 20px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(145, 168, 201, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.mini-tools-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  min-width: 0;
+}
+
+.mini-tools-kicker {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6e7db0;
+  white-space: nowrap;
+}
+
+.mini-tools-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6a7188;
+}
+
+.mini-tools-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mini-tool-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #355f79;
+  background: rgba(123, 196, 201, 0.1);
+  border: 1px solid rgba(123, 196, 201, 0.22);
+  transition: all 0.2s ease;
+}
+
+.mini-tool-link:hover {
+  background: rgba(123, 196, 201, 0.16);
+  border-color: rgba(123, 196, 201, 0.36);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .mini-tools-strip {
+    margin: 22px auto 6px;
+    padding: 0 18px;
+  }
+
+  .mini-tools-strip-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 16px;
+  }
+
+  .mini-tools-text {
+    font-size: 13px;
+  }
+
+  .mini-tool-link {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}
+
+
+
+
+ 
   /* ========== WHO ========== */
   .who {
     background: var(--bg-warm);
@@ -1290,6 +1396,40 @@
   </ul>
 </section>
 
+
+<section class="mini-tools-strip">
+  <div class="mini-tools-strip-inner">
+    <div class="mini-tools-copy">
+      <span class="mini-tools-kicker">Sample Tools</span>
+      <span class="mini-tools-text">样品小工具 · 一些轻量实验页面，还在慢慢完善中</span>
+    </div>
+
+    <div class="mini-tools-links">
+       <a href="tools/star-tracker.html" class="mini-tool-link">Star Tracker</a>
+  <a href="tools/cruise-planner-zh.html" class="mini-tool-link">Cruise Planner</a>
+    </div>
+  </div>
+</section>
+
+<!--
+ <section class="sample-tools-section">
+  <div class="section-heading">
+    <h2>样品小工具</h2>
+    <p>Sample Tools · still in progress</p>
+  </div>
+
+  <div class="sample-tools-list">
+    <a class="sample-tool-card" href="tools/star-tracker.html">
+      <div class="sample-tool-text">
+        <h3>Star Tracker</h3>
+        <p>一个轻量的实验小工具页面</p>
+      </div>
+      <span class="sample-tool-link">Open</span>
+    </a>
+  </div>
+</section>
+-->
+ 
 <!-- WHO + PRODUCT -->
 <section class="who" id="who">
   <div class="who-inner">
