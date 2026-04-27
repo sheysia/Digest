@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Feedback · AI Digest by Syneira Lab</title>
+  <meta
+    name="description"
+    content="留下你的想法、建议或问题——AI Digest by Syneira Lab 的留言区。"
+  />
+  <meta name="theme-color" content="#F7F5F1" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Feedback · AI Digest by Syneira Lab" />
+  <meta property="og:description" content="留下你的想法、建议或问题。" />
+  <meta property="og:url" content="https://syneira.org/feedback.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira Lab" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-specific styles for /feedback.html
+       — palette borrowed from styles.css :root vars, no overrides */
+
+    .feedback-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 24px 32px;
+    }
+
+    .feedback-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6f76b8;
+      margin-bottom: 14px;
+    }
+
+    .feedback-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .feedback-title em {
+      font-style: italic;
+      color: #7070C4;
+    }
+
+    .feedback-lead {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text-body);
+      margin: 0 0 6px;
+    }
+
+    .feedback-lead-en {
+      font-size: 13px;
+      color: var(--text-light);
+      letter-spacing: 0.3px;
+      margin: 0 0 28px;
+    }
+
+    .feedback-divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 0 0 32px;
+    }
+
+    .feedback-prompts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .feedback-prompt {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 18px 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .feedback-prompt:hover {
+      border-color: rgba(99, 199, 203, 0.45);
+      box-shadow: 0 4px 18px rgba(26, 22, 66, 0.05);
+    }
+
+    .feedback-prompt .icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .feedback-prompt strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .feedback-prompt small {
+      display: block;
+      font-size: 12px;
+      color: var(--text-light);
+      letter-spacing: 0.2px;
+    }
+
+    .feedback-thread-wrap {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 28px 28px 32px;
+      box-shadow: 0 6px 22px rgba(26, 22, 66, 0.04);
+    }
+
+    .feedback-thread-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 6px;
+    }
+
+    .feedback-thread-hint {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 18px;
+    }
+
+    .feedback-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 36px;
+      font-size: 13px;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .feedback-back:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .feedback-page { padding: 96px 18px 28px; }
+      .feedback-title { font-size: 34px; }
+      .feedback-thread-wrap { padding: 22px 18px 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BRAND MARK DEFS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="mark-iris" viewBox="0 0 80 80">
+      <path d="M40,33 C44,22 44,10 40,4 C36,10 36,22 40,33 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <path d="M47,40 C58,36 70,36 76,40 C70,44 58,44 47,40 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <path d="M40,47 C44,58 44,70 40,76 C36,70 36,58 40,47 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <path d="M33,40 C22,36 10,36 4,40 C10,44 22,44 33,40 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <circle cx="40" cy="40" r="17" stroke="#7070C4" stroke-width="0.8" stroke-opacity="0.22" fill="none"></circle>
+      <line x1="53" y1="27" x2="57.5" y2="22.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <line x1="53" y1="53" x2="57.5" y2="57.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <line x1="27" y1="53" x2="22.5" y2="57.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <line x1="27" y1="27" x2="22.5" y2="22.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <circle cx="40" cy="4" r="1.8" fill="#7070C4"></circle>
+      <circle cx="76" cy="40" r="1.8" fill="#7070C4"></circle>
+      <circle cx="40" cy="76" r="1.8" fill="#7070C4"></circle>
+      <circle cx="4" cy="40" r="1.8" fill="#7070C4"></circle>
+      <circle cx="40" cy="40" r="5.5" fill="#7070C4"></circle>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV (mirrors index.html) -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" aria-label="AI Digest home">
+      <svg class="nav-lockup" viewBox="0 0 210 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by DMVoice">
+        <use href="#mark-iris" x="0" y="0" width="52" height="52" transform="translate(1,3)"></use>
+        <text x="60" y="28" class="brand-lockup-text" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="700" fill="#1A1A2E">AI Digest</text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#latest">Latest</a>
+      <a href="/#issues">Issues</a>
+      <a href="/tutorials/">Tutorials</a>
+      <a href="/tools/">Tools</a>
+      <a href="/#archive">Archive</a>
+      <a href="/#who">Who</a>
+      <a href="/feedback.html" aria-current="page">💬 Feedback</a>
+    </div>
+  </div>
+</nav>
+
+<!-- FEEDBACK PAGE -->
+<main class="feedback-page">
+
+  <div class="feedback-eyebrow">DMVoice · Feedback</div>
+  <h1 class="feedback-title">留下<em>你的声音</em></h1>
+  <p class="feedback-lead">
+    一条想分享的工具、一个想被拆解的场景、一处可以更好的细节——欢迎留言。
+  </p>
+  <p class="feedback-lead-en">
+    Tools you've been using, scenarios you'd like us to unpack, or places we can do better — leave a note below.
+  </p>
+
+  <div class="feedback-divider"></div>
+
+  <div class="feedback-prompts" aria-label="Suggested prompts">
+    <div class="feedback-prompt">
+      <span class="icon">🛠️</span>
+      <strong>推荐工具</strong>
+      <small>Tools worth a look</small>
+    </div>
+    <div class="feedback-prompt">
+      <span class="icon">🎯</span>
+      <strong>场景需求</strong>
+      <small>Scenarios to unpack</small>
+    </div>
+    <div class="feedback-prompt">
+      <span class="icon">💡</span>
+      <strong>选题建议</strong>
+      <small>Topics for next issue</small>
+    </div>
+    <div class="feedback-prompt">
+      <span class="icon">🤝</span>
+      <strong>合作 & 反馈</strong>
+      <small>Collab or feedback</small>
+    </div>
+  </div>
+
+  <section class="feedback-thread-wrap" aria-label="Comment thread">
+    <div class="feedback-thread-label">Comments</div>
+    <p class="feedback-thread-hint">由 Cusdis 提供 · 支持匿名留言 · 中英皆可</p>
+
+    <!-- Cusdis embed -->
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="515b8421-6661-4bb0-9ca9-a86b05cbd8f9"
+      data-page-id="feedback"
+      data-page-url="https://syneira.org/feedback.html"
+      data-page-title="Feedback · AI Digest by Syneira Lab">
+    </div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+  </section>
+
+  <a href="/" class="feedback-back">← 返回首页 / Back to home</a>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand-wrap">
+    <svg class="footer-lockup" viewBox="0 0 240 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by DMVoice">
+      <use href="#mark-iris" x="0" y="0" width="52" height="52" transform="translate(1,3)"></use>
+      <text x="60" y="28" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="700" fill="#1A1A2E" letter-spacing="0.5">AI Digest</text>
+      <text x="61" y="43" font-family="'Noto Sans SC', sans-serif" font-size="8.8" font-weight="400" fill="#7A7A8A" letter-spacing="2.8">BY DMVOICE</text>
+    </svg>
+  </div>
+  <p>
+    由社群成员精选 · 每周一期 · 中英双语<br>
+    筛选标准：实用 &gt; 炫酷 · 能用 &gt; 能看<br><br>
+    Built with ❤️ in DMV
+  </p>
+</footer>
+
+<script>
+  // Nav shadow on scroll (mirrors index.html behavior)
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>
