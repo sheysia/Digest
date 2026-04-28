@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Digest Issue #003 | By Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; color:#2C2C2C; line-height:1.85; font-size:15px; background:#FAF8F5; }
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .nav a { font-size:13px; color:#2A9D8F; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:12px 24px 60px; }
+
+  .header { text-align:center; padding-bottom:20px; border-bottom:2.5px solid #2A9D8F; margin-bottom:24px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:#999; text-transform:uppercase; margin-bottom:6px; }
+  .header-title { font-size:26px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.3; }
+  .header-meta { font-size:12px; color:#999; }
+  .header-sub { font-size:14px; color:#2A9D8F; margin-top:8px; font-style:italic; }
+
+  .section { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .section.tool { background:#FDF0EB; border-left:4px solid #E8643B; }
+  .section.trend { background:#EBF2FD; border-left:4px solid #3A7BD4; }
+  .section.scene { background:#EFF5EC; border-left:4px solid #5A8E5A; }
+  .section.tip { background:#F5EFF8; border-left:4px solid #9B6DB7; }
+  .section.life { background:#E8F6F3; border-left:4px solid #2A9D8F; }
+  .section h2 { font-size:16px; font-weight:700; }
+  .section.tool h2 { color:#E8643B; }
+  .section.trend h2 { color:#3A7BD4; }
+  .section.scene h2 { color:#5A8E5A; }
+  .section.tip h2 { color:#9B6DB7; }
+  .section.life h2 { color:#2A9D8F; }
+
+  .card { background:#FFF; border:1px solid #E0DCD7; border-radius:10px; padding:18px 20px; margin-bottom:16px; }
+  .card-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .tag-tool { background:#FDF0EB; color:#D4603A; }
+  .tag-scene { background:#EFF5EC; color:#5A8E5A; }
+  .tag-tip { background:#F5EFF8; color:#9B6DB7; }
+  .tag-life { background:#E8F6F3; color:#2A9D8F; }
+  .card-num { font-size:11px; color:#AAA; font-weight:600; }
+  .card-title { font-size:17px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.4; }
+  .card-source { font-size:11px; color:#999; margin-bottom:12px; }
+
+  .label { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .label-h { color:#D4603A; }
+  .label-s { color:#3A7BD4; }
+  .label-w { color:#5A8E5A; }
+
+  .card p { font-size:14px; line-height:1.85; margin-bottom:10px; color:#444; }
+  .card strong { font-weight:700; color:#1A1A2E; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5F3F0; color:#777; border:0.5px solid #E0DCD7; margin-right:4px; }
+  .read-more { display:inline-block; font-size:12px; color:#2A9D8F; font-weight:600; text-decoration:none; margin-top:6px; }
+
+  .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
+  .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<div class="nav"><a href="../index.html">&larr; 返回首页 / Back to Home</a></div>
+
+<div class="wrap">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #003</div>
+  <div class="header-meta">Apr 23&ndash;28, 2026 &middot; 6 picks + 1 deep-dive</div>
+  <div class="header-sub">从热点到生活 &mdash; AI 正在变成日常工具</div>
+</div>
+
+<!-- ===== 工具上新 ===== -->
+<div class="section tool"><h2>工具上新</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#01</span></div>
+  <div class="card-title">GPT-5.5 发布 &mdash; OpenAI 不再卖聊天机器人，开始卖"AI 员工"</div>
+  <div class="card-source">&#x1f4cc; openai.com &middot; Apr 23, 2026</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>OpenAI 上周四（4/23）发布了 GPT-5.5，距离上一版 GPT-5.4 只隔了六周。这次的核心变化不是"更聪明了"，而是<strong>定位从聊天助手变成了"能自己干活的 agent"</strong>。官方原话："你可以给它一个乱七八糟的多步任务，信任它自己规划、用工具、检查结果、遇到模糊的地方自己判断、一直做到完。"</p>
+  <p>具体能力：写代码调试、网上调研、分析数据、生成文档和表格、操作软件、跨工具完成任务。Codex 里有 400K 上下文窗口。NVIDIA 一万多员工提前测试，不只是工程师——法务、财务、运营都在用。BNY（纽约梅隆银行）测试后说"幻觉抵抗力有显著提升"。</p>
+  <p>代号"Spud"（土豆）。ChatGPT 周活跃用户已超 9 亿，付费用户超 5000 万。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p><strong>对你的实际影响：</strong>如果你已经在用 ChatGPT Plus，GPT-5.5 已经自动替换了 5.4，你现在就在用。体感上最明显的变化是"不用手把手教了"——以前要分步骤喂指令，现在给一个大方向它自己拆解。</p>
+  <p><strong>但要注意：</strong>Tom's Guide 做了 7 项对比测试，GPT-5.5 在所有项目上都输给了 Claude Opus 4.7。速度快但准确率仍有差距。"Agent"能力的真正考验不是 benchmark，而是你实际交给它一个任务，它能不能不出错地做完。建议先拿低风险任务试，别直接用在关键交付上。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">所有 ChatGPT 用户</span><span class="badge">已经自动升级</span></p>
+</div>
+
+<!-- ===== 场景拆解 ===== -->
+<div class="section scene"><h2>场景拆解</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景拆解</span><span class="card-num">#02</span></div>
+  <div class="card-title">AI 视频不用再抽卡了 &mdash; Image2 + Seedance 2.0 两步法</div>
+  <div class="card-source">&#x1f4cc; 综合来源 &middot; Apr 2026</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>以前做 AI 视频是"抽卡"——给一段提示词，AI 猜你要什么画面，十条里两条能用就不错。脸崩、衣服穿模、动作断裂是家常便饭。</p>
+  <p>现在有了更靠谱的方法：<strong>两步走，先锁画面再生视频。</strong></p>
+  <p><strong>Step 1：用 ChatGPT Images 2.0 生成每个镜头的静态"分镜图"</strong>——人物长什么样、穿什么、在哪里、什么姿势，全部锁定。文字渲染准确率 99%。</p>
+  <p><strong>Step 2：把图喂给 Seedance 2.0（字节跳动的视频模型），让它"动起来"。</strong> 因为有图片当锚点，人物不会突然变脸，场景不会乱跳。</p>
+  <p>核心逻辑：<strong>Image 2 管"长什么样"，Seedance 管"怎么动"。</strong>各做最擅长的事。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>你不需要买任何第三方聚合平台——两个模型都可以直接用。ChatGPT Images 2.0 在 ChatGPT 里生成，Seedance 2.0 在 CapCut（剪映国际版）或 seedance.tv 里用。一条 15 秒视频总成本大约 $0.1-0.5。</p>
+  <p>实际场景：30 秒项目介绍视频、社群活动宣传片、小红书/Instagram 产品展示、给孩子学校做 presentation 配动画。</p>
+  <p><strong>注意：</strong>目前最长 15 秒/段，适合短片段拼接，不适合一口气做长视频。不建议用第三方聚合平台（如 Topview）——credit 陷阱多，不如直接用原生模型。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">需要做短视频但没拍摄团队的人</span><span class="badge">社交媒体内容创作者</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景拆解</span><span class="card-num">#03</span></div>
+  <div class="card-title">MergeCheck &mdash; 用传统代码验证 AI 输出的小工具诞生记</div>
+  <div class="card-source">&#x1f4cc; Syneira.AI 慢观察 &middot; By Syneira Lab &middot; Vibe Coding 实战</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>AI agent 帮你合并文件越来越常见了。但你怎么知道它合对了？漏了几行你不知道，重复了一条你不知道，某个数字从 $500 变成 $5000 也不知道。</p>
+  <p>MergeCheck 是一个从朋友需求出发做的小工具：上传 N 个 input CSV + 1 个 AI 合并后的 output CSV，一键跑 6 项自动对账——schema 检查、行数核对、主键去重、漏行检测、金额汇总核对、随机抽样。</p>
+  <p><strong>核心原则：验证过程不经过 AI，纯传统代码。</strong>用 AI 来验证 AI？那不是套娃吗。报告带时间戳 + SHA-256 文件指纹，只报告不修数据——审计工具的定位。</p>
+  <p>一周 Vibe Coding，每晚 1-2 小时，Claude Code 搭骨架，Python + Streamlit 一把梭。GitHub 开源。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>两个层面：第一，如果你用 AI 合并文件（无论是 ChatGPT、Claude 还是 Copilot），跑一遍 MergeCheck 比肉眼检查快且准。第二，这是一个"从生活出发做小工具"的 Vibe Coding 范例——想清楚不做什么比做什么更重要。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">用 AI 处理数据文件的人</span><span class="badge">Vibe Coding 感兴趣的人</span></p>
+  <a href="../guides/mergecheck.html" class="read-more">&#x1f4d6; 阅读完整思路拆解 &rarr;</a>
+</div>
+
+<!-- ===== 用法洞察 ===== -->
+<div class="section tip"><h2>用法洞察</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">用法洞察</span><span class="card-num">#04</span></div>
+  <div class="card-title">Vibe Coding 前端微调神技 &mdash; 别让 AI 猜，让它造个面板给你调</div>
+  <div class="card-source">&#x1f4cc; 小红书 VibeCoding 技巧 &middot; DMV 适配增强版</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>用 AI 写前端代码最头疼的不是"写不出来"，而是微调——间距太挤、字号太小、对齐不对。反复跟 AI 说"改一下"效率极低，因为你脑子里的"差一点点"AI 猜不准。</p>
+  <p>解法：<strong>让 AI 生成一个带 slider 的可视化调参面板</strong>，把所有 CSS 参数（间距、字号、内边距、圆角、行高）都变成拖拽滑块。你自己拖到满意，把参数值复制回正式代码。一次调到位。</p>
+  <p><strong>核心原则：人类擅长"看到就知道对不对"，AI 擅长"批量生成选项"。</strong>把判断权留给自己，把生成权交给 AI。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>这个思路不只是前端——做 report 排版可以让 AI 出配色调参面板，做 PPT 可以让 AI 出颜色预览器，写邮件可以让 AI 出三个语气版本让你选。所有"让 AI 猜"的场景都可以换成"让 AI 造工具给你自己调"。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">技术背景直接用</span><span class="badge">非技术理解思路</span></p>
+  <a href="../guides/vibe-coding-tip.html" class="read-more">&#x1f4d6; 查看详细文章 + 海报 &rarr;</a>
+</div>
+
+<!-- ===== 生活小 tip ===== -->
+<div class="section life"><h2>生活小 tip</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">生活小 tip</span><span class="card-num">#05</span></div>
+  <div class="card-title">Claude 一键推 iPhone 提醒 &mdash; 想到什么事直接扔过来</div>
+  <div class="card-source">&#x1f4cc; By Syneira &middot; 真实使用场景</div>
+  <div class="label label-h">&starf; 这是什么</div>
+  <p>在 Claude app 里随口说一句"周四 11:40 牙医预约提醒一下"或者"下周五晚宴，当周第一天提醒我回复人数"——<strong>Claude 直接帮你创建 iPhone Reminder</strong>，带时间、带备注、带优先级。不用打开 Reminders app，不用手动填。</p>
+  <p>你可以用最随意的方式说，中英混搭也行：</p>
+  <p>&bull; "明天 10:30 视频问诊 Dr. Chen，提前一小时提醒我完成 pre-visit tasks 再上线"<br>
+  &bull; "6/12 周五晚宴 $20/人，给我设当周周一提醒，记得回复人数"<br>
+  &bull; "下周三之前把报税材料寄出去，设个周一提醒"</p>
+  <p>Claude 会自动推算日期（"周五的当周第一天是周一 6/8"这种逻辑 Siri 做不了）、设好时间、写好备注，一键推送到 Reminders。</p>
+  <div class="label label-s">&#x1f4a1; 为什么比 Siri 好</div>
+  <p>Siri 只能处理简单指令。Claude 能处理<strong>复杂日期推算 + 上下文追加</strong>——你可以接着说"再加一个牙医的"，它知道你在说什么。而且 Claude 记得这个对话，下次你问"我最近有什么提醒？"它也知道。</p>
+  <p><strong>需要：</strong>Claude app（iOS）+ 允许访问 Reminders（首次弹授权）+ 免费/Pro 都行。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">所有人</span><span class="badge">今天就能用</span><span class="badge">DMV 双语家庭特别适合</span></p>
+</div>
+
+<!-- ===== 长文拆解 ===== -->
+<div class="section scene"><h2>本期长文拆解</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">长文拆解</span><span class="card-num">#06</span></div>
+  <div class="card-title">用 AI 打造你的"第二大脑" &mdash; Building a Second Brain 实操版</div>
+  <div class="card-source">&#x1f4cc; 基于 Tiago Forte《Building a Second Brain》 &middot; DMV 职场女性适配版</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Tiago Forte 的经典方法论：<strong>CODE（捕捉 &rarr; 整理 &rarr; 蒸馏 &rarr; 表达）+ PARA（项目/领域/资源/归档）</strong>。原书 2022 年出版时还没有 ChatGPT、Claude、NotebookLM。现在这些 AI 工具可以自动化前三步——你只需要专注最后一步：表达。</p>
+  <p>完整指南包含：5 种捕捉入口（网页/PDF/播客/微信群/脑子里的想法）、PARA 分类实操表、AI 蒸馏三层法（AI 摘要 &rarr; 你标注 &rarr; 写一句 So What）、Notion 四个数据库结构、每周 15 分钟节奏、原书 vs AI 加持版对比表。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p><strong>"AI 做前三步，你做最后一步。"</strong>捕捉、整理、蒸馏让 AI 帮忙——判断和表达只有你能做。这也是为什么"看了很多、记住很少、能用的更少"——因为你缺的不是输入量，而是一个闭环。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">所有人</span><span class="badge">信息过载的人</span><span class="badge">想建知识库的团队</span></p>
+  <a href="../guides/second-brain.html" class="read-more">&#x1f4d6; 阅读完整长文拆解（5 步手把手）&rarr;</a>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    由社群成员精选 &middot; 每周一期 + 不定期深度指南<br>
+    筛选标准：实用 &gt; 炫酷 &middot; 能用 &gt; 能看<br><br>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具上新</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">场景拆解</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">用法洞察</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">生活小 tip</span>
+    <br><br>
+    &#x1f4ac; 看到好内容？随手转发到群里，下期可能就收录了<br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; 留言讨论 / Leave a comment →</a>
+  </p>
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html">&larr; 返回首页 / Back to Home</a>
+</div>
+
+</body>
+</html>
