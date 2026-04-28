@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 模型名字到底什么意思？| AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#F7F5F1; --card:#FFF; --text:#1A1A2E; --body:#3A3A4A; --light:#7A7A8A; --accent:#2A9D8F; --orange:#E8643B; --blue:#3A7BD4; --green:#5A8E5A; --purple:#9B6DB7; --border:#E0DCD7; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; background:var(--bg); color:var(--body); line-height:1.85; font-size:15px; }
+
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px; }
+  .nav a { font-size:13px; color:var(--accent); text-decoration:none; }
+
+  .article { max-width:720px; margin:0 auto; padding:0 24px 60px; }
+
+  .art-header { text-align:center; padding-bottom:24px; border-bottom:2px solid var(--accent); margin-bottom:28px; }
+  .art-tag { display:inline-block; font-size:11px; font-weight:600; padding:4px 14px; border-radius:20px; background:#E8F6F3; color:var(--accent); margin-bottom:12px; }
+  .art-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:8px; }
+  .art-sub { font-size:14px; color:var(--light); font-style:italic; }
+  .art-meta { font-size:12px; color:var(--light); margin-top:12px; }
+
+  p { margin-bottom:14px; font-size:14px; }
+  strong { font-weight:700; color:var(--text); }
+
+  .sec { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .sec-teal { background:#E8F6F3; border-left:4px solid var(--accent); }
+  .sec-blue { background:#EBF2FD; border-left:4px solid var(--blue); }
+  .sec-green { background:#EFF5EC; border-left:4px solid var(--green); }
+  .sec-purple { background:#F5EFF8; border-left:4px solid var(--purple); }
+  .sec-orange { background:#FDF0EB; border-left:4px solid var(--orange); }
+  .sec h2 { font-size:16px; font-weight:700; }
+  .sec-teal h2 { color:var(--accent); }
+  .sec-blue h2 { color:var(--blue); }
+  .sec-green h2 { color:var(--green); }
+  .sec-purple h2 { color:var(--purple); }
+  .sec-orange h2 { color:var(--orange); }
+
+  /* Model cards */
+  .model-card {
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    margin:16px 0; overflow:hidden;
+  }
+  .model-banner { padding:20px 24px; color:white; }
+  .model-banner.haiku { background:linear-gradient(135deg, #6B8E7B, #4A6B5A); }
+  .model-banner.sonnet { background:linear-gradient(135deg, #3A7BD4, #2A5CAA); }
+  .model-banner.opus { background:linear-gradient(135deg, #9B6DB7, #7B4F99); }
+  .model-banner.mythos { background:linear-gradient(135deg, #1A1A2E, #2A2A4E); }
+  .model-emoji { font-size:28px; margin-bottom:6px; }
+  .model-banner h3 { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:700; margin-bottom:4px; }
+  .model-banner .origin { font-size:12px; opacity:0.7; font-style:italic; }
+  .model-body { padding:18px 24px; }
+  .model-body p { font-size:14px; margin-bottom:10px; }
+
+  .metaphor {
+    background:#F9F8F6; border-left:3px solid var(--accent);
+    padding:12px 16px; margin:10px 0;
+    font-size:13px; color:#555; font-style:italic; line-height:1.7;
+  }
+
+  .use-row { display:flex; gap:10px; margin:8px 0; align-items:flex-start; }
+  .use-check { color:var(--accent); font-weight:700; flex-shrink:0; }
+  .use-text { font-size:13px; color:#555; line-height:1.6; }
+
+  .comp { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
+  .comp th { background:#E8F6F3; padding:10px 12px; text-align:left; font-weight:700; color:var(--accent); border-bottom:2px solid var(--accent); }
+  .comp td { padding:10px 12px; border-bottom:1px solid #EEE; color:#444; vertical-align:top; }
+
+  .tip { background:#E8F6F3; border-left:4px solid var(--accent); padding:14px 18px; margin:18px 0; border-radius:0 8px 8px 0; font-size:14px; color:#1E6B60; }
+  .tip-title { font-weight:700; margin-bottom:6px; }
+
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#E8F6F3; color:var(--accent); margin-right:4px; }
+
+  .art-footer { text-align:center; padding-top:20px; border-top:1px solid var(--border); margin-top:28px; font-size:12px; color:var(--light); }
+
+  @media (max-width:640px) { .art-title { font-size:24px; } }
+</style>
+</head>
+<body>
+
+<div class="nav"><a href="../index.html">&larr; 返回首页</a></div>
+
+<div class="article">
+
+<div class="art-header">
+  <div class="art-tag">用法洞察</div>
+  <h1 class="art-title">Claude 模型名字到底什么意思？<br>Haiku / Sonnet / Opus / Mythos 趣味阅读</h1>
+  <div class="art-sub">不只是好听——名字本身就告诉你该什么时候用哪个</div>
+  <div class="art-meta">AI Digest by Syneira &middot; Apr 2026</div>
+</div>
+
+<p>很多人用 Claude 时看到 Haiku、Sonnet、Opus 这几个选项，不知道选哪个，也不知道名字什么意思。其实 Anthropic 用了一套<strong>文学/音乐体裁</strong>的命名体系——每个名字对应一种"作品体量"，从短到长、从轻到重。名字本身就在告诉你这个模型的定位。</p>
+
+<p>先说一个冷知识：<strong>Claude 这个名字本身是致敬 Claude Shannon</strong>——20 世纪的数学家，信息论的奠基人。所以整个品牌从名字开始就是学术基因。</p>
+
+<!-- HAIKU -->
+<div class="model-card">
+  <div class="model-banner haiku">
+    <div class="model-emoji">&#x1f343;</div>
+    <h3>Haiku</h3>
+    <div class="origin">俳句 &middot; 日本诗歌 &middot; 三行十七音</div>
+  </div>
+  <div class="model-body">
+    <div class="metaphor">
+      古池塘，青蛙跳入水中央，一声水响。<br>
+      &mdash; 松尾芭蕉<br><br>
+      俳句是世界上最短的诗歌形式之一：5-7-5，三行十七个音节，必须在极短的篇幅里捕捉一个瞬间。
+    </div>
+    <p><strong>模型定位：最快、最便宜、最轻量。</strong>像俳句一样——不废话，一击即中。</p>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">快速问答、翻译、格式转换、简单分类</span></div>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">高频重复任务（批量处理 100 条数据）</span></div>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">当你快到用量上限时的省量回退选项</span></div>
+    <p><strong>当前版本：</strong>Haiku 4.5 &middot; 免费/Pro 用户都能用</p>
+    <p><strong>一句话：</strong>能用 Haiku 解决的事不要用 Sonnet——就像能三行说清楚的事不用写一首十四行诗。</p>
+  </div>
+</div>
+
+<!-- SONNET -->
+<div class="model-card">
+  <div class="model-banner sonnet">
+    <div class="model-emoji">&#x1f4dc;</div>
+    <h3>Sonnet</h3>
+    <div class="origin">十四行诗 &middot; 起源于意大利 &middot; 莎士比亚最爱的形式</div>
+  </div>
+  <div class="model-body">
+    <div class="metaphor">
+      十四行诗是一种严格但优雅的诗歌形式：14 行，固定韵律格式，有起承转合。不长不短，但每一行都有用。莎士比亚写了 154 首 Sonnet，被认为是英语文学的巅峰之一。
+    </div>
+    <p><strong>模型定位：日常主力，性价比之王。</strong>像十四行诗——结构完整、表达力强、不过度铺张。</p>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">编码、写作、分析、调研——日常 90% 的工作</span></div>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">100 万 token 上下文窗口（能吃下一整个代码库）</span></div>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">做文件、做表格、computer use、视觉理解</span></div>
+    <p><strong>当前版本：</strong>Sonnet 4.6 &middot; Claude 的默认选择 &middot; 免费/Pro 都能用</p>
+    <p><strong>一句话：</strong>不知道选哪个就选 Sonnet。大多数开发者 70% 的时间在用它。它在编码评估中已经追平了上一代的 Opus。</p>
+  </div>
+</div>
+
+<!-- OPUS -->
+<div class="model-card">
+  <div class="model-banner opus">
+    <div class="model-emoji">&#x1f3b5;</div>
+    <h3>Opus</h3>
+    <div class="origin">大型音乐作品 &middot; 拉丁语"作品" &middot; 贝多芬的交响曲都是 Opus</div>
+  </div>
+  <div class="model-body">
+    <div class="metaphor">
+      Opus 在音乐里是对一部重要作品的编号。贝多芬第九交响曲是 Op. 125——一部动用了管弦乐团、合唱团、四位独唱家、四个乐章的鸿篇巨制。它不是用来哼小曲的，是用来震撼灵魂的。
+    </div>
+    <p><strong>模型定位：最强推理能力，用来啃硬骨头。</strong>像交响曲——投入大、耗时长、但处理复杂度是其他形式做不到的。</p>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">复杂推理、架构设计、多步骤分析</span></div>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">需要同时权衡多个矛盾条件的决策</span></div>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">长代码审查、整个项目的全局分析</span></div>
+    <div class="use-row"><span class="use-check">&#10003;</span><span class="use-text">Agent Teams（多个 AI 协作完成复杂任务）</span></div>
+    <p><strong>当前版本：</strong>Opus 4.7（最新，4/16 发布）&middot; Pro/Max 用户可用</p>
+    <p><strong>一句话：</strong>Sonnet 搞不定的时候再请 Opus 出场。它消耗用量更快，所以别拿大炮打蚊子。但真正需要深度思考的任务，Opus 和 Sonnet 的差距是明显的。</p>
+  </div>
+</div>
+
+<!-- MYTHOS -->
+<div class="model-card">
+  <div class="model-banner mythos">
+    <div class="model-emoji">&#x1f30c;</div>
+    <h3>Mythos</h3>
+    <div class="origin">神话 &middot; 希腊语 &middot; 超越人类经验的叙事</div>
+  </div>
+  <div class="model-body">
+    <div class="metaphor">
+      Mythos 在希腊语中意为"神话"——不是日常故事，而是关于世界起源、宇宙秩序的宏大叙事。荷马史诗、北欧诸神、创世纪——这些都是 Mythos。它超越了个人经验的尺度。
+    </div>
+    <p><strong>模型定位：超越常规能力边界的特殊模型。</strong>目前专注于网络安全领域——能自主发现操作系统和浏览器里的未知漏洞（zero-day）。</p>
+    <p><strong>当前状态：</strong>Research Preview &middot; 仅限受邀用户通过 Project Glasswing 访问 &middot; 普通用户用不到</p>
+    <p><strong>为什么叫 Mythos：</strong>因为它做的事"超出了正常 AI 的能力范围"——自主发现之前没人知道的安全漏洞，这在以前只有顶级安全研究员能做。命名暗示这是一个"超越日常"的存在。</p>
+    <p><strong>一句话：</strong>了解就好，目前跟你的日常使用无关。但它代表了 AI 能力的前沿方向——从"回答问题"到"自主发现问题"。</p>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="sec sec-teal"><h2>命名逻辑：从短到长，从轻到重</h2></div>
+
+<table class="comp">
+  <tr><th>模型</th><th>文学体裁</th><th>特点</th><th>对应定位</th></tr>
+  <tr><td><strong>Haiku</strong></td><td>三行俳句</td><td>极简、瞬间、克制</td><td>快、便宜、轻量任务</td></tr>
+  <tr><td><strong>Sonnet</strong></td><td>十四行诗</td><td>结构完整、表达力强</td><td>日常主力、性价比</td></tr>
+  <tr><td><strong>Opus</strong></td><td>交响乐作品</td><td>宏大、复杂、深度</td><td>最强推理、硬任务</td></tr>
+  <tr><td><strong>Mythos</strong></td><td>神话</td><td>超越日常、开创性</td><td>前沿研究、特殊领域</td></tr>
+</table>
+
+<p>这套命名比 GPT-4o、GPT-5.5 这种纯数字编号更有辨识度——<strong>名字本身就在告诉你该什么时候用。</strong>你不会用交响乐团来哼一首小曲，也不会用三行俳句来写一部史诗。</p>
+
+<!-- PRACTICAL -->
+<div class="sec sec-green"><h2>实操建议：怎么选</h2></div>
+
+<div class="tip">
+  <div class="tip-title">&#x1f4a1; 日常使用的最佳策略</div>
+  <strong>默认用 Sonnet</strong>——它是 90% 场景的最优解。<br><br>
+  <strong>简单任务切 Haiku</strong>——翻译、格式转换、快速问答。省用量。<br><br>
+  <strong>Sonnet 搞不定再上 Opus</strong>——复杂推理、架构决策、长文档全局分析。大约 5-10% 的任务需要它。<br><br>
+  <strong>MKBHD 的比喻很精准：</strong>"就像手机——Opus 是 Pro Max，Sonnet 是 Pro，Haiku 是标准版。大多数人不需要 Pro Max。"
+</div>
+
+<p><strong>Claude 的 Auto 模式</strong>会自动帮你选模型。好处是省心，坏处是你不知道它什么时候调了 Opus，用量会消耗得比预期快。如果你在意用量控制，建议手动选。</p>
+
+<p><span class="badge">所有 Claude 用户</span><span class="badge">今天就能用</span><span class="badge">了解就能省钱</span></p>
+
+<!-- FOOTER -->
+<div class="art-footer">
+  AI Digest by Syneira &middot; 源于生活，立足应用<br>
+  了解你的工具，才能更好地用它
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html">&larr; 返回首页</a>
+</div>
+
+</body>
+</html>
