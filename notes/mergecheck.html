@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MergeCheck — AI 帮你合并文件，靠不靠谱？| AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#F7F5F1; --card:#FFF; --text:#1A1A2E; --body:#3A3A4A; --light:#7A7A8A; --accent:#2A9D8F; --orange:#E8643B; --blue:#3A7BD4; --green:#5A8E5A; --purple:#9B6DB7; --border:#E0DCD7; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; background:var(--bg); color:var(--body); line-height:1.85; font-size:15px; }
+
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px; }
+  .nav a { font-size:13px; color:var(--accent); text-decoration:none; }
+
+  .article { max-width:720px; margin:0 auto; padding:0 24px 60px; }
+
+  .art-header { text-align:center; padding-bottom:24px; border-bottom:2px solid var(--purple); margin-bottom:28px; }
+  .art-tag { display:inline-block; font-size:11px; font-weight:600; padding:4px 14px; border-radius:20px; background:#F5EFF8; color:var(--purple); margin-bottom:12px; }
+  .art-title { font-size:26px; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:8px; }
+  .art-sub { font-size:14px; color:var(--light); font-style:italic; }
+  .art-meta { font-size:12px; color:var(--light); margin-top:12px; }
+
+  p { margin-bottom:14px; font-size:14px; }
+  strong { font-weight:700; color:var(--text); }
+
+  .sec { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .sec-purple { background:#F5EFF8; border-left:4px solid var(--purple); }
+  .sec-green { background:#EFF5EC; border-left:4px solid var(--green); }
+  .sec-blue { background:#EBF2FD; border-left:4px solid var(--blue); }
+  .sec-orange { background:#FDF0EB; border-left:4px solid var(--orange); }
+  .sec-teal { background:#E8F6F3; border-left:4px solid var(--accent); }
+  .sec h2 { font-size:16px; font-weight:700; }
+  .sec-purple h2 { color:var(--purple); }
+  .sec-green h2 { color:var(--green); }
+  .sec-blue h2 { color:var(--blue); }
+  .sec-orange h2 { color:var(--orange); }
+  .sec-teal h2 { color:var(--accent); }
+
+  .highlight-box { background:var(--card); border:2px solid var(--purple); border-radius:10px; padding:20px 24px; margin:20px 0; text-align:center; }
+  .highlight-box .big { font-size:18px; font-weight:700; color:var(--purple); margin-bottom:6px; line-height:1.5; }
+  .highlight-box .sub { font-size:13px; color:var(--light); }
+
+  .flow { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin:16px 0 20px; }
+  .flow-label { font-size:11px; font-weight:700; letter-spacing:2px; color:var(--light); text-transform:uppercase; margin-bottom:12px; }
+
+  .step { display:flex; gap:14px; padding:12px 0; border-bottom:1px dashed var(--border); }
+  .step:last-child { border-bottom:none; }
+  .step-num { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:12px; font-weight:700; flex-shrink:0; margin-top:2px; background:var(--purple); }
+  .step-content { flex:1; }
+  .step-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .step-desc { font-size:14px; color:var(--body); line-height:1.8; }
+
+  .tip { background:#E8F6F3; border-left:4px solid var(--accent); padding:14px 18px; margin:18px 0; border-radius:0 8px 8px 0; font-size:14px; color:#1E6B60; }
+  .tip-title { font-weight:700; margin-bottom:6px; }
+
+  .warn { background:#FDF0EB; border-left:4px solid var(--orange); padding:14px 18px; margin:18px 0; border-radius:0 8px 8px 0; font-size:14px; color:#8B3A1F; }
+  .warn-title { font-weight:700; margin-bottom:6px; }
+
+  .comp { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
+  .comp th { background:#F5EFF8; padding:10px 12px; text-align:left; font-weight:700; color:var(--purple); border-bottom:2px solid var(--purple); }
+  .comp td { padding:10px 12px; border-bottom:1px solid #EEE; color:#444; vertical-align:top; }
+
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5EFF8; color:var(--purple); border:0.5px solid var(--purple); margin-right:4px; }
+
+  .vs { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+  .vs-box { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; }
+  .vs-box h3 { font-size:14px; font-weight:700; color:var(--text); margin-bottom:8px; padding-bottom:6px; border-bottom:2px solid var(--border); }
+  .vs-box.bad h3 { border-bottom-color:var(--orange); color:var(--orange); }
+  .vs-box.good h3 { border-bottom-color:var(--accent); color:var(--accent); }
+  .vs-item { font-size:13px; color:#555; padding:4px 0; line-height:1.7; }
+
+  .art-footer { text-align:center; padding-top:20px; border-top:1px solid var(--border); margin-top:28px; font-size:12px; color:var(--light); }
+
+  @media (max-width:640px) { .vs { grid-template-columns:1fr; } .art-title { font-size:22px; } }
+</style>
+</head>
+<body>
+
+<div class="nav"><a href="../index.html">← 返回首页</a></div>
+
+<div class="article">
+
+<div class="art-header">
+  <div class="art-tag">从零到产品 · Vibe Coding 实战</div>
+  <h1 class="art-title">AI 帮你 merge 文件<br>结果靠谱吗？</h1>
+  <div class="art-sub">MergeCheck — 一个用传统代码验证 AI 输出的小工具的诞生记</div>
+  <div class="art-meta">Syneira.AI 慢观察 · By Syneira Lab · Apr 2026</div>
+</div>
+
+<!-- 起因 -->
+<div class="sec sec-orange"><h2>起因</h2></div>
+
+<p>再强的 AI 大模型，只要基于 LLM，就难以避免单独使用时存在上下文管理不稳定和不确定性。但在追求稳妥的场合，<strong>确定性比效率甚至更重要</strong>——一个专门做多个文件合并检查的轻量小工具，排除幻想干扰。</p>
+
+<p>AI agent 帮人合并文件越来越常见了。你让 Claude 或 ChatGPT 把三个月的销售报表拼成一个大表，它很乐意帮你做。但问题是：<strong>你怎么知道它合对了？</strong></p>
+
+<p>漏了几行你不知道。重复了一条你不知道。某个数字从 $500 变成 $5000，如果你不逐行检查，也不知道。</p>
+
+<div class="highlight-box">
+  <div class="big">核心原则：AI 干活之前算指纹，干完之后再算一次<br>对不上就报警。验证过程不经过 AI，纯传统代码。</div>
+  <div class="sub">本工具核验不通过 AI，拒绝不确定性</div>
+</div>
+
+<!-- 思路 -->
+<div class="sec sec-purple"><h2>思路拆解</h2></div>
+
+<p>起意来自朋友的需求。想清楚三件事就开干了：</p>
+
+<div class="flow">
+  <div class="flow-label">产品思考</div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">用户画像</div>
+      <div class="step-desc">半技术用户——没有太多时间做技术开发，但又熟悉 Excel 等传统工具，了解数据结构和主键、Join、Append、去重合并等常识。不需要你会写代码，但你得知道什么叫"主键"和"总和对不上"。</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">技术选型</div>
+      <div class="step-desc">pandas 做对账逻辑比 JS 写起来快。UI 最朴素还是优先免费版 Streamlit——如果增加功能可以移植到其他平台。文件纯英文环境不涉及编码，大小预期在中小，更大的数据通常会得到数分工程师专业处理。</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">核心决策：对账逻辑突出纯数学</div>
+      <div class="step-desc">暂时不通过 AI 进行表头自动分析和推断——<strong>确定性是这个工具的全部价值</strong>。用 AI 来验证 AI 的输出？那不是套娃吗。所以 6 个检查函数全是传统代码，没有一行调 LLM。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 个检查 -->
+<div class="sec sec-green"><h2>它查什么：6 项自动对账</h2></div>
+
+<p>上传 N 个 input CSV + 1 个 AI 合并后的 output CSV，一键跑 6 项检查：</p>
+
+<table class="comp">
+  <tr><th>#</th><th>检查项</th><th>说人话</th></tr>
+  <tr><td>1</td><td><strong>Schema 检查</strong></td><td>所有文件的列名是不是一致的？多了少了哪列？</td></tr>
+  <tr><td>2</td><td><strong>行数核对</strong></td><td>input 总共多少行，output 多少行，差几行？</td></tr>
+  <tr><td>3</td><td><strong>主键去重</strong></td><td>output 里有没有重复的记录？</td></tr>
+  <tr><td>4</td><td><strong>漏行检测</strong></td><td>哪些 input 里有的记录在 output 里找不到了？</td></tr>
+  <tr><td>5</td><td><strong>金额汇总核对</strong></td><td>指定数值列（金额、数量）input 和 output 的总和对不对？</td></tr>
+  <tr><td>6</td><td><strong>随机抽样</strong></td><td>从 output 随机抽 5 条，肉眼看看有没有明显问题</td></tr>
+</table>
+
+<p>每项结果用 ✅❌⚠️ 标记。报告带时间戳 + 每个文件的 SHA-256 指纹——出具正式下载版，但<strong>只报告，不主动修</strong>。修报告是另外的价钱了（并不是 🤪）——因为修报告又一次引入黑箱，不如先给用户看清楚再决定。</p>
+
+<!-- 为什么 hash -->
+<div class="sec sec-blue"><h2>为什么要哈希校验</h2></div>
+
+<div class="vs">
+  <div class="vs-box">
+    <h3>📄 文件身份证（SHA-256）</h3>
+    <div class="vs-item">对每个上传文件生成唯一一串 hex 指纹</div>
+    <div class="vs-item">用来确认审计基于同一份文件</div>
+    <div class="vs-item">如果有人事后改了文件再说"你的报告不对"——拿指纹一比就清楚</div>
+  </div>
+  <div class="vs-box">
+    <h3>🔍 可复核、可追溯</h3>
+    <div class="vs-item">报告记录输入、输出、配置与哈希</div>
+    <div class="vs-item">方便复盘、留档与团队复核</div>
+    <div class="vs-item">审计可追溯 = 专业感 + 信任</div>
+  </div>
+</div>
+
+<!-- 用了什么 -->
+<div class="sec sec-teal"><h2>技术栈（极简）</h2></div>
+
+<p>整个项目不需要数据库、不需要用户登录、不需要 API 集成。Python 一把梭：</p>
+
+<div class="flow">
+  <div class="step">
+    <div class="step-num">🖥</div>
+    <div class="step-content">
+      <div class="step-title">前端：Streamlit</div>
+      <div class="step-desc">Python 写 UI，免费部署到 Streamlit Cloud。不用学前端。</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">🐍</div>
+    <div class="step-content">
+      <div class="step-title">核心逻辑：pandas + hashlib + Decimal</div>
+      <div class="step-desc">pandas 处理 CSV，hashlib 算 SHA-256 指纹，Decimal 做金额计算（不用 float，避免浮点精度问题）。</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">📦</div>
+    <div class="step-content">
+      <div class="step-title">外部依赖：csv-diff</div>
+      <div class="step-desc">Simon Willison 的开源库（pip install csv-diff），按 primary key 对比两个 CSV，返回新增/删除/变更的行。</div>
+    </div>
+  </div>
+</div>
+
+<!-- vibe coding -->
+<div class="sec sec-purple"><h2>Vibe Coding 实战心得</h2></div>
+
+<p>理清思路以后就启动 Claude Code 了。纯分享性质目的的开发，GitHub 开源。几个体会：</p>
+
+<div class="tip">
+  <div class="tip-title">💡 从需求到 MVP 的真实节奏</div>
+  <strong>周一晚上：</strong>定 spec，想清楚不做什么比做什么更重要（不做 Excel、不做 API、不做登录）<br>
+  <strong>周二到周四：</strong>Claude Code 搭骨架 + 核心逻辑 + 演示数据 + 前端联调<br>
+  <strong>周五：</strong>报告美化 + 文件指纹<br>
+  <strong>周末：</strong>录 demo + 发布<br><br>
+  一周，每晚 1-2 小时。不是全职做的。
+</div>
+
+<p>演示数据是故意带错误的——3 个 input 文件合并后，故意漏 3 条、重复 1 条、改错 1 个金额。这样跑 demo 的时候 6 项检查里有 4 项 ❌，效果拉满。</p>
+
+<!-- 更大方向 -->
+<div class="sec sec-orange"><h2>更大的方向</h2></div>
+
+<p>MergeCheck 是一个更大方向的 MVP 切入点：<strong>AI Workflow Auditing</strong>——为受监管行业做 AI workflow 的合规级审计与对账。</p>
+
+<p>文件 merge 是最简单、最容易验证的 AI 任务，先从这里切入。后续可以扩展到 lineage（数据血缘）、schema drift（结构漂移）、agent 执行路径审计。</p>
+
+<p>竞品空白：LangSmith/Langfuse 做 LLM observability（模型层监控），<strong>没人做"业务级 reconciliation"</strong>（业务层对账）。这是一个缝隙。</p>
+
+<div class="warn">
+  <div class="warn-title">⚠️ 写在最后</div>
+  这不是一个要做大的商业产品。它是一个<strong>从生活出发的需求、纯分享性质的开发</strong>。朋友需要，就做了。做完顺便练了 Claude Code，顺便有了内容素材，顺便验证了一个方向。这就是 Vibe Coding 最好的状态——轻装上阵，做完就是收获。
+</div>
+
+<p><span class="badge">Vibe Coding</span><span class="badge">Claude Code</span><span class="badge">数据对账</span><span class="badge">开源</span><span class="badge">从生活出发</span></p>
+
+<!-- FOOTER -->
+<div class="art-footer">
+  MergeCheck by Syneira Lab · <a href="https://github.com/sheysia/mergecheck" style="color:var(--accent);">GitHub</a><br>
+  AI Digest by Syneira · 源于生活，立足应用
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html">← 返回首页</a>
+</div>
+
+</body>
+</html>

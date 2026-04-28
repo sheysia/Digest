@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 2cm 2.2cm; }
+  @page :first { margin-top: 1.8cm; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Sans CJK SC", "WenQuanYi Zen Hei", "Helvetica Neue", sans-serif;
+    color: #2C2C2C;
+    line-height: 1.85;
+    font-size: 9.5pt;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding-bottom: 14pt;
+    border-bottom: 2.5pt solid #3A7BD4;
+    margin-bottom: 16pt;
+  }
+  .header-lab { font-size: 8pt; letter-spacing: 3pt; color: #999; text-transform: uppercase; margin-bottom: 4pt; }
+  .header-title { font-size: 20pt; font-weight: 700; color: #1A1A2E; margin-bottom: 2pt; line-height: 1.4; }
+  .header-sub { font-size: 10pt; color: #3A7BD4; margin-top: 4pt; font-style: italic; }
+  .header-meta { font-size: 8pt; color: #AAA; margin-top: 6pt; }
+
+  /* Section */
+  .section {
+    padding: 10pt 14pt;
+    border-radius: 4pt;
+    margin: 16pt 0 10pt 0;
+    page-break-after: avoid;
+  }
+  .section-blue { background: #EBF2FD; border-left: 4pt solid #3A7BD4; }
+  .section-green { background: #EFF5EC; border-left: 4pt solid #5A8E5A; }
+  .section-purple { background: #F5EFF8; border-left: 4pt solid #9B6DB7; }
+  .section-orange { background: #FDF0EB; border-left: 4pt solid #E8643B; }
+  .section-teal { background: #E8F6F3; border-left: 4pt solid #2A9D8F; }
+  .section h2 { font-size: 12pt; font-weight: 700; margin: 0; }
+  .section-blue h2 { color: #3A7BD4; }
+  .section-green h2 { color: #5A8E5A; }
+  .section-purple h2 { color: #9B6DB7; }
+  .section-orange h2 { color: #E8643B; }
+  .section-teal h2 { color: #2A9D8F; }
+
+  /* Body */
+  p { font-size: 9.5pt; line-height: 1.85; margin-bottom: 8pt; color: #333; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 700; }
+
+  /* Flow chart */
+  .flow {
+    background: #F9F8F6; border: 1pt solid #E0DCD7; border-radius: 6pt;
+    padding: 14pt 16pt; margin: 10pt 0 14pt;
+    page-break-inside: avoid;
+  }
+  .flow-title { font-size: 8pt; font-weight: 700; letter-spacing: 1.5pt; color: #888; text-transform: uppercase; margin-bottom: 8pt; }
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 10pt;
+    padding: 6pt 0; border-bottom: 1pt dashed #E8E5E0;
+  }
+  .flow-step:last-child { border-bottom: none; }
+  .flow-num {
+    background: #3A7BD4; color: white;
+    width: 20pt; height: 20pt; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8pt; font-weight: 700; flex-shrink: 0;
+    margin-top: 2pt;
+  }
+  .flow-num.green { background: #5A8E5A; }
+  .flow-num.purple { background: #9B6DB7; }
+  .flow-num.orange { background: #E8643B; }
+  .flow-num.teal { background: #2A9D8F; }
+  .flow-content { flex: 1; }
+  .flow-label { font-size: 9.5pt; font-weight: 700; color: #1A1A2E; margin-bottom: 2pt; }
+  .flow-desc { font-size: 9pt; color: #555; line-height: 1.7; }
+  .flow-tool { font-size: 8pt; color: #3A7BD4; font-weight: 500; }
+
+  /* Tool card */
+  .tool-card {
+    border: 1pt solid #E0DCD7; border-radius: 6pt;
+    padding: 12pt 14pt; margin-bottom: 10pt;
+    page-break-inside: avoid;
+    background: #FEFEFE;
+  }
+  .tool-name { font-size: 10pt; font-weight: 700; color: #1A1A2E; margin-bottom: 3pt; }
+  .tool-tags { margin-bottom: 6pt; }
+  .tool-tag {
+    display: inline-block; font-size: 7pt; font-weight: 500;
+    padding: 2pt 7pt; border-radius: 10pt;
+    margin-right: 3pt;
+  }
+  .tag-free { background: #E8F6F3; color: #2A9D8F; }
+  .tag-paid { background: #FDF0EB; color: #E8643B; }
+  .tag-easy { background: #EFF5EC; color: #5A8E5A; }
+  .tag-adv { background: #F5EFF8; color: #9B6DB7; }
+  .tool-what { font-size: 9pt; color: #333; margin-bottom: 4pt; }
+  .tool-best { font-size: 8.5pt; color: #777; font-style: italic; }
+
+  /* Tip box */
+  .tip {
+    background: #F5EFF8; border-left: 3pt solid #9B6DB7;
+    padding: 10pt 14pt; margin: 10pt 0;
+    font-size: 9pt; color: #5A3D6E; border-radius: 0 4pt 4pt 0;
+    page-break-inside: avoid;
+  }
+  .tip-title { font-weight: 700; margin-bottom: 4pt; font-size: 9pt; }
+
+  /* Warning box */
+  .warn {
+    background: #FDF0EB; border-left: 3pt solid #E8643B;
+    padding: 10pt 14pt; margin: 10pt 0;
+    font-size: 9pt; color: #8B3A1F; border-radius: 0 4pt 4pt 0;
+    page-break-inside: avoid;
+  }
+  .warn-title { font-weight: 700; margin-bottom: 4pt; font-size: 9pt; }
+
+  /* Comparison table */
+  .comp-table {
+    width: 100%; border-collapse: collapse;
+    margin: 10pt 0; font-size: 8.5pt;
+  }
+  .comp-table th {
+    background: #F0EDE7; padding: 6pt 8pt;
+    text-align: left; font-weight: 700; color: #555;
+    border-bottom: 2pt solid #DDD;
+  }
+  .comp-table td {
+    padding: 6pt 8pt; border-bottom: 1pt solid #EEE;
+    color: #444; vertical-align: top;
+  }
+  .comp-table tr:nth-child(even) td { background: #FAFAF8; }
+
+  /* Page break */
+  .page-break { page-break-before: always; }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding-top: 14pt;
+    border-top: 1pt solid #E0DCD7; margin-top: 18pt;
+    font-size: 7.5pt; color: #BBB;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="header-lab">By Evolith Lab · A Syneira Project</div>
+  <div class="header-title">AI 写论文/长文 完整工作流指南</div>
+  <div class="header-sub">从文献检索到定稿——两条路线，选适合你的</div>
+  <div class="header-meta">Issue #002 附件 · Apr 2026 · AI Digest by Syneira</div>
+</div>
+
+<!-- ===== OVERVIEW ===== -->
+<div class="flow">
+  <div class="flow-title">核心理念 / Core Principle</div>
+  <p style="font-size:10pt; color:#333; line-height:1.9; margin-bottom:6pt;">
+    <strong>AI 帮你表达和组织思路，不帮你生成论点。你的分析是你的。</strong><br>
+    AI helps you express and organize — it doesn't generate your arguments. Your analysis stays yours.
+  </p>
+  <p style="font-size:9pt; color:#777; line-height:1.7;">
+    本指南分两条路线：<strong>路线 A</strong> 零代码，用现成工具串起来，适合大多数人；<strong>路线 B</strong> 进阶版，适合已经会用命令行的技术成员。两条路线终点一样——一篇有结构、有引用、有审查的论文。
+  </p>
+</div>
+
+<!-- ===== ROUTE A ===== -->
+<div class="section section-blue"><h2>路线 A：零代码版 — 5 步从选题到定稿</h2></div>
+
+<div class="flow">
+  <div class="flow-title">完整流程</div>
+
+  <div class="flow-step">
+    <div class="flow-num">1</div>
+    <div class="flow-content">
+      <div class="flow-label">摸底 + 找文献</div>
+      <div class="flow-desc">先用 <strong>Perplexity</strong> 快速了解领域全貌，生成初步阅读清单。再用 <strong>Elicit</strong> 做系统性文献检索——它能自动提取方法、样本量、核心发现，生成证据对比表。最后用 <strong>Connected Papers</strong> 看关系图谱，找到被引次数高但你没注意到的关键论文。</div>
+      <div class="flow-tool">🔧 Perplexity（免费）→ Elicit（免费版够用）→ Connected Papers（免费）</div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-num green">2</div>
+    <div class="flow-content">
+      <div class="flow-label">生成大纲 + 论证结构</div>
+      <div class="flow-desc">把 Step 1 的文献摘要和你自己的研究问题一起喂给 <strong>Claude</strong>。用中文框架 + 英文术语的 prompt 策略（见 Issue #001 #08）。让它生成论文大纲，包括每一节的核心论点和支撑逻辑。<strong>你审核大纲，不是 AI 决定大纲。</strong></div>
+      <div class="flow-tool">🔧 Claude（Pro/免费都行）或 ChatGPT</div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-num purple">3</div>
+    <div class="flow-content">
+      <div class="flow-label">逐节撰写正文</div>
+      <div class="flow-desc">按大纲逐节写，不要一次让 AI 写完全文。每节给它：这一节的论点 + 要引用的文献 + 上下文。用 <strong>"先写要点，再展开"</strong> 的策略——你列 3-5 个 bullet points，AI 扩写成段落。你保持控制权。</div>
+      <div class="flow-tool">🔧 Claude（长上下文优势）或 Jenni AI（自动补全 + 引用）</div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-num orange">4</div>
+    <div class="flow-content">
+      <div class="flow-label">学术英语润色</div>
+      <div class="flow-desc"><strong>Writefull</strong> 基于已发表论文语料训练，能把你的句子改得更"学术"。它的 Academizer 功能可以一键把口语化表达转成学术风格。<strong>Grammarly Premium</strong> 适合最终检查语法和一致性，但注意不要盲目接受所有建议——有些会损失学术精度。</div>
+      <div class="flow-tool">🔧 Writefull（$7/月）或 Grammarly Premium（$12/月）或 Paperpal（免费版可用）</div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-num teal">5</div>
+    <div class="flow-content">
+      <div class="flow-label">结构审查 + 引用管理</div>
+      <div class="flow-desc">用 <strong>thesify</strong> 做提交前审查——它不改你的字，而是像一个审稿人一样评价你的论证结构、证据使用和逻辑连贯性。引用管理用 <strong>Zotero</strong>（免费 + 开源），一键导出 APA/Chicago/MLA 格式。</div>
+      <div class="flow-tool">🔧 thesify（免费版可用）+ Zotero（免费）</div>
+    </div>
+  </div>
+</div>
+
+<div class="tip">
+  <div class="tip-title">💡 Prompt 技巧：中英混搭写论文</div>
+  用中文写指令框架，关键概念保留英文原词。比如：<br>
+  ✅ "请分析这篇文献中 methodology 的 limitations，重点关注 sample size 和 generalizability"<br>
+  ❌ "请分析这篇文献中方法论的局限性，重点关注样本量和可推广性"<br>
+  前者让 AI 更精确地理解你的学术意图。（详见 Issue #001 #08 — Lost in the Mix 论文解读）
+</div>
+
+<!-- ===== PAGE BREAK ===== -->
+<div class="page-break"></div>
+
+<!-- ===== ROUTE B ===== -->
+<div class="section section-green"><h2>路线 B：进阶版 — 适合技术成员</h2></div>
+
+<div class="flow">
+  <div class="flow-title">进阶流程</div>
+
+  <div class="flow-step">
+    <div class="flow-num green">1</div>
+    <div class="flow-content">
+      <div class="flow-label">Elicit 系统性文献综述</div>
+      <div class="flow-desc">不只搜论文，而是让 Elicit 自动生成 evidence table：按方法、样本、发现分列对比多篇文献。导出 CSV 直接用于你的 literature review。比手动做节省 3-5 小时。</div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-num green">2</div>
+    <div class="flow-content">
+      <div class="flow-label">Claude Code / Claude Artifacts 生成 LaTeX</div>
+      <div class="flow-desc">直接让 Claude 用 LaTeX 输出论文格式。你给模板（IEEE/ACM/APA），Claude 生成带 \cite{} 标记的正文。在 Overleaf 里打开即可编译。好处：格式精确，适合投稿。</div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-num green">3</div>
+    <div class="flow-content">
+      <div class="flow-label">thesify 结构审查 + Consensus 交叉验证</div>
+      <div class="flow-desc">thesify 审论证结构，Consensus 验证你引用的文献结论是否有其他研究支持（or 反对）。双重保险。</div>
+    </div>
+  </div>
+
+  <div class="flow-step">
+    <div class="flow-num green">4</div>
+    <div class="flow-content">
+      <div class="flow-label">Overleaf 协作 + 版本控制</div>
+      <div class="flow-desc">多人协作直接在 Overleaf 里改。Git 集成可以做版本回滚。比 Word 的 Track Changes 强得多。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOOL COMPARISON ===== -->
+<div class="section section-purple"><h2>工具对比速查表</h2></div>
+
+<table class="comp-table">
+  <tr>
+    <th>环节</th>
+    <th>工具</th>
+    <th>费用</th>
+    <th>难度</th>
+    <th>最适合</th>
+  </tr>
+  <tr>
+    <td>文献检索</td>
+    <td>Perplexity</td>
+    <td>免费</td>
+    <td>零门槛</td>
+    <td>快速摸底，了解领域全貌</td>
+  </tr>
+  <tr>
+    <td>文献检索</td>
+    <td>Elicit</td>
+    <td>免费版够用</td>
+    <td>低</td>
+    <td>系统性文献综述，自动证据表</td>
+  </tr>
+  <tr>
+    <td>文献图谱</td>
+    <td>Connected Papers</td>
+    <td>免费</td>
+    <td>零门槛</td>
+    <td>可视化论文关系网络</td>
+  </tr>
+  <tr>
+    <td>写大纲/正文</td>
+    <td>Claude</td>
+    <td>免费/Pro $20</td>
+    <td>低</td>
+    <td>长上下文、中英混搭 prompt</td>
+  </tr>
+  <tr>
+    <td>写大纲/正文</td>
+    <td>Jenni AI</td>
+    <td>免费版有限</td>
+    <td>低</td>
+    <td>边写边自动补全 + 引用</td>
+  </tr>
+  <tr>
+    <td>学术润色</td>
+    <td>Writefull</td>
+    <td>$7/月</td>
+    <td>低</td>
+    <td>学术英语语料训练，非母语者首选</td>
+  </tr>
+  <tr>
+    <td>学术润色</td>
+    <td>Paperpal</td>
+    <td>免费版可用</td>
+    <td>低</td>
+    <td>投稿前检查 + 期刊匹配</td>
+  </tr>
+  <tr>
+    <td>语法检查</td>
+    <td>Grammarly</td>
+    <td>免费/Premium $12</td>
+    <td>零门槛</td>
+    <td>最终通读检查一致性</td>
+  </tr>
+  <tr>
+    <td>结构审查</td>
+    <td>thesify</td>
+    <td>免费版可用</td>
+    <td>低</td>
+    <td>像审稿人一样评价论证质量</td>
+  </tr>
+  <tr>
+    <td>引用管理</td>
+    <td>Zotero</td>
+    <td>免费 + 开源</td>
+    <td>低</td>
+    <td>文献管理、一键导出引用格式</td>
+  </tr>
+  <tr>
+    <td>排版</td>
+    <td>Overleaf</td>
+    <td>免费版可用</td>
+    <td>中（需学LaTeX）</td>
+    <td>学术级排版、多人协作</td>
+  </tr>
+</table>
+
+<!-- ===== ETHICS ===== -->
+<div class="section section-orange"><h2>⚠️ 底线原则 — 哪些绝对不能让 AI 做</h2></div>
+
+<div class="warn">
+  <div class="warn-title">🚫 红线清单</div>
+  <strong>不让 AI 生成你的核心论点。</strong>AI 可以帮你组织语言，但"你的研究发现了什么"必须是你自己的判断。<br><br>
+  <strong>不信任 AI 生成的引用。</strong>所有 AI 推荐的文献，必须在 Google Scholar 或原始数据库里验证真实存在。AI 会"编造"论文。<br><br>
+  <strong>不隐瞒 AI 的使用。</strong>越来越多期刊要求披露 AI 辅助。查你目标期刊的 AI policy，在 Methods 或 Acknowledgments 里说明。<br><br>
+  <strong>先查你学校/机构的政策。</strong>有些学校完全禁止课程作业使用 AI。不确定就先问。
+</div>
+
+<div class="tip">
+  <div class="tip-title">💡 一句话总结</div>
+  最好的 AI 写论文工作流不是找一个"万能工具"，而是让每个工具做它最擅长的事：Elicit 找文献、Claude 组织思路、Writefull 打磨语言、thesify 当审稿人、Zotero 管引用。<strong>你是导演，AI 是剧组。</strong>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  By Evolith Lab · A Syneira Project · AI Digest Issue #002 附件<br>
+  筛选标准：实用 > 炫酷 · 能用 > 能看 · 源于生活，立足应用
+</div>
+
+</body>
+</html>

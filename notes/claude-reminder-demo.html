@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Reminder Demo</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#1A1A1A; font-family:-apple-system,'Noto Sans SC',sans-serif; color:#E0E0E0; max-width:390px; margin:0 auto; padding:20px 16px; font-size:15px; line-height:1.5; }
+
+  .header { display:flex; justify-content:center; align-items:center; gap:8px; padding:12px 0 20px; border-bottom:1px solid #333; margin-bottom:16px; }
+  .header-model { font-size:16px; font-weight:600; color:#FFF; }
+  .header-sub { font-size:11px; color:#888; }
+
+  .msg { margin-bottom:16px; }
+  .msg-user { display:flex; justify-content:flex-end; }
+  .msg-user .bubble { background:#2A5CAA; color:#FFF; border-radius:18px 18px 4px 18px; padding:10px 16px; max-width:85%; font-size:14px; line-height:1.6; }
+
+  .msg-ai .thinking { font-size:12px; color:#888; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+  .msg-ai .thinking .icon { width:16px; height:16px; border-radius:50%; border:2px solid #888; border-top-color:transparent; }
+
+  .reminder-card { background:#2A2A2A; border:1px solid #444; border-radius:12px; padding:14px 16px; margin:8px 0; }
+  .reminder-header { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:12px; color:#888; }
+  .reminder-icon { font-size:18px; }
+  .reminder-title { font-size:15px; font-weight:600; color:#FFF; margin-bottom:4px; }
+  .reminder-tag { display:inline-block; font-size:10px; font-weight:600; padding:2px 8px; border-radius:4px; background:#D44; color:#FFF; margin-left:6px; }
+  .reminder-tag.medium { background:#E8A020; }
+  .reminder-meta { font-size:13px; color:#AAA; }
+  .reminder-notes { font-size:12px; color:#999; margin-top:4px; line-height:1.5; }
+  .reminder-open { display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border-top:1px solid #444; margin-top:10px; color:#4A9EF5; font-size:13px; font-weight:500; }
+
+  .ai-text { font-size:14px; color:#E0E0E0; line-height:1.7; margin:8px 0; }
+  .ai-text .check { color:#4CAF50; }
+
+  .divider { height:1px; background:#333; margin:20px 0; }
+
+  .label { font-size:10px; color:#666; text-align:center; margin:16px 0 8px; letter-spacing:1px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-model">Sonnet 4.6 ▾</div>
+    <div class="header-sub" style="text-align:center;">Adaptive</div>
+  </div>
+</div>
+
+<!-- Example 1: Medical appointment -->
+<div class="label">— 示例 1：医疗预约 —</div>
+
+<div class="msg msg-user">
+  <div class="bubble">明天10:30视频问诊 Dr. Chen，提前一小时提醒我完成pre-visit tasks再上线，链接是 https://portal.example.com</div>
+</div>
+
+<div class="msg msg-ai">
+  <div class="thinking"><span class="icon"></span> Parsed reminder request and extracted appointment...</div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">完成问诊前任务 — 10:30 视频问诊 Dr. Chen <span class="reminder-tag">High</span></div>
+    <div class="reminder-meta">• Notes: 问诊链接: https://portal.example.com<br>提前完成所有 pre-visit tasks 再上线</div>
+    <div class="reminder-meta">• Due: Tomorrow at 09:30</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="ai-text"><span class="check">✅</span> 提醒已设在明天 <strong>9:30 AM</strong>（问诊前一小时），提醒你先完成 pre-visit tasks 再上线。链接也存进去了 👌</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Example 2: Quick add -->
+<div class="label">— 示例 2：随口追加 —</div>
+
+<div class="msg msg-user">
+  <div class="bubble">on Thursday, April 30 at 11:40 AM 牙医再加一个</div>
+</div>
+
+<div class="msg msg-ai">
+  <div class="thinking"><span class="icon"></span> Parsed reminder request...</div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">牙医预约 🦷 <span class="reminder-tag">High</span></div>
+    <div class="reminder-meta">• Due: Apr 30, 2026 at 11:40</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="ai-text"><span class="check">✅</span> 搞定！<strong>4月30日（周四）11:40 AM</strong> 牙医提醒已设好 🦷</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Example 3: Complex date logic -->
+<div class="label">— 示例 3：复杂日期推算 —</div>
+
+<div class="msg msg-user">
+  <div class="bubble">周五晚上有个朋友聚会 6/12，$20/人，给我设当周第一天的提醒 reminder，记得回复人数</div>
+</div>
+
+<div class="msg msg-ai">
+  <div class="thinking"><span class="icon"></span> 确定了活动日期并推算出周一时间。</div>
+
+  <div class="ai-text">6/12 是周五，当周第一天是 <strong>6月8日（周一）</strong>，帮你设好了 👇</div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">朋友聚会 本周五 6/12 — $20/人，记得回复人数 <span class="reminder-tag medium">Medium</span></div>
+    <div class="reminder-meta">• Due: Jun 8, 2026</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="ai-text"><span class="check">✅</span> 提醒已设在 <strong>6月8日（周一）</strong>，全天提醒。到时候看到提醒就可以确认几个人去，然后回复 😄</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Example 4: Multiple timed reminders - user requests -->
+<div class="label">— 示例 4：一件事设多个提醒 —</div>
+
+<div class="msg msg-user">
+  <div class="bubble">5/15 孩子学校 field trip，要交 permission slip 和准备 lunch box。提前一周、一天、一小时分别提醒我</div>
+</div>
+
+<div class="msg msg-ai">
+  <div class="thinking"><span class="icon"></span> Created 3 reminders with staggered timing...</div>
+
+  <div class="ai-text">好的，给你设了三个梯度提醒 👇</div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">Field Trip 准备① — 签 permission slip + 交费 <span class="reminder-tag">High</span></div>
+    <div class="reminder-meta">• Notes: 签好 permission slip，确认是否需要交费<br>如果有 online form 先填好</div>
+    <div class="reminder-meta">• Due: May 8, 2026 at 09:00</div>
+    <div class="reminder-meta" style="font-size:11px; color:#4A9EF5;">⏰ 提前一周</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">Field Trip 准备② — 准备 lunch box + 检查装备 <span class="reminder-tag">High</span></div>
+    <div class="reminder-meta">• Notes: 准备 lunch box（查学校是否有 nut-free 要求）<br>水壶、防晒霜、帽子、换洗衣服<br>确认集合时间和地点</div>
+    <div class="reminder-meta">• Due: May 14, 2026 at 20:00</div>
+    <div class="reminder-meta" style="font-size:11px; color:#4A9EF5;">⏰ 提前一天晚上</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">Field Trip 出发！— 最后检查 <span class="reminder-tag medium">Medium</span></div>
+    <div class="reminder-meta">• Notes: lunch box 放书包了吗？<br>permission slip 交了吗？水壶装水了吗？</div>
+    <div class="reminder-meta">• Due: May 15, 2026 at 07:00</div>
+    <div class="reminder-meta" style="font-size:11px; color:#4A9EF5;">⏰ 出发前 1 小时</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="ai-text"><span class="check">✅</span> 三个提醒全设好了：<br>
+  <strong>5/8（周四）9AM</strong> — 提前一周：签 permission slip<br>
+  <strong>5/14（周三）8PM</strong> — 前一晚：准备 lunch box + 装备<br>
+  <strong>5/15（周四）7AM</strong> — 出发前：最后检查<br><br>
+  备注里加了 nut-free 提醒和装备清单，到时候照着查就行 ✌️</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Example 5: Claude proactively decides reminder schedule -->
+<div class="label">— 示例 5：你只说一句，Claude 自己判断怎么提醒 —</div>
+
+<div class="msg msg-user">
+  <div class="bubble">我的车 inspection 6月底到期，提醒我去做</div>
+</div>
+
+<div class="msg msg-ai">
+  <div class="thinking"><span class="icon"></span> Analyzing task complexity and setting appropriate reminder cadence...</div>
+
+  <div class="ai-text">车检不是当天去就行的——要先约、确认、带材料。我帮你拆成三步提醒：</div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">车检① — 预约 inspection <span class="reminder-tag">High</span></div>
+    <div class="reminder-meta">• Notes: MD inspection 一般要提前约<br>查一下附近 station 的 availability<br>Jiffy Lube / Firestone / 本地 mechanic 都可以<br>记得问价格和需要带什么</div>
+    <div class="reminder-meta">• Due: Jun 9, 2026 at 10:00</div>
+    <div class="reminder-meta" style="font-size:11px; color:#4A9EF5;">⏰ 提前 3 周：留够时间约</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">车检② — 确认预约 + 准备材料 <span class="reminder-tag medium">Medium</span></div>
+    <div class="reminder-meta">• Notes: 确认预约时间地点<br>准备：registration card, insurance card<br>如果有 check engine light 先查一下原因</div>
+    <div class="reminder-meta">• Due: Jun 22, 2026 at 09:00</div>
+    <div class="reminder-meta" style="font-size:11px; color:#4A9EF5;">⏰ 提前 1 周：确认 + 准备</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="reminder-card">
+    <div class="reminder-header"><span class="reminder-icon">📋</span> Reminders</div>
+    <div class="reminder-title">车检③ — 明天去做 inspection <span class="reminder-tag">High</span></div>
+    <div class="reminder-meta">• Notes: 带好 registration + insurance<br>预约时间：[到时候填]<br>⚠️ 6月底到期，别再拖了</div>
+    <div class="reminder-meta">• Due: Jun 28, 2026 at 20:00</div>
+    <div class="reminder-meta" style="font-size:11px; color:#4A9EF5;">⏰ 到期前 2 天：最后机会</div>
+    <div class="reminder-open">↗ Open in Reminders</div>
+  </div>
+
+  <div class="ai-text"><span class="check">✅</span> 三个提醒帮你排好了：<br>
+  <strong>6/9（周一）</strong> — 3 周前：去预约<br>
+  <strong>6/22（周一）</strong> — 1 周前：确认 + 准备材料<br>
+  <strong>6/28（周日晚）</strong> — 到期前 2 天：最后提醒<br><br>
+  Maryland inspection 到期后继续开是会被罚的，所以我把最后一个设成 High 🚗<br><br>
+  <em style="color:#888; font-size:12px;">💡 你只说了"提醒我去做"，但车检需要预约+准备+执行三步，所以我拆开了。如果你已经约好了，告诉我时间我帮你更新。</em></div>
+</div>
+
+</body>
+</html>

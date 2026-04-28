@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NotebookLM + Gemini + Notion 三件套学习法 | AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#F7F5F1; --card:#FFF; --text:#1A1A2E; --body:#3A3A4A; --light:#7A7A8A; --accent:#2A9D8F; --orange:#E8643B; --blue:#3A7BD4; --green:#5A8E5A; --purple:#9B6DB7; --border:#E0DCD7; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; background:var(--bg); color:var(--body); line-height:1.85; font-size:15px; }
+
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px; }
+  .nav a { font-size:13px; color:var(--accent); text-decoration:none; }
+  .nav a:hover { text-decoration:underline; }
+
+  .article { max-width:720px; margin:0 auto; padding:0 24px 60px; }
+
+  .art-header { text-align:center; padding-bottom:24px; border-bottom:2px solid var(--green); margin-bottom:32px; }
+  .art-tag { display:inline-block; font-size:11px; font-weight:600; padding:4px 14px; border-radius:20px; background:#EFF5EC; color:var(--green); margin-bottom:12px; }
+  .art-title { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:8px; }
+  .art-sub { font-size:15px; color:var(--light); font-style:italic; }
+  .art-meta { font-size:12px; color:var(--light); margin-top:12px; }
+
+  .sec { padding:10px 16px; border-radius:6px; margin:32px 0 16px; }
+  .sec-green { background:#EFF5EC; border-left:4px solid var(--green); }
+  .sec-blue { background:#EBF2FD; border-left:4px solid var(--blue); }
+  .sec-purple { background:#F5EFF8; border-left:4px solid var(--purple); }
+  .sec-orange { background:#FDF0EB; border-left:4px solid var(--orange); }
+  .sec-teal { background:#E8F6F3; border-left:4px solid var(--accent); }
+  .sec h2 { font-size:18px; font-weight:700; }
+  .sec-green h2 { color:var(--green); }
+  .sec-blue h2 { color:var(--blue); }
+  .sec-purple h2 { color:var(--purple); }
+  .sec-orange h2 { color:var(--orange); }
+  .sec-teal h2 { color:var(--accent); }
+
+  p { margin-bottom:14px; }
+  strong { font-weight:700; color:var(--text); }
+
+  .flow { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin:16px 0 20px; }
+  .flow-label { font-size:11px; font-weight:700; letter-spacing:2px; color:var(--light); text-transform:uppercase; margin-bottom:12px; }
+
+  .step { display:flex; gap:14px; padding:12px 0; border-bottom:1px dashed var(--border); }
+  .step:last-child { border-bottom:none; }
+  .step-num { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:12px; font-weight:700; flex-shrink:0; margin-top:2px; }
+  .step-num.g { background:var(--green); }
+  .step-num.b { background:var(--blue); }
+  .step-num.p { background:var(--purple); }
+  .step-content { flex:1; }
+  .step-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .step-desc { font-size:14px; color:var(--body); line-height:1.8; }
+  .step-tool { font-size:12px; color:var(--accent); font-weight:500; margin-top:6px; }
+
+  .tip { background:#F5EFF8; border-left:4px solid var(--purple); padding:14px 18px; margin:18px 0; border-radius:0 8px 8px 0; font-size:14px; color:#5A3D6E; }
+  .tip-title { font-weight:700; margin-bottom:6px; }
+
+  .comp { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
+  .comp th { background:#F0EDE7; padding:10px 12px; text-align:left; font-weight:700; color:#555; border-bottom:2px solid #DDD; }
+  .comp td { padding:10px 12px; border-bottom:1px solid #EEE; color:#444; vertical-align:top; }
+  .comp tr:nth-child(even) td { background:#FAFAF8; }
+
+  .tool { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin:14px 0; }
+  .tool-name { font-size:16px; font-weight:700; color:var(--text); margin-bottom:8px; }
+
+  .prompt-box { background:#F5F3F0; border:1px solid var(--border); border-radius:8px; padding:16px 18px; margin:14px 0; font-size:13px; color:#555; line-height:1.9; font-family:'JetBrains Mono',monospace; }
+
+  .vs { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+  .vs-box { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px; }
+  .vs-box h3 { font-size:15px; font-weight:700; color:var(--text); margin-bottom:10px; padding-bottom:8px; border-bottom:2px solid var(--border); }
+  .vs-item { font-size:13px; color:#555; padding:4px 0; line-height:1.7; }
+
+  .art-footer { text-align:center; padding-top:24px; border-top:1px solid var(--border); margin-top:32px; font-size:12px; color:var(--light); }
+
+  @media (max-width:640px) { .vs { grid-template-columns:1fr; } .comp { font-size:12px; } }
+</style>
+</head>
+<body>
+
+<div class="nav"><a href="../issues/001.html">← 返回 Issue #001</a></div>
+
+<div class="article">
+
+<div class="art-header">
+  <div class="art-tag">场景拆解</div>
+  <h1 class="art-title">NotebookLM + Gemini + Notion<br>三件套学习法</h1>
+  <div class="art-sub">输入 → 消化 → 沉淀，三步形成知识闭环 · 总成本 $0</div>
+  <div class="art-meta">AI Digest Issue #001 附件 · By Syneira · Apr 2026</div>
+</div>
+
+<!-- WHY -->
+<div class="sec sec-orange"><h2>为什么需要这套工作流？</h2></div>
+
+<p>大多数人的 AI 学习现状是：<strong>看了很多、记住很少、能用的更少。</strong>问题不在输入量，而在没有闭环——看完就没了。这套工作流用三个免费工具串起来，解决"看了等于白看"的问题。</p>
+
+<div class="flow">
+  <div class="flow-label">三步闭环</div>
+  <table class="comp">
+    <tr><th>工具</th><th>角色</th><th>解决什么问题</th><th>费用</th></tr>
+    <tr><td><strong>NotebookLM</strong></td><td>消化器</td><td>原材料太长/太多，看不完</td><td>免费</td></tr>
+    <tr><td><strong>Gemini / Claude</strong></td><td>思考伙伴</td><td>摘要不够深，想追问/拆解</td><td>免费层够用</td></tr>
+    <tr><td><strong>Notion</strong></td><td>知识库</td><td>学了就忘，没有沉淀</td><td>免费（10人协作）</td></tr>
+  </table>
+</div>
+
+<!-- STEP 1 -->
+<div class="sec sec-green"><h2>Step 1: NotebookLM — 你的"消化器"</h2></div>
+
+<p>NotebookLM 是 Google 的免费 AI 研究工具。核心优势：<strong>只基于你提供的材料回答问题，不会用外部知识"幻觉"。</strong></p>
+
+<div class="vs">
+  <div class="vs-box">
+    <h3>可以喂什么</h3>
+    <div class="vs-item">📄 PDF（论文、报告、幻灯片）</div>
+    <div class="vs-item">📝 Google Docs / Slides</div>
+    <div class="vs-item">🎬 YouTube 视频（自动转录）</div>
+    <div class="vs-item">🌐 网页 URL、粘贴文本、音频文件</div>
+  </div>
+  <div class="vs-box">
+    <h3>会产出什么</h3>
+    <div class="vs-item">📋 自动摘要 + 核心要点</div>
+    <div class="vs-item">❓ FAQ（基于材料自动生成）</div>
+    <div class="vs-item">📚 学习指南（关键概念梳理）</div>
+    <div class="vs-item">🎧 Audio Overview（播客式音频讨论）</div>
+  </div>
+</div>
+
+<div class="tip">
+  <div class="tip-title">💡 小技巧</div>
+  把 5-10 篇相关文章丢进同一个 notebook，然后问"这些材料的共同主题是什么？"或"它们在哪些观点上相互矛盾？"——这是单篇阅读做不到的<strong>交叉分析</strong>。
+</div>
+
+<!-- STEP 2 -->
+<div class="sec sec-blue"><h2>Step 2: Gemini / Claude — 你的"思考伙伴"</h2></div>
+
+<p>NotebookLM 给你的是静态摘要。但真正的理解需要对话——追问"为什么"、要求举例、质疑结论。把 NotebookLM 的输出带到对话式 AI 里深挖。</p>
+
+<div class="vs">
+  <div class="vs-box">
+    <h3>什么时候用 Gemini</h3>
+    <div class="vs-item">✅ 在 Google Workspace 生态内工作</div>
+    <div class="vs-item">✅ 需要实时 web search 补充</div>
+    <div class="vs-item">✅ 预算敏感 / 批量处理</div>
+    <div class="vs-item">✅ Sheets 里用自然语言生成公式</div>
+  </div>
+  <div class="vs-box">
+    <h3>什么时候用 Claude</h3>
+    <div class="vs-item">✅ 复杂推理、精细分析</div>
+    <div class="vs-item">✅ 长文写作、结构化输出</div>
+    <div class="vs-item">✅ 技术深挖（代码、数据、架构）</div>
+    <div class="vs-item">✅ 需要生成文档/文件</div>
+  </div>
+</div>
+
+<div class="prompt-box">
+  <strong>Prompt 模板（深挖用）：</strong><br><br>
+  "这是 NotebookLM 对 [topic] 的摘要。我想理解：<br>
+  (1) 对 [我的角色/行业] 有什么实际影响？<br>
+  (2) 这个结论做了哪些假设，可能不成立的是哪些？<br>
+  (3) 给我一个具体的应用例子。"
+</div>
+
+<!-- STEP 3 -->
+<div class="sec sec-purple"><h2>Step 3: Notion — 你的"团队知识库"</h2></div>
+
+<p>洞察如果不捕捉就会丢失。Notion 是这套工作流的沉淀层——云端原生、实时协作、不需要每个人学新工具。相比 Obsidian（本地为主、多人协作不便），Notion 更适合团队场景。</p>
+
+<div class="tool">
+  <div class="tool-name">推荐的 Notion 数据库结构</div>
+  <table class="comp">
+    <tr><th>数据库</th><th>用途</th><th>关键字段</th></tr>
+    <tr><td><strong>AI Learning Log</strong></td><td>每条 = 一篇文章/视频/论文的消化记录</td><td>Date, Source URL, Tags, Status, Assigned To</td></tr>
+    <tr><td><strong>Insights Library</strong></td><td>可复用的 takeaway，从 deep dive 中提炼</td><td>Category, Applicable Role, Related Entries</td></tr>
+    <tr><td><strong>Tool Directory</strong></td><td>跟踪小组测试过的 AI 工具</td><td>Name, Use Case, Verdict, Cost</td></tr>
+    <tr><td><strong>Weekly Digest</strong></td><td>每期 digest 的存档</td><td>Week, Issue #, HTML link, Key Picks</td></tr>
+  </table>
+</div>
+
+<div class="tip">
+  <div class="tip-title">💡 工作流串联技巧</div>
+  <strong>Web Clipper</strong> — 用 Notion 浏览器插件一键保存源链接<br>
+  <strong>复制精华</strong> — 把 Gemini/Claude 对话的精华直接复制进 Learning Log<br>
+  <strong>Tag 分类</strong> — #prompt-engineering #agent #tool，方便交叉查找<br>
+  <strong>Relation 关联</strong> — 把 Insights 链回它的源 Learning Log<br>
+  <strong>模板</strong> — 给 Learning Log 预填四个区块：Source Summary（NotebookLM）、Deep Dive Notes（Gemini/Claude）、Key Takeaways（自己的话）、Action Items（下一步）
+</div>
+
+<!-- TEAM PRACTICE -->
+<div class="sec sec-teal"><h2>社群实操建议</h2></div>
+
+<div class="vs">
+  <div class="vs-box">
+    <h3>非技术背景成员</h3>
+    <div class="vs-item">📥 从 NotebookLM 开始，丢进去就能看摘要</div>
+    <div class="vs-item">🎧 用 Audio Overview 通勤时听</div>
+    <div class="vs-item">📝 在 Notion 里加"So What"个人笔记</div>
+    <div class="vs-item">🚫 不需要写代码，不需要学新工具</div>
+  </div>
+  <div class="vs-box">
+    <h3>技术背景成员</h3>
+    <div class="vs-item">🔬 用 Claude 做代码级 deep dive</div>
+    <div class="vs-item">📸 在 Notion 里写技术 walkthrough + 截图</div>
+    <div class="vs-item">⚙️ 后期可用 Notion API 自动填充条目</div>
+    <div class="vs-item">🤝 帮非技术成员配置工具环境</div>
+  </div>
+</div>
+
+<div class="tool">
+  <div class="tool-name">每周节奏建议</div>
+  <table class="comp">
+    <tr><th>时间</th><th>动作</th><th>谁来做</th></tr>
+    <tr><td>周一至周五</td><td>看到好内容随手存到 Notion 共享 inbox</td><td>所有成员</td></tr>
+    <tr><td>周六</td><td>轮值编辑挑 5-8 条，跑 NotebookLM + AI</td><td>轮值 1 人</td></tr>
+    <tr><td>周日/周一</td><td>Digest 发布，群内讨论 top picks</td><td>轮值 + 全员</td></tr>
+  </table>
+</div>
+
+<!-- NOTION VS OBSIDIAN -->
+<div class="sec sec-blue"><h2>为什么用 Notion 而不是 Obsidian？</h2></div>
+
+<table class="comp">
+  <tr><th>维度</th><th>Obsidian</th><th>Notion</th></tr>
+  <tr><td>多人协作</td><td>本地为主，分享需 Git 或 Publish（付费）</td><td>实时多人编辑，免费小团队够用</td></tr>
+  <tr><td>上手难度</td><td>较高（Markdown、插件、vault 配置）</td><td>较低（拖拽、所见即所得）</td></tr>
+  <tr><td>手机端</td><td>同步受限（需付费 Sync）</td><td>完整功能 App，免费</td></tr>
+  <tr><td>数据库功能</td><td>需要 Dataview 插件</td><td>原生数据库 + 筛选/视图/关联</td></tr>
+  <tr><td>最适合</td><td>个人知识管理重度用户</td><td><strong>团队、共享知识库、小组项目</strong></td></tr>
+</table>
+
+<!-- COST -->
+<div class="flow" style="text-align:center;">
+  <div class="flow-label">总成本</div>
+  <p style="font-size:24px; font-weight:700; color:var(--accent); margin:0;">$0</p>
+  <p style="font-size:13px; color:var(--light); margin-top:6px;">
+    NotebookLM 免费（需 Google 账号）· Gemini 免费层够用 · Notion 免费版 10 人协作<br>
+    Claude 免费版可偶尔深挖，Pro ($20/月) 适合重度使用
+  </p>
+</div>
+
+<!-- FOOTER -->
+<div class="art-footer">
+  By Syneira · AI Digest Issue #001 附件<br>
+  改编自 Obsidian + NotebookLM + Gemini 学习法，为团队协作场景优化为 Notion 版<br>
+  筛选标准：实用 > 炫酷 · 能用 > 能看 · 源于生活，立足应用
+</div>
+
+</div><!-- .article -->
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../issues/001.html">← 返回 Issue #001</a>
+</div>
+
+</body>
+</html>
