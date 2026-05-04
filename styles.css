@@ -685,6 +685,7 @@
   .tag-dot.trend { background: var(--blue); }
   .tag-dot.scene { background: var(--green); }
   .tag-dot.tip { background: var(--purple); }
+  .tag-dot.life { background: var(--accent); }
   .tag-dot.daily { background: var(--accent); }
 
   .latest-cta {
