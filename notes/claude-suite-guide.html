@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 不只是聊天 — 五层能力，你用到了第几层？ | AI Digest #004</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --white: #FFFFFF;
+    --iris-light: #F4F3F1;
+    --iris: #E8E6E1;
+    --grey: #807D76;
+    --grey-mid: #605D56;
+    --text: #2C2B28;
+    --text-body: #3A3935;
+    --text-light: #706D66;
+    --teal: #2A9D8F;
+    --teal-dark: #1E7A6F;
+    --black: #1A1918;
+  }
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--text-body);
+    line-height: 2;
+    font-size: 15px;
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 40px 28px 72px; }
+  .nav-back {
+    font-size: 13px; color: var(--teal); text-decoration: none; font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+  .nav-back:hover { color: var(--teal-dark); }
+
+  .header { margin: 48px 0 40px; }
+  .header-brand {
+    font-size: 10px; letter-spacing: 4px; color: var(--grey);
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 700; color: var(--black);
+    line-height: 1.25; margin-bottom: 16px;
+  }
+  .header-sub {
+    font-size: 15px; color: var(--grey-mid); line-height: 1.7; font-weight: 300;
+  }
+  .header-meta {
+    font-size: 11px; color: var(--grey); margin-top: 20px; letter-spacing: 0.5px;
+  }
+  .header-line { width: 40px; height: 2px; background: var(--teal); margin-top: 28px; }
+
+  .divider {
+    display: flex; align-items: center; gap: 16px; margin: 44px 0 36px;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--iris);
+  }
+  .divider .dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0;
+  }
+
+  .section-head { margin-bottom: 20px; }
+  .section-label {
+    font-size: 11px; font-weight: 500; color: var(--teal);
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 700; color: var(--black); line-height: 1.3;
+  }
+  .section-note {
+    font-size: 13px; color: var(--text-light); margin-top: 4px; font-weight: 300;
+  }
+
+  p { margin-bottom: 16px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  .scene {
+    border-left: 2px solid var(--iris);
+    padding-left: 20px;
+    margin: 20px 0 24px;
+    color: var(--text-body);
+    font-size: 14px;
+    line-height: 2;
+  }
+  .scene p { margin-bottom: 10px; }
+  .scene p:last-child { margin-bottom: 0; }
+
+  .tip {
+    font-size: 14px; color: var(--grey-mid);
+    padding: 16px 0;
+    border-top: 1px solid var(--iris);
+    border-bottom: 1px solid var(--iris);
+    margin: 24px 0;
+  }
+  .tip .tip-mark {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal); margin-right: 10px; vertical-align: middle;
+    position: relative; top: -1px;
+  }
+
+  .progression {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; margin: 32px 0; flex-wrap: wrap;
+  }
+  .progression .step {
+    font-size: 12px; font-weight: 500; color: var(--text);
+    padding: 6px 14px; border: 1px solid var(--iris); border-radius: 20px; background: var(--white);
+  }
+  .progression .step.active { border-color: var(--teal); color: var(--teal); }
+  .progression .arrow { color: var(--grey); font-size: 13px; }
+
+  .summary-item { padding: 12px 0; border-bottom: 1px solid var(--iris); }
+  .summary-item:last-child { border-bottom: none; }
+  .summary-item .name { font-weight: 600; color: var(--black); font-size: 15px; }
+  .summary-item .desc { font-size: 14px; color: var(--grey-mid); margin-top: 2px; }
+  .summary-item .who {
+    font-size: 11px; color: var(--teal); font-weight: 500;
+    letter-spacing: 0.5px; margin-top: 4px;
+  }
+
+  .closing {
+    text-align: center; margin-top: 56px; padding-top: 32px;
+    border-top: 1px solid var(--iris);
+  }
+  .closing p { font-size: 14px; color: var(--text-light); margin-bottom: 4px; font-weight: 300; }
+  .closing .brand {
+    font-size: 10px; letter-spacing: 4px; color: var(--grey);
+    text-transform: uppercase; margin-top: 20px;
+  }
+  .closing a { color: var(--teal); text-decoration: none; font-size: 13px; }
+
+  @media(max-width:640px){
+    .wrap { padding: 28px 20px 56px; }
+    .header-title { font-size: 27px; }
+    .section-title { font-size: 21px; }
+  }
+
+  /* ── Dark mode ── */
+  @media(prefers-color-scheme:dark){
+    :root {
+      --white: #1A1A1E;
+      --iris-light: #2A2A2E;
+      --iris: #333338;
+      --grey: #6A6A70;
+      --grey-mid: #8A8A90;
+      --text: #E8E6E1;
+      --text-body: #C5C3BE;
+      --text-light: #7A7A80;
+      --teal: #3DBDB0;
+      --teal-dark: #5AD4C7;
+      --black: #F0EEEA;
+    }
+    body { background: #141416; }
+    .progression .step { background: #1A1A1E; }
+    .scene { border-left-color: #444448; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="nav-back">← 回到首页</a>
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <h1 class="header-title">Claude 不只是聊天<br>五层能力，你用到了第几层？</h1>
+    <div class="header-sub">从对话到设计，一个工具的五种打开方式</div>
+    <div class="header-meta">Issue #004 · May 2026</div>
+    <div class="header-line"></div>
+  </div>
+
+  <p>如果你正在读这篇文章，大概率你已经在用 Claude 了——问它问题、让它帮你改邮件、翻译一段话。</p>
+  <p>但很多人不知道的是，<strong>聊天只是 Claude 最基础的一层。</strong>往上还有四层能力，每一层都能让你做到之前做不到、或者要花很多时间才能做到的事。</p>
+  <p>不是说你必须全部用上。但知道有什么、适合什么场景，能帮你在需要的时候少走弯路。</p>
+
+  <div class="progression">
+    <span class="step active">Chat</span>
+    <span class="arrow">→</span>
+    <span class="step">Project</span>
+    <span class="arrow">→</span>
+    <span class="step">Cowork</span>
+    <span class="arrow">→</span>
+    <span class="step">Code</span>
+    <span class="arrow">→</span>
+    <span class="step">Design</span>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">第一层</div>
+    <div class="section-title">从 Chat 到 Project — 让 Claude 记住你是谁</div>
+    <div class="section-note">大多数人卡在这一步</div>
+  </div>
+
+  <p>Chat 就是最基本的一问一答。你问，它答，结束。</p>
+  <p>但你有没有遇到过这种情况——每次开新对话，都要重新解释一遍：「我是做数据的」「我在 DMV」「我的团队用 Tableau」「我上次跟你说的那个项目……」</p>
+  <p><strong>Project 解决的就是这个问题。</strong></p>
+  <p>你可以把 Project 理解成一个「带记忆的工作空间」。给它设一个系统指令（比如「你是一个面向非技术受众的 AI 科普编辑」），上传你的参考资料——品牌手册、过往文章、数据字典——之后在这个空间里的每次对话，Claude 都自带这些上下文。不需要每次从零开始。</p>
+
+  <div class="scene">
+    <p><strong>写周报：</strong>建一个「工作汇报」Project，上传 KPI 模板和上月报告。之后每次直接说「根据这周的数据帮我更新」——它已经知道你的格式、口吻、数据结构。</p>
+    <p><strong>管理长期项目：</strong>无论是 side project、备考、还是搬家规划——建一个 Project 把资料丢进去，每次聊天接着上次来。</p>
+    <p><strong>内容创作：</strong>写作风格指南、爆款素材、选题库全放进去。要写东西时 Claude 直接按你的调性出稿，不用反复调教。</p>
+  </div>
+
+  <div class="tip">
+    <span class="tip-mark"></span>起步不用想太多。先建三个 Project——工作、写作、学习各一个。每个放一份最常用的参考资料，写一两句系统指令。用上一周你就会发现差别。
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">第二层</div>
+    <div class="section-title">Cowork — 从「问答」变成「一起干活」</div>
+    <div class="section-note">目前最被低估的功能</div>
+  </div>
+
+  <p>Chat 和 Project 的交互还是「你说一句、它回一段」。写好之后你得自己去复制、粘贴、排版。</p>
+  <p><strong>Cowork 不一样。</strong>左边是对话窗口，右边是实时编辑的文档区域。你一边说需求，它一边在右边写。看到不满意的段落，直接框选说「这段改一下，太正式了」——它当场改。</p>
+  <p>整个过程就像坐在一个写手旁边，你指着屏幕说「这里改改那里调调」。文件始终在你面前。</p>
+
+  <div class="scene">
+    <p><strong>写长文：</strong>在 Chat 里写长文来回复制粘贴效率太低。Cowork 里 Claude 直接在文档区写，你看着它写、随时打断。</p>
+    <p><strong>整理资料：</strong>笔记、会议记录、参考链接——丢进去让它归类、提炼、生成结构化文档。</p>
+    <p><strong>写方案：</strong>品牌指南和过往作品放进 Cowork，让 Claude 基于这些素材按你的风格产出新内容。</p>
+  </div>
+
+  <div class="tip">
+    <span class="tip-mark"></span>一句话区分——Chat 适合「问问题」，Cowork 适合「产出一个东西」。如果你最终需要一份可以直接用的文件，Cowork 是更好的选择。
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">第三层</div>
+    <div class="section-title">Code — 不会写代码也能建网站</div>
+    <div class="section-note">听起来吓人，门槛比你想的低得多</div>
+  </div>
+
+  <p>如果你的第一反应是「Code 跟我没关系」——停一下。</p>
+  <p>Claude Code 能做的远不止写代码。<strong>你可以用一句话让它做一个官网</strong>，把 Excel 变成可视化看板，做一个互动展示页，或者生成一个自动收集数据的问卷。所有这些，你不需要写一行代码——用中文描述你想要的就行。</p>
+
+  <div class="scene">
+    <p>在 Claude 桌面端点顶部 Code 标签，选 Opus 模型。</p>
+    <p>用自然语言描述你想要的——「帮我做一个简洁的个人品牌网站，首页大标题、个人介绍、服务列表、联系方式。」</p>
+    <p>看它自动生成，打开看效果。不满意就继续说：「标题再大一点，背景换浅灰。」</p>
+    <p>这个「说 → 看 → 改」的循环，就是所谓的 <strong>Vibe Coding</strong>。你不写代码，只描述想要的结果。</p>
+  </div>
+
+  <p style="font-size:14px;color:var(--text-light);">一个真实的例子：你正在读的这份 AI Digest 网页，就是这样做的。没有请开发者，没有买模板，核心时间不到两小时。</p>
+
+  <div class="tip">
+    <span class="tip-mark"></span>进阶技巧：让 Claude 在项目根目录创建一个 CLAUDE.md 文件，把所有项目信息写进去。下次打开它会先读这个文件，自动恢复上下文——字体、颜色、文件结构，不用从头解释。
+  </div>
+
+  <!-- SECTION 4: DESIGN -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">第四层</div>
+    <div class="section-title">Design — 不用 Canva 也能出视觉</div>
+    <div class="section-note">从「能用」到「能看」的那一步</div>
+  </div>
+
+  <p>很多人不知道，Claude 可以直接生成带设计的内容——不是那种纯文字输出，而是排好版、配好色、可以直接用的页面和文档。</p>
+  <p>你在对话里说「帮我做一张信息图」「做一个项目进度看板」「设计一个活动邀请页」，它会直接在聊天窗口里渲染出一个可交互的成品。配色、字体、布局，全都帮你做好。</p>
+  <p><strong>这不是 Figma，也不是 Canva，但对于大多数日常需求已经够用了。</strong></p>
+
+  <div class="scene">
+    <p><strong>数据可视化：</strong>把一份 CSV 或 Excel 丢给它，说「帮我做一组图表，展示季度趋势」——它直接生成带标注的交互式图表，比在 Excel 里调半天快得多。</p>
+    <p><strong>演示和提案：</strong>「帮我做一个单页的项目提案，包含问题、方案、时间线」——它会输出一个排版好的页面，配色专业，可以直接截图发给团队。</p>
+    <p><strong>社交媒体素材：</strong>文字排版、信息卡片、对比图、流程图——不需要打开任何设计软件，描述你要什么，它当场生成。</p>
+  </div>
+
+  <div class="tip">
+    <span class="tip-mark"></span>关键区分：Code 是建一个独立运行的东西（网站、工具），Design 更像是在对话中随手产出一个视觉成品。两者可以结合——先在 Chat 里用 Design 快速验证想法，满意了再用 Code 做成正式站点。
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">哪一层适合你？</div>
+  </div>
+
+  <div class="summary-item">
+    <div class="name">Chat</div>
+    <div class="desc">万能问答——快速回答、翻译、头脑风暴</div>
+    <div class="who">所有人</div>
+  </div>
+  <div class="summary-item">
+    <div class="name">Project</div>
+    <div class="desc">带上下文的工作空间——长期项目、反复出现的任务、一致的口吻</div>
+    <div class="who">所有人</div>
+  </div>
+  <div class="summary-item">
+    <div class="name">Cowork</div>
+    <div class="desc">实时协作台——报告、文章、资料整理，产出完整文档</div>
+    <div class="who">内容创作 · 职场人</div>
+  </div>
+  <div class="summary-item">
+    <div class="name">Code</div>
+    <div class="desc">说话就能建东西——网站、工具、数据看板</div>
+    <div class="who">想做工具的人 · 品牌建设</div>
+  </div>
+  <div class="summary-item">
+    <div class="name">Design</div>
+    <div class="desc">对话里直接出视觉——图表、提案、信息图、社交素材</div>
+    <div class="who">内容创作 · 汇报展示 · 所有人</div>
+  </div>
+
+  <p style="margin-top:28px;">大多数人只用到了第一层。如果你现在还只是在 Chat 里问问题，试试建一个 Project，把最常用的上下文放进去。体验一下有记忆和没记忆之间的差距。</p>
+  <p>然后看看 Cowork，尤其是如果你的工作涉及大量写作和文档。</p>
+  <p>至于 Code——试着多走一步。只靠和 Chat 截图对话就能装上它，然后发现聊熟的老朋友就在那里，同样亲切，更加强大。</p>
+
+  <!-- BONUS: Skills -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">进阶</div>
+    <div class="section-title">给 Code 装上 Skills — 让它先拷问你再动手</div>
+  </div>
+
+  <p>用了一段时间 Code 之后你可能会发现一个问题：它太听话了。你说什么它就做什么，但有时候你自己也没想清楚要什么——做到一半才发现方向不对，又得推翻重来。</p>
+  <p>这时候可以给它装一个叫 <strong>grill-me</strong> 的 Skill。装上之后，在 Code 里输入 <code style="font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--iris-light);padding:2px 6px;border-radius:4px;">/grill-me</code>，Claude 会反过来拷问你：你到底要解决什么问题？用户是谁？边界条件考虑了吗？——一路追问到你答不上来为止。</p>
+  <p>听起来有点烦，但这恰恰是最省时间的一步。被 AI 怼一顿之后再动手，出来的东西完成度高很多。</p>
+
+  <div class="scene">
+    <p>Skill 是 Claude Code 的「插件」，由社区开发者共享。安装只需要一行命令。除了 grill-me，还有几个值得了解的：</p>
+    <p><strong>git-guardrails</strong> — 给 Code 加一道安全网，拦截所有危险的 git 操作（比如强制推送、删除分支），防止 AI 误删你的代码。装上睡觉踏实。</p>
+    <p><strong>to-prd</strong> — 和 Claude 聊完一个想法之后，它自动把对话整理成一份产品需求文档，直接提交到 GitHub。不用再手动总结。</p>
+  </div>
+
+  <div class="tip">
+    <span class="tip-mark"></span>这些 Skills 来自开发者 Matt Pocock 的开源项目，是目前 Claude Code 生态里最主流的一套工具集。你不需要懂代码就能用——在 Code 里输入安装命令，等它跑完就行。
+  </div>
+
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <p style="margin-top:16px;"><a href="../index.html">← 查看往期 Digest</a></p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+</div>
+</body>
+</html>

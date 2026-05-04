@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 越来越近，但别急着交出钥匙 | AI Digest #004</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --white: #FFFFFF;
+    --iris-light: #F4F3F1;
+    --iris: #E8E6E1;
+    --grey: #807D76;
+    --grey-mid: #605D56;
+    --text: #2C2B28;
+    --text-body: #3A3935;
+    --text-light: #706D66;
+    --teal: #2A9D8F;
+    --teal-dark: #1E7A6F;
+    --black: #1A1918;
+  }
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--text-body);
+    line-height: 2;
+    font-size: 15px;
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 40px 28px 72px; }
+  .nav-back {
+    font-size: 13px; color: var(--teal); text-decoration: none; font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+  .nav-back:hover { color: var(--teal-dark); }
+
+  .header { margin: 48px 0 40px; }
+  .header-brand {
+    font-size: 10px; letter-spacing: 4px; color: var(--grey);
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 700; color: var(--black);
+    line-height: 1.25; margin-bottom: 16px;
+  }
+  .header-sub {
+    font-size: 15px; color: var(--grey-mid); line-height: 1.7; font-weight: 300;
+  }
+  .header-meta {
+    font-size: 11px; color: var(--grey); margin-top: 20px; letter-spacing: 0.5px;
+  }
+  .header-line { width: 40px; height: 2px; background: var(--teal); margin-top: 28px; }
+
+  .divider {
+    display: flex; align-items: center; gap: 16px; margin: 44px 0 36px;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--iris);
+  }
+  .divider .dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0;
+  }
+
+  .section-head { margin-bottom: 20px; }
+  .section-label {
+    font-size: 11px; font-weight: 500; color: var(--teal);
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 700; color: var(--black); line-height: 1.3;
+  }
+  .section-note {
+    font-size: 13px; color: var(--text-light); margin-top: 4px; font-weight: 300;
+  }
+
+  p { margin-bottom: 16px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  .scene {
+    border-left: 2px solid var(--iris);
+    padding-left: 20px;
+    margin: 20px 0 24px;
+    color: var(--text-body);
+    font-size: 14px;
+    line-height: 2;
+  }
+  .scene p { margin-bottom: 10px; }
+  .scene p:last-child { margin-bottom: 0; }
+
+  .tip {
+    font-size: 14px; color: var(--grey-mid);
+    padding: 16px 0;
+    border-top: 1px solid var(--iris);
+    border-bottom: 1px solid var(--iris);
+    margin: 24px 0;
+  }
+  .tip .tip-mark {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal); margin-right: 10px; vertical-align: middle;
+    position: relative; top: -1px;
+  }
+
+  .closing {
+    text-align: center; margin-top: 56px; padding-top: 32px;
+    border-top: 1px solid var(--iris);
+  }
+  .closing p { font-size: 14px; color: var(--text-light); margin-bottom: 4px; font-weight: 300; }
+  .closing .brand {
+    font-size: 10px; letter-spacing: 4px; color: var(--grey);
+    text-transform: uppercase; margin-top: 20px;
+  }
+  .closing a { color: var(--teal); text-decoration: none; font-size: 13px; }
+
+  @media(max-width:640px){
+    .wrap { padding: 28px 20px 56px; }
+    .header-title { font-size: 27px; }
+    .section-title { font-size: 21px; }
+  }
+  @media(prefers-color-scheme:dark){
+    :root {
+      --white: #1A1A1E;
+      --iris-light: #2A2A2E;
+      --iris: #333338;
+      --grey: #6A6A70;
+      --grey-mid: #8A8A90;
+      --text: #E8E6E1;
+      --text-body: #C5C3BE;
+      --text-light: #7A7A80;
+      --teal: #3DBDB0;
+      --teal-dark: #5AD4C7;
+      --black: #F0EEEA;
+    }
+    body { background: #141416; }
+    .scene { border-left-color: #444448; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="nav-back">← 回到首页</a>
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <h1 class="header-title">AI Agent 越来越近<br>但别急着交出钥匙</h1>
+    <div class="header-sub">触手可及，不等于完全可控</div>
+    <div class="header-meta">Issue #004 · May 2026 · 趋势信号</div>
+    <div class="header-line"></div>
+  </div>
+
+  <p>五月第一周，两件事同时发生：Microsoft 正式上线了 Agent 365——一个专门管理和调度 AI Agent 的企业级平台；Google 发布了 2026 年 Agent 趋势报告，核心判断是：AI 正在从「回答问题」进化到「替你执行任务」。</p>
+
+  <p>你可能已经感受到了这个变化。越来越多的工具不需要你繁复地安装、配置、写代码——它们似乎触手可及。连接一个服务、授权一个权限，AI 就能帮你自动做事了：汇总邮件、整理日程、同步数据、甚至帮你跑一套分析流程。</p>
+
+  <p><strong>但「触手可及」不等于「完全可控」。</strong></p>
+
+  <p>大多数人还不完全了解，当你给一个 Agent 授权之后，它在背后具体做了什么、读了哪些数据、调用了哪些接口。这些步骤往往藏在「同意」按钮背后，一个黑箱。</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">建议：从可控的环境开始</div>
+  </div>
+
+  <div class="scene">
+    <p>先在一个测试项目里试，而不是直接连你的主力邮箱。</p>
+    <p>先让它处理不敏感的数据，观察它的行为模式。</p>
+    <p>先理解每一条授权的具体含义，再决定要不要给。</p>
+  </div>
+
+  <p>AI 正在从工具变成同事。但你会给一个新同事第一天就打开所有文件柜的钥匙吗？</p>
+
+  <p>在一个大家都在抢着「接入 AI」的时刻，慢半步不是落后——是清醒。先搞懂它在做什么，再让它替你做更多。</p>
+
+  <div class="tip">
+    <span class="tip-mark"></span>Agent 时代的核心技能不是「会用 AI」，而是「知道什么时候该让 AI 停下来」。可控，才是可持续的前提。
+  </div>
+
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <p style="margin-top:16px;"><a href="../index.html">← 查看往期 Digest</a></p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+</div>
+</body>
+</html>

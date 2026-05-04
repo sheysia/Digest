@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>两家巨头不约而同养了宠物 | AI Digest #004</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --white:#FFFFFF; --iris-light:#F4F3F1; --iris:#E8E6E1; --grey:#807D76; --grey-mid:#605D56; --text:#2C2B28; --text-body:#3A3935; --text-light:#706D66; --teal:#2A9D8F; --teal-dark:#1E7A6F; --black:#1A1918; }
+  body { font-family:'Noto Sans SC',sans-serif; color:var(--text-body); line-height:2; font-size:15px; background:var(--white); -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:660px; margin:0 auto; padding:40px 28px 72px; }
+  .nav-back { font-size:13px; color:var(--teal); text-decoration:none; font-weight:400; letter-spacing:.3px; }
+  .nav-back:hover { color:var(--teal-dark); }
+  .header { margin:48px 0 40px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:var(--grey); text-transform:uppercase; margin-bottom:20px; }
+  .header-title { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--black); line-height:1.25; margin-bottom:16px; }
+  .header-sub { font-size:15px; color:var(--grey-mid); line-height:1.7; font-weight:300; }
+  .header-meta { font-size:11px; color:var(--grey); margin-top:20px; letter-spacing:.5px; }
+  .header-line { width:40px; height:2px; background:var(--teal); margin-top:28px; }
+  .divider { display:flex; align-items:center; gap:16px; margin:44px 0 36px; }
+  .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--iris); }
+  .divider .dot { width:5px; height:5px; border-radius:50%; background:var(--teal); flex-shrink:0; }
+  .section-head { margin-bottom:20px; }
+  .section-label { font-size:11px; font-weight:500; color:var(--teal); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:700; color:var(--black); line-height:1.3; }
+  .section-note { font-size:13px; color:var(--text-light); margin-top:4px; font-weight:300; }
+  p { margin-bottom:16px; }
+  strong { color:var(--text); font-weight:600; }
+  .scene { border-left:2px solid var(--iris); padding-left:20px; margin:20px 0 24px; font-size:14px; line-height:2; }
+  .scene p { margin-bottom:10px; }
+  .scene p:last-child { margin-bottom:0; }
+  .tip { font-size:14px; color:var(--grey-mid); padding:16px 0; border-top:1px solid var(--iris); border-bottom:1px solid var(--iris); margin:24px 0; }
+  .tip .tip-mark { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--teal); margin-right:10px; vertical-align:middle; position:relative; top:-1px; }
+  .vs-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:24px 0; }
+  .vs-card { padding:20px; border-radius:8px; background:var(--iris-light); }
+  .vs-card .v-name { font-weight:700; color:var(--black); font-size:16px; margin-bottom:8px; }
+  .vs-card .v-company { font-size:12px; color:var(--teal); font-weight:500; margin-bottom:10px; }
+  .vs-card p { font-size:14px; margin-bottom:6px; line-height:1.8; }
+  .vs-card p:last-child { margin-bottom:0; }
+  @media(max-width:520px){ .vs-row{grid-template-columns:1fr;} }
+  .closing { text-align:center; margin-top:56px; padding-top:32px; border-top:1px solid var(--iris); }
+  .closing p { font-size:14px; color:var(--text-light); margin-bottom:4px; font-weight:300; }
+  .closing .brand { font-size:10px; letter-spacing:4px; color:var(--grey); text-transform:uppercase; margin-top:20px; }
+  .closing a { color:var(--teal); text-decoration:none; font-size:13px; }
+  @media(max-width:640px){ .wrap{padding:28px 20px 56px;} .header-title{font-size:27px;} .section-title{font-size:21px;} }
+  @media(prefers-color-scheme:dark){
+    :root { --white:#1A1A1E; --iris-light:#2A2A2E; --iris:#333338; --grey:#6A6A70; --grey-mid:#8A8A90; --text:#E8E6E1; --text-body:#C5C3BE; --text-light:#7A7A80; --teal:#3DBDB0; --teal-dark:#5AD4C7; --black:#F0EEEA; }
+    body{background:#141416;} .scene{border-left-color:#444448;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="nav-back">← 回到首页</a>
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <h1 class="header-title">两家巨头不约而同<br>给自己的 AI 养了宠物</h1>
+    <div class="header-sub">Anthropic 出了 Buddies，OpenAI 跟了 Codex Pets。认真的？</div>
+    <div class="header-meta">Issue #004 · May 2026 · 行业趣闻</div>
+    <div class="header-line"></div>
+  </div>
+
+  <p>你没看错。</p>
+  <p>就在 AI 军备竞赛打得最激烈的 2026 年五月，两家最严肃的 AI 公司——一家主打「AI 安全」，一家号称要做「通用人工智能」——几乎前后脚做了同一件事：<strong>给自己的编程工具加了一只电子宠物。</strong></p>
+
+  <!-- What happened -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">发生了什么</div>
+  </div>
+
+  <p>四月初，Anthropic 在 Claude Code 里悄悄上线了一个叫 <strong>Buddies</strong> 的功能——一个浮动的小动画角色，在你用 Claude Code 写代码的时候待在屏幕角落里，告诉你当前任务的状态：在跑、等你输入、还是已经完成。</p>
+  <p>五月第一周，OpenAI 跟进了。在 Codex 里推出了 <strong>Codex Pets</strong>——功能几乎一模一样：浮动小动画，实时显示任务状态，可以自定义角色。内置了猫、狗等 8 种预设，还能用 AI 生成你自己的宠物。</p>
+
+  <div class="vs-row">
+    <div class="vs-card">
+      <div class="v-name">Buddies</div>
+      <div class="v-company">Anthropic · Claude Code</div>
+      <p>四月初上线</p>
+      <p>浮动动画角色</p>
+      <p>显示 Agent 任务状态</p>
+      <p>先发者</p>
+    </div>
+    <div class="vs-card">
+      <div class="v-name">Codex Pets</div>
+      <div class="v-company">OpenAI · Codex</div>
+      <p>五月初上线</p>
+      <p>8 种预设 + AI 自定义生成</p>
+      <p>社区分享（已有 22 页作品）</p>
+      <p>输入 /hatch 孵化你自己的宠物</p>
+    </div>
+  </div>
+
+  <p>社区反应很快。OpenAI 那边，开发者们已经生成了各种自定义宠物——有人做了龙猫，有人做了 Clippy 复活版，有人做了迷你版 Sam Altman，甚至还有人做了 Anthropic CEO Dario Amodei 的像素版。</p>
+
+  <!-- Why it matters -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">为什么值得关注</div>
+  </div>
+
+  <p>表面上看这就是两家公司在做可爱的小功能。但往深了想，它反映了一个趋势：<strong>编程工具开始竞争「体验」，而不只是「性能」。</strong></p>
+
+  <div class="scene">
+    <p>AI 编程工具有一个天然的 UX 问题：它们在后台异步工作——跑任务、执行命令、迭代代码——而你在做别的事情。没有状态提示的话，你要么忽略它，要么不停切窗口检查。</p>
+    <p>宠物本质上是一个「可爱化的状态指示器」。它解决了一个真实的交互问题，只不过用了一种让人会心一笑的方式。</p>
+  </div>
+
+  <p>有人觉得这是 AI 工具开始不务正业，有人觉得这才是产品成熟的标志——当基础能力拉不开太大差距的时候，谁让用户用得更舒服、更愿意留下来，谁就赢了。</p>
+  <p>2026 年的 AI 编程工具，不再比谁跑分更高，开始比谁的吉祥物更萌。这个画面本身就已经很有趣了。</p>
+
+  <div class="tip">
+    <span class="tip-mark"></span>有一个被埋在可爱宠物底下的细节：OpenAI 在同一次更新中，让 Codex 可以自动检测和导入 CLAUDE.md 配置文件——也就是说，Claude Code 用户可以两步迁移到 Codex。宠物是门面，配置导入才是武器。
+  </div>
+
+  <div class="closing">
+    <p>源于生活，立足应用。偶尔也看看热闹。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <p style="margin-top:16px;"><a href="../index.html">← 查看往期 Digest</a></p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+</div>
+</body>
+</html>

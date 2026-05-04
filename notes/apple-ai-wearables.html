@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple 三线齐发 AI 穿戴 | AI Digest #004</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --white: #FFFFFF;
+    --iris-light: #F4F3F1;
+    --iris: #E8E6E1;
+    --grey: #807D76;
+    --grey-mid: #605D56;
+    --text: #2C2B28;
+    --text-body: #3A3935;
+    --text-light: #706D66;
+    --teal: #2A9D8F;
+    --teal-dark: #1E7A6F;
+    --black: #1A1918;
+  }
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--text-body);
+    line-height: 2;
+    font-size: 15px;
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 40px 28px 72px; }
+  .nav-back { font-size: 13px; color: var(--teal); text-decoration: none; font-weight: 400; letter-spacing: 0.3px; }
+  .nav-back:hover { color: var(--teal-dark); }
+
+  .header { margin: 48px 0 40px; }
+  .header-brand { font-size: 10px; letter-spacing: 4px; color: var(--grey); text-transform: uppercase; margin-bottom: 20px; }
+  .header-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: var(--black); line-height: 1.25; margin-bottom: 16px; }
+  .header-sub { font-size: 15px; color: var(--grey-mid); line-height: 1.7; font-weight: 300; }
+  .header-meta { font-size: 11px; color: var(--grey); margin-top: 20px; letter-spacing: 0.5px; }
+  .header-line { width: 40px; height: 2px; background: var(--teal); margin-top: 28px; }
+
+  .divider { display: flex; align-items: center; gap: 16px; margin: 44px 0 36px; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--iris); }
+  .divider .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+  .section-head { margin-bottom: 20px; }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--black); line-height: 1.3; }
+  .section-note { font-size: 13px; color: var(--text-light); margin-top: 4px; font-weight: 300; }
+
+  p { margin-bottom: 16px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  .scene { border-left: 2px solid var(--iris); padding-left: 20px; margin: 20px 0 24px; color: var(--text-body); font-size: 14px; line-height: 2; }
+  .scene p { margin-bottom: 10px; }
+  .scene p:last-child { margin-bottom: 0; }
+
+  .tip { font-size: 14px; color: var(--grey-mid); padding: 16px 0; border-top: 1px solid var(--iris); border-bottom: 1px solid var(--iris); margin: 24px 0; }
+  .tip .tip-mark { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); margin-right: 10px; vertical-align: middle; position: relative; top: -1px; }
+
+  .img-wrap { margin: 24px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--iris); }
+  .img-wrap img { width: 100%; display: block; }
+  .img-caption { padding: 12px 16px; font-size: 13px; color: var(--grey-mid); background: var(--iris-light); line-height: 1.7; }
+  .img-caption strong { color: var(--text); }
+
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .two-up .img-wrap { margin: 0; }
+  @media(max-width:520px){ .two-up { grid-template-columns: 1fr; } }
+
+  /* Device cards */
+  .device { padding: 20px 0; border-bottom: 1px solid var(--iris); }
+  .device:last-child { border-bottom: none; }
+  .device .d-name { font-weight: 600; color: var(--black); font-size: 16px; margin-bottom: 2px; }
+  .device .d-sub { font-size: 13px; color: var(--teal); font-weight: 500; margin-bottom: 8px; }
+  .device .d-desc { font-size: 14px; color: var(--text-body); line-height: 1.9; }
+
+  .closing { text-align: center; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--iris); }
+  .closing p { font-size: 14px; color: var(--text-light); margin-bottom: 4px; font-weight: 300; }
+  .closing .brand { font-size: 10px; letter-spacing: 4px; color: var(--grey); text-transform: uppercase; margin-top: 20px; }
+  .closing a { color: var(--teal); text-decoration: none; font-size: 13px; }
+
+  @media(max-width:640px){ .wrap { padding: 28px 20px 56px; } .header-title { font-size: 27px; } .section-title { font-size: 21px; } }
+  @media(prefers-color-scheme:dark){
+    :root { --white: #1A1A1E; --iris-light: #2A2A2E; --iris: #333338; --grey: #6A6A70; --grey-mid: #8A8A90; --text: #E8E6E1; --text-body: #C5C3BE; --text-light: #7A7A80; --teal: #3DBDB0; --teal-dark: #5AD4C7; --black: #F0EEEA; }
+    body { background: #141416; }
+    .scene { border-left-color: #444448; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="nav-back">← 回到首页</a>
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <h1 class="header-title">Apple 三线齐发 AI 穿戴<br>不是不够独立，是吸取了教训</h1>
+    <div class="header-sub">智能眼镜、AI Pin、摄像头 AirPods——三个形态，一个逻辑</div>
+    <div class="header-meta">Issue #004 · May 2026 · 硬件信号</div>
+    <div class="header-line"></div>
+  </div>
+
+  <div class="two-up">
+    <div class="img-wrap">
+      <img src="../assets/images/img-apple-ai-cover.jpeg" alt="Apple AI 穿戴设备概览" loading="lazy">
+    </div>
+    <div class="img-wrap">
+      <img src="../assets/images/img-apple-ai-detail.jpeg" alt="Apple 三款 AI 穿戴设备详解" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <p>Apple 正在同时推进三款 AI 穿戴设备。不是传闻，是已经进入原型测试阶段的真实项目。</p>
+  <p>有意思的不是「Apple 又出新硬件了」这件事本身，而是<strong>它选择的路径</strong>——三款设备，没有一款试图独立运行。全部依赖 iPhone。</p>
+  <p>这在 Humane AI Pin 和 Rabbit R1 相继翻车之后，是一个非常清醒的选择。</p>
+
+  <!-- Three devices -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">三款设备，三个场景</div>
+  </div>
+
+  <div class="device">
+    <div class="d-name">智能眼镜 N50</div>
+    <div class="d-sub">最早 2026 年底量产 · 预计 2027 年发售 · $499 起</div>
+    <div class="d-desc">没有屏幕，不做 AR 叠加。双摄像头（一颗高清拍摄，一颗环境感知），搭载 iOS 27 升级版 Siri，核心交互全靠语音。醋酸酯材质，至少四种框型在测试。Apple 从 Vision Pro 学到的最大教训：让人戴出门吃饭的东西，不能看起来像在做科技演示。</div>
+  </div>
+
+  <div class="device">
+    <div class="d-name">AI Pin</div>
+    <div class="d-sub">AirTag 大小 · 铝合金 + 玻璃 · 挂脖或别在衣服上</div>
+    <div class="d-desc">一个随身的 AI 小坠子。不独立计算，所有处理通过 iPhone 完成。搭载 iOS 27 的 Siri，语音交互为核心。Humane 那款 AI Pin 失败的核心原因之一是试图独立运行但性能跟不上——Apple 的版本直接把这个问题绕过去了：我不独立，我就是 iPhone 的一个延伸。</div>
+  </div>
+
+  <div class="device">
+    <div class="d-name">AI AirPods（带摄像头）</div>
+    <div class="d-sub">摄像头集成在耳机中 · 视觉 + 音频双通道</div>
+    <div class="d-desc">在 AirPods 里加入微型摄像头，让它能「看到」你周围的环境。结合视觉和音频信息提供智能响应——比如你看着一个菜单，它能帮你翻译；你走在陌生街道，它能告诉你附近有什么。这是三款里最野的想法，也是把 AI 塞进「几亿人已经在用的产品」里最聪明的方式。</div>
+  </div>
+
+  <!-- Analysis -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">一个逻辑：不做独立设备，做 iPhone 的感知延伸</div>
+  </div>
+
+  <p>三款设备的共同点很明确：全部依赖 iPhone 做计算和连接，自己只负责「感知」——看、听、理解你周围的环境，然后把数据交给手机里的 AI 去处理。</p>
+  <p>这不是技术上做不到独立。而是 Apple 看过了前面几家的翻车之后做出的判断：<strong>用户不需要另一个独立设备，用户需要现有设备变得更聪明。</strong></p>
+
+  <div class="scene">
+    <p>Humane AI Pin 试图做一个不需要手机的独立 AI 终端——结果性能不够、体验割裂、$699 的定价换来的是退货率远高于预期。</p>
+    <p>Rabbit R1 试图用一个小方块替代 App——结果发现大多数人并不想多带一个设备。</p>
+    <p>Apple 的答案是：不替代手机，而是让手机的 AI 能力，通过眼镜、耳机、胸针这些你本来就会带在身上的东西，延伸到物理世界。</p>
+  </div>
+
+  <p>这其实也是 Meta Ray-Ban 智能眼镜成功的原因——它没有试图做一个全新品类，而是在一副你本来就会戴的眼镜里，塞进了刚好够用的智能。Apple 现在走的是同一条路，只不过同时押了三个形态。</p>
+
+  <div class="tip">
+    <span class="tip-mark"></span>对普通用户的意义：AI 正在从屏幕里走出来。不是某一天突然出现一个革命性产品，而是你已经在用的东西——耳机、眼镜——一个一个地变聪明。到那时候，「会不会用 AI」这个问题可能就不存在了，因为你已经在用了，只是没意识到。
+  </div>
+
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <p style="margin-top:16px;"><a href="../index.html">← 查看往期 Digest</a></p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+</div>
+</body>
+</html>
