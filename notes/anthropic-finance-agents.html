@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic 发了十个金融 Agent | AI Digest #004</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --white:#FFFFFF; --iris-light:#F4F3F1; --iris:#E8E6E1; --grey:#807D76; --grey-mid:#605D56; --text:#2C2B28; --text-body:#3A3935; --text-light:#706D66; --teal:#2A9D8F; --teal-dark:#1E7A6F; --black:#1A1918; }
+  body { font-family:'Noto Sans SC',sans-serif; color:var(--text-body); line-height:2; font-size:15px; background:var(--white); -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:660px; margin:0 auto; padding:40px 28px 72px; }
+  .nav-back { font-size:13px; color:var(--teal); text-decoration:none; font-weight:400; letter-spacing:.3px; }
+  .nav-back:hover { color:var(--teal-dark); }
+  .header { margin:48px 0 40px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:var(--grey); text-transform:uppercase; margin-bottom:20px; }
+  .header-title { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:700; color:var(--black); line-height:1.25; margin-bottom:16px; }
+  .header-sub { font-size:15px; color:var(--grey-mid); line-height:1.7; font-weight:300; }
+  .header-meta { font-size:11px; color:var(--grey); margin-top:20px; letter-spacing:.5px; }
+  .header-line { width:40px; height:2px; background:var(--teal); margin-top:28px; }
+  .divider { display:flex; align-items:center; gap:16px; margin:44px 0 36px; }
+  .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--iris); }
+  .divider .dot { width:5px; height:5px; border-radius:50%; background:var(--teal); flex-shrink:0; }
+  .section-head { margin-bottom:20px; }
+  .section-label { font-size:11px; font-weight:500; color:var(--teal); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:700; color:var(--black); line-height:1.3; }
+  .section-note { font-size:13px; color:var(--text-light); margin-top:4px; font-weight:300; }
+  p { margin-bottom:16px; }
+  strong { color:var(--text); font-weight:600; }
+  .scene { border-left:2px solid var(--iris); padding-left:20px; margin:20px 0 24px; font-size:14px; line-height:2; }
+  .scene p { margin-bottom:10px; }
+  .scene p:last-child { margin-bottom:0; }
+  .tip { font-size:14px; color:var(--grey-mid); padding:16px 0; border-top:1px solid var(--iris); border-bottom:1px solid var(--iris); margin:24px 0; }
+  .tip .tip-mark { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--teal); margin-right:10px; vertical-align:middle; position:relative; top:-1px; }
+  .closing { text-align:center; margin-top:56px; padding-top:32px; border-top:1px solid var(--iris); }
+  .closing p { font-size:14px; color:var(--text-light); margin-bottom:4px; font-weight:300; }
+  .closing .brand { font-size:10px; letter-spacing:4px; color:var(--grey); text-transform:uppercase; margin-top:20px; }
+  .closing a { color:var(--teal); text-decoration:none; font-size:13px; }
+  @media(max-width:640px){ .wrap{padding:28px 20px 56px;} .header-title{font-size:27px;} .section-title{font-size:21px;} }
+  @media(prefers-color-scheme:dark){
+    :root { --white:#1A1A1E; --iris-light:#2A2A2E; --iris:#333338; --grey:#6A6A70; --grey-mid:#8A8A90; --text:#E8E6E1; --text-body:#C5C3BE; --text-light:#7A7A80; --teal:#3DBDB0; --teal-dark:#5AD4C7; --black:#F0EEEA; }
+    body{background:#141416;} .scene{border-left-color:#444448;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="../index.html" class="nav-back">← 回到首页</a>
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <h1 class="header-title">Anthropic 发了十个金融 Agent<br>金融之外的人也可以看看</h1>
+    <div class="header-sub">一次行业发布，但里面藏着 Agent 落地的通用思路</div>
+    <div class="header-meta">Issue #004 · May 5, 2026 · 快速解读</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- What happened -->
+  <p>今天 Anthropic 发了一篇公告，标题很朴素：「Agents for Financial Services」。信息量不小，简单帮你梳理一下。</p>
+
+  <p><strong>三件事同时发布：</strong></p>
+
+  <div class="scene">
+    <p><strong>第一，十个即插即用的金融 Agent 模板。</strong>覆盖 pitchbook 制作、KYC 筛查、月末结账、估值审核、财务对账、盈利分析等——全部是金融行业里最耗时的工作。每个模板可以作为 Cowork/Code 插件运行，也可以作为 Managed Agent 在平台上自主运行。</p>
+    <p><strong>第二，Claude 正式入驻 Microsoft 全家桶。</strong>Excel、PowerPoint、Word 已上线插件，Outlook 即将跟进。关键是：上下文跨应用打通——在 Excel 里建的模型，移到 PowerPoint 做 deck 时不用重新解释。</p>
+    <p><strong>第三，数据生态扩展。</strong>新增了 Dun & Bradstreet、Moody's、FactSet、S&P Capital IQ 等金融数据连接器，Claude 可以调用这些平台的实时数据来辅助任务。</p>
+  </div>
+
+  <!-- Why it matters to everyone -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">金融之外可以看什么</div>
+  </div>
+
+  <p>这次发布表面上是一个行业方案，但里面有一些思路可能适用范围更广。</p>
+
+  <p>之前大家讨论 AI Agent，多半停留在概念层面——「它可以帮你做事」「它可以自主执行」。具体长什么样、怎么用、跟现有工具怎么配合，一直比较模糊。</p>
+
+  <p>这次给出了一个相对具体的参考：</p>
+
+  <div class="scene">
+    <p><strong>Agent = 技能 + 数据连接 + 子任务分工。</strong>每个模板包含三样东西：Skills（领域知识和指令）、Connectors（接入真实数据源）、Sub-agents（把大任务拆成小任务分给不同的 Claude 执行）。</p>
+    <p>这个架构本身不限于金融。类似的模式或许可以用在医疗（病历审核）、教育（课件生成）、内容运营（每日摘要）——技能和数据源换了，骨架可能是通用的。</p>
+  </div>
+
+  <!-- The Microsoft move -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">Claude 进 Excel，值得留意</div>
+  </div>
+
+  <p>Claude for Excel 看起来只是「在表格里用 AI」，但可以多想一步：金融行业里大量的定量工作——投行建模、基金估值、保险精算、企业财报——最终都落在 Excel 里。</p>
+
+  <p>AI 直接嵌入这个场景，意味着它不只是在旁边给建议，而是可以在你的工作文件里帮你审公式、跑敏感度分析、从财报建模。做完之后还能带着上下文移到 PowerPoint 出 deck，不用重新解释一遍。</p>
+
+  <p>从公告里的客户引用来看，Citadel 已经在用 Claude for Excel，Walleye Capital 提到他们 400 人的基金里所有员工都在用 Claude Code——不只是技术团队。当然，这些是官方引用，实际使用深度可能有差异，但方向可以参考。</p>
+
+  <!-- What to watch -->
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-title">值得留意的信号</div>
+  </div>
+
+  <p><strong>Opus 4.7 露面了。</strong>公告里提到这些 Agent 建议配合 Claude Opus 4.7 使用，在 Vals AI 的金融 Agent 基准测试上拿到 64.37%。看起来 4.6 之后的新模型已经在特定场景里落地了。</p>
+
+  <p><strong>Managed Agent 值得关注。</strong>除了作为插件在桌面上跑，这些 Agent 还能以「托管模式」在 Claude Platform 上自主运行——处理几个小时的长任务、按计划每晚自动执行，配有权限管理、凭证库和审计日志。如果这个模式成熟，可能会模糊「AI 助手」和「AI 员工」之间的界限。</p>
+
+  <p><strong>数据合规被放在很重要的位置。</strong>Anthropic 反复提到「governed access」——每个数据连接器都有权限控制，每步操作都有审计记录。对金融机构来说，可追溯性可能比模型能力本身更关键。</p>
+
+  <div class="tip">
+    <span class="tip-mark"></span>和本期那篇趋势信号呼应一下——AI Agent 正在从概念往产品走。今天这个发布算是一个具体的落地样本。金融是第一个吃螃蟹的行业，但背后的架构思路可能是通用的，后续其他行业也许会出现类似的模板化方案。建议保持关注，但不必着急。
+  </div>
+
+  <p style="font-size:14px;color:var(--text-light);margin-top:28px;">原文链接：<a href="https://www.anthropic.com/news/finance-agents" style="color:var(--teal);text-decoration:none;">anthropic.com/news/finance-agents</a></p>
+
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <p style="margin-top:16px;"><a href="../index.html">← 查看往期 Digest</a></p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+</div>
+</body>
+</html>
