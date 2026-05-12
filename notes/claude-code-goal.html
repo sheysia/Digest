@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 月 11 日随 v2.1.139 发布。你给一个完成条件，Claude 自己干活、自己检查、不满足就继续。听起来简单，用好有讲究。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Claude Code /goal：让 AI 自己跑到做完为止 | AI Digest #005" />
+  <meta property="og:description" content="5 月 11 日随 v2.1.139 发布。你给一个完成条件，Claude 自己干活、自己检查、不满足就继续。听起来简单，用好有讲究。" />
+  <meta property="og:url" content="https://syneira.org/notes/claude-code-goal.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Claude Code /goal：让 AI 自己跑到做完为止 | AI Digest #005" />
+  <meta name="twitter:description" content="5 月 11 日随 v2.1.139 发布。你给一个完成条件，Claude 自己干活、自己检查、不满足就继续。听起来简单，用好有讲究。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>Claude Code /goal：让 AI 自己跑到做完为止 | AI Digest #005</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--accent)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-tool{background:#FDF0EB;color:var(--orange)}
+  .tag-tip{background:#F5EFF8;color:var(--purple)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:400;line-height:2;margin-bottom:24px}
+
+  .section-head{margin:40px 0 18px}
+  .section-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--accent);background:#F0F8F7;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+  .callout-warn{border-left-color:var(--orange);background:#FDF3EE}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  /* Flow diagram */
+  .flow{display:flex;align-items:center;gap:4px;margin:22px 0;flex-wrap:wrap}
+  .flow-box{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:12px 14px;text-align:center;flex:1;min-width:100px}
+  .flow-box .fb-label{font-size:10px;color:var(--text-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+  .flow-box .fb-name{font-size:13px;font-weight:700;color:var(--text)}
+  .flow-box .fb-desc{font-size:11px;color:var(--text-light);margin-top:2px}
+  .flow-box.accent{border-color:var(--accent);background:#F0F8F7}
+  .flow-box.accent .fb-name{color:var(--accent-dark)}
+  .flow-arrow{color:var(--border);font-size:16px;flex-shrink:0}
+
+  /* Code block */
+  .codeblock{background:#1A1A2E;border-radius:8px;padding:16px 18px;margin:20px 0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:#D4D0C8;overflow-x:auto;white-space:pre}
+  .codeblock .kw{color:var(--accent)}
+  .codeblock .cm{color:#6A6A7A}
+  .codeblock .str{color:#C0A86E}
+
+  /* Compare table */
+  .cmp-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .cmp-tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text);font-weight:700;font-size:12px;letter-spacing:.5px}
+  .cmp-tbl td{padding:10px 12px;border-bottom:1px solid var(--border-light);color:var(--text-body);vertical-align:top;line-height:1.7}
+  .cmp-tbl tr:last-child td{border-bottom:none}
+
+  /* Good/bad cards */
+  .gb-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+  .gb{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:14px 16px}
+  .gb-title{font-size:12px;font-weight:700;margin-bottom:8px}
+  .gb.good .gb-title{color:var(--green)}
+  .gb.bad .gb-title{color:#C62828}
+  .gb-item{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text);line-height:1.6;margin-bottom:6px}
+  .gb-note{font-size:11px;color:var(--text-light);line-height:1.6}
+
+  /* Use case cards */
+  .uses{display:flex;flex-direction:column;gap:2px;margin:20px 0}
+  .use{background:var(--card);border:1px solid var(--border-light);padding:14px 18px;display:flex;gap:12px;align-items:flex-start}
+  .use:first-child{border-radius:10px 10px 0 0}
+  .use:last-child{border-radius:0 0 10px 10px}
+  .use-num{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--accent);min-width:20px}
+  .use-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .use-cond{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-dark);background:#F0F8F7;padding:2px 8px;border-radius:4px;display:inline-block;margin-top:4px}
+  .use-desc{font-size:12px;color:var(--text-light);margin-top:4px;line-height:1.6}
+
+  .summary{background:var(--text);color:#EAE7E0;border-radius:10px;padding:28px;margin:28px 0}
+  .summary h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:14px}
+  .summary p{font-size:13px;line-height:1.85;color:#B0ADA6;margin-bottom:12px}
+  .summary p:last-child{margin-bottom:0}
+
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .header h1{font-size:24px}
+    .flow{flex-direction:column;align-items:stretch}
+    .flow-arrow{transform:rotate(90deg);text-align:center}
+    .gb-row{grid-template-columns:1fr}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #005</span>
+</nav>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-tool">工具上新</span>
+      <span class="tag tag-tip">用法洞察</span>
+    </div>
+    <h1>Claude Code <code>/goal</code>：<br>让 AI 自己跑到做完为止</h1>
+    <p class="header-sub">5 月 11 日随 v2.1.139 发布。你给一个完成条件，Claude 自己干活、自己检查、不满足就继续。听起来简单，用好有讲究。</p>
+    <div class="header-meta">📌 来源：code.claude.com/docs/en/goal · Claude Code v2.1.139 · 2026.05.11</div>
+  </header>
+
+  <!-- ══ 它是什么 ══ -->
+  <p class="lead">平时用 Claude Code，你说一句它做一步，做完了停下来等你确认。<code>/goal</code> 改变的是这个节奏：你设定一个完成条件，Claude 自己一轮一轮地干下去，每轮结束由一个独立的小模型（Haiku）来判断条件是否满足，满足了自动停，不满足继续下一轮。你不用一直盯着按回车。</p>
+
+  <div class="flow">
+    <div class="flow-box">
+      <div class="fb-label">你</div>
+      <div class="fb-name">/goal 条件</div>
+      <div class="fb-desc">输入一次</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <div class="fb-label">Claude</div>
+      <div class="fb-name">执行一轮</div>
+      <div class="fb-desc">读文件、改代码、跑命令</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box accent">
+      <div class="fb-label">Haiku</div>
+      <div class="fb-name">独立评估</div>
+      <div class="fb-desc">条件满足了吗？</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <div class="fb-label">结果</div>
+      <div class="fb-name">满足则停</div>
+      <div class="fb-desc">否则继续下一轮</div>
+    </div>
+  </div>
+
+  <p>评估器（evaluator）只读对话记录，不跑命令也不读文件。它能判断的，只有 Claude 已经在对话里展示出来的东西。这条很关键，后面会反复提到。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 条件怎么写 ══ -->
+  <div class="section-head">
+    <div class="section-label">How To</div>
+    <h2>条件怎么写才有用</h2>
+  </div>
+
+  <p>条件写得好不好，直接决定 <code>/goal</code> 能不能正常停下来。官方文档给了一条原则：把条件写成 Claude 自己的输出能够证明的东西。</p>
+
+  <div class="gb-row">
+    <div class="gb good">
+      <div class="gb-title">✓ 可验证</div>
+      <div class="gb-item">npm test exits 0</div>
+      <div class="gb-item">all tests in test/auth pass</div>
+      <div class="gb-item">lint step is clean</div>
+      <div class="gb-note">Claude 跑命令 → 结果进对话 → evaluator 能判断</div>
+    </div>
+    <div class="gb bad">
+      <div class="gb-title">✗ 没法验证</div>
+      <div class="gb-item">代码质量变好了</div>
+      <div class="gb-item">数据库脏数据清干净了</div>
+      <div class="gb-item">性能提升了</div>
+      <div class="gb-note">evaluator 看不到数据库，也没有「质量」的判断标准</div>
+    </div>
+  </div>
+
+  <p>一个好的条件包含三样东西：终止状态（什么叫「做完了」）、检验方式（Claude 用什么命令来证明）、约束（过程中不能动什么）。缺第三条最容易出问题——比如你让它把测试跑通，它可能把测试文件删了来「通过」。</p>
+
+  <div class="codeblock"><span class="cm"># 官方推荐写法</span>
+<span class="kw">/goal</span> <span class="str">all tests in test/auth pass, lint clean,
+      no other test file modified,
+      or stop after 20 turns</span></div>
+
+  <div class="callout-warn callout">
+    <p>⚠️ 最后那句「or stop after 20 turns」不是可选的。没有轮次上限的话，如果任务卡住了，Claude 会一直跑下去，一直消耗 token。20 轮还是 30 轮看你的任务复杂度，但一定要加。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 适用场景 ══ -->
+  <div class="section-head">
+    <div class="section-label">Use Cases</div>
+    <h2>什么时候用 /goal，什么时候不用</h2>
+  </div>
+
+  <p><code>/goal</code> 适合那种「任务本身需要反复确认结果」的工作。你让它改一个 bug，改完跑测试没过，再改，再跑，直到过了——这种循环以前你得手动按好几轮回车，现在 <code>/goal</code> 帮你自动化了。一次性的问答不需要用它，直接对话就够。</p>
+
+  <p>官方给了四个典型场景：</p>
+
+  <div class="uses">
+    <div class="use">
+      <div class="use-num">1</div>
+      <div>
+        <div class="use-title">API 迁移</div>
+        <div class="use-cond">every call site compiles and tests pass</div>
+        <div class="use-desc">把模块迁移到新 API，所有调用处编译通过、测试通过</div>
+      </div>
+    </div>
+    <div class="use">
+      <div class="use-num">2</div>
+      <div>
+        <div class="use-title">按设计文档实现</div>
+        <div class="use-cond">all acceptance criteria hold</div>
+        <div class="use-desc">按文档实现功能，直到全部验收标准满足</div>
+      </div>
+    </div>
+    <div class="use">
+      <div class="use-num">3</div>
+      <div>
+        <div class="use-title">拆分大文件</div>
+        <div class="use-cond">each module is under a size budget</div>
+        <div class="use-desc">把大文件拆成小模块，直到每个低于设定行数</div>
+      </div>
+    </div>
+    <div class="use">
+      <div class="use-num">4</div>
+      <div>
+        <div class="use-title">清 issue 积压</div>
+        <div class="use-cond">the labeled issue queue is empty</div>
+        <div class="use-desc">处理标记过的 issue，直到队列清空</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 和其他方式的区别 ══ -->
+  <div class="section-head">
+    <div class="section-label">Compare</div>
+    <h2>四种自动化方式，别搞混</h2>
+  </div>
+
+  <p>Claude Code 里有好几种让 AI 「自动往下跑」的方式，容易混。官方做了区分：</p>
+
+  <table class="cmp-tbl">
+    <tr><th>方式</th><th>下一轮怎么触发</th><th>什么时候停</th></tr>
+    <tr><td><code>/goal</code></td><td>上一轮结束后自动</td><td>独立模型确认条件满足</td></tr>
+    <tr><td><code>/loop</code></td><td>按时间间隔</td><td>你手动停，或 Claude 自判完成</td></tr>
+    <tr><td>Stop hook</td><td>上一轮结束后自动</td><td>你自己的脚本或 prompt 决定</td></tr>
+    <tr><td>Auto mode</td><td>不启动下一轮（仅单轮）</td><td>Claude 自判本轮工作完成</td></tr>
+  </table>
+
+  <p><code>/goal</code> 独特的地方在于那个独立的评估器。auto mode 只是在一轮内自动批准工具调用，不会自己启动下一轮。<code>/goal</code> 会。而且评估器是另一个模型（Haiku），不是 Claude 自己判断自己，多了一层制衡。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ headless ══ -->
+  <div class="section-head">
+    <div class="section-label">Advanced</div>
+    <h2>不开对话也能跑：headless 模式</h2>
+  </div>
+
+  <p><code>/goal</code> 可以用 <code>-p</code> 参数直接从命令行传入，不需要打开交互式对话。整个循环在一次调用里跑到满足为止。</p>
+
+  <div class="codeblock"><span class="cm"># 命令行传入，不用开交互对话</span>
+$ <span class="kw">claude</span> -p <span class="str">"/goal CHANGELOG.md has an entry
+             for every PR merged this week"</span></div>
+
+  <p>这个用法适合接到 CI 流程、定时脚本、或者后台批处理任务里。不需要人守着，跑完自动退出。中断的话 Ctrl+C。</p>
+
+  <p>还有一个细节：如果会话中断了，用 <code>--resume</code> 或 <code>--continue</code> 恢复时，goal 的条件会保留，但轮次计数、计时器和 token 消耗基准都重置。已经完成或手动清除的 goal 不会被恢复。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ vs Codex ══ -->
+  <div class="section-head">
+    <div class="section-label">Context</div>
+    <h2>Codex 也有 /goal，但不是一回事</h2>
+  </div>
+
+  <p>OpenAI 的 Codex CLI 也有 <code>/goal</code> 命令，但目前是 Experimental 状态，需要手动开启 <code>features.goals = true</code>。核心区别在三点：</p>
+
+  <p>Claude Code 有独立评估器。每轮结束由 Haiku 判断条件是否满足，不满足自动起下一轮。Codex 没有评估器，<code>/goal</code> 相当于把目标挂在线程上当参考，推进还是得你手动。</p>
+
+  <p>Claude Code 支持 headless 闭环。<code>claude -p "/goal 条件"</code> 传进去自动循环到满足。Codex 官方没有文档化这个用法，没有评估器也不会自动闭环。</p>
+
+  <p>成熟度不同。Claude Code 的 <code>/goal</code> 是正式发布，Codex 那边还是实验性的。</p>
+
+  <div class="callout">
+    <p>一句话：Claude Code 的 /goal 真正独特的形态是「headless 跑到外部条件满足」，靠独立评估器驱动。Codex 目前没有等价物。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 总结 ══ -->
+  <div class="summary">
+    <h3>用之前想清楚三件事</h3>
+    <p>第一，条件能不能被验证。如果评估器没法从对话记录里判断「做没做完」，goal 就不会自己停，你的 token 会一直在烧。</p>
+    <p>第二，加轮次上限。「or stop after N turns」写进条件里，不是建议，是必要的。</p>
+    <p>第三，想清楚约束。你要 Claude 做什么和不能动什么，都得说。不然它可能用你没预料到的方式「满足」条件。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #005 · 2026.05</span>
+    <span>工具上新 · 用法洞察</span>
+  </footer>
+
+</div>
+</body>
+</html>
