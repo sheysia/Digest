@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="从零搭一个社群平台：Salonette 制作指南 | AI Digest #005" />
+  <meta property="og:description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <meta property="og:url" content="https://syneira.org/notes/salonette-build-guide.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="从零搭一个社群平台：Salonette 制作指南 | AI Digest #005" />
+  <meta name="twitter:description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>从零搭一个社群平台：Salonette 制作指南 | AI Digest #005</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --iris:#7C7FCA;--iris-soft:#EEF0FF;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--iris)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-scene{background:#EFF5EC;color:var(--green)}
+  .tag-tip{background:#F5EFF8;color:var(--purple)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:400;line-height:2;margin-bottom:24px}
+
+  .section-head{margin:40px 0 18px}
+  .section-label{font-size:10px;font-weight:700;color:var(--iris);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--iris);flex-shrink:0}
+
+  /* Callout */
+  .callout{border-left:3px solid var(--iris);background:var(--iris-soft);padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+  .callout-warn{border-left-color:var(--orange);background:#FDF3EE}
+  .callout-green{border-left-color:var(--green);background:#EFF8EE}
+
+  /* Stack table */
+  .stack-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .stack-tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text);font-weight:700;font-size:12px;letter-spacing:.5px}
+  .stack-tbl td{padding:10px 12px;border-bottom:1px solid var(--border-light);color:var(--text-body);vertical-align:top;line-height:1.7}
+  .stack-tbl tr:last-child td{border-bottom:none}
+
+  /* Schema visual */
+  .schema{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:20px;margin:22px 0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto;white-space:pre}
+  .schema .tbl-name{color:var(--iris);font-weight:700}
+  .schema .fk{color:var(--orange)}
+  .schema .comment{color:var(--text-light)}
+
+  /* Phase cards */
+  .phases{display:flex;flex-direction:column;gap:2px;margin:22px 0}
+  .phase{background:var(--card);border:1px solid var(--border-light);padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+  .phase:first-child{border-radius:10px 10px 0 0}
+  .phase:last-child{border-radius:0 0 10px 10px}
+  .phase-num{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--iris);line-height:1;min-width:28px;padding-top:2px}
+  .phase-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .phase-time{font-size:11px;color:var(--iris);font-weight:600;margin-bottom:6px}
+  .phase-desc{font-size:13px;color:var(--text-light);line-height:1.75}
+
+  /* Pit cards */
+  .pits{display:flex;flex-direction:column;gap:10px;margin:22px 0}
+  .pit{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:16px 20px}
+  .pit-title{font-size:14px;font-weight:700;color:var(--orange);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .pit-problem{font-size:13px;color:var(--text-body);line-height:1.75;margin-bottom:8px}
+  .pit-fix{font-size:13px;color:var(--green);line-height:1.75}
+  .pit-fix::before{content:'✓ ';font-weight:700}
+
+  /* Summary card */
+  .summary{background:var(--text);color:#EAE7E0;border-radius:10px;padding:28px;margin:28px 0}
+  .summary h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:14px}
+  .summary p{font-size:13px;line-height:1.85;color:#B0ADA6;margin-bottom:12px}
+  .summary p:last-child{margin-bottom:0}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .header h1{font-size:24px}
+    .schema{font-size:11px}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #005</span>
+  <span class="nav-sep">›</span>
+  <span>制作指南</span>
+</nav>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-scene">场景拆解</span>
+      <span class="tag tag-tip">用法洞察</span>
+    </div>
+    <h1>从零搭一个社群平台：<br>Salonette 制作指南</h1>
+    <p class="header-sub">群里一直在说要有个自己的地方。后来就真的做了一个。这篇把过程记下来，不是教程，更像笔记。</p>
+    <div class="header-meta">📌 By Syneira Lab · salonette.syneira.org · 2026.05</div>
+  </header>
+
+  <!-- ══ 起点 ══ -->
+  <p class="lead">Salonette 是我们群的小平台。服务目前 90 来位成员，9 个投票产生的方向小组，可以发起项目、分享链接、看看彼此在做什么。从动手到上线大概 5 天，AI 帮写了大部分代码。下面把过程摊开，万一你哪天也想给自己的小群体做一个，能少走几步弯路。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 构建思路 ══ -->
+  <div class="section-head">
+    <div class="section-label">Thinking</div>
+    <h2>先想清楚不做什么</h2>
+  </div>
+
+  <p>做这种小工具最容易犯的错是想太多。投票、活动、日历、AI 摘要、聊天记录归档，每个听着都有道理，但一起做的话三个月也出不来。</p>
+
+  <p>所以第一版只留了四样东西：成员档案、方向小组、协作项目、链接分享。其他功能数据库层面留了位子，代码一行没碰。先能用起来再说。</p>
+
+  <div class="callout">
+    <p>有一条自己定的规矩后来帮了大忙：做就做完整的，不做就彻底不做。灰色的按钮、写着「即将上线」的空页面，这些东西放上去反而让人觉得没做完。</p>
+  </div>
+
+  <p>还有一个决定值得单独说。登录没有接 Google，也没有接微信，只用邮箱+密码。听起来很原始，但原因很实际：我们的人全是从微信群点链接进来的，微信内置浏览器不支持 Google 的登录跳转。如果用了 Google OAuth，上线当天所有人都登不进去。这种事不提前想，就是上线以后的事故。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 工具选择 ══ -->
+  <div class="section-head">
+    <div class="section-label">Stack</div>
+    <h2>用了哪些工具，为什么</h2>
+  </div>
+
+  <table class="stack-tbl">
+    <tr><th>层</th><th>选择</th><th>为什么</th></tr>
+    <tr>
+      <td>前端框架</td>
+      <td><code>Next.js 16</code> (App Router)</td>
+      <td>服务端组件做读取，Server Actions 做写入，不需要单独写 API 层。Vercel 一键部署</td>
+    </tr>
+    <tr>
+      <td>样式</td>
+      <td><code>Tailwind CSS v4</code></td>
+      <td>用 CSS 变量定义设计系统（品牌色 Iris #7C7FCA），不需要配置文件</td>
+    </tr>
+    <tr>
+      <td>后端 + 数据库</td>
+      <td><code>Supabase</code> (PostgreSQL)</td>
+      <td>自带认证、实时订阅、行级安全（RLS）、文件存储。免费额度够百人规模用。SQL 背景的人上手最快</td>
+    </tr>
+    <tr>
+      <td>认证</td>
+      <td>邮箱+密码 + 魔法链接</td>
+      <td>零第三方依赖，微信浏览器内完全可用</td>
+    </tr>
+    <tr>
+      <td>部署</td>
+      <td><code>Vercel</code> (免费)</td>
+      <td>GitHub push 自动部署，自定义域名免费 SSL</td>
+    </tr>
+    <tr>
+      <td>PWA</td>
+      <td>手写 <code>sw.js</code></td>
+      <td>主流 PWA 库（serwist、next-pwa）和 Next.js 16 的 Turbopack 冲突，手写反而最稳</td>
+    </tr>
+  </table>
+
+  <div class="callout-green callout">
+    <p>成本：第一版总成本 $0/月。Vercel 免费、Supabase 免费（50K 月活、500MB 数据库）、域名 $12/年（Porkbun）。百人以内的社群不需要花钱。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 数据库设计 ══ -->
+  <div class="section-head">
+    <div class="section-label">Database</div>
+    <h2>表之间的关系：这是最容易出问题的地方</h2>
+  </div>
+
+  <p>7 张表，不算多。但表和表怎么连的，决定了后面写功能的时候顺不顺。这部分稍微技术一点，不感兴趣可以跳过，但如果你打算自己做类似的东西，这里值得看一眼。</p>
+
+  <div class="schema"><span class="tbl-name">members</span>          ← 核心表，每个用户一条记录
+  user_id <span class="fk">→ auth.users</span>  <span class="comment">（Supabase 自带的认证系统）</span>
+  nickname, bio, industry[], ai_tools[]...
+
+<span class="tbl-name">groups</span>           ← 9 个方向小组（金融/教育/创意/健康/...）
+  code (唯一), name, icon, color
+
+<span class="tbl-name">group_members</span>    ← 多对多：谁加入了哪个组
+  <span class="fk">group_id → groups</span>
+  <span class="fk">member_id → members</span>
+  role, joined_via
+
+<span class="tbl-name">projects</span>         ← 组内协作项目
+  <span class="fk">group_id → groups</span>
+  <span class="fk">initiated_by → members</span>
+  status: recruiting → active → completed
+
+<span class="tbl-name">project_members</span>  ← 多对多：谁参与了哪个项目
+  <span class="fk">project_id → projects</span>
+  <span class="fk">member_id → members</span>
+  status: pending → approved / rejected
+
+<span class="tbl-name">links</span>            ← 分享的链接/资源
+  <span class="fk">group_id → groups</span>
+  <span class="fk">posted_by → members</span>
+
+<span class="tbl-name">link_bookmarks</span>   ← 私人收藏（只有自己能看）
+  <span class="fk">member_id → members</span>
+  <span class="fk">link_id → links</span></div>
+
+  <p>关键理解：<code>group_members</code> 和 <code>project_members</code> 是两张「关系表」（join table），它们的主键是两个外键的组合。这意味着一个人可以加多个组，参与多个项目，但不能重复加入同一个。</p>
+
+  <div class="callout-warn callout">
+    <p>⚠️ 如果你用过 NoSQL（比如 Firebase），你可能习惯把「这个组有哪些人」直接存成一个数组。别这样做。一旦你需要查「这个人加了哪些组」、「这个组有多少人」、「谁最近加入的」，数组就废了。关系表是正道。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ RLS ══ -->
+  <div class="section-head">
+    <div class="section-label">Security</div>
+    <h2>权限控制：谁能看什么、改什么</h2>
+  </div>
+
+  <p>Supabase 有个功能叫 RLS（Row Level Security），说白了就是在数据库层面控制每一行数据谁能看、谁能改。规则写在数据库里，前端代码怎么写都绕不过去。</p>
+
+  <p>Salonette 的几条关键规则举例：</p>
+
+  <table class="stack-tbl">
+    <tr><th>表</th><th>规则</th><th>意思</th></tr>
+    <tr><td>members</td><td>SELECT: 所有登录用户可看</td><td>成员目录对内公开（只要登录了就能看）</td></tr>
+    <tr><td>members</td><td>UPDATE: 只能改自己的行</td><td><code>user_id = auth.uid()</code></td></tr>
+    <tr><td>link_bookmarks</td><td>SELECT/INSERT/DELETE: 只看自己的</td><td>收藏是私人的，别人看不到你收藏了什么</td></tr>
+    <tr><td>projects</td><td>INSERT: 必须是目标组的成员</td><td>不能在没加入的组里发起项目</td></tr>
+  </table>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 分阶段执行 ══ -->
+  <div class="section-head">
+    <div class="section-label">Execution</div>
+    <h2>5 天，三步走</h2>
+  </div>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-num">1</div>
+      <div>
+        <div class="phase-title">Day 1 · 打地基</div>
+        <div class="phase-time">项目初始化 + 数据库 + 种子数据</div>
+        <div class="phase-desc">创建 Next.js 项目，接上 Supabase，把 7 张表的结构推上去。9 个小组的数据手动填，老成员的数据从之前的 Survey 和投票 Excel 里用 Python 脚本导入。这步看着简单，但数据干净后面才不会堵。</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">2</div>
+      <div>
+        <div class="phase-title">Day 2–3 · 让人进来</div>
+        <div class="phase-time">注册登录 + Onboarding + 小组浏览</div>
+        <div class="phase-desc">注册页、登录页，Onboarding 区分「老成员认领已有档案」和「新人从零填写」两条路。个人档案可以编辑，9 个方向小组可以浏览和加入。到这步，人能进来了，能看到彼此了。</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">3</div>
+      <div>
+        <div class="phase-title">Day 4–5 · 能用起来</div>
+        <div class="phase-time">项目 + 链接 + 首页 + 上线</div>
+        <div class="phase-desc">项目发起和申请，链接分享和收藏，个人首页把自己相关的内容汇总到一起。加上 PWA（可以添加到手机桌面），绑上域名，在群里发出去。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 踩坑 ══ -->
+  <div class="section-head">
+    <div class="section-label">Pitfalls</div>
+    <h2>踩过的坑</h2>
+  </div>
+
+  <p>下面这几个都是做的过程中真碰上的，不是假设的。记下来不是炫耀解决了什么，是因为做类似的东西大概率会踩到一样的。</p>
+
+  <div class="pits">
+    <div class="pit">
+      <div class="pit-title">⚠️ RLS 无限递归</div>
+      <div class="pit-problem">管理员权限检查写成了「查 members 表看有没有 is_admin=true 的行」，但这个查询本身触发了 members 表的 RLS 策略，RLS 策略里又要查管理员权限——死循环。新用户注册时直接报错。</div>
+      <div class="pit-fix">写一个 SECURITY DEFINER 函数 <code>is_admin()</code>，跳过 RLS 直接查。所有涉及管理员判断的策略都改成调用这个函数。</div>
+    </div>
+    <div class="pit">
+      <div class="pit-title">⚠️ 种子用户认领冲突</div>
+      <div class="pit-problem">Supabase 默认有个 trigger，新用户注册时自动在 members 表创建一行。但种子用户已经有一行了（只是 user_id 为空等着被认领）。结果：重复行。</div>
+      <div class="pit-fix">删掉自动 trigger。让 Onboarding 代码做唯一的入口——种子用户走「认领」（UPDATE），新用户走「创建」（INSERT）。</div>
+    </div>
+    <div class="pit">
+      <div class="pit-title">⚠️ 微信浏览器 + Google OAuth = 翻车</div>
+      <div class="pit-problem">微信内置浏览器不支持 Google 的 OAuth 重定向。如果用 Google 登录，用户从微信群点链接进来会直接失败。</div>
+      <div class="pit-fix">开始就不接 Google OAuth。用邮箱+密码，万事大吉。微信浏览器加一个小提示条：「建议用系统浏览器打开获得最佳体验」。</div>
+    </div>
+    <div class="pit">
+      <div class="pit-title">⚠️ PWA 库和 Next.js 16 不兼容</div>
+      <div class="pit-problem">主流的 PWA 库（serwist、next-pwa）都是基于 Webpack 的，Next.js 16 默认用 Turbopack，直接冲突。Build 失败。</div>
+      <div class="pit-fix">不用库。自己写一个 <code>sw.js</code> 放在 public 目录，30 行代码搞定缓存策略。简单、可控。</div>
+    </div>
+    <div class="pit">
+      <div class="pit-title">⚠️ 种子数据去重</div>
+      <div class="pit-problem">从两份不同的 Excel（Survey 和投票）导入种子数据，同一个人在两份表里名字写法不同（「Junqi Zhang」vs「Junqi」），差点导入成两个人。</div>
+      <div class="pit-fix">写一个 Python 脚本做导入，内置昵称映射表 <code>NICKNAME_CANONICAL</code>。30 个人的数据，人工校对一遍也就 10 分钟。不要相信自动去重。</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 如果你也想做 ══ -->
+  <div class="section-head">
+    <div class="section-label">For You</div>
+    <h2>如果你也想试试</h2>
+  </div>
+
+  <p>说实话，Salonette 的代码大部分是 AI 写的。我做的事情是想清楚要什么、给谁用、什么不做，然后交给 AI 编程工具去实现——组件、数据库规则、导入脚本都是这么来的。用 Claude Code 也好，GPT Codex 也好，其他 agent 也行，工具不重要。不会写代码不是障碍，不知道自己要什么才是。</p>
+
+  <p>如果你也有一个小群体，也觉得现有的工具不太合适，也许可以试试自己搭一个。成本比想象的低。</p>
+
+  <table class="stack-tbl">
+    <tr><th>项目</th><th>费用</th></tr>
+    <tr><td>Vercel 部署</td><td>免费</td></tr>
+    <tr><td>Supabase 后端</td><td>免费（50K MAU）</td></tr>
+    <tr><td>域名（可选）</td><td>~$12/年</td></tr>
+    <tr><td>AI 编程工具</td><td>GPT Codex / Claude Code / 其他 agent</td></tr>
+    <tr><td><strong>总计</strong></td><td><strong>$0–$1/月 + 你已有的 AI 订阅费</strong></td></tr>
+  </table>
+
+  <div class="summary">
+    <h3>回头看，几件事做对了</h3>
+    <p>功能砍得狠，只留了四个模块。登录方案一开始就考虑了微信浏览器的限制，没有返工。种子数据用脚本从 Excel 导入，不是手动录的，后面改起来也方便。权限规则从第一天就写好了，不是上线以后补的。</p>
+    <p>还有一点：没有先做个简易版凑合用。想好了就直接做正式的，5 天够了。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #005 · 2026.05</span>
+    <span>场景拆解 · 用法洞察</span>
+  </footer>
+
+</div>
+</body>
+</html>

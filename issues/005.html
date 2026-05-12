@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Digest by Syneira — 每周精选 AI 应用洞察，源于生活，立足应用。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI Digest Issue #005 | By Syneira" />
+  <meta property="og:description" content="AI Digest #005 — AI 进企业、进社群、进日常。1 spotlight + 1 deep-dive + 4 picks." />
+  <meta property="og:url" content="https://syneira.org/issues/005.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Digest Issue #005 | By Syneira" />
+  <meta name="twitter:description" content="AI Digest #005 — AI 进企业、进社群、进日常。1 spotlight + 1 deep-dive + 4 picks." />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>AI Digest Issue #005 | By Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; color:#2C2C2C; line-height:1.85; font-size:15px; background:#FAF8F5; }
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .nav a { font-size:13px; color:#2A9D8F; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:12px 24px 60px; }
+
+  .header { text-align:center; padding-bottom:20px; border-bottom:2.5px solid #2A9D8F; margin-bottom:24px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:#999; text-transform:uppercase; margin-bottom:6px; }
+  .header-title { font-size:26px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.3; }
+  .header-meta { font-size:12px; color:#999; }
+  .header-sub { font-size:14px; color:#2A9D8F; margin-top:8px; font-style:italic; }
+
+  .section { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .section.tool { background:#FDF0EB; border-left:4px solid #E8643B; }
+  .section.trend { background:#EBF2FD; border-left:4px solid #3A7BD4; }
+  .section.scene { background:#EFF5EC; border-left:4px solid #5A8E5A; }
+  .section.tip { background:#F5EFF8; border-left:4px solid #9B6DB7; }
+  .section.life { background:#E8F6F3; border-left:4px solid #2A9D8F; }
+  .section.spotlight { background:#FDF6EC; border-left:4px solid #E8A04B; }
+  .section h2 { font-size:16px; font-weight:700; }
+  .section.tool h2 { color:#E8643B; }
+  .section.trend h2 { color:#3A7BD4; }
+  .section.scene h2 { color:#5A8E5A; }
+  .section.tip h2 { color:#9B6DB7; }
+  .section.life h2 { color:#2A9D8F; }
+  .section.spotlight h2 { color:#C97A1F; }
+
+  .card { background:#FFF; border:1px solid #E0DCD7; border-radius:10px; padding:18px 20px; margin-bottom:16px; }
+  .card-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .tag-tool { background:#FDF0EB; color:#D4603A; }
+  .tag-trend { background:#EBF2FD; color:#3A7BD4; }
+  .tag-scene { background:#EFF5EC; color:#5A8E5A; }
+  .tag-tip { background:#F5EFF8; color:#9B6DB7; }
+  .tag-life { background:#E8F6F3; color:#2A9D8F; }
+  .tag-spotlight { background:#FDF6EC; color:#C97A1F; }
+  .card-num { font-size:11px; color:#AAA; font-weight:600; }
+  .card-title { font-size:17px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.4; }
+  .card-source { font-size:11px; color:#999; margin-bottom:12px; }
+
+  .label { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .label-h { color:#D4603A; }
+  .label-s { color:#3A7BD4; }
+  .label-w { color:#5A8E5A; }
+
+  .card p { font-size:14px; line-height:1.85; margin-bottom:10px; color:#444; }
+  .card strong { font-weight:700; color:#1A1A2E; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5F3F0; color:#777; border:0.5px solid #E0DCD7; margin-right:4px; }
+  .read-more { display:inline-block; font-size:12px; color:#2A9D8F; font-weight:600; text-decoration:none; margin-top:6px; }
+
+  .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
+  .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<div class="nav"><a href="../index.html">&larr; 返回首页 / Back to Home</a></div>
+
+<div class="wrap">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #005</div>
+  <div class="header-meta">May 6&ndash;12, 2026 &middot; 1 spotlight + 1 deep-dive + 4 picks</div>
+  <div class="header-sub">AI 进企业、进社群、进日常&mdash;&mdash;三条战线同时推进</div>
+</div>
+
+<!-- ===== 本期速递 ===== -->
+<div class="section trend"><h2>本期速递 &middot; Hot Take</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">行业速递</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude 今天做了两件事 &mdash; 单看是新闻，放在一起是策略</div>
+  <div class="card-source">&#x1f4cc; 2026.05.11 &middot; 来源：AWS 官方博客 / LLM大模型情报</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>5 月 11 日 Anthropic 发了两条更新，<strong>表面上是两条产品新闻，连起来看是一个清晰的双线策略</strong>：</p>
+  <p>&bull; <strong>企业那头</strong>——Claude 正式上线 AWS。企业可以直接用现有 AWS 账号调 Claude，不用单独签合同、不用过新的采购流程，几分钟内就接入。<br>
+  &bull; <strong>开发者那头</strong>——多 Agent 调度面板出来了。同时跑 5 个 Agent、10 个 Agent，终于有地方看每个在做什么、卡在哪、跑到第几步了。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>一手砍掉企业采购摩擦，一手解决开发者的 Agent 编排痛点。<strong>Anthropic 在同时降低两端门槛——把 Claude 嵌进现有工作流</strong>。这是把 API 卖向「平台化」的一周。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">用 AWS 的企业</span><span class="badge">多 Agent 工作流开发者</span><span class="badge">关注 AI 行业布局的人</span></p>
+  <a href="../notes/claude-two-moves.html" class="read-more">&#x1f4d6; 阅读完整解读 &rarr;</a>
+</div>
+
+<!-- ===== Spotlight ===== -->
+<div class="section spotlight"><h2>&#x1f31f; Spotlight</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-spotlight">社群协作</span><span class="card-num">#02</span></div>
+  <div class="card-title">China Quest &mdash; 给孩子们的中国文化互动游戏</div>
+  <div class="card-source">&#x1f4cc; By Syneira Lab &middot; Multicultural Night 协作项目</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>学校 Multicultural Night 要一个展位。一群妈妈各自出力，用 AI 辅助，做出了一整套手机能玩的互动游戏——<strong>转盘问答、City Quest、汉服朝代时间线</strong>，每个板块是独立 HTML，浏览器直接打开就能玩。</p>
+  <p>目前 4 个板块已上线，4 个征召中（Foodie / Zodiac / Art Guess / Festival）。本期 Spotlight 把整个项目摊开讲讲：起因、协作方式、实机截图、在线体验链接，外加一张「群里还有更多项目进行中」的报名表。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p><strong>这是 vibe coding 最真实的样子</strong>——不是一个人做完美产品，是一群人各做一块、AI 帮忙写代码和生成素材，拼在一起就能用。每个板块是独立 HTML，<strong>任何学校、任何社区都可以直接复用</strong>。做一次，用很多次。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">有学校 / 社区活动需求的家长</span><span class="badge">想认领一个板块的群友</span><span class="badge">对 vibe coding 好奇的人</span></p>
+  <a href="../notes/spotlight-china-quest.html" class="read-more">&#x1f4d6; 阅读完整 Spotlight（含截图 + 在线体验链接）&rarr;</a>
+</div>
+
+<!-- ===== 本期长文 ===== -->
+<div class="section tip"><h2>本期长文拆解</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">用法洞察</span><span class="card-num">#03</span></div>
+  <div class="card-title">AI 输出格式之争 &mdash; Markdown 还是 HTML？</div>
+  <div class="card-source">&#x1f4cc; 来源：@karpathy / @trq212 / 多篇技术分析</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>本周 AI 开发者圈忽然热起来一个问题：<strong>AI 应该输出 Markdown 还是 HTML？</strong>触发讨论的是 Anthropic Claude Code 团队 Thariq Shihipar 的一篇《The Unreasonable Effectiveness of HTML》——他展示了 20 个用 Claude Code 生成 HTML 的例子，双栏对比、带注释的代码审查报告、可在浏览器直接打开的计划文档。Andrej Karpathy 转发并补充判断后，话题被推到了更大受众面前。</p>
+  <p>Markdown 简洁、跨平台、对人友好；HTML 表达力强、能内嵌交互、能直接出可读 artifact。<strong>不是谁更好，是各有用场。</strong></p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Karpathy 看得更远——这两种格式可能只是<strong>「人机协作输出形态」演化的中间站</strong>。当 AI 越来越多生成可执行 artifact 而不是纯文本，格式本身会再换一次。文章里有一张「格式选择参考表」，对照着挑就行。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">用 AI 做 report / PPT / 文档的人</span><span class="badge">prompt 工程师</span><span class="badge">关注工具演化的人</span></p>
+  <a href="../notes/digest-md-vs-html.html" class="read-more">&#x1f4d6; 阅读完整长文（含格式选择参考表）&rarr;</a>
+</div>
+
+<!-- ===== 趋势信号 ===== -->
+<div class="section trend"><h2>趋势信号</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">趋势信号</span><span class="card-num">#04</span></div>
+  <div class="card-title">AI 正式进驻哪些公司的后台系统 &mdash; 76% 的数字</div>
+  <div class="card-source">&#x1f4cc; 2026.05.11 &middot; 来源：AWS / OpenAI / IBM / NVIDIA / Anthropic 官方公告</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>这周有几件事同一天发生，都指向同一个方向：<strong>AI 公司不再只是卖 API，而是在把自己嵌进企业的运营体系</strong>。Claude 走进 AWS 后台；<strong>OpenAI 直接派工程师进客户公司做集成</strong>（不是顾问，是真的住一段时间）；IBM、NVIDIA、Anthropic 都有类似动作。</p>
+  <p>核心数字：<strong>76%</strong>——已经把生成式 AI 部署进生产环境（非试点、非沙盒）的企业比例。一年前这个数字大约是 30%。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>"AI 是个工具"的叙事已经过期。<strong>它正在变成基础设施。</strong>对企业从业者：能不能用 AI 重新设计某个流程，不再是加分项，而是默认问题。对个人：以「AI 用得好」为差异化的窗口，正在快速收窄。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">企业 IT / 运营负责人</span><span class="badge">咨询 / 产品岗</span><span class="badge">关注就业方向的人</span></p>
+  <a href="../notes/ai-enters-enterprise.html" class="read-more">&#x1f4d6; 阅读完整解读 &rarr;</a>
+</div>
+
+<!-- ===== 群里这些事 / 做了什么 ===== -->
+<div class="section scene"><h2>做了什么 &middot; 实践笔记</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">实践笔记</span><span class="card-num">#05</span></div>
+  <div class="card-title">从零搭一个社群平台 &mdash; Salonette 制作指南</div>
+  <div class="card-source">&#x1f4cc; By Syneira Lab &middot; salonette.syneira.org &middot; 2026.05</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>群里一直在说要有个自己的地方。后来就真的做了一个——<strong>5 天，三步走</strong>。这篇不是教程，更像笔记：先想清楚不做什么、用了哪些工具、表之间的关系怎么设计、权限怎么控制、踩过哪些坑。</p>
+  <p>技术栈走的是「能跑就行」路线：Supabase（auth + db）+ Next.js + Claude Code 做骨架。重点不在炫技，在<strong>边做边校准的过程</strong>——什么功能砍掉、什么先放上去、什么挪到 v2。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>个人或小社群想做协作平台，<strong>"全栈 + AI" 已经是触手可及的组合</strong>。这篇适合作为参照——不是抄方案，是看一遍流程感觉「我也能做」。最后有一段「如果你也想试试」给到具体的起步建议。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">想搭社群 / 协作工具的人</span><span class="badge">vibe coding 实践派</span><span class="badge">研究 Supabase / Next.js 的人</span></p>
+  <a href="../notes/salonette-build-guide.html" class="read-more">&#x1f4d6; 阅读完整制作笔记 &rarr;</a>
+</div>
+
+<!-- ===== 工具上新 ===== -->
+<div class="section tool"><h2>工具上新</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#06</span></div>
+  <div class="card-title">Everything Claude Code 拆解 &mdash; 17 万 Star 的配置包，你需要装几条？</div>
+  <div class="card-source">&#x1f4cc; github.com/affaan-m/everything-claude-code &middot; 178K &#x2b50; &middot; MIT 开源</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>这个项目最近在中文圈传得很广——一个 178K 星的 Claude Code 配置大全。装上之后功能确实多：Skills、Commands、Hooks、Subagents、Output Styles，一锅端。</p>
+  <p>但实际用一周下来，<strong>大多数人用不到大多数功能</strong>。本期把 ECC 里的内容分门别类拆开讲——哪几条值得装、哪几条按需挑、哪几条根本用不上。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>17 万星不代表你都用得到。<strong>挑工具的核心问题不是"有没有功能"，而是"我的工作流缺哪一块"</strong>。这篇按使用场景给了一张选配表，对照着挑。先别急着 git clone 全装，看完再决定。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Claude Code 用户</span><span class="badge">想搭 AI 工作流的人</span><span class="badge">github 装包成瘾的人</span></p>
+  <a href="../notes/ecc-breakdown.html" class="read-more">&#x1f4d6; 阅读完整拆解 &rarr;</a>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    由社群成员精选 &middot; 每周一期 + 不定期深度指南<br>
+    筛选标准：实用 &gt; 炫酷 &middot; 能用 &gt; 能看<br><br>
+    <span class="badge" style="background:#FDF6EC;color:#C97A1F;border:none;">Spotlight</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">用法洞察</span>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">趋势信号</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">实践笔记</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具上新</span>
+    <br><br>
+    &#x1f4ac; 看到好内容？随手转发到群里，下期可能就收录了<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Join us? Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; 留言讨论 / Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html">&larr; 返回首页 / Back to Home</a>
+</div>
+
+</body>
+</html>

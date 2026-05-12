@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI 输出格式之争：Markdown 还是 HTML？ | AI Digest #005" />
+  <meta property="og:description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <meta property="og:url" content="https://syneira.org/notes/digest-md-vs-html.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI 输出格式之争：Markdown 还是 HTML？ | AI Digest #005" />
+  <meta name="twitter:description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>AI 输出格式之争：Markdown 还是 HTML？ | AI Digest #005</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #FAF8F5;
+    --card: #FFFFFF;
+    --text: #1A1A2E;
+    --text-body: #3A3A4A;
+    --text-light: #7A7A8A;
+    --accent: #2A9D8F;
+    --accent-dark: #1E7A6F;
+    --orange: #E8643B;
+    --blue: #3A7BD4;
+    --green: #5A8E5A;
+    --purple: #9B6DB7;
+    --border: #E0DCD7;
+    --border-light: #EBE8E3;
+  }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--text-body);
+    line-height: 1.95;
+    font-size: 15px;
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .nav {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .nav a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .nav a:hover { color: var(--accent-dark); }
+  .nav-sep { color: var(--border); }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 24px 72px; }
+
+  /* ── Header ── */
+  .header { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 2.5px solid var(--accent); }
+  .header-tags { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .tag-trend { background: #EBF2FD; color: var(--blue); }
+  .tag-tip   { background: #F5EFF8; color: var(--purple); }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .header-sub {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .header-meta {
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Body text ── */
+  p { margin-bottom: 18px; }
+  .lead { font-size: 16px; color: var(--text); font-weight: 400; line-height: 2; margin-bottom: 24px; }
+
+  /* ── Section header ── */
+  .section-head { margin: 40px 0 18px; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-light);
+  }
+  .divider-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── Callout ── */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: #F0F8F7;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 22px 0;
+  }
+  .callout p { margin: 0; font-size: 14px; color: var(--text); line-height: 1.85; }
+  .callout-orange { border-left-color: var(--orange); background: #FDF3EE; }
+  .callout-blue   { border-left-color: var(--blue);   background: #EEF4FD; }
+  .callout-purple { border-left-color: var(--purple); background: #F7F2FA; }
+
+  /* ── Token comparison visual ── */
+  .compare-wrap { margin: 24px 0; }
+  .compare-row {
+    display: flex;
+    align-items: stretch;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+  .compare-cell {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .compare-cell.highlight { border-color: var(--accent); background: #F0F8F7; }
+  .compare-cell .cc-lang {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .compare-cell.highlight .cc-lang { color: var(--accent); }
+  .compare-cell:not(.highlight) .cc-lang { color: var(--text-light); }
+  .compare-cell .cc-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre;
+  }
+  .compare-cell .cc-token {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .compare-cell.highlight .cc-token { color: var(--accent-dark); font-weight: 600; }
+  .token-bar-wrap { margin-top: 8px; height: 6px; background: var(--border-light); border-radius: 3px; overflow: hidden; }
+  .token-bar { height: 100%; border-radius: 3px; }
+  .token-bar-md  { background: var(--accent); width: 28%; }
+  .token-bar-html { background: #E8643B; width: 100%; }
+
+  /* ── Use case cards ── */
+  .use-cards { display: flex; flex-direction: column; gap: 2px; margin: 22px 0; }
+  .use-card {
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .use-card:first-child { border-radius: 10px 10px 0 0; }
+  .use-card:last-child  { border-radius: 0 0 10px 10px; }
+  .use-card-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    min-width: 22px;
+    line-height: 1.2;
+  }
+  .use-card-icon.md   { color: var(--accent); }
+  .use-card-icon.html { color: var(--orange); }
+  .use-card-body { flex: 1; }
+  .use-card-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .use-card-desc  { font-size: 13px; color: var(--text-light); line-height: 1.75; }
+
+  /* ── Quote block ── */
+  .quote {
+    border-left: 2px solid var(--border);
+    padding: 12px 20px;
+    margin: 22px 0;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.9;
+    font-style: italic;
+  }
+  .quote-source { display: block; margin-top: 8px; font-size: 12px; font-style: normal; color: var(--text-light); }
+
+  /* ── Progression ladder ── */
+  .ladder { margin: 22px 0; }
+  .ladder-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    margin-bottom: 2px;
+    border-radius: 6px;
+  }
+  .ladder-row.active { border-color: var(--accent); background: #F0F8F7; }
+  .ladder-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-light);
+    min-width: 20px;
+  }
+  .ladder-row.active .ladder-num { color: var(--accent); }
+  .ladder-label { font-size: 13px; color: var(--text-body); flex: 1; }
+  .ladder-row.active .ladder-label { font-weight: 600; color: var(--text); }
+  .ladder-note { font-size: 11px; color: var(--text-light); }
+  .ladder-row.active .ladder-note { color: var(--accent-dark); }
+
+  /* ── Summary card ── */
+  .summary-card {
+    background: var(--text);
+    color: #EAE7E0;
+    border-radius: 10px;
+    padding: 28px 28px;
+    margin: 32px 0;
+  }
+  .summary-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .summary-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .summary-role {
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 64px;
+    padding-top: 1px;
+  }
+  .summary-desc { color: #BDB9B2; }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 52px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-light);
+    font-size: 11px;
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--border-light);
+    border: 1px solid var(--border);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 20px 16px 56px; }
+    .header h1 { font-size: 24px; }
+    .compare-row { flex-direction: column; }
+    .compare-cell .cc-code { font-size: 11px; }
+    .summary-card { padding: 20px 18px; }
+    .footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #004</span>
+</nav>
+
+<div class="wrap">
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-trend">趋势信号</span>
+      <span class="tag tag-tip">用法洞察</span>
+    </div>
+    <h1>AI 输出格式之争：<br>Markdown 还是 HTML？</h1>
+    <p class="header-sub">这个问题这周突然在 AI 开发者圈子里热了起来。答案没有想象中简单，但背后的逻辑值得每个用 AI 工作的人了解一下。</p>
+    <div class="header-meta">📌 2026.05 · 来源：@karpathy / @trq212 / 多篇技术分析</div>
+  </header>
+
+  <!-- ── 背景 ── -->
+  <p class="lead">Markdown 是 AI 世界默认的输出语言，你每天看到的分项、加粗、标题，都是它。但最近一篇文章把这件事重新问了一遍：在 AI 代理时代，Markdown 还是最合适的格式吗？</p>
+
+  <p>触发这场讨论的是 Anthropic Claude Code 团队成员 Thariq Shihipar 的一篇文章，标题叫《The Unreasonable Effectiveness of HTML》（HTML 出人意料的有效性）。他在文章里展示了 20 个用 Claude Code 生成 HTML 的例子，双栏对比、带注释的代码审查报告、可以直接在浏览器里打开的计划文档。随后 Andrej Karpathy 转发并补充了自己的判断，把这个话题推到了更大的受众面前。</p>
+
+  <div class="callout callout-blue">
+    <p>一句话背景：Markdown 是轻量标记语言，用 <code>#</code> 表示标题、<code>**</code> 表示加粗；HTML 是网页语言，用标签控制结构和样式。两者都能表达格式，但能表达的复杂度和使用场景不同。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── 为什么 Markdown 赢得了早期 ── -->
+  <div class="section-head">
+    <div class="section-label">Context</div>
+    <h2>Markdown 为什么是默认选项</h2>
+  </div>
+
+  <p>原因是 token 成本。在 2022 年，ChatGPT 的上下文窗口只有 8,192 个 token。同样的内容，HTML 消耗的 token 大约是 Markdown 的 3 倍，有测试数据是 8,000 对 2,800。当预算很紧时，每个省下来的 token 都是一段保留下来的信息。Markdown 赢得了那场战争，因为它在那时是合理的经济选择。</p>
+
+  <!-- Token comparison -->
+  <div class="compare-wrap">
+    <div class="compare-row">
+      <div class="compare-cell highlight">
+        <div class="cc-lang">Markdown</div>
+        <div class="cc-code">## About Us
+Plain text, **bold**, links.</div>
+        <div class="cc-token">约 3 tokens — 简洁</div>
+        <div class="token-bar-wrap"><div class="token-bar token-bar-md"></div></div>
+      </div>
+      <div class="compare-cell">
+        <div class="cc-lang">HTML 等效写法</div>
+        <div class="cc-code">&lt;h2 class="section-title"
+  id="about"&gt;About Us&lt;/h2&gt;
+&lt;p&gt;Plain text, &lt;b&gt;bold&lt;/b&gt;...&lt;/p&gt;</div>
+        <div class="cc-token">约 12–15 tokens — 同样信息，更多开销</div>
+        <div class="token-bar-wrap"><div class="token-bar token-bar-html"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <p>但现在是 2026 年，上下文窗口已经到了 100 万 token。当年那个成本限制，基本消失了。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── 两种格式各自的优势 ── -->
+  <div class="section-head">
+    <div class="section-label">Analysis</div>
+    <h2>不是谁更好，是各有用场</h2>
+  </div>
+
+  <p>讨论到这里，分歧就出来了。支持 Markdown 的人说：它给 AI 读效率最高；支持 HTML 的人说：它给人读体验最好。这两件事都是真的，只是说的不是同一个场景。</p>
+
+  <div class="use-cards">
+    <div class="use-card">
+      <div class="use-card-icon md">MD</div>
+      <div class="use-card-body">
+        <div class="use-card-title">Markdown 适合：AI 内部交流</div>
+        <div class="use-card-desc">模型到模型的信息传递、RAG 检索管道、知识库输入、提示词组织。结构清晰，token 开销低，机器解析准确率更高。表格数据上，Markdown 键值格式的提取准确率（60.7%）高于 HTML 表格（53.6%）。</div>
+      </div>
+    </div>
+    <div class="use-card">
+      <div class="use-card-icon html">HTML</div>
+      <div class="use-card-body">
+        <div class="use-card-title">HTML 适合：交付给人类</div>
+        <div class="use-card-desc">报告、规格文档、代码审查结果、计划文件、需要分享或存档的任何东西。可以双栏对比、色标标注、跳转链接，直接在浏览器里打开，发链接就能看。Markdown 你会滚过去；HTML 你会停下来读。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-orange">
+    <p>一个实用的试验：下次让 Claude 做一份分析或计划，在最后加一句「将结果输出为单个 HTML 文件」，然后在浏览器里打开看看。很多人第一次这样做后说：这是第一次我真的把 AI 生成的文档完整读完了。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── Karpathy 的预测 ── -->
+  <div class="section-head">
+    <div class="section-label">Perspective</div>
+    <h2>Karpathy 看得更远：这只是格式进化的中间站</h2>
+  </div>
+
+  <p>Karpathy 在转发评论里提出了一个更宏观的观察。他把 AI 的输出格式描述为一条进化路径，大意是：</p>
+
+  <div class="ladder">
+    <div class="ladder-row">
+      <div class="ladder-num">1</div>
+      <div class="ladder-label">原始文本</div>
+      <div class="ladder-note">难读，没有结构</div>
+    </div>
+    <div class="ladder-row">
+      <div class="ladder-num">2</div>
+      <div class="ladder-label">Markdown</div>
+      <div class="ladder-note">当前默认，有基础结构，好一些</div>
+    </div>
+    <div class="ladder-row active">
+      <div class="ladder-num">3</div>
+      <div class="ladder-label">HTML</div>
+      <div class="ladder-note">正在形成的新标准 · 有布局、有交互性</div>
+    </div>
+    <div class="ladder-row">
+      <div class="ladder-num">···</div>
+      <div class="ladder-label">交互式神经网络视频 / 模拟</div>
+      <div class="ladder-note">更远的未来，技术尚不成熟</div>
+    </div>
+  </div>
+
+  <div class="quote">
+    大约三分之一的人类大脑是专门处理视觉的大规模并行处理器，它是信息进入大脑的十车道超级高速公路。随着 AI 进步，我认为我们会看到一种利用这个优势的发展趋势。
+    <span class="quote-source">— Andrej Karpathy，前 Tesla AI 总监 / OpenAI 联合创始人</span>
+  </div>
+
+  <p>他的意思是：Markdown 相对于纯文本是进步，HTML 相对于 Markdown 是进步，但两者都是中间站，不是终点。AI 最终会产出的，是充分利用人类视觉处理能力的形式，而不是把信息压缩成纯文字让你自己脑补。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── 对我们有什么用 ── -->
+  <div class="section-head">
+    <div class="section-label">So What</div>
+    <h2>对实际使用的意思</h2>
+  </div>
+
+  <p>这场讨论在开发者圈子里热，但对普通 AI 用户也有直接的实用价值。有一个简单的分流原则可以直接用：</p>
+
+  <div class="summary-card">
+    <h3>格式选择参考</h3>
+    <div class="summary-row">
+      <div class="summary-role">AI 读</div>
+      <div class="summary-desc">Markdown。给模型的输入、提示词、知识库、RAG 数据——用 Markdown 或纯文本，效率更高，解析更准。</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-role">人读</div>
+      <div class="summary-desc">HTML。要分享、要存档、要认真读完的文档——让 AI 输出 HTML，浏览器打开，体验完全不同。</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-role">日常对话</div>
+      <div class="summary-desc">Markdown 足够，不需要为每个回答都生成 HTML，成本和场景不匹配。</div>
+    </div>
+  </div>
+
+  <p>目前没有哪个格式「赢了」。这场争论的真正意思是：AI 交付物的形式本身值得用心设计，不是非得用 AI 生成的默认样式。如果你让 AI 帮你写报告或分析，多加一句「输出为 HTML，可以在浏览器直接查看」，结果可能会让你重新理解什么叫「可用的 AI 输出」。</p>
+
+  <!-- ── 延伸阅读 ── -->
+  <div class="callout">
+    <p>📖 延伸阅读：Thariq Shihipar《Using Claude Code: The Unreasonable Effectiveness of HTML》，20 个实例展示 HTML 输出的实际效果。可在 X / 小红书搜索标题找到。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #004 · 2026.05</span>
+    <span>趋势信号 · 用法洞察</span>
+  </footer>
+
+</div>
+</body>
+</html>

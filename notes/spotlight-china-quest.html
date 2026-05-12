@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Spotlight · China Quest：给孩子们的中国文化互动游戏 | AI Digest #005" />
+  <meta property="og:description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <meta property="og:url" content="https://syneira.org/notes/spotlight-china-quest.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Spotlight · China Quest：给孩子们的中国文化互动游戏 | AI Digest #005" />
+  <meta name="twitter:description" content="Notes by Syneira — 实用 AI 工作流与案例手记。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>Spotlight · China Quest：给孩子们的中国文化互动游戏 | AI Digest #005</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --red:#C0392B;--gold:#B8860B;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  /* ── Hero ── */
+  .hero{
+    background:linear-gradient(135deg,#FDF6EC 0%,#FDE8D0 40%,#FAE0C8 100%);
+    border-radius:14px;
+    padding:32px 28px 28px;
+    margin-bottom:32px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'🏮';font-size:48px;position:absolute;top:16px;right:20px;opacity:.25;
+  }
+  .hero-badge{
+    display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;
+    background:#FFF3E0;color:var(--orange);letter-spacing:1px;margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;
+    color:var(--text);line-height:1.3;margin-bottom:10px;
+  }
+  .hero-sub{font-size:14px;color:#6B5D4F;line-height:1.8;font-weight:300}
+  .hero-meta{margin-top:14px;font-size:11px;color:#A0906F;letter-spacing:.5px}
+  .hero-tag{
+    display:inline-block;padding:2px 10px;border-radius:12px;font-size:10px;font-weight:700;
+    background:rgba(42,157,143,.12);color:var(--accent);margin-right:6px;
+  }
+
+  /* ── Section ── */
+  .section-head{margin:36px 0 16px}
+  .section-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  p{margin-bottom:16px}
+
+  /* ── Divider ── */
+  .divider{display:flex;align-items:center;gap:12px;margin:32px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+  /* ── Module cards ── */
+  .modules{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+  .mod{
+    background:var(--card);border:1px solid var(--border-light);border-radius:10px;
+    padding:16px;text-align:center;transition:border-color .2s;
+  }
+  .mod:hover{border-color:var(--accent)}
+  .mod-emoji{font-size:28px;margin-bottom:6px}
+  .mod-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .mod-desc{font-size:11px;color:var(--text-light);line-height:1.6}
+  .mod-status{
+    display:inline-block;margin-top:8px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;
+  }
+  .mod-status.live{background:#E8F5E9;color:#2E7D32}
+  .mod-status.wip{background:#FFF8E1;color:#F57F17}
+  .mod-status.open{background:#F3E5F5;color:#7B1FA2}
+
+  /* ── Screenshots ── */
+  .screenshots{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0}
+  .screenshots img{width:100%;border-radius:8px;border:1px solid var(--border-light)}
+  .screenshots .wide{grid-column:1/-1}
+
+  /* ── Links ── */
+  .link-cards{display:flex;flex-direction:column;gap:6px;margin:20px 0}
+  .link-card{
+    display:flex;align-items:center;gap:12px;
+    background:var(--card);border:1px solid var(--border-light);border-radius:8px;
+    padding:12px 16px;text-decoration:none;color:var(--text);
+    transition:border-color .2s;
+  }
+  .link-card:hover{border-color:var(--accent)}
+  .link-icon{font-size:20px;flex-shrink:0}
+  .link-body{flex:1;min-width:0}
+  .link-title{font-size:13px;font-weight:600;color:var(--text)}
+  .link-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-light);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* ── CTA ── */
+  .cta{
+    background:linear-gradient(135deg,#1A1A2E,#2C2B3E);
+    border-radius:12px;padding:28px 24px;margin:28px 0;
+    color:#D4D0C8;
+  }
+  .cta h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:12px}
+  .cta p{font-size:13px;line-height:1.85;margin-bottom:0;color:#B0ADA6}
+  .cta-ways{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+  .cta-way{
+    display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#D4D0C8;
+  }
+  .cta-way-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+  .cta-way strong{color:var(--accent)}
+
+  /* ── Callout ── */
+  .callout{
+    border-left:3px solid var(--accent);background:#F0F8F7;
+    padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;
+  }
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+
+  /* ── Footer ── */
+  .footer{
+    margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);
+    font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .hero h1{font-size:24px}
+    .hero{padding:24px 20px 22px}
+    .modules{grid-template-columns:1fr}
+    .screenshots{grid-template-columns:1fr}
+    .screenshots .wide{grid-column:auto}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #005</span>
+  <span class="nav-sep">›</span>
+  <span>Spotlight</span>
+</nav>
+
+<div class="wrap">
+
+  <!-- ── Hero ── -->
+  <div class="hero">
+    <div class="hero-badge">🌟 本期 SPOTLIGHT</div>
+    <h1>China Quest<br>给孩子们的中国文化互动游戏</h1>
+    <p class="hero-sub">一群妈妈各自出力，用 AI 辅助，为学校 Multicultural Night 做了一整套可以在手机上玩的互动游戏。项目还在长，欢迎加入。</p>
+    <div class="hero-meta">
+      <span class="hero-tag">社群协作</span>
+      <span class="hero-tag">AI 辅助开发</span>
+      <span class="hero-tag">进行中</span>
+      <span style="margin-left:4px">By Syneira Lab · 2026.05</span>
+    </div>
+  </div>
+
+  <!-- ── 背景 ── -->
+  <div class="section-head">
+    <div class="section-label">Background</div>
+    <h2>起因：学校要一个中国文化展位</h2>
+  </div>
+
+  <p>每年学校的 Multicultural Night，各个文化背景的家庭负责搭一个展位。以前常见的做法是打印几张海报、摆点小吃、放一段视频。有人问：能不能做个小孩可以自己玩的互动游戏？</p>
+
+  <p>几位群友决定一起做。没有人全职参与，也没有人从头学编程——每人用 AI 辅助做一个板块，最后串在一起。从转盘问答到城市探索到汉服科普，每个板块是一个独立 HTML 页面，手机浏览器直接打开就能玩，不用安装任何东西。</p>
+
+  <div class="callout">
+    <p>这就是 vibe coding 最真实的样子：不是一个人做完美产品，是一群人各做一块，AI 帮忙写代码和生成素材，拼在一起就能用。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── 板块一览 ── -->
+  <div class="section-head">
+    <div class="section-label">Modules</div>
+    <h2>目前的板块</h2>
+  </div>
+
+  <div class="modules">
+    <div class="mod">
+      <div class="mod-emoji">🎡</div>
+      <div class="mod-name">Culture Quiz</div>
+      <div class="mod-desc">转盘问答，15 道中国文化题，转到哪道答哪道</div>
+      <div class="mod-status live">✓ 已上线</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">🏙️</div>
+      <div class="mod-name">City Quest</div>
+      <div class="mod-desc">六座城市卡片，点击探索北京、上海、西安、桂林等</div>
+      <div class="mod-status live">✓ 已上线</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">👘</div>
+      <div class="mod-name">Hanfu Style</div>
+      <div class="mod-desc">汉代到明代汉服变迁，图文朝代科普</div>
+      <div class="mod-status live">✓ 已上线</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">🎴</div>
+      <div class="mod-name">Lucky Card</div>
+      <div class="mod-desc">抽取幸运卡片，每张附文化小知识</div>
+      <div class="mod-status wip">⏳ 开发中</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">🥟</div>
+      <div class="mod-name">Foodie</div>
+      <div class="mod-desc">中华美食图鉴，猜菜名、看做法</div>
+      <div class="mod-status open">🙋 征召中</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">🐉</div>
+      <div class="mod-name">Zodiac</div>
+      <div class="mod-desc">十二生肖互动，输入生日看属相</div>
+      <div class="mod-status open">🙋 征召中</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">🎨</div>
+      <div class="mod-name">Art Guess</div>
+      <div class="mod-desc">看局部猜名画，互动艺术问答</div>
+      <div class="mod-status open">🙋 征召中</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">🧧</div>
+      <div class="mod-name">Festival</div>
+      <div class="mod-desc">传统节日时间线，动画展示</div>
+      <div class="mod-status open">🙋 征召中</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── Screenshots ── -->
+  <div class="section-head">
+    <div class="section-label">Preview</div>
+    <h2>实机截图</h2>
+  </div>
+
+  <div class="screenshots">
+    <img src="../assets/images/img-cq-wheel.png" alt="China Quest 主转盘 — 所有板块的入口" loading="lazy">
+    <img src="../assets/images/img-cq-city.jpeg" alt="City Quest 六座城市卡片选择页" loading="lazy">
+    <img src="../assets/images/img-cq-hanfu-timeline.jpeg" alt="汉服朝代时间线 — 汉 / 唐 / 宋 / 明 四代变迁" class="wide" loading="lazy">
+    <img src="../assets/images/img-cq-hanfu-detail.jpeg" alt="Hanfu Style 单朝代细节页（秦汉）" class="wide" loading="lazy">
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── 体验链接 ── -->
+  <div class="section-head">
+    <div class="section-label">Try It</div>
+    <h2>在线体验</h2>
+  </div>
+
+  <p>每个板块独立部署，手机浏览器直接打开。全部免费，不需要登录。</p>
+
+  <div class="link-cards">
+    <a class="link-card" href="https://china-quest-collab.vercel.app/" target="_blank" rel="noopener">
+      <div class="link-icon">🎯</div>
+      <div class="link-body">
+        <div class="link-title">China Quest 主入口（转盘总览）</div>
+        <div class="link-url">china-quest-collab.vercel.app</div>
+      </div>
+    </a>
+    <a class="link-card" href="https://acepathathletics.github.io/chinese-culture-wheel/" target="_blank" rel="noopener">
+      <div class="link-icon">🎡</div>
+      <div class="link-body">
+        <div class="link-title">Culture Quiz · Herbert Hoover Middle School</div>
+        <div class="link-url">acepathathletics.github.io/chinese-culture-wheel</div>
+      </div>
+    </a>
+    <a class="link-card" href="https://leafy-sawine-84667e.netlify.app" target="_blank" rel="noopener">
+      <div class="link-icon">🐼</div>
+      <div class="link-body">
+        <div class="link-title">China Trivia Wheel · International Night</div>
+        <div class="link-url">leafy-sawine-84667e.netlify.app</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── 征召 CTA ── -->
+  <div class="cta">
+    <h3>🤝 还有板块空位，欢迎加入</h3>
+    <p>不需要会写代码。提供内容（题目、图片、文化知识点）一样是贡献。</p>
+    <div class="cta-ways">
+      <div class="cta-way">
+        <div class="cta-way-icon">💻</div>
+        <div><strong>GitHub 协作</strong> — fork 仓库，提交你的板块代码，合并即上线</div>
+      </div>
+      <div class="cta-way">
+        <div class="cta-way-icon">📝</div>
+        <div><strong>分享素材</strong> — 发群里或私信：题目、图片、文化知识点，有人帮你实现</div>
+      </div>
+      <div class="cta-way">
+        <div class="cta-way-icon">🎨</div>
+        <div><strong>认领一个板块</strong> — Foodie、Zodiac、Art Guess、Festival 都还空着，用 AI 辅助一个人也能做</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>这个项目的意义不只是给一个学校做一次活动。每个板块是独立的 HTML 页面，任何学校、任何社区的 Multicultural Night 都可以直接用。做一次，用很多次。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── Sister projects ── -->
+  <div class="section-head">
+    <div class="section-label">More Projects</div>
+    <h2>群里还有更多项目进行中</h2>
+  </div>
+
+  <p>China Quest 不是唯一一个。Syneira Lab 这边还有几个 vibe coding 项目同时在跑——按兴趣报名加入就行，门槛和 China Quest 一样：不需要会写代码，能贡献内容也算。</p>
+
+  <div class="modules">
+    <div class="mod">
+      <div class="mod-emoji">🏡</div>
+      <div class="mod-name">FamBoard</div>
+      <div class="mod-desc">家庭共享看板——成员状态、心情、提醒、日程一处同步</div>
+      <div class="mod-status wip">⏳ 内测中</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">♻️</div>
+      <div class="mod-name">二手平台</div>
+      <div class="mod-desc">DMV 本地二手物品流转，社群熟人优先</div>
+      <div class="mod-status open">🙋 征召中</div>
+    </div>
+    <div class="mod">
+      <div class="mod-emoji">🏆</div>
+      <div class="mod-name">运动赛事分析</div>
+      <div class="mod-desc">把比赛数据 + AI 解读做成可读的赛后报告</div>
+      <div class="mod-status open">🙋 征召中</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>感兴趣的话，群里联系 <strong>Syneira</strong>，或者直接私信认领一个板块——按你的节奏来，欢迎按兴趣加入噢。</p>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #005 · 2026.05</span>
+    <span>Spotlight · 社群协作项目</span>
+  </footer>
+
+</div>
+</body>
+</html>
