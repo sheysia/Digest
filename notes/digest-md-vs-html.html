@@ -223,6 +223,16 @@
   .use-card-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .use-card-desc  { font-size: 13px; color: var(--text-light); line-height: 1.75; }
 
+  /* ── Gallery items ── */
+  .gallery-items{display:flex;flex-direction:column;gap:12px;margin:22px 0}
+  .gallery-item{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:18px 20px}
+  .gi-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .gi-num{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--accent);min-width:22px}
+  .gi-title{font-size:14px;font-weight:700;color:var(--text)}
+  .gi-count{font-size:11px;font-weight:600;color:var(--text-light);margin-left:6px}
+  .gi-examples{font-size:12px;color:var(--accent-dark);background:#F0F8F7;padding:6px 12px;border-radius:6px;margin-bottom:10px;line-height:1.6}
+  .gi-why{font-size:13px;color:var(--text-body);line-height:1.85}
+
   /* ── Quote block ── */
   .quote {
     border-left: 2px solid var(--border);
@@ -416,6 +426,107 @@ Plain text, **bold**, links.</div>
 
   <div class="callout callout-orange">
     <p>一个实用的试验：下次让 Claude 做一份分析或计划，在最后加一句「将结果输出为单个 HTML 文件」，然后在浏览器里打开看看。很多人第一次这样做后说：这是第一次我真的把 AI 生成的文档完整读完了。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ── 20 个实例 9 大类 ── -->
+  <div class="section-head">
+    <div class="section-label">Gallery</div>
+    <h2>Thariq 的 20 个 HTML 实例，按用途分 9 类</h2>
+  </div>
+
+  <p>说 HTML 好用太抽象。Thariq 在原文附了一个展示站（thariqs.github.io/html-effectiveness），放了 20 个用 Claude Code 生成的真实 HTML 文件，每个都能在浏览器里直接打开。按用途分成 9 类，下面逐类拆。</p>
+
+  <div class="gallery-items">
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">1</div>
+        <div class="gi-title">探索与规划 <span class="gi-count">3 个示例</span></div>
+      </div>
+      <div class="gi-examples">三种方案并排对比，四种空状态 UI 方向的 mockup，带时间线和风险表的完整实施计划</div>
+      <div class="gi-why">这是 Thariq 建议最先试的场景。做产品时经常面临选择困难，传统做法是在脑子里想象或者画草图，但很难直观对比差异。HTML 可以把 6 种方案网格排列在一个页面里，每个方案展示不同的布局、基调和信息密度，旁边标注取舍分析。你直接滚动浏览、并排对比，不用在多个文件之间来回切换。Markdown 写同样的内容，只能是三段顺序排列的文字，你得自己在脑子里对齐。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">2</div>
+        <div class="gi-title">代码审查 <span class="gi-count">3 个示例</span></div>
+      </div>
+      <div class="gi-examples">带 diff 渲染和行内批注的 PR review，附动机说明和逐文件说明的 PR writeup，模块依赖关系图</div>
+      <div class="gi-why">代码审查是最典型的「信息密度决定效率」的场景。HTML 版本直接渲染 diff，行内标注红/黄/绿色严重程度，点击跳转到对应发现。Markdown 版本只能把 diff 贴成代码块，批注写在下面，你得自己对着行号找。一个 500 行的 PR，HTML 版本 2 分钟扫完重点，Markdown 版本你可能要 15 分钟逐行读。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">3</div>
+        <div class="gi-title">设计系统 <span class="gi-count">2 个示例</span></div>
+      </div>
+      <div class="gi-examples">活的设计规范文档，色板、间距、组件变体展示</div>
+      <div class="gi-why">设计规范用 Markdown 写，颜色只能写色号文字，间距只能写数字。HTML 可以直接渲染色板、展示真实间距、并排展示组件的不同状态（default / hover / disabled）。设计师和开发者看的是同一个文件，不需要再打开 Figma 对照。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">4</div>
+        <div class="gi-title">原型制作 <span class="gi-count">2 个示例</span></div>
+      </div>
+      <div class="gi-examples">可交互原型，参数可以实时拖动调节</div>
+      <div class="gi-why">这是 Markdown 完全做不到的事情。HTML 可以带滑块、输入框、实时预览。比如你在探索一个定价方案，HTML 原型可以让你拖动价格滑块实时看不同档位的利润变化。Markdown 只能列一个静态表格。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">5</div>
+        <div class="gi-title">图表 <span class="gi-count">2 个示例</span></div>
+      </div>
+      <div class="gi-examples">SVG 插图和流程图，点击可查看详情</div>
+      <div class="gi-why">Markdown 里画图要么靠 ASCII art（难看），要么引用外部图片链接（多一步）。HTML 可以内嵌 SVG，流程图直接渲染在页面里，点击节点展开详情。一个文件搞定，不依赖任何外部资源。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">6</div>
+        <div class="gi-title">演示文稿 <span class="gi-count">1 个示例</span></div>
+      </div>
+      <div class="gi-examples">键盘控制的幻灯片，20 行 JS 实现</div>
+      <div class="gi-why">不需要 PowerPoint，不需要 Google Slides。一个 HTML 文件，按方向键翻页，浏览器全屏就是演示模式。20 行 JavaScript。你让 AI 帮你准备一个快速的内部分享，直接生成这个就能用，不用再开一个演示软件。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">7</div>
+        <div class="gi-title">研究学习 <span class="gi-count">2 个示例</span></div>
+      </div>
+      <div class="gi-examples">功能解释和概念解释，TL;DR + 可折叠细节</div>
+      <div class="gi-why">学一个新概念，Markdown 给你一长篇文字。HTML 可以先给你一句话总结（TL;DR），想看细节点击展开，不想看就折叠着。信息层次清晰，你自己控制读多深。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">8</div>
+        <div class="gi-title">报告 <span class="gi-count">2 个示例</span></div>
+      </div>
+      <div class="gi-examples">周状态报告和事故时间线，图表化展示</div>
+      <div class="gi-why">周报用 Markdown 写，就是一堆 bullet point。HTML 版本可以带进度条、带图表、带颜色编码的状态标签（绿色正常 / 黄色注意 / 红色阻塞）。事故时间线可以沿时间轴展开，每个节点附操作记录。视觉信息比纯文字高效得多。</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gi-head">
+        <div class="gi-num">9</div>
+        <div class="gi-title">自定义编辑器 <span class="gi-count">3 个示例</span></div>
+      </div>
+      <div class="gi-examples">Ticket 看板、Feature Flag 编辑器、Prompt 调优器</div>
+      <div class="gi-why">这是最出人意料的一类。AI 不只是输出文档，它输出了一个可以操作的小工具。Ticket 看板可以拖动卡片，Feature Flag 编辑器可以切换开关，Prompt 调优器带「复制为 JSON」按钮。这些不是原型，是你当天就能用的工具，而且是一个 HTML 文件。</div>
+    </div>
+
+  </div>
+
+  <p>9 类有一个共同点：用 Markdown 写出来你会滚过去，用 HTML 写出来你会停下来看。差别不在好不好看，在于你愿不愿意读完。</p>
+
+  <div class="callout">
+    <p>📎 完整 20 个示例可以在 <strong>thariqs.github.io/html-effectiveness</strong> 直接浏览，每个文件可以下载在浏览器里打开。</p>
   </div>
 
   <div class="divider"><span class="divider-dot"></span></div>
