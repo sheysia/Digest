@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-i18n-title="feedback.meta.title" data-i18n-description="feedback.meta.description">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -200,27 +200,30 @@
       </svg>
     </a>
     <div class="nav-links">
-      <a href="/#about">About</a>
-      <a href="/#latest">Latest</a>
-      <a href="/#issues">Issues</a>
-      <a href="/notes/">Notes</a>
-      <a href="/tools/">Tools</a>
-      <a href="/#archive">Archive</a>
-      <a href="/#who">Who</a>
-      <a href="/feedback.html" aria-current="page">Feedback</a>
+      <a href="/#about" data-i18n="nav.about">About</a>
+      <a href="/#latest" data-i18n="nav.latest">Latest</a>
+      <a href="/#issues" data-i18n="nav.issues">Issues</a>
+      <a href="/notes/" data-i18n="nav.notes">Notes</a>
+      <a href="/tools/" data-i18n="nav.tools">Tools</a>
+      <a href="/#archive" data-i18n="nav.archive">Archive</a>
+      <a href="/#who" data-i18n="nav.who">Who</a>
+      <a href="/feedback.html" aria-current="page" data-i18n="nav.feedback">Feedback</a>
     </div>
+    <button class="lang-toggle" type="button" aria-label="Switch language" data-lang-toggle>
+      <span data-i18n="nav.lang">EN</span>
+    </button>
   </div>
 </nav>
 
 <!-- FEEDBACK PAGE -->
 <main class="feedback-page">
 
-  <div class="feedback-eyebrow">DMVoice · Feedback</div>
-  <h1 class="feedback-title">留下<em>你的声音</em></h1>
-  <p class="feedback-lead">
+  <div class="feedback-eyebrow" data-i18n="feedback.eyebrow">DMVoice · Feedback</div>
+  <h1 class="feedback-title" data-i18n-html="feedback.title">留下<em>你的声音</em></h1>
+  <p class="feedback-lead" data-i18n="feedback.lead">
     一条想分享的工具、一个想被拆解的场景、一处可以更好的细节——欢迎留言。
   </p>
-  <p class="feedback-lead-en">
+  <p class="feedback-lead-en" data-i18n="feedback.leadEn">
     Tools you've been using, scenarios you'd like us to unpack, or places we can do better — leave a note below.
   </p>
 
@@ -229,34 +232,34 @@
   <div class="feedback-prompts" aria-label="Suggested prompts">
     <div class="feedback-prompt">
       <span class="icon">🛠️</span>
-      <strong>推荐工具</strong>
-      <small>Tools worth a look</small>
+      <strong data-i18n="feedback.prompt1.title">推荐工具</strong>
+      <small data-i18n="feedback.prompt1.text">Tools worth a look</small>
     </div>
     <div class="feedback-prompt">
       <span class="icon">🎯</span>
-      <strong>场景需求</strong>
-      <small>Scenarios to unpack</small>
+      <strong data-i18n="feedback.prompt2.title">场景需求</strong>
+      <small data-i18n="feedback.prompt2.text">Scenarios to unpack</small>
     </div>
     <div class="feedback-prompt">
       <span class="icon">💡</span>
-      <strong>选题建议</strong>
-      <small>Topics for next issue</small>
+      <strong data-i18n="feedback.prompt3.title">选题建议</strong>
+      <small data-i18n="feedback.prompt3.text">Topics for next issue</small>
     </div>
     <div class="feedback-prompt">
       <span class="icon">🤝</span>
-      <strong>合作 & 反馈</strong>
-      <small>Collab or feedback</small>
+      <strong data-i18n="feedback.prompt4.title">合作 & 反馈</strong>
+      <small data-i18n="feedback.prompt4.text">Collab or feedback</small>
     </div>
   </div>
 
   <div style="text-align:center; margin: 32px 0 24px; padding: 18px 22px; background: linear-gradient(135deg, rgba(126,115,255,0.08), rgba(111,199,197,0.06)); border: 1px solid rgba(126,115,255,0.12); border-radius: 14px; font-size: 14px; color: #4a4858;">
-    🤝 想跟读者直接聊聊？
-    <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;margin-left:6px;">Join us? Access Group Salone ↗</a>
+    <span data-i18n="feedback.salonetteLead">🤝 想跟读者直接聊聊？</span>
+    <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;margin-left:6px;" data-i18n="feedback.salonetteCta">Join us? Access Group Salone ↗</a>
   </div>
 
   <section class="feedback-thread-wrap" aria-label="Comment thread">
-    <div class="feedback-thread-label">Comments</div>
-    <p class="feedback-thread-hint">由 Cusdis 提供 · 支持匿名留言 · 中英皆可</p>
+    <div class="feedback-thread-label" data-i18n="feedback.comments">Comments</div>
+    <p class="feedback-thread-hint" data-i18n="feedback.commentHint">由 Cusdis 提供 · 支持匿名留言 · 中英皆可</p>
 
     <!-- Cusdis embed -->
     <div id="cusdis_thread"
@@ -269,7 +272,7 @@
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
   </section>
 
-  <a href="/" class="feedback-back">← 返回首页 / Back to home</a>
+  <a href="/" class="feedback-back" data-i18n="feedback.back">← 返回首页 / Back to home</a>
 </main>
 
 <!-- FOOTER -->
@@ -281,13 +284,14 @@
       <text x="61" y="43" font-family="'Noto Sans SC', sans-serif" font-size="8.8" font-weight="400" fill="#7A7A8A" letter-spacing="2.8">BY DMVOICE</text>
     </svg>
   </div>
-  <p>
+  <p data-i18n-html="footer.text">
     由社群成员精选 · 每周一期 · 中英双语<br>
     筛选标准：实用 &gt; 炫酷 · 能用 &gt; 能看<br><br>
     Built with ❤️ in DMV
   </p>
 </footer>
 
+<script src="assets/js/i18n.js"></script>
 <script>
   // Nav shadow on scroll (mirrors index.html behavior)
   const nav = document.getElementById('nav');
