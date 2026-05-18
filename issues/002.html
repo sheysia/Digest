@@ -75,13 +75,16 @@
 
   .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
   .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
 </style>
 </head>
-<body>
+<body data-full-i18n-page="issue-002">
 
-<div class="nav"><a href="../index.html">← 返回首页 / Back to Home</a></div>
+<div class="nav"><a href="../index.html" data-i18n="issue005.back">← 返回首页 / Back to Home</a></div>
 
-<div class="wrap">
+<div class="wrap issue-zh">
 
 <div class="header">
   <div class="header-brand">✦ AI DIGEST by Syneira ✦</div>
@@ -220,8 +223,142 @@
 
 </div><!-- wrap -->
 
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">✦ AI DIGEST by Syneira ✦</div>
+  <div class="header-title">Issue #002</div>
+  <div class="header-meta">Apr 21–22, 2026 · 8 picks + 3 deep-dive guides</div>
+  <div class="header-sub">From chatting to getting work done — a practical AI toolkit</div>
+</div>
+
+<div class="section tool"><h2>Tool Updates</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#01</span></div>
+  <div class="card-title">🔥 ChatGPT Images 2.0 — AI Image Generation Enters Its Renaissance</div>
+  <div class="card-source">📌 openai.com · Apr 21, 2026</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p>OpenAI released ChatGPT Images 2.0, powered by gpt-image-2. Within 12 hours, it ranked first across all Image Arena categories with a 242-point lead over second place. The biggest changes: <strong>text rendering accuracy jumped from about 90% to 99%</strong>, 4K support, built-in reasoning, and stronger multi-turn consistency.</p>
+  <div class="label label-s">💡 So What</div>
+  <p><strong>Posters, infographics, product mockups, and social media visuals can finally lean on AI.</strong> Text used to be the deal-breaker; now it is much more usable. Free users get Instant mode, paid users get Thinking mode, and DALL-E 2/3 are being retired.</p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Especially people who need visuals</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#02</span></div>
+  <div class="card-title">OpenAI Codex "for Almost Everything" — Not Just for Code Anymore</div>
+  <div class="card-source">📌 openai.com · Apr 16, 2026</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p>OpenAI's Codex desktop app gained major upgrades: <strong>computer use</strong>, a built-in browser, 90+ plugins including Jira, Notion, Slack, GitHub, and Salesforce, memory, and scheduled automations. It is shifting from code assistant toward general work agent.</p>
+  <div class="label label-s">💡 So What</div>
+  <p>This directly competes with Claude Code Routines from Issue #001. <strong>Both ecosystems are chasing the same goal: AI that moves from answering questions to doing background work.</strong> If your company already uses OpenAI, Codex fits naturally. For deeper technical reasoning, Claude Code still has an edge.</p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Technical users</span><span class="badge">Anyone watching the direction of AI work tools</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#03</span></div>
+  <div class="card-title">Nano Banana Pro — Use Gemini to Draw Research-Grade Diagrams and Infographics</div>
+  <div class="card-source">📌 blog.google · Gemini 3 Pro Image</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p>Google's Gemini image model Nano Banana Pro can generate flowcharts, architecture diagrams, and infographics from natural language. Text is clear, layout logic is automatic, and you can edit conversationally. English text is strongest; Chinese may still break.</p>
+  <div class="label label-s">💡 So What</div>
+  <p>A methodology diagram or architecture chart used to take half an hour in Visio or Lucidchart. Now you can type it. <strong>For DMV work settings, this is especially useful for reports, project diagrams, and comparison graphics.</strong></p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Everyone</span><span class="badge">People adding visuals to reports/PPTs</span></p>
+</div>
+
+<div class="section scene"><h2>Use Cases</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#04</span></div>
+  <div class="card-title">AI for Papers and Long-Form Writing — A Full Workflow From Sources to Final Draft</div>
+  <div class="card-source">📌 By Syneira · Practical note</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p>Two routes: <strong>zero-code</strong> with Perplexity, Elicit, Claude, Writefull, thesify, and Zotero; or an <strong>advanced route</strong> where Claude Code generates LaTeX and Overleaf handles collaboration.</p>
+  <div class="label label-s">💡 So What</div>
+  <p>The principle is simple: <strong>AI helps you express and organize thinking. It does not generate your argument for you.</strong> The guide is not about one magic tool. It is about assigning each tool to the job it does best.</p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Long-form writers</span><span class="badge">Graduate students</span><span class="badge">Potential PhD applicants</span></p>
+  <a href="../notes/writing-guide.html" class="read-more">Read more → Note</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#05</span></div>
+  <div class="card-title">AI for PPTs, Premium Reports, and Visuals — A Three-Part Workflow</div>
+  <div class="card-source">📌 By Syneira · Practical note</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p><strong>For PPTs:</strong> Gamma, Canva AI, Claude Design, or Copilot in PowerPoint. <strong>For reports:</strong> Claude Artifacts, Notion AI, or Gamma Document. <strong>For visuals:</strong> Nano Banana Pro, Claude Mermaid, or Canva.</p>
+  <div class="label label-s">💡 So What</div>
+  <p><strong>You provide the skeleton: outline, message, and audience. AI fills in flesh: layout, visual treatment, and language polish.</strong> Decide what you want to say first, then let AI make it clearer and faster.</p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Especially non-technical professionals</span></p>
+  <a href="../notes/ppt-report-guide.html" class="read-more">Read more → Note</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#06</span></div>
+  <div class="card-title">AI Job Search Assistant — Let AI Screen 20 Matching Roles a Day</div>
+  <div class="card-source">📌 Xiaohongshu @一门儿儿 · DMV-adapted guide</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p><strong>Zero-code route:</strong> LinkedIn Job Alerts + Claude for match analysis + Teal for tracking can replace hours of daily searching. <strong>Technical route:</strong> n8n + SerpApi + Claude API can build an automated matching agent.</p>
+  <div class="label label-s">💡 So What</div>
+  <p>AI is useful for the repetitive parts: search, match analysis, and resume tailoring. <strong>Use the saved time for networking and interview preparation.</strong></p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Job seekers</span><span class="badge">People helping friends or family search</span></p>
+  <a href="../notes/ai-job-search.html" class="read-more">Read more → Note</a>
+</div>
+
+<div class="section tip"><h2>Workflow Insight</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Workflow Insight</span><span class="card-num">#07</span></div>
+  <div class="card-title">A Universal Prompt Template — One Frame for Papers, PPTs, Reports, and Job Search</div>
+  <div class="card-source">📌 By Syneira · Practical summary</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p>For almost any AI task, use this structure: <strong>role</strong>, <strong>context</strong>, <strong>task</strong>, <strong>format</strong>, and <strong>constraints</strong>. Tell AI who it is, what the document is for, what output you want, how it should look, and what it must avoid.</p>
+  <div class="label label-s">💡 So What</div>
+  <p>When AI output is weak, the model is often not the only problem. The prompt may be too vague. <strong>The same model can produce results that differ by 10x depending on prompt quality.</strong></p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Usable today</span></p>
+</div>
+
+<div class="section trend"><h2>Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend Signal</span><span class="card-num">#08</span></div>
+  <div class="card-title">Hermes Agent — AI Can Finally Remember How to Work</div>
+  <div class="card-source">📌 Xiaohongshu @kusengo · GitHub: NousResearch/hermes-agent</div>
+  <div class="label label-h">✹ Plain-English Highlight</div>
+  <p>Using AI used to feel like hiring a new intern every time: you had to explain everything again. Hermes Agent has a built-in learning loop: <strong>execute a task → review automatically → turn the lesson into a Skill → reuse it next time.</strong></p>
+  <div class="label label-s">💡 So What</div>
+  <p>Even if you never install Hermes, the direction matters. AI is moving from one-off chat toward long-term collaboration. <strong>"Can it remember me and get better over time?" will become a core dimension for choosing AI tools.</strong></p>
+  <div class="label label-w">👩‍💻 Best For</div>
+  <p><span class="badge">Technical users can try it</span><span class="badge">Non-technical readers can watch the trend</span></p>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">✦ AI DIGEST by Syneira ✦</div>
+  <p>
+    Curated by community members · Weekly issue + occasional deep dives<br>
+    Filter: useful > flashy · usable > impressive<br><br>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signal</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Use Case</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Workflow Insight</span>
+    <br><br>
+    💬 Found something good? Share it with the group. It may become a future pick.<br><br>
+    🤝 <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone ↗</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">💬 Leave a comment →</a>
+  </p>
+</div>
+
+</div><!-- wrap -->
+
 <div class="nav" style="padding-bottom:40px; text-align:center;">
-  <a href="../index.html">← 返回首页 / Back to Home</a>
+  <a href="../index.html" data-i18n="issue005.back">← 返回首页 / Back to Home</a>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>
