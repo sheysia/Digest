@@ -166,15 +166,18 @@
     font-size: 8pt; color: #AAA;
   }
   .footer-brand { font-size: 9pt; letter-spacing: 2pt; color: #555; font-weight: 700; margin-bottom: 4pt; }
+  .issue-en { display: none; }
+  html[lang="en"] .issue-zh { display: none; }
+  html[lang="en"] .issue-en { display: block; }
 </style>
 </head>
-<body>
+<body data-full-i18n-page="issue-001">
 
 <div class="issue-nav">
-  <a href="../index.html">← 返回首页 / Back to Home</a>
+  <a href="../index.html" data-i18n="issue005.back">← 返回首页 / Back to Home</a>
 </div>
 
-<div class="issue-wrapper">
+<div class="issue-wrapper issue-zh">
 
 <!-- ==================== HEADER ==================== -->
 <div class="header">
@@ -386,8 +389,220 @@
 
 </div><!-- close issue-wrapper -->
 
+<div class="issue-wrapper issue-en">
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+  <div class="header-brand">✦ AI DIGEST ✦</div>
+  <div class="header-title">Issue #001</div>
+  <div class="header-meta">Weekly: Apr 14-19, 2026 + Daily: Apr 20, 2026 · 13 picks</div>
+  <div class="header-sub">Weekly practical AI signals, only the parts that matter for real work</div>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="toc">
+  <div class="toc-title">In This Issue</div>
+  <div class="toc-item"><span class="toc-num">01</span><span class="toc-tag tag-tool">Tool</span> Claude Design -- prototypes even if you are not a designer</div>
+  <div class="toc-item"><span class="toc-num">02</span><span class="toc-tag tag-tool">Tool</span> Claude Code rebuild -- parallel tasks + Routines</div>
+  <div class="toc-item"><span class="toc-num">03</span><span class="toc-tag tag-tool">Tool</span> GPT-5.4 -- AI can operate your computer</div>
+  <div class="toc-item"><span class="toc-num">04</span><span class="toc-tag tag-trend">Trend</span> AI pricing collapse -- frontier capability gets cheaper</div>
+  <div class="toc-item"><span class="toc-num">05</span><span class="toc-tag tag-trend">Trend</span> Gemini catches up -- cheaper and stronger</div>
+  <div class="toc-item"><span class="toc-num">06</span><span class="toc-tag tag-scene">Use Case</span> Lovable -- build an app by describing it</div>
+  <div class="toc-item"><span class="toc-num">07</span><span class="toc-tag tag-scene">Use Case</span> NotebookLM + Gemini + Notion learning loop</div>
+  <div class="toc-item"><span class="toc-num">08</span><span class="toc-tag tag-tip">Insight</span> Mixed Chinese-English prompting now has research support</div>
+  <div class="toc-item"><span class="toc-num">09</span><span class="toc-tag tag-tip">Insight</span> TextGrad -- let AI optimize its own prompt</div>
+  <div style="border-top:1pt dashed #DDD; margin:6pt 0;"></div>
+  <div class="toc-item"><span class="toc-num">10</span><span class="toc-tag tag-daily">Daily</span> ChatGPT had a global outage today</div>
+  <div class="toc-item"><span class="toc-num">11</span><span class="toc-tag tag-daily">Daily</span> Maryland governor convened AI executives on cybersecurity</div>
+  <div class="toc-item"><span class="toc-num">12</span><span class="toc-tag tag-daily">Daily</span> Stanford 2026 AI Index released</div>
+  <div class="toc-item"><span class="toc-num">13</span><span class="toc-tag tag-daily">Daily</span> OpenAI spends $20B on Cerebras chips</div>
+</div>
+
+<!-- ==================== TOOLS ==================== -->
+<div class="section-banner tool"><h2>New Tools</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">New Tool</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude Design -- prototypes without being a designer</div>
+  <div class="card-source">📌 techcrunch.com · Apr 17</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>Anthropic released a new product called Claude Design. You describe what you want, and it generates prototypes, presentation decks, and one-pagers. You can export the result as PDF or PPTX, or send it into Canva for more editing. It can also read your company's design guidelines to keep outputs on brand. It is currently a research preview for Pro, Max, Team, and Enterprise users.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>If you are a PM, consultant, or anyone who needs to turn an idea into something visual quickly, this cuts out a lot of waiting. Instead of waiting for design capacity or wrestling with Canva yourself, you can type the brief and get a first draft. Figma's stock dropped 7% that day; the market signal is loud.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Especially non-designers</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">New Tool</span><span class="card-num">#02</span></div>
+  <div class="card-title">Claude Code rebuild -- parallel tasks + scheduled automation</div>
+  <div class="card-source">📌 macrumors.com · Apr 15</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>The Claude Code desktop app has been rebuilt: multiple sessions can run side by side, a sidebar manages tasks, and the app includes a terminal and file editor. The bigger update is <strong>Routines</strong>: packaged automation configs that can run on a schedule, via API trigger, or from GitHub events. They can keep running in the cloud even when your computer is off.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>For technical users, this is a jump from "chatting with one AI" to "directing several AI workers at once." Routines make daily code review, tests, and status reports possible in the background. For non-technical users it may not be immediately useful, but the direction matters: AI is moving from conversation partner to automated teammate.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Technical users</span><span class="badge">Engineering managers</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">New Tool</span><span class="card-num">#03</span></div>
+  <div class="card-title">GPT-5.4 -- it can operate your computer now</div>
+  <div class="card-source">📌 howdoiuseai.com · Apr 16</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>GPT-5.4 added computer-use capabilities: it can navigate software interfaces, click buttons, fill forms, and complete multi-step workflows across apps. This is not just a demo. It can pull data from one system, process it, and enter it into another. ChatGPT Plus and Pro users can use it.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>Those repetitive workflows like "open system A, export data, clean it in Excel, paste into system B" are now good candidates for AI assistance. This is especially useful for people who work across multiple internal systems every day. Claude also has computer use through Cowork, so both sides are racing here.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Everyone</span><span class="badge">People juggling multiple systems</span></p>
+</div>
+
+<!-- ==================== TRENDS ==================== -->
+<div class="section-banner trend"><h2>Trend Signals</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend Signal</span><span class="card-num">#04</span></div>
+  <div class="card-title">AI pricing collapse -- frontier capability is getting cheap</div>
+  <div class="card-source">📌 blog.mean.ceo · Apr 16</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>Google's Gemini Flash-Lite dropped to $0.25 per million tokens, while open-source DeepSeek V4 Lite is even cheaper. Several frontier models now support context windows above one million tokens. Workloads that cost a few dollars a year ago can now cost only cents.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>The excuse that "AI is too expensive to use" is disappearing. If you want to build an AI side project or small product, infrastructure cost is becoming almost negligible.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Everyone</span><span class="badge">People exploring startup ideas</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend Signal</span><span class="card-num">#05</span></div>
+  <div class="card-title">Gemini catches up -- cheap, capable, and still improving</div>
+  <div class="card-source">📌 WeChat article: Gemini 2.5 Pro comparison analysis</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>Google is no longer just the "cheap and good enough" option. Gemini 2.5 Pro has made strong progress in coding, reasoning, and multimodal tasks, and some benchmarks are now close to Claude Opus and GPT-5-level performance. API pricing remains roughly one-third to one-fifth of Claude or GPT. The bigger advantage: it is embedded directly across Gmail, Docs, Sheets, and Calendar.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>A practical model-selection frame: <strong>use Claude for the hardest tasks, Gemini for high-volume everyday work, and GPT for creative content</strong>. You do not need to be loyal to one vendor. If your team already uses Google Workspace, Gemini may be the lowest-friction AI entry point.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Google ecosystem users</span><span class="badge">Cost-conscious AI users</span></p>
+</div>
+
+<!-- ==================== USE CASES ==================== -->
+<div class="section-banner scene"><h2>Use Cases</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#06</span></div>
+  <div class="card-title">Lovable -- describe an app, get an app</div>
+  <div class="card-source">📌 howdoiuseai.com · Apr 16</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>With Lovable, you describe the app you want in natural language and it generates a full-stack app: database, user login, deployment, the whole package. It reached $20M annualized revenue within two months, making it one of the fastest-growing AI app-builder products.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>If you have a small-tool idea -- an internal tracker, client form, or MVP for validation -- you previously needed a developer or had to learn coding. That barrier is much lower now. It will not replace serious production engineering, but the speed from zero to usable is genuinely different.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Non-technical product builders</span><span class="badge">Technical users testing ideas quickly</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#07</span></div>
+  <div class="card-title">NotebookLM + Gemini + Notion -- a three-tool learning loop</div>
+  <div class="card-source">📌 WeChat article, adapted from Obsidian to Notion</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>Three free tools form a learning loop: <strong>NotebookLM digests material</strong> such as PDFs, YouTube videos, and web pages into summaries and audio overviews; <strong>Gemini or Claude goes deeper</strong> through follow-up questions, examples, and breakdowns; <strong>Notion stores the learning</strong> as structured notes for team sharing. Notion is more collaboration-friendly than Obsidian for many groups: the free plan supports 10 collaborators, real-time sync, and no Markdown learning curve.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>This is especially useful for learning communities. Non-technical members can use NotebookLM to lower the barrier to long-form material, technical members can use Claude for code-level digging, and everyone can put the result into a shared Notion space. Knowledge stops being trapped in everyone's private chat history. See the attached "three-tool learning method" PDF for the deeper guide.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Information-heavy workers</span><span class="badge">Learning communities</span></p>
+</div>
+
+<!-- ==================== PROMPT INSIGHTS ==================== -->
+<div class="section-banner tip"><h2>Usage Insights</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Usage Insight</span><span class="card-num">#08</span></div>
+  <div class="card-title">How should bilingual users write prompts? Research has an answer</div>
+  <div class="card-source">📌 arxiv.org · "Lost in the Mix" · MBZUAI &amp; Ecole Polytechnique</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>The study found that mixing non-English words into English can reduce LLM comprehension. But the reverse pattern -- <strong>using another language as the main structure while keeping key terms in English</strong> -- can improve comprehension and reasoning. The tests covered Chinese, Arabic, French, German, and English, and the result was consistent.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>For Chinese-English bilingual users, this validates a useful habit: <strong>write the main instruction and structure in Chinese, but keep important concepts and terms in English</strong>. For example, "请分析这个 claim denial 的 root cause" may produce better results than translating every term into Chinese. You can use this tomorrow.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Bilingual prompt users</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Usage Insight</span><span class="card-num">#09</span></div>
+  <div class="card-title">TextGrad -- let AI optimize your prompt</div>
+  <div class="card-source">📌 WeChat article: TextGrad framework breakdown</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>If your prompt is not good enough, TextGrad lets AI critique and improve it. The loop is simple: AI runs the task; another AI reviews the output and says what is wrong and how to improve it; the prompt gets revised; the cycle repeats until the result is good enough. It is basically <strong>AI acting as its own prompt coach</strong>, without model fine-tuning or a huge budget.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>You can borrow the core idea immediately: <strong>ask Claude to evaluate its own output, then rewrite the prompt based on that evaluation</strong>. For example, after creating a data-analysis prompt template, run it once, then ask: "What is weak about this output? Improve the prompt." Repeat two or three rounds and the quality often improves sharply.</p>
+  <div class="label label-who">👩‍💻 Good For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Heavy prompt users</span></p>
+</div>
+
+<!-- ==================== DAILY ==================== -->
+<div class="section-banner daily"><h2>Daily Digest · Apr 20, 2026 (Mon)</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">Daily</span><span class="card-num">#10</span></div>
+  <div class="card-title">🔴 ChatGPT had a global outage today</div>
+  <div class="card-source">📌 techradar.com · Apr 20</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>ChatGPT experienced a large partial outage this morning, affecting conversations, login, voice mode, and image generation. At the peak, more than 8,700 users in the UK and nearly 1,900 users in the US reported issues. It has now been fixed and is being monitored.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>A common social-media reaction was "ChatGPT is down, I cannot work" -- which shows how dependent many people have become on one tool. <strong>It is worth being comfortable with at least two platforms</strong>, such as Claude + ChatGPT, or adding Gemini. Critical work should not have only one path.</p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">Daily</span><span class="card-num">#11</span></div>
+  <div class="card-title">🏛️ Maryland's governor invited AI executives for a cybersecurity meeting</div>
+  <div class="card-source">📌 techstartups.com · Apr 20</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>Maryland Governor Wes Moore convened AI company executives at the governor's residence to discuss rising cybersecurity risks in the "Mythos era." This follows private conversations he held with several AI companies last year.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>For people in the DMV area, this is worth noticing. Maryland is actively trying to define its role in AI safety and cybersecurity. For local AI communities, it is a policy-level signal that future events, partnerships, or civic participation opportunities may emerge.</p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">Daily</span><span class="card-num">#12</span></div>
+  <div class="card-title">📊 Stanford 2026 AI Index released -- key numbers</div>
+  <div class="card-source">📌 MIT Technology Review · Apr 16</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>Stanford's annual AI landscape report is out. Key numbers: AI adoption is faster than the PC and the internet; US and Chinese model performance is nearly tied, with Anthropic currently leading; employment for software developers aged 22-25 has fallen nearly 20% since 2022; one-third of organizations expect AI to reduce workforce needs over the next year; AI improves productivity by 14% in customer service and 26% in software development.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>Two takeaways: first, AI's labor impact now has data behind it; second, the best models are close enough that competition is shifting toward cost, reliability, and practical usability. For individuals, <strong>which model you choose matters less than whether you know how to use it.</strong></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-daily">Daily</span><span class="card-num">#13</span></div>
+  <div class="card-title">💰 OpenAI spends $20B on Cerebras chips</div>
+  <div class="card-source">📌 radicaldatascience.wordpress.com · Apr 17</div>
+  <div class="label label-highlight">✹ Plain-English Highlight</div>
+  <p>OpenAI will reportedly pay Cerebras more than $20 billion over three years to use its chip servers. The deal could also give OpenAI equity in Cerebras. OpenAI is also providing around $1 billion to help Cerebras build data centers.</p>
+  <div class="label label-sowhat">💡 So What</div>
+  <p>AI companies are moving from simply buying NVIDIA GPUs to investing in their own compute supply chains. In the long run, AI usage costs should keep falling, which is good for end users. Cerebras is also preparing for an IPO, and the AI chip market is splitting into more specialized lanes.</p>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <div class="footer-brand">✦ AI DIGEST ✦</div>
+  <p>
+    Curated by community members · Weekly issues + occasional daily updates<br>
+    Selection rule: useful > flashy · usable > merely impressive<br><br>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">New Tools</span>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signals</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Use Cases</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Usage Insights</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Daily Brief</span>
+    <br><br>
+    💬 Found something good? Share it in the group and it may appear in the next issue.<br><br>
+    🤝 <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Join us? Access Group Salone ↗</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">💬 Leave a comment →</a>
+  </p>
+</div>
+
+</div><!-- close issue-wrapper -->
+
 <div class="issue-nav" style="padding-bottom: 40px; text-align: center;">
-  <a href="../index.html">← 返回首页 / Back to Home</a>
+  <a href="../index.html" data-i18n="issue005.back">← 返回首页 / Back to Home</a>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>
