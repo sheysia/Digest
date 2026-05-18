@@ -151,9 +151,9 @@ equivalent EN card at the same position. Translations read naturally.
 | Page | i18n.js | data-i18n attrs | OG tags | Favicon |
 |---|---|---|---|---|
 | `index.html` | ✅ | 91 | ✅ | ✅ |
-| `feedback.html` | ✅ | 28 | ✅ | ⚠️ missing |
-| `notes/index.html` | ✅ | 24 | ❌ missing | ❌ missing |
-| `tools/index.html` | ✅ | 10 | ❌ missing | ❌ missing |
+| `feedback.html` | ✅ | 28 | ✅ | ✅ _(fixed 2026-05-18)_ |
+| `notes/index.html` | ✅ | 24 | ✅ _(fixed 2026-05-18)_ | ✅ _(fixed 2026-05-18)_ |
+| `tools/index.html` | ✅ | 10 | ✅ _(fixed 2026-05-18)_ | ✅ _(fixed 2026-05-18)_ |
 
 ---
 
@@ -161,15 +161,13 @@ equivalent EN card at the same position. Translations read naturally.
 
 ### 🔴 P1 — Should fix
 
-1. **Orphan duplicate: `issues/004/anthropic-finance-agents.html`**
-   This is the old staging file that was accidentally re-introduced in the
-   "checkpoint before codex" commit. The real, in-use file is
-   `notes/anthropic-finance-agents.html`. The orphan has no OG meta, broken
-   `href="index.html"` nav, and isn't referenced by any cover. **Delete it.**
+1. ✅ ~~**Orphan duplicate: `issues/004/anthropic-finance-agents.html`**~~
+   _Deleted 2026-05-18._ The real file lives at
+   `notes/anthropic-finance-agents.html`.
 
-2. **`notes/index.html` and `tools/index.html` have no OG meta or favicon**
-   Sharing either URL (e.g. to WeChat) renders a blank preview card. Add
-   the same OG block we put on every note + the favicon links.
+2. ✅ ~~**`notes/index.html` and `tools/index.html` have no OG meta or favicon**~~
+   _Fixed 2026-05-18._ Both now have full OG/Twitter Card meta and
+   SVG+PNG favicon links.
 
 ### 🟡 P2 — Polish
 
@@ -180,8 +178,8 @@ equivalent EN card at the same position. Translations read naturally.
    - Rename the key to `nav.back` in i18n.js + update all 5 issues, OR
    - Just leave it (current behavior is correct).
 
-4. **`feedback.html` missing favicon link**
-   Has OG meta but no `<link rel="icon">`. Browser tab shows nothing.
+4. ✅ ~~**`feedback.html` missing favicon link**~~
+   _Fixed 2026-05-18._ SVG + PNG favicon links added.
 
 5. **Issue #001 not in homepage Issues hub**
    The hub shows #005 (Live) + #004/#003/#002 (Archive) and stops there.
