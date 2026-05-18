@@ -72,13 +72,16 @@
 
   .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
   .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
 </style>
 </head>
-<body>
+<body data-full-i18n-page="issue-004">
 
-<div class="nav"><a href="../index.html">&larr; 返回首页 / Back to Home</a></div>
+<div class="nav"><a href="../index.html" data-i18n="issue005.back">&larr; 返回首页 / Back to Home</a></div>
 
-<div class="wrap">
+<div class="wrap issue-zh">
 
 <div class="header">
   <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
@@ -239,8 +242,162 @@
 
 </div>
 
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #004</div>
+  <div class="header-meta">Apr 29&ndash;May 5, 2026 &middot; 1 deep-dive + 7 picks</div>
+  <div class="header-sub">Agents are getting closer, but how you open the tool is the real divide</div>
+</div>
+
+<div class="section trend"><h2>Hot Take</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Industry Signal</span><span class="card-num">#01</span></div>
+  <div class="card-title">Anthropic Released Ten Finance Agents — And Non-Finance Readers Should Still Pay Attention</div>
+  <div class="card-source">&#x1f4cc; Quick read &middot; May 5, 2026</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Anthropic announced "Agents for Financial Services" with three pieces at once: <strong>ten plug-and-play finance agent templates</strong> such as pitchbooks, KYC, month-end close, and valuation review; <strong>Claude inside Microsoft's productivity stack</strong> including Excel, PowerPoint, and Word; and <strong>a broader financial data ecosystem</strong> with providers such as D&B, Moody's, FactSet, and S&P Capital IQ.</p>
+  <p>The hidden signal is Opus 4.7. Anthropic recommends pairing these agents with Opus 4.7, which scored 64.37% on Vals AI's financial agent benchmark.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>On the surface this is a finance solution. Underneath, it shows a general agent pattern: <strong>agent = skill + data connection + subtask division.</strong> Swap out the skill and data source, and the same skeleton may apply to healthcare, education, content operations, and more. Finance may simply be the first industry to receive a templated agent package.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Anyone tracking agent adoption</span><span class="badge">Finance professionals</span><span class="badge">Heavy Excel users</span></p>
+  <a href="../notes/anthropic-finance-agents.html" class="read-more">&#x1f4d6; Read the full note &rarr;</a>
+</div>
+
+<div class="section tip"><h2>Deep Dive</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Workflow Insight</span><span class="card-num">#02</span></div>
+  <div class="card-title">Claude Is More Than Chat — Which Layer Are You Using?</div>
+  <div class="card-source">&#x1f4cc; Workflow deep dive &middot; By Syneira</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>You are probably already using Claude to ask questions, edit emails, or translate text. But many people do not realize that <strong>chat is only the first layer.</strong> Above it are other modes that let you do things that were previously hard, slow, or out of reach.</p>
+  <p>This deep dive breaks Claude into five layers: conversation, prompt/workspace setup, Skills, agents, and design collaboration. Each layer comes with examples and a way to judge when it is time to move up.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>You do not need to use every layer. But <strong>knowing what exists and where each mode fits helps you avoid wasted effort.</strong> When AI keeps missing the point or feels shallow, the issue may not be the model. You may still be using only the first layer.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude users</span><span class="badge">People upgrading AI workflows</span><span class="badge">Anyone explaining AI to a team</span></p>
+  <a href="../notes/claude-suite-guide.html" class="read-more">&#x1f4d6; Read the full guide &rarr;</a>
+</div>
+
+<div class="section tool"><h2>Tool Updates</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#03</span></div>
+  <div class="card-title">Making PPTs With Claude — I Tested Dozens of GitHub Plugins and Kept 4</div>
+  <div class="card-source">&#x1f4cc; Tool pick &middot; By Syneira &middot; Tested shortlist</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Using Claude Code to make slide decks sounds great: describe the content in natural language and let it generate the slides. But many GitHub projects labeled as PPT skills are either meant for Codex, missing a SKILL.md, broken, or no longer available.</p>
+  <p>After going through the available options, <strong>only four were worth keeping:</strong> guizang-ppt-skill, ultimate-ppt-master-skill, frontend-slides, and html-ppt-skill. They do not conflict and can be installed together.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This is not just a slide-tool list. It is also an example of using the Skills ecosystem carefully: <strong>most Skills are not reliable; the few that run cleanly are the ones that matter.</strong> Choosing the tool can take more work than using it.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude Code slide builders</span><span class="badge">Workflow builders</span></p>
+  <a href="../notes/ppt-skills-picks.html" class="read-more">&#x1f4d6; See the full shortlist &rarr;</a>
+</div>
+
+<div class="section scene"><h2>Use Case</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#04</span></div>
+  <div class="card-title">Which Closet Assistant Wins? GPT vs Claude, With Extremely Different Vibes</div>
+  <div class="card-source">&#x1f4cc; Fun test &middot; Author: Rainbow</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Same request: "Potomac, Maryland, 22°C and partly cloudy. What should I wear today?" Sent to GPT and Claude, the two models produced wildly different results.</p>
+  <p><strong>GPT went straight for a fashion magazine cover:</strong> pink hoodie, denim pleated skirt, accessories down to the hair clip, plus a polished weather panel. <strong>Claude built an app.</strong> It had temperature ranges, item lists, outfit previews, and a preview figure that looked like a stick person wearing sunglasses and a blue T-shirt.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This is not only funny. It shows the models' default modes: <strong>GPT behaves like an image-first content generator; Claude behaves like a tool-first code generator.</strong> The same prompt becomes a different task depending on the model. Knowing that helps you choose the right tool.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">People using both GPT and Claude</span><span class="badge">Anyone comparing model behavior</span></p>
+  <a href="../notes/outfit-ai-showdown.html" class="read-more">&#x1f4d6; Read the full comparison &rarr;</a>
+</div>
+
+<div class="section life"><h2>From the Community</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">Community Update</span><span class="card-num">#05</span></div>
+  <div class="card-title">Salonette · What the Group Has Been Building</div>
+  <div class="card-source">&#x1f4cc; Community update &middot; by DMVoice Women AI Workgroup</div>
+  <div class="label label-h">&starf; What Happened</div>
+  <p>Each issue, we pull out a few things happening inside the community: who built what, which projects started, and what is worth watching together. This round includes:</p>
+  <p>&bull; A member-built stock analysis tool demo<br>
+  &bull; <strong>Famboard</strong> entering private testing as a family shared dashboard<br>
+  &bull; The first version of a member tool directory, organized by finance, education, creative work, health, and career use cases</p>
+  <div class="label label-s">&#x1f4a1; Why It Matters</div>
+  <p>The best part of this community is that <strong>people are not waiting for someone else to explain what AI can do. They are trying it themselves.</strong> Some build tools, some create content, some propose ideas and watch the group turn them into products. Salonette is the entry point for these stories.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">DMVoice AI members</span><span class="badge">People considering joining</span><span class="badge">Community builders</span></p>
+  <a href="../notes/community-salonette.html" class="read-more">&#x1f4d6; Read the full update &rarr;</a>
+</div>
+
+<div class="section trend"><h2>Trend Signals</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Hardware Signal</span><span class="card-num">#06</span></div>
+  <div class="card-title">Apple Is Working on Three AI Wearables — The Lesson Is Not Independence</div>
+  <div class="card-source">&#x1f4cc; Hardware signal &middot; May 2026</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Apple is reportedly advancing three AI wearable projects at once: <strong>smart glasses, an AI Pin, and camera-equipped AirPods.</strong> The interesting part is not simply that new hardware is coming. It is the design direction: all three depend on the iPhone instead of trying to run independently.</p>
+  <p>After Humane AI Pin and Rabbit R1 struggled, this is a clear lesson. The hardware does not need to rebuild the brain. It needs to become a better sensory interface.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>For consumers, AI wearables may become extensions of the iPhone rather than standalone devices. Watch, but do not rush. For builders, Apple's direction suggests that <strong>deep integration with an already-powerful device is more plausible than independent AI hardware.</strong></p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Hardware trend watchers</span><span class="badge">People considering AI devices</span></p>
+  <a href="../notes/apple-ai-wearables.html" class="read-more">&#x1f4d6; Read the full analysis &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend Signal</span><span class="card-num">#07</span></div>
+  <div class="card-title">AI Agents Are Getting Closer — But Do Not Hand Over the Keys Too Fast</div>
+  <div class="card-source">&#x1f4cc; Microsoft Agent 365 + Google 2026 Agent report</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>In the first week of May, two things happened together: <strong>Microsoft launched Agent 365</strong>, an enterprise platform for managing and coordinating AI agents, and <strong>Google published its 2026 agent trend report.</strong> The shared thesis is clear: AI is moving from answering questions to carrying out tasks.</p>
+  <p>You may already feel it. More tools can now connect, authorize, and run workflows for you: summarize email, organize calendars, sync data, and even run analysis. It is very close.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p><strong>Close does not mean fully controlled.</strong> The more automated agents become, the earlier your judgment, permission, and correction costs must move. Do not hand everything over at once. Watch how the agent works, how it fails, and how recovery happens before deciding which tasks deserve the keys.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">All AI users</span><span class="badge">Trend watchers</span><span class="badge">Enterprise decision makers</span></p>
+  <a href="../notes/trend-signal-agent.html" class="read-more">&#x1f4d6; Read the full note &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Industry Curiosity</span><span class="card-num">#08</span></div>
+  <div class="card-title">Two AI Giants Gave Their Coding Tools Pets — Anthropic Buddies vs OpenAI Codex Pets</div>
+  <div class="card-source">&#x1f4cc; Industry curiosity &middot; May 2026</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>In May 2026, while the AI race was at full speed, two very serious AI companies did something oddly similar: <strong>they added digital pets to their coding tools.</strong></p>
+  <p>Anthropic launched <strong>Buddies</strong> in Claude Code. OpenAI followed with <strong>Codex Pets</strong>. They keep you company while coding, cheer you on, and comfort you when bugs get annoying. At first it feels strange. After a week, it can become weirdly addictive.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>It looks playful, but it exposes a real product question: <strong>the emotional experience of using AI tools is becoming part of the design.</strong> As people spend more time working with AI, atmosphere, rhythm, and feedback affect quality and stamina. This is less about new technology and more about a new design philosophy.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Daily Claude Code / Codex users</span><span class="badge">Product design watchers</span></p>
+  <a href="../notes/ai-pets-showdown.html" class="read-more">&#x1f4d6; Read the full comparison &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    Curated by community members &middot; Weekly issue + occasional deep dives<br>
+    Filter: useful &gt; flashy &middot; usable &gt; impressive<br><br>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Workflow Insight</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Use Case</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Community</span>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signal</span>
+    <br><br>
+    &#x1f4ac; Found something good? Share it with the group. It may become a future pick.<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
 <div class="nav" style="padding-bottom:40px; text-align:center;">
-  <a href="../index.html">&larr; 返回首页 / Back to Home</a>
+  <a href="../index.html" data-i18n="issue005.back">&larr; 返回首页 / Back to Home</a>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>
