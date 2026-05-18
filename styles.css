@@ -264,6 +264,28 @@
   }
   .nav-links a:hover { color: var(--accent); }
 
+  .lang-toggle {
+    border: 1px solid rgba(112, 112, 196, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--text);
+    cursor: pointer;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    min-width: 52px;
+    padding: 9px 12px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .lang-toggle:hover {
+    background: #ffffff;
+    border-color: rgba(112, 112, 196, 0.45);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
 
   /* ========== MOTION HERO ========== */
   .hero {
@@ -1029,6 +1051,7 @@
     .latest-body { padding: 20px; }
     .nav-links { gap: 16px; }
     .nav-links { display: none; }
+    .lang-toggle { margin-left: auto; }
     .hero { min-height: 48vh; padding-top: 64px; }
     .hero-motion, .hero-content { min-height: calc(48vh - 64px); }
     .hero-sub { font-size: 15px; letter-spacing: 2px; }
