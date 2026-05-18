@@ -143,7 +143,7 @@ const I18N = {
     "feedback.comments": "留言",
     "feedback.commentHint": "由 Cusdis 提供 · 支持匿名留言 · 中英皆可",
     "feedback.back": "← 返回首页",
-    "issue005.back": "← 返回首页 / Back to Home",
+    "nav.back": "← 返回首页 / Back to Home",
     "footer.text": "由社群成员精选 · 每周一期 · 中英双语<br>筛选标准：实用 &gt; 炫酷 · 能用 &gt; 能看<br><br>Built with ❤️ in DMV<br><a href=\"https://github.com/你的用户名/ai-digest\" target=\"_blank\">GitHub</a>"
   },
   en: {
@@ -289,7 +289,7 @@ const I18N = {
     "feedback.comments": "Comments",
     "feedback.commentHint": "Powered by Cusdis · anonymous comments supported · Chinese or English welcome",
     "feedback.back": "← Back to home",
-    "issue005.back": "← Back to Home",
+    "nav.back": "← Back to Home",
     "footer.text": "Curated by community members · Weekly · Bilingual<br>Filter: useful &gt; flashy · usable &gt; impressive<br><br>Built with ❤️ in DMV<br><a href=\"https://github.com/你的用户名/ai-digest\" target=\"_blank\">GitHub</a>"
   }
 };
@@ -512,12 +512,14 @@ function ensureLanguageToggle() {
     .site-lang-toggle {
       position: fixed;
       right: 18px;
-      top: 18px;
+      bottom: 18px;
       z-index: 9999;
       border: 1px solid rgba(112, 112, 196, 0.24);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.88);
-      box-shadow: 0 8px 24px rgba(26, 22, 66, 0.10);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 8px 24px rgba(26, 22, 66, 0.14);
       color: #1A1A2E;
       cursor: pointer;
       font-family: "Noto Sans SC", system-ui, sans-serif;
@@ -532,6 +534,14 @@ function ensureLanguageToggle() {
       background: #ffffff;
       border-color: rgba(112, 112, 196, 0.48);
       transform: translateY(-1px);
+    }
+    @media (max-width: 480px) {
+      .site-lang-toggle {
+        right: 12px;
+        bottom: 12px;
+        padding: 9px 12px;
+        font-size: 11px;
+      }
     }
   `;
   document.head.appendChild(style);

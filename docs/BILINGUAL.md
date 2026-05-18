@@ -171,36 +171,32 @@ equivalent EN card at the same position. Translations read naturally.
 
 ### 🟡 P2 — Polish
 
-3. **All 5 issue covers reuse the same i18n key for the back-link**
-   Every issue uses `data-i18n="issue005.back"` for the "← Back to Home"
-   link. Functionally harmless (the translation is identical anyway) but
-   semantically misleading. Either:
-   - Rename the key to `nav.back` in i18n.js + update all 5 issues, OR
-   - Just leave it (current behavior is correct).
+3. ✅ ~~**All 5 issue covers reuse the same i18n key for the back-link**~~
+   _Fixed 2026-05-18._ Renamed `issue005.back` → `nav.back` in both
+   `assets/js/i18n.js` and all 5 issue cover HTMLs.
 
 4. ✅ ~~**`feedback.html` missing favicon link**~~
    _Fixed 2026-05-18._ SVG + PNG favicon links added.
 
-5. **Issue #001 not in homepage Issues hub**
-   The hub shows #005 (Live) + #004/#003/#002 (Archive) and stops there.
-   Issue #001 only appears in the Archive list further down. Either:
-   - Add a 5th tile for #001, OR
-   - Accept that 4 tiles is the design max (current behavior).
+5. ✅ ~~**Issue #001 not in homepage Issues hub**~~
+   _Fixed 2026-05-18._ Added a 5th `issue-tile` for #001 in the hub.
 
-6. **Issue #001 cover has no `../notes/` links**
-   The cover lists 13 items but none of them link to standalone notes,
-   even though related notes exist (`notes/notebook-workflow.html`,
-   `notes/ai-bots.html`, `notes/claude-reminder-demo.html`). Wire these up
-   if you want #001 readers to dig deeper.
+6. ✅ ~~**Issue #001 cover has no `../notes/` links**~~
+   _Partially fixed 2026-05-18._ Wired `notes/notebook-workflow.html`
+   into card #07 (NotebookLM + Gemini + Notion) in both ZH and EN blocks.
+   `notes/ai-bots.html` and `notes/claude-reminder-demo.html` actually
+   belong to other issues (verified via their `header-meta`), so they
+   correctly do NOT link from #001. After the wiring, #001 has exactly
+   one read-more link, which matches its real attached-note inventory.
 
 ### 🟢 P3 — Cosmetic / future
 
-7. **Toggle button position may overlap existing top-right nav links**
-   On the homepage and issue covers, the fixed `EN`/`中` button sits at
-   `top:18px; right:18px` on top of the existing nav row. Z-index 9999
-   means it always wins, but visually it can crowd the right side. Test
-   on mobile widths; consider moving it into the nav itself if it feels
-   crowded.
+7. ✅ ~~**Toggle button position may overlap existing top-right nav links**~~
+   _Fixed 2026-05-18._ Moved the toggle from `top:18px; right:18px` to
+   `bottom:18px; right:18px` in `assets/js/i18n.js`. Added backdrop
+   blur, slightly stronger shadow, and a mobile breakpoint that tightens
+   padding on screens ≤480px. Now sits below the page content and never
+   overlaps any nav row.
 
 8. **OG/Twitter description doesn't follow language toggle**
    Social cards always render the Chinese description regardless of
