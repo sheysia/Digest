@@ -143,6 +143,7 @@ const I18N = {
     "feedback.comments": "留言",
     "feedback.commentHint": "由 Cusdis 提供 · 支持匿名留言 · 中英皆可",
     "feedback.back": "← 返回首页",
+    "issue005.back": "← 返回首页 / Back to Home",
     "footer.text": "由社群成员精选 · 每周一期 · 中英双语<br>筛选标准：实用 &gt; 炫酷 · 能用 &gt; 能看<br><br>Built with ❤️ in DMV<br><a href=\"https://github.com/你的用户名/ai-digest\" target=\"_blank\">GitHub</a>"
   },
   en: {
@@ -288,6 +289,7 @@ const I18N = {
     "feedback.comments": "Comments",
     "feedback.commentHint": "Powered by Cusdis · anonymous comments supported · Chinese or English welcome",
     "feedback.back": "← Back to home",
+    "issue005.back": "← Back to Home",
     "footer.text": "Curated by community members · Weekly · Bilingual<br>Filter: useful &gt; flashy · usable &gt; impressive<br><br>Built with ❤️ in DMV<br><a href=\"https://github.com/你的用户名/ai-digest\" target=\"_blank\">GitHub</a>"
   }
 };
@@ -438,6 +440,7 @@ function normalizedPath() {
 }
 
 function ensureReaderAid() {
+  if (document.querySelector('[data-full-i18n-page]')) return;
   const key = normalizedPath();
   const page = PAGE_SUMMARIES[key];
   if (!page || document.querySelector('[data-reader-aid]')) return;

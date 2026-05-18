@@ -75,13 +75,16 @@
 
   .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
   .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
 </style>
 </head>
-<body>
+<body data-full-i18n-page="issue-005">
 
-<div class="nav"><a href="../index.html">&larr; 返回首页 / Back to Home</a></div>
+<div class="nav"><a href="../index.html" data-i18n="issue005.back">&larr; 返回首页 / Back to Home</a></div>
 
-<div class="wrap">
+<div class="wrap issue-zh">
 
 <div class="header">
   <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
@@ -227,8 +230,147 @@
 
 </div>
 
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #005</div>
+  <div class="header-meta">May 6&ndash;12, 2026 &middot; 1 spotlight + 1 deep-dive + 5 picks</div>
+  <div class="header-sub">AI enters companies, communities, and everyday workflows</div>
+</div>
+
+<div class="section trend"><h2>Hot Take</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Industry Signal</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude Made Two Moves Today — Each Is News; Together, They Are Strategy</div>
+  <div class="card-source">&#x1f4cc; 2026.05.11 &middot; Source: AWS official blog / LLM intelligence feeds</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>On May 11, Anthropic released two updates. <strong>On the surface, they look like separate product announcements. Together, they reveal a clear two-track strategy.</strong></p>
+  <p>&bull; <strong>Enterprise side</strong> — Claude is now available through AWS. Companies can use existing AWS accounts to access Claude without a separate contract or a new procurement flow.<br>
+  &bull; <strong>Developer side</strong> — a multi-agent orchestration panel is arriving. When 5 or 10 agents are running at once, there is finally a place to see what each one is doing, where it is stuck, and how far it has progressed.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>One move cuts enterprise procurement friction. The other addresses the pain of coordinating agent workflows. <strong>Anthropic is lowering the barrier on both ends and embedding Claude into existing workflows.</strong> This is the week Claude moved from API access toward platform behavior.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Companies on AWS</span><span class="badge">Multi-agent workflow builders</span><span class="badge">AI strategy watchers</span></p>
+  <a href="../notes/claude-two-moves.html" class="read-more">&#x1f4d6; Read the full note &rarr;</a>
+</div>
+
+<div class="section spotlight"><h2>&#x1f31f; Spotlight</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-spotlight">Community Build</span><span class="card-num">#02</span></div>
+  <div class="card-title">China Quest — An Interactive Chinese Culture Game for Kids</div>
+  <div class="card-source">&#x1f4cc; by DMVoice Women AI Workgroup &middot; Multicultural Night project</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>A school Multicultural Night needed a booth. A group of moms each took a piece, used AI as support, and built a full set of phone-friendly interactive games: <strong>spin-wheel trivia, City Quest, and a Hanfu dynasty timeline</strong>. Each module is standalone HTML and runs directly in the browser.</p>
+  <p>Four modules are already live, and four more are open for contributors: Foodie, Zodiac, Art Guess, and Festival. This Spotlight explains how the project started, how the group collaborated, what the live experience looks like, and how more people can join.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p><strong>This is what vibe coding looks like in real life.</strong> It is not one person making a perfect product. It is a group of people each building a piece, with AI helping write code and generate assets. Put together, the result is usable. Because each module is standalone HTML, <strong>any school or community can reuse it.</strong></p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Parents planning school/community events</span><span class="badge">Members who want to claim a module</span><span class="badge">Vibe coding beginners</span></p>
+  <a href="../notes/spotlight-china-quest.html" class="read-more">&#x1f4d6; Read the full Spotlight &rarr;</a>
+</div>
+
+<div class="section tip"><h2>Deep Dive</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Workflow Insight</span><span class="card-num">#03</span></div>
+  <div class="card-title">AI Output Formats — Markdown or HTML?</div>
+  <div class="card-source">&#x1f4cc; Source: @karpathy / @trq212 / technical discussions</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>This week, AI developers got animated about a deceptively simple question: <strong>should AI output Markdown or HTML?</strong> The discussion was sparked by Anthropic Claude Code team member Thariq Shihipar's essay, "The Unreasonable Effectiveness of HTML," which showed 20 examples of Claude Code generating HTML: side-by-side comparisons, annotated code review reports, and planning docs that open directly in the browser.</p>
+  <p>Markdown is simple, portable, and human-friendly. HTML is expressive, interactive, and artifact-ready. <strong>The question is not which one is better. The question is what job the output needs to do.</strong></p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Karpathy's point reaches further: Markdown and HTML may both be temporary stops in the evolution of <strong>human-AI collaborative output formats</strong>. As AI produces more executable artifacts instead of plain text, the format layer will keep changing. The full note includes a practical decision table.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">People making reports/PPTs/docs with AI</span><span class="badge">Prompt engineers</span><span class="badge">Tool evolution watchers</span></p>
+  <a href="../notes/digest-md-vs-html.html" class="read-more">&#x1f4d6; Read the full deep dive &rarr;</a>
+</div>
+
+<div class="section trend"><h2>Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend Signal</span><span class="card-num">#04</span></div>
+  <div class="card-title">AI Moves Into Enterprise Back Offices — The 76% Signal</div>
+  <div class="card-source">&#x1f4cc; 2026.05.11 &middot; Source: AWS / OpenAI / IBM / NVIDIA / Anthropic announcements</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Several things happened in the same week, and they point in the same direction: <strong>AI companies are no longer only selling APIs. They are embedding themselves into enterprise operating systems.</strong> Claude moved into AWS. OpenAI is sending engineers directly into customer companies to help with integration. IBM, NVIDIA, and Anthropic are all making similar moves.</p>
+  <p>The number to watch is <strong>76%</strong>: the share of companies that have already deployed generative AI in production, not just in pilots or sandboxes. A year ago, that number was closer to 30%.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>The story that "AI is just a tool" is getting old. <strong>AI is becoming infrastructure.</strong> For enterprise workers, the question is shifting from "can we use AI?" to "which process should we redesign with AI?" For individuals, the window to stand out simply by "using AI well" is narrowing fast.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Enterprise IT and operations leads</span><span class="badge">Consultants and product people</span><span class="badge">Career direction watchers</span></p>
+  <a href="../notes/ai-enters-enterprise.html" class="read-more">&#x1f4d6; Read the full note &rarr;</a>
+</div>
+
+<div class="section scene"><h2>Build Notes</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Build Note</span><span class="card-num">#05</span></div>
+  <div class="card-title">Building a Community Platform From Scratch — The Salonette Guide</div>
+  <div class="card-source">&#x1f4cc; by DMVoice Women AI Workgroup &middot; salonette.syneira.org &middot; 2026.05</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>The group kept saying it needed a place of its own. Then it actually built one: <strong>five days, three steps</strong>. This note is less a tutorial and more a build diary: what not to build, which tools to use, how the tables relate, how permissions work, and which problems appeared along the way.</p>
+  <p>The stack is intentionally practical: Supabase for auth and database, Next.js for the app, and Claude Code for the skeleton. The point is not technical performance. The point is <strong>calibrating while building</strong>: what to cut, what to ship first, and what belongs in v2.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>For a person or small community building a collaboration platform, <strong>full stack plus AI is now within reach</strong>. This is not a blueprint to copy exactly. It is a process to read and think: I could probably do this too.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">People building communities/tools</span><span class="badge">Vibe coding practitioners</span><span class="badge">Supabase / Next.js learners</span></p>
+  <a href="../notes/salonette-build-guide.html" class="read-more">&#x1f4d6; Read the full build note &rarr;</a>
+</div>
+
+<div class="section tool"><h2>Tool Updates</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#06</span></div>
+  <div class="card-title">Claude Code /goal — Let AI Run Until the Work Is Done</div>
+  <div class="card-source">&#x1f4cc; Claude Code v2.1.139 &middot; 2026.05.11 &middot; code.claude.com/docs/en/goal</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>The new command released with Claude Code v2.1.139 works like this: <strong>you give Claude a completion condition</strong>, and it works, verifies, and keeps going until the condition is satisfied.</p>
+  <p>This pushes Claude Code from "follow my instruction step by step" toward "make progress toward a goal." Seen alongside AWS access and multi-agent orchestration, <strong>Anthropic seems to be making autonomous task completion a default collaboration pattern.</strong></p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>It sounds simple, but the quality depends on the condition. Good conditions are machine-checkable: all tests pass, no console errors, the file exists. Bad conditions are subjective: make it beautiful, write it clearly. A clear finish line is now a core agent-collaboration skill.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude Code users</span><span class="badge">Agent workflow builders</span><span class="badge">Autonomous AI watchers</span></p>
+  <a href="../notes/claude-code-goal.html" class="read-more">&#x1f4d6; Read the full breakdown &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#07</span></div>
+  <div class="card-title">Everything Claude Code — 170K Stars, But What Should You Actually Install?</div>
+  <div class="card-source">&#x1f4cc; github.com/affaan-m/everything-claude-code &middot; 178K &#x2b50; &middot; MIT open source</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>This project has been circulating widely: a huge Claude Code configuration pack with Skills, Commands, Hooks, Subagents, and Output Styles all in one place.</p>
+  <p>After a week of practical use, the conclusion is simple: <strong>most people do not need most of it.</strong> This issue breaks ECC into categories: what is worth installing, what is optional, and what is unnecessary for most workflows.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>170K stars does not mean you should install everything. <strong>The real question is not "does it have features?" but "which part of my workflow is missing?"</strong> The full breakdown includes a choose-by-scenario table.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude Code users</span><span class="badge">AI workflow builders</span><span class="badge">People who love GitHub toolkits</span></p>
+  <a href="../notes/ecc-breakdown.html" class="read-more">&#x1f4d6; Read the full breakdown &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    Curated by community members &middot; Weekly issue + occasional deep dives<br>
+    Filter: useful &gt; flashy &middot; usable &gt; impressive<br><br>
+    <span class="badge" style="background:#FDF6EC;color:#C97A1F;border:none;">Spotlight</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Workflow Insight</span>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signal</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Build Note</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <br><br>
+    &#x1f4ac; Found something good? Share it with the group. It may become a future pick.<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
 <div class="nav" style="padding-bottom:40px; text-align:center;">
-  <a href="../index.html">&larr; 返回首页 / Back to Home</a>
+  <a href="../index.html" data-i18n="issue005.back">&larr; 返回首页 / Back to Home</a>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>
