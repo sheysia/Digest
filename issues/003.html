@@ -71,13 +71,16 @@
 
   .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
   .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
 </style>
 </head>
-<body>
+<body data-full-i18n-page="issue-003">
 
-<div class="nav"><a href="../index.html">&larr; 返回首页 / Back to Home</a></div>
+<div class="nav"><a href="../index.html" data-i18n="issue005.back">&larr; 返回首页 / Back to Home</a></div>
 
-<div class="wrap">
+<div class="wrap issue-zh">
 
 <div class="header">
   <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
@@ -230,8 +233,155 @@
 
 </div>
 
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #003</div>
+  <div class="header-meta">Apr 23&ndash;28, 2026 &middot; 7 picks + 1 deep-dive</div>
+  <div class="header-sub">From headlines to daily life — AI is becoming an everyday tool</div>
+</div>
+
+<div class="section tool"><h2>Tool Updates</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#01</span></div>
+  <div class="card-title">GPT-5.5 Released — OpenAI Is No Longer Selling a Chatbot; It Is Selling an AI Employee</div>
+  <div class="card-source">&#x1f4cc; openai.com &middot; Apr 23, 2026</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>OpenAI released GPT-5.5 only six weeks after GPT-5.4. The main shift is not simply that the model is smarter. <strong>The positioning has moved from chat assistant to agent that can do work on its own.</strong> OpenAI describes it as something you can give a messy multi-step task to, trusting it to plan, use tools, check results, handle ambiguity, and continue until the task is done.</p>
+  <p>Examples include coding and debugging, web research, data analysis, documents and spreadsheets, software operation, and cross-tool workflows. Codex includes a 400K context window. More than 10,000 NVIDIA employees tested it early, not only engineers but also legal, finance, and operations teams. BNY reported stronger resistance to hallucination in testing.</p>
+  <p>The codename is "Spud." ChatGPT has passed 900 million weekly active users, with more than 50 million paid users.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p><strong>Practical impact:</strong> if you use ChatGPT Plus, GPT-5.5 has already replaced 5.4 for you. The most noticeable difference is that you do not have to hand-hold it as much. Instead of feeding step-by-step instructions, you can give it a broader direction and let it break the task down.</p>
+  <p><strong>Still, be careful:</strong> in a seven-part comparison by Tom's Guide, GPT-5.5 reportedly lost to Claude Opus 4.7 across the board. Fast is not the same as accurate. The real test of agent ability is whether it can complete your actual task without making costly mistakes. Start with low-risk work before trusting it with critical deliverables.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">ChatGPT users</span><span class="badge">Anyone already upgraded automatically</span></p>
+</div>
+
+<div class="section scene"><h2>Use Cases</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#02</span></div>
+  <div class="card-title">AI Video Does Not Have to Be a Lottery — The Image2 + Seedance 2.0 Two-Step Method</div>
+  <div class="card-source">&#x1f4cc; Multiple sources &middot; Apr 2026</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>AI video used to feel like drawing cards from a deck. You wrote a prompt, the model guessed the scene, and maybe two out of ten results were usable. Broken faces, clothing glitches, and discontinuous motion were normal.</p>
+  <p>The more reliable method now is <strong>two steps: lock the frame first, then generate the video.</strong></p>
+  <p><strong>Step 1: use ChatGPT Images 2.0 to generate static storyboard frames</strong> for each shot: character appearance, clothing, location, and pose. The visual identity is locked first.</p>
+  <p><strong>Step 2: feed those frames into Seedance 2.0, ByteDance's video model, and let it animate them.</strong> With the image as an anchor, the character is less likely to change faces or jump scenes.</p>
+  <p>The logic is simple: <strong>Image 2 handles what it looks like; Seedance handles how it moves.</strong></p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>You do not need a third-party aggregator. ChatGPT Images 2.0 is inside ChatGPT. Seedance 2.0 can be used through CapCut or seedance.tv. A 15-second clip may cost roughly $0.10 to $0.50.</p>
+  <p>Use cases: a 30-second project intro, a community event teaser, product demos for social platforms, or simple animation for a school presentation.</p>
+  <p><strong>Limit:</strong> current clips are best treated as short segments, not full long-form videos. Third-party credit platforms can be confusing; native tools are cleaner.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">People who need short videos without a filming team</span><span class="badge">Social media creators</span></p>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#03</span></div>
+  <div class="card-title">MergeCheck — A Small Traditional-Code Tool for Verifying AI Output</div>
+  <div class="card-source">&#x1f4cc; Syneira.AI slow note &middot; By Syneira Lab &middot; Vibe coding in practice</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>AI agents are increasingly helping people merge files. But how do you know the merge is correct? You may not notice missing rows, duplicates, or a value changing from $500 to $5000.</p>
+  <p>MergeCheck started from a friend's real need: upload several input CSV files and one AI-merged output CSV, then run six checks in one click: schema comparison, row-count tie-out, primary-key duplicates, missing rows, numeric sum tie-out, and random sampling.</p>
+  <p><strong>The core principle: the verification does not use AI. It uses traditional code.</strong> Using AI to verify AI would be a loop. The report includes timestamps and SHA-256 file fingerprints, and it reports problems without modifying the data.</p>
+  <p>It was built in one week of vibe coding: one to two hours each night, Claude Code for structure, Python + Streamlit for the app, and GitHub for open source.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>First, if you use AI to merge files, running MergeCheck is faster and more reliable than eyeballing. Second, it is a good example of building a small tool from a real-life problem. Deciding what not to build matters as much as deciding what to build.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">People using AI on data files</span><span class="badge">Vibe coding learners</span></p>
+  <a href="../notes/mergecheck.html" class="read-more">&#x1f4d6; Read the full breakdown &rarr;</a>
+</div>
+
+<div class="section tip"><h2>Workflow Insight</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Workflow Insight</span><span class="card-num">#04</span></div>
+  <div class="card-title">A Frontend Fine-Tuning Trick for Vibe Coding — Stop Making AI Guess; Ask It to Build You a Control Panel</div>
+  <div class="card-source">&#x1f4cc; Vibe coding tip &middot; DMV-adapted version</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>The hardest part of AI-generated frontend work is often not getting code at all. It is micro-adjustment: spacing too tight, font too small, alignment slightly off. Asking AI to "make it a little better" over and over is inefficient because AI cannot see the exact version in your head.</p>
+  <p>The fix: <strong>ask AI to generate a visual tuning panel with sliders</strong> for CSS values such as spacing, font size, padding, border radius, and line height. You adjust the controls yourself, then copy the final values back into the real code.</p>
+  <p><strong>Core principle: humans are good at seeing whether something feels right; AI is good at generating options.</strong> Keep judgment with the human and let AI build the adjustment tool.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This pattern is not only for frontend. For reports, ask AI to build a color preview panel. For slides, ask for a palette selector. For email, ask for three tone variations and choose. Anywhere AI is guessing, you can ask it to make a tool that lets you decide.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Technical readers can use it directly</span><span class="badge">Non-technical readers can borrow the pattern</span></p>
+  <a href="../notes/vibe-coding-tip.html" class="read-more">&#x1f4d6; Read the detailed note &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Workflow Insight</span><span class="card-num">#05</span></div>
+  <div class="card-title">What Do Claude Model Names Mean? A Playful Guide to Haiku, Sonnet, Opus, and Mythos</div>
+  <div class="card-source">&#x1f4cc; By Syneira &middot; Naming curiosity</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>If you do not know whether to choose Haiku, Sonnet, or Opus, the names themselves offer a clue. Anthropic uses a <strong>literary and musical naming system</strong>: Haiku is the shortest, Sonnet is medium-length, Opus is a larger work, and Mythos suggests the most powerful level. From short to long and light to heavy, <strong>the name tells you the model's role.</strong></p>
+  <p>Fun detail: <strong>Claude itself is named after Claude Shannon</strong>, the founder of information theory. The brand has academic roots built into its name.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Quick rule: use Haiku for short tasks, Sonnet for daily work, Opus for complex thinking and long writing, and Mythos for the hardest tasks. It is also a friendly way to explain model differences to non-technical people.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude users</span><span class="badge">AI explainers</span><span class="badge">People who enjoy naming lore</span></p>
+  <a href="../notes/claude-naming-guide.html" class="read-more">&#x1f4d6; Read the full guide &rarr;</a>
+</div>
+
+<div class="section life"><h2>Life Tip</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">Life Tip</span><span class="card-num">#06</span></div>
+  <div class="card-title">Claude Can Push iPhone Reminders — Just Say the Thing</div>
+  <div class="card-source">&#x1f4cc; By Syneira &middot; Real-life workflow</div>
+  <div class="label label-h">&starf; What It Is</div>
+  <p>In the Claude app, you can say something like "remind me about my dentist appointment Thursday at 11:40" or "for next Friday's dinner, remind me on Monday to confirm the headcount." <strong>Claude can create an iPhone Reminder</strong> with the time, notes, and priority filled in.</p>
+  <p>You can phrase it casually, in Chinese, English, or both:</p>
+  <p>&bull; "Tomorrow 10:30 video visit with Dr. Chen; remind me one hour early to finish pre-visit tasks."<br>
+  &bull; "6/12 Friday dinner, $20 per person; remind me Monday that week to confirm the count."<br>
+  &bull; "Send tax documents before next Wednesday; set a Monday reminder."</p>
+  <p>Claude can calculate the date logic, add notes, and push it to Reminders.</p>
+  <div class="label label-s">&#x1f4a1; Why It Beats Siri</div>
+  <p>Siri handles simple commands. Claude can handle <strong>date reasoning plus context follow-up</strong>. You can continue with "add one for the dentist too," and it understands the conversation.</p>
+  <p><strong>Requirements:</strong> Claude app on iOS, permission to access Reminders, and either free or Pro account.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Everyone</span><span class="badge">Usable today</span><span class="badge">Especially helpful for bilingual families</span></p>
+</div>
+
+<div class="section scene"><h2>Deep Dive</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Deep Dive</span><span class="card-num">#07</span></div>
+  <div class="card-title">Build Your Second Brain With AI — A Practical Version of Building a Second Brain</div>
+  <div class="card-source">&#x1f4cc; Based on Tiago Forte's Building a Second Brain &middot; adapted for DMV professional women</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Tiago Forte's classic method is <strong>CODE: Capture, Organize, Distill, Express; plus PARA: Projects, Areas, Resources, Archives.</strong> When the book came out in 2022, ChatGPT, Claude, and NotebookLM were not yet part of daily workflows. Now AI can help automate the first three steps, leaving you to focus on the last one: expression.</p>
+  <p>The full guide covers five capture sources, a practical PARA table, a three-layer AI distillation method, four Notion database structures, a weekly 15-minute routine, and a comparison between the original method and an AI-augmented version.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p><strong>Let AI handle the first three steps; you handle the final judgment and expression.</strong> If you consume a lot but retain little and reuse even less, the missing piece is not more input. It is a loop.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Everyone</span><span class="badge">People overloaded by information</span><span class="badge">Teams building knowledge systems</span></p>
+  <a href="../notes/second-brain.html" class="read-more">&#x1f4d6; Read the full guide &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    Curated by community members &middot; Weekly issue + occasional deep dives<br>
+    Filter: useful &gt; flashy &middot; usable &gt; impressive<br><br>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Use Case</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Workflow Insight</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Life Tip</span>
+    <br><br>
+    &#x1f4ac; Found something good? Share it with the group. It may become a future pick.<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
 <div class="nav" style="padding-bottom:40px; text-align:center;">
-  <a href="../index.html">&larr; 返回首页 / Back to Home</a>
+  <a href="../index.html" data-i18n="issue005.back">&larr; 返回首页 / Back to Home</a>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>
