@@ -66,9 +66,14 @@ The `<html data-i18n-title>` / `<html data-i18n-description>` also let
 `applyLanguage()` swap `<title>` and `<meta name="description">` (good for
 the browser tab and SEO when crawled in EN context — see caveats §6).
 
-### Tier B — **Full bilingual via duplicated `.issue-zh` / `.issue-en` blocks**
+### Tier B — **Full bilingual via duplicated content blocks**
 
-Used by: all 5 issue covers (`issues/001`–`005.html`).
+Used by: all issue covers (`issues/001`–`006.html`) and the six Issue #006
+notes that now provide full EN body text:
+`notes/google-io-2026-recap.html`, `notes/codex-in-chatgpt.html`,
+`notes/hermes-agent-explainer.html`, `notes/cli-vs-mcp.html`,
+`notes/gpt-vs-claude-design.html`, and
+`notes/growth-evidence-bank.html`.
 
 Pattern: the page contains TWO complete content blocks, only one of which
 is displayed at a time via CSS:
@@ -93,9 +98,15 @@ it should NOT inject the small EN summary banner.
 > **Issue 001 uses `.issue-wrapper.issue-zh` / `.issue-wrapper.issue-en`
 > instead of `.wrap.…`.** Same idea, different class name; both work.
 
+Issue #006 notes use `.note-zh` / `.note-en` wrappers around the full page
+content. Same signal: `<body data-full-i18n-page="note-...">` suppresses
+the reader-aid fallback because the page has a complete English version.
+
 ### Tier C — **Reader-aid only** (default for individual notes)
 
-Used by: every file in `notes/` except `notes/index.html`.
+Used by: individual notes that do not have `data-full-i18n-page`; excluded
+pages are `notes/index.html` and the six full-bilingual Issue #006 notes
+listed under Tier B.
 
 Pattern: the page is Chinese-only. When the user toggles to EN, `i18n.js`
 finds the page in the `PAGE_SUMMARIES` dict and prepends a small EN
@@ -128,12 +139,12 @@ modern browsers have a built-in translation prompt).
 
 | Surface | Status | Notes |
 |---|---|---|
-| `i18n.js` loaded on all real pages | ✅ | 38 / 38 (excludes guides/ redirect stubs and the orphan in `issues/004/files/`) |
-| All 144 `data-i18n` keys referenced in HTML are defined in `i18n.js` | ✅ | Zero undefined, zero unused |
-| All 25 notes have a `PAGE_SUMMARIES` entry | ✅ | Reader-aid will render for each |
+| `i18n.js` loaded on all real pages | ✅ | 45 / 45 (excludes guides/ redirect stubs and the orphan in `issues/004/files/`) |
+| All 147 `data-i18n` keys referenced in HTML are defined in `i18n.js` | ✅ | `I18N.zh` / `I18N.en` both contain 155 paired keys |
+| All 31 individual notes have a `PAGE_SUMMARIES` entry | ✅ | Reader-aid renders only for notes that are not full bilingual |
 | All `PAGE_SUMMARIES` entries point to existing files | ✅ | No broken keys |
 
-### 3.2 Issue covers (`issues/001.html` – `issues/005.html`)
+### 3.2 Issue covers (`issues/001.html` — `issues/006.html`)
 
 | Issue | `data-full-i18n-page` | ZH/EN block class | Cards (ZH) | Cards (EN) | Note links parity |
 |---|---|---|---|---|---|
@@ -142,6 +153,7 @@ modern browsers have a built-in translation prompt).
 | 003 | ✅ `issue-003` | `.wrap.issue-zh` / `.issue-en` | 7 | 7 | ✅ same 4 note links |
 | 004 | ✅ `issue-004` | `.wrap.issue-zh` / `.issue-en` | 8 | 8 | ✅ same 8 note links |
 | 005 | ✅ `issue-005` | `.wrap.issue-zh` / `.issue-en` | 7 | 7 | ✅ same 7 note links |
+| 006 | ✅ `issue-006` | `.wrap.issue-zh` / `.issue-en` | 6 | 6 | ✅ same 6 note links |
 
 Card title parity spot-checked on #004 and #005 — every ZH card has an
 equivalent EN card at the same position. Translations read naturally.
@@ -224,6 +236,24 @@ equivalent EN card at the same position. Translations read naturally.
 4. (Optional) Add a one-line link in `notes/index.html` and an entry to
    `notesIndex.*` keys in `I18N.zh` / `I18N.en`.
 5. Create the redirect stub at `guides/<slug>.html`.
+
+### Upgrading a note to full bilingual (Tier B)
+
+Use this when an issue note should read fully in both languages, not just
+show the reader-aid summary.
+
+1. Add `data-full-i18n-page="note-<slug>"` to `<body>`.
+2. Wrap the existing Chinese page content in `<div class="note-zh">`.
+3. Add a matching `<div class="note-en">` with the complete English body.
+4. Add the small CSS switch:
+   ```css
+   .note-en { display: none; }
+   html[lang="en"] .note-zh { display: none; }
+   html[lang="en"] .note-en { display: block; }
+   ```
+5. Keep the `PAGE_SUMMARIES` entry anyway; it remains useful for audits
+   and fallback metadata, but the reader-aid card will not inject on
+   pages marked `data-full-i18n-page`.
 
 ### Adding a new issue cover (Tier B — duplicated blocks)
 

@@ -117,9 +117,13 @@
     .phil-row{grid-template-columns:1fr}
     .footer{flex-direction:column}
   }
+  .note-en{display:none}
+  html[lang="en"] .note-zh{display:none}
+  html[lang="en"] .note-en{display:block}
 </style>
 </head>
-<body>
+<body data-full-i18n-page="note-gpt-vs-claude">
+<div class="note-zh">
 
 <nav class="nav">
   <a href="../index.html">AI Digest</a>
@@ -310,6 +314,168 @@
     <span>趋势信号 · 用法洞察</span>
   </footer>
 
+</div>
+</div>
+
+<div class="note-en">
+<nav class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">/</span>
+  <span>Issue #006 / Note</span>
+</nav>
+
+<div class="wrap">
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-trend">TREND SIGNAL</span>
+      <span class="tag tag-tip">WORKFLOW LENS</span>
+    </div>
+    <h1>Why Do GPT and Claude<br>Feel So Different?</h1>
+    <p class="header-sub">If you use both tools, you have probably felt it: ask the same question, and GPT answers quickly while Claude circles the context first. That difference is not just personality. It comes from different training routes.</p>
+    <div class="header-meta">Source: Anthropic / OpenAI technical papers / model comparison analysis / 2026.05</div>
+  </header>
+
+  <p class="lead">Many people treat GPT and Claude like two brands of the same product, like Coke and Pepsi. They are closer to gasoline cars and electric cars: both can take you from A to B, but the engine works differently. That underlying difference shapes how they behave in everyday tasks.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Under The Hood</div>
+    <h2>Two Training Routes</h2>
+  </div>
+
+  <div class="phil-row">
+    <div class="phil rlhf">
+      <div class="phil-badge">OpenAI / GPT</div>
+      <div class="phil-name">RLHF</div>
+      <div class="phil-who">Reinforcement Learning from Human Feedback</div>
+      <div class="phil-how">Humans rate, the model learns</div>
+      <div class="phil-desc">Thousands of people rate model answers: this one is better, that one is worse. The model learns to produce responses that make people satisfied in the moment.</div>
+      <div class="phil-result"><strong>Result:</strong> fast, direct, energetic. It feels like an executor who starts moving as soon as you finish speaking. The downside is that it can over-please, hedge with filler, or sound confident when it should be cautious.</div>
+    </div>
+    <div class="phil cai">
+      <div class="phil-badge">Anthropic / Claude</div>
+      <div class="phil-name">Constitutional AI</div>
+      <div class="phil-who">Principle-based AI self-critique</div>
+      <div class="phil-how">Rules first, AI checks itself</div>
+      <div class="phil-desc">Instead of relying only on human ratings, the model is given a written constitution and another AI helps judge whether outputs follow those principles. The model learns a kind of self-critique.</div>
+      <div class="phil-result"><strong>Result:</strong> a little slower, but steadier. It feels like an advisor who wants to read the full file before speaking. It is more comfortable saying "I am not sure," and less likely to invent, though sometimes it can feel conservative.</div>
+    </div>
+  </div>
+
+  <p>One system learns more from "how to satisfy people"; the other learns more from "how to follow principles." That is not a moral ranking. It is a design difference.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">In Practice</div>
+    <h2>Where the Difference Shows Up</h2>
+  </div>
+
+  <table class="beh-tbl">
+    <tr><th>Scenario</th><th>GPT tendency</th><th>Claude tendency</th></tr>
+    <tr><td>You ask a question</td><td>Answers quickly and confidently</td><td>Reads context first, answers more carefully</td></tr>
+    <tr><td>You ask for code</td><td>Produces a runnable version quickly</td><td>Thinks through structure and explains choices</td></tr>
+    <tr><td>It is uncertain</td><td>May still give a confident answer</td><td>More likely to say it is unsure</td></tr>
+    <tr><td>Long documents / large projects</td><td>Can lose context midstream</td><td>Usually keeps long context more coherently</td></tr>
+    <tr><td>Writing</td><td>Smooth and efficient, sometimes formulaic</td><td>More natural and human-like</td></tr>
+    <tr><td>You say "you are right"</td><td>More likely to follow your lead</td><td>More likely to hold its own judgment</td></tr>
+  </table>
+
+  <div class="callout-blue callout">
+    <p>A known side effect of RLHF is sycophancy: if the training signal rewards human approval, the model may learn that agreeing is safer than pushing back. Constitutional AI does not eliminate the problem, but the principle-based judging layer can make it lighter.</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">GPT Says</div>
+    <h2>Interestingly, GPT Knows This Too</h2>
+  </div>
+
+  <p>While setting up a project, I asked GPT whether Claude Code or Codex should be the primary tool. Its answer was surprisingly honest.</p>
+
+  <div class="gpt-card">
+    <h3>GPT's answer, excerpted</h3>
+    <p>"Claude Code is better for this repository because it is essentially a <span class="gpt-highlight">long-term Markdown knowledge vault + writing system</span>. Claude Code officially supports CLAUDE.md for project-level context and reads it at the start of each session."</p>
+    <p>"Codex is better later for <span class="gpt-highlight">organizing files, batch conversion, format checks, generating webpages/PDFs, scripts, and repo hygiene.</span>"</p>
+    <p>"<span class="gpt-highlight">Claude Code builds the brain; Codex builds the tools.</span>"</p>
+  </div>
+
+  <p>That split maps neatly to the training difference. Claude is stronger when the work needs long-context consistency, complex structure, and principled judgment. GPT is strong at fast execution, concrete tasks, batch processing, and automation.</p>
+
+  <p>GPT's recommended architecture was simple: keep both <code>CLAUDE.md</code> and <code>AGENTS.md</code> in the same repository, so Claude and Codex each read the instructions meant for their strengths.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Which One</div>
+    <h2>Which Tool for Which Task?</h2>
+  </div>
+
+  <p>This is not about choosing one and deleting the other. The two tools solve different kinds of problems.</p>
+
+  <div class="scenes">
+    <div class="scene">
+      <div class="scene-task">Long-term project management that needs durable context</div>
+      <div class="scene-pick claude">Claude</div>
+    </div>
+    <div class="scene">
+      <div class="scene-task">Writing, revising, and tuning tone</div>
+      <div class="scene-pick claude">Claude</div>
+    </div>
+    <div class="scene">
+      <div class="scene-task">Understanding complex documents and relationships</div>
+      <div class="scene-pick claude">Claude</div>
+    </div>
+    <div class="scene">
+      <div class="scene-task">Quickly producing runnable code</div>
+      <div class="scene-pick gpt">GPT</div>
+    </div>
+    <div class="scene">
+      <div class="scene-task">Batch file work and format conversion</div>
+      <div class="scene-pick gpt">GPT</div>
+    </div>
+    <div class="scene">
+      <div class="scene-task">Image generation</div>
+      <div class="scene-pick gpt">GPT</div>
+    </div>
+    <div class="scene">
+      <div class="scene-task">Browser, search, and automation workflows</div>
+      <div class="scene-pick gpt">GPT</div>
+    </div>
+    <div class="scene">
+      <div class="scene-task">You need honesty more than speed</div>
+      <div class="scene-pick claude">Claude</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Big Picture</div>
+    <h2>Multi-Model Collaboration Is the Direction</h2>
+  </div>
+
+  <p>This is bigger than GPT vs Claude. In 2026, the smarter pattern is not "pick the single best model." It is to let different models do the work they are best at.</p>
+
+  <p>People call this multi-model orchestration. The phrase sounds technical, but you may already do it: Claude for writing, GPT for images, DeepSeek for translation. The important part is knowing each tool's strengths instead of forcing one tool to do everything.</p>
+
+  <div class="quote">
+    "No single model wins every task. The future is routing."
+    <span class="quote-src">- DataDrivenInvestor, 2026.02</span>
+  </div>
+
+  <div class="verdict">
+    <h3>Remember Two Things</h3>
+    <p>First, GPT and Claude are not two versions of the same thing. They are trained through different methods and are strong at different work. Second, GPT itself can recognize that Claude is better for long-context writing systems, while Codex is better for automation and tooling. Once you know the difference, you know which one to open.</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira / Issue #006 / 2026.05</span>
+    <span>Trend Signal / Workflow Lens</span>
+  </footer>
+</div>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>

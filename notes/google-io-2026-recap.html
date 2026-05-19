@@ -106,9 +106,13 @@
     .stats{grid-template-columns:1fr}
     .footer{flex-direction:column}
   }
+  .note-en{display:none}
+  html[lang="en"] .note-zh{display:none}
+  html[lang="en"] .note-en{display:block}
 </style>
 </head>
-<body>
+<body data-full-i18n-page="note-google-io-2026">
+<div class="note-zh">
 
 <nav class="nav">
   <a href="../index.html">AI Digest</a>
@@ -327,6 +331,219 @@
     <span>速报 · 趋势信号</span>
   </footer>
 
+</div>
+</div>
+
+<div class="note-en">
+<nav class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">/</span>
+  <span>Issue #006 / Note</span>
+</nav>
+
+<div class="wrap">
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-break">RECAP</span>
+      <span class="tag tag-trend">TREND SIGNAL</span>
+    </div>
+    <h1>Google I/O 2026 Recap:<br>The Two-Hour Keynote Had One Real Story</h1>
+    <p class="header-sub">The Google I/O 2026 keynote was nearly two hours of AI announcements. Here is the filtered version: what matters, why it matters, and how it connects to the agent shift.</p>
+    <div class="header-meta">Source: Google official blog / 9to5Google / Engadget / TechRadar / Tom's Guide / 2026.05.19</div>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">900M</div>
+      <div class="stat-label">Gemini monthly active users, roughly doubled in one year</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">97T</div>
+      <div class="stat-label">tokens processed by Gemini every month</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">Google products with more than 1B users</div>
+    </div>
+  </div>
+
+  <p class="lead">Sundar Pichai opened with numbers, but the numbers were not the point. They were the setup for one message: Gemini is no longer just a chat assistant. Google wants it to become a 24/7 agent layer that works across products.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Models</div>
+    <h2>New Models</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat model">Model</span>
+      <span class="ann-name">Gemini 3.5 Flash</span>
+    </div>
+    <div class="ann-desc">Google positioned Flash as stronger than Gemini 3.1 Pro, with about 4x the speed of competing frontier models. Coding, agent tasks, and multimodal work all get upgraded. It is rolling out in the Gemini app, Search AI Mode, Antigravity 2.0, and the API.</div>
+    <div class="ann-when">Available globally from today</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat model">Model</span>
+      <span class="ann-name">Gemini 3.5 Pro</span>
+    </div>
+    <div class="ann-desc">The Pro model is still in testing and is scheduled for next month. Flash is the first member of the 3.5 family; Pro is the stronger version coming after it.</div>
+    <div class="ann-when">Expected next month</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat model">Model</span>
+      <span class="ann-name">Gemini Omni</span>
+    </div>
+    <div class="ann-desc">Google described Omni as "create anything from any input": image, audio, video, and text inputs, with video generation as the first output mode. The broader promise is a model that can move across input and output types more fluidly.</div>
+    <div class="ann-when">Starting with video generation</div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Agents</div>
+    <h2>The Agent Layer Was the Real News</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Gemini Spark</span>
+    </div>
+    <div class="ann-desc">Spark is a 24/7 personal AI agent running on Google Cloud virtual machines. It is based on Gemini 3.5 Flash, connects to Workspace apps like Gmail and Docs, and will later reach third-party tools through MCP. Example tasks include monitoring hidden credit card subscriptions, tracking school emails, and turning Gmail threads into project notes. Sensitive actions still ask for confirmation.</div>
+    <div class="ann-when">Beta next week for AI Ultra users in the U.S.</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Daily Brief</span>
+    </div>
+    <div class="ann-desc">A personal morning brief pulled from Gmail, Calendar, and Tasks. It prioritizes what needs attention and adds suggested next steps instead of simply listing events.</div>
+    <div class="ann-when">Rolling out to AI Plus, Pro, and Ultra users in the U.S.</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Information Agents in Search</span>
+    </div>
+    <div class="ann-desc">Background agents inside Google Search can keep watching topics you care about: blogs, news, social posts, financial data, sports, and other live sources. When something changes, they notify you.</div>
+    <div class="ann-when">Coming this summer for AI Pro and Ultra users in the U.S.</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Android Halo</span>
+    </div>
+    <div class="ann-desc">A phone-level entry point for seeing what your agent is doing. It shows current agent task status at the top of the screen and alerts you when the agent needs attention.</div>
+    <div class="ann-when">Expected later this year</div>
+  </div>
+
+  <div class="callout">
+    <p>Spark is close in spirit to Hermes Agent: always-on, background-running, and built to watch things for you. The tradeoff is location. Spark runs on Google Cloud, so you do not maintain servers, but your data sits with Google. Hermes runs on your own machine, so the data stays local. Two routes, two sets of compromises.</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Developer</div>
+    <h2>Developer Tools</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat dev">Dev</span>
+      <span class="ann-name">Antigravity 2.0</span>
+    </div>
+    <div class="ann-desc">Google's agent-first coding platform now ships as desktop app, CLI, and SDK. It runs on Gemini 3.5 Flash, claims a 2x speed improvement, and supports multiple sub-agents coding and testing in parallel. In the demo, Google used Antigravity to build a tiny operating system that could run Doom.</div>
+    <div class="ann-when">Available globally from today</div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-title">Agent Coding Tools Side by Side</div>
+    <div class="cmp-row"><div class="cmp-label"></div><div class="cmp-g">Antigravity 2.0</div><div class="cmp-a">Claude Code</div><div class="cmp-o">Codex</div></div>
+    <div class="cmp-row"><div class="cmp-label">Model</div><div class="cmp-g">Gemini 3.5 Flash</div><div class="cmp-a">Claude Opus/Sonnet</div><div class="cmp-o">GPT / Codex</div></div>
+    <div class="cmp-row"><div class="cmp-label">Form</div><div class="cmp-g">Desktop + CLI + SDK</div><div class="cmp-a">CLI</div><div class="cmp-o">Desktop + CLI</div></div>
+    <div class="cmp-row"><div class="cmp-label">Parallel agents</div><div class="cmp-g">Yes</div><div class="cmp-a">Agent View</div><div class="cmp-o">Single session</div></div>
+    <div class="cmp-row"><div class="cmp-label">Mobile control</div><div class="cmp-g">-</div><div class="cmp-a">Remote Control</div><div class="cmp-o">ChatGPT App</div></div>
+    <div class="cmp-row"><div class="cmp-label">Status</div><div class="cmp-g">Available now</div><div class="cmp-a">Released</div><div class="cmp-o">Preview</div></div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Pricing</div>
+    <h2>Pricing Changed Too</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat price">Pricing</span>
+      <span class="ann-name">AI Ultra now has two tiers</span>
+    </div>
+    <div class="ann-desc">Google added a $100/month tier with 5x the Gemini app and Antigravity usage of Pro, plus YouTube Premium and 10TB cloud storage. The previous top tier dropped to $200/month with 20x Pro usage. The Gemini app is also moving from daily prompt counts to compute-based usage, where cost depends on request complexity and enabled features.</div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Products</div>
+    <h2>Other Product Updates Worth Noting</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat product">Product</span>
+      <span class="ann-name">The biggest Search redesign in 30 years</span>
+    </div>
+    <div class="ann-desc">AI Overviews and AI Mode are merging into one experience. Search suggestions become AI-generated rather than simple autocomplete, image and video inputs are supported, and Search can use Antigravity to generate mini apps such as dashboards and trackers.</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat product">Product</span>
+      <span class="ann-name">Docs Live / Gmail Live / Ask YouTube</span>
+    </div>
+    <div class="ann-desc">Google is pushing conversation into its core products: speak to Docs to create a document, search Gmail conversationally, and ask YouTube for specific video content.</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat hw">Hardware</span>
+      <span class="ann-name">Android XR audio glasses</span>
+    </div>
+    <div class="ann-desc">Google named partners including Samsung, Warby Parker, Gentle Monster, and XREAL. These glasses use voice and earbuds rather than displaying information on the lens. Navigation, translation, and photos are the early use cases, and iPhone support is included.</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat product">Product</span>
+      <span class="ann-name">SynthID + C2PA expansion</span>
+    </div>
+    <div class="ann-desc">Google is expanding AI-content watermark verification to Search and Chrome. OpenAI also said it would use Google's content verification standard, a rare cooperation point between competitors on AI safety infrastructure.</div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="verdict">
+    <h3>What This Keynote Was Really Saying</h3>
+    <p>Google announced dozens of products, but the main line was simple: Gemini is moving from "you ask, it answers" to "it does work for you." Spark is the 24/7 agent, Information Agents are background monitors, Daily Brief is the daily task layer, and Android Halo is the phone-level status surface.</p>
+    <p>Anthropic is moving in the same direction with Claude Code and Remote Control. OpenAI is moving there with Codex, ChatGPT mobile control, and deployment-oriented work. The routes differ, but the destination is similar.</p>
+    <p>Demis Hassabis ended with: "AGI is now on the horizon." Whether or not you believe that sentence, these products are already changing how people interact with AI.</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira / Issue #006 / 2026.05.19</span>
+    <span>Recap / Trend Signal</span>
+  </footer>
+</div>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>

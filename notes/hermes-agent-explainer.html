@@ -104,9 +104,13 @@
     .desktop-feats{grid-template-columns:1fr}
     .footer{flex-direction:column}
   }
+  .note-en{display:none}
+  html[lang="en"] .note-zh{display:none}
+  html[lang="en"] .note-en{display:block}
 </style>
 </head>
-<body>
+<body data-full-i18n-page="note-hermes-agent">
+<div class="note-zh">
 
 <nav class="nav">
   <a href="../index.html">AI Digest</a>
@@ -270,6 +274,163 @@
     <span>工具上新 · 趋势信号</span>
   </footer>
 
+</div>
+</div>
+
+<div class="note-en">
+<nav class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">/</span>
+  <span>Issue #006 / Note</span>
+</nav>
+
+<div class="wrap">
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-tool">TOOL UPDATE</span>
+      <span class="tag tag-trend">TREND SIGNAL</span>
+    </div>
+    <h1>Hermes Agent:<br>Why This Open-Source AI Picked Up 100K Stars in 8 Weeks</h1>
+    <p class="header-sub">Hermes is not another chatbot or another coding helper. It is a private agent that lives on your machine and gets more useful as you use it.</p>
+    <div class="header-meta">Source: Nous Research / GitHub / Hongkiat / DevPik / hermes-agent.org / 2026.05</div>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">100K+</div>
+      <div class="stat-label">GitHub stars</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">295</div>
+      <div class="stat-label">community contributors in v0.13</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Weekly</div>
+      <div class="stat-label">new release cadence</div>
+    </div>
+  </div>
+
+  <p class="lead">Most AI tools work like this: you open a chat, finish the conversation, close it, and next time it remembers very little. Hermes Agent is built differently. It runs on your own computer or server, keeps working in the background, and remembers what you asked it to do, what you prefer, and what skills it learned along the way.</p>
+
+  <div class="callout">
+    <p>The short version: Hermes Agent is a local-first, persistent-memory, self-improving private AI agent. It is developed by Nous Research, the lab behind the Hermes model family, and released under MIT open source.</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Core Features</div>
+    <h2>How It Differs From Claude or ChatGPT</h2>
+  </div>
+
+  <div class="feats">
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">1</div>
+        <div class="feat-name">Three layers of memory</div>
+      </div>
+      <div class="feat-desc">Hermes keeps session memory, persistent memory across sessions in local SQLite, and self-evolving memory that turns repeated experience into reusable skills. Claude and ChatGPT also have memory features, but Hermes keeps them on your own machine.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">2</div>
+        <div class="feat-name">Self-improving skill system</div>
+      </div>
+      <div class="feat-desc">After it completes a task, Hermes can write the process into a skill file. The next time a similar task appears, it can reuse that skill instead of reasoning from scratch. Skills are Markdown files you can inspect, edit, and share.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">3</div>
+        <div class="feat-name">Always online</div>
+      </div>
+      <div class="feat-desc">Once installed, Hermes runs as a background service. You can message it through Telegram, Discord, Slack, or WhatsApp. It is not something you open only when you need a chat; it is meant to be present.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">4</div>
+        <div class="feat-name">Scheduled tasks</div>
+      </div>
+      <div class="feat-desc">Cron scheduling is built in. You can ask it to summarize news every morning, generate a weekly report every Friday, or check a dataset on a schedule without manually triggering the task.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">5</div>
+        <div class="feat-name">Local data by default</div>
+      </div>
+      <div class="feat-desc">Memory, skills, and conversation history live in a SQLite database on your own machine. The project emphasizes no telemetry, no tracking, and no third-party cloud service in the default path.</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">6</div>
+        <div class="feat-name">40+ built-in tools</div>
+      </div>
+      <div class="feat-desc">It includes web search, browser automation, image generation, TTS, code execution, and MCP support for connecting more services. Models can come from Nous Portal, OpenRouter, OpenAI, or your own local setup.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Desktop</div>
+    <h2>The Recent Buzz Is About the Desktop Version</h2>
+  </div>
+
+  <p>Hermes Agent itself is a command-line tool. The version being discussed recently is Hermes Desktop, a third-party desktop interface by the community developer fathah. It is not an official Nous Research product, but it brings many command-line operations into a graphical interface.</p>
+
+  <div class="desktop-card">
+    <div class="desktop-title">What makes the Desktop layer feel more than a skin</div>
+    <div class="desktop-feats">
+      <div class="df"><strong>Profile switching</strong> - separate identities with their own settings, models, personas, and tool permissions.</div>
+      <div class="df"><strong>Visual Cron</strong> - scheduled tasks become visible instead of hidden behind commands.</div>
+      <div class="df"><strong>Editable memory</strong> - inspect and edit memory directly in the interface, including capacity and stored items.</div>
+      <div class="df"><strong>3D office</strong> - a visual Hermes Office space that shows the agent's status. It is flashy, but it is also genuinely new.</div>
+    </div>
+  </div>
+
+  <div class="callout-warn callout">
+    <p>The Desktop version is a third-party community project and has not been validated at large scale. If you want to try Hermes, start with the core CLI first, then add the desktop layer if it proves useful.</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Compare</div>
+    <h2>How It Compares With Tools You May Already Use</h2>
+  </div>
+
+  <table class="cmp-tbl">
+    <tr><th></th><th>Hermes Agent</th><th>Claude Code</th><th>ChatGPT / Codex</th></tr>
+    <tr><td>Positioning</td><td>always-on private agent</td><td>session-based coding assistant</td><td>general AI + coding</td></tr>
+    <tr><td>Runtime</td><td>background service</td><td>open a session, close it later</td><td>cloud/local sessions</td></tr>
+    <tr><td>Memory</td><td>three layers, local</td><td>CLAUDE.md + auto memory</td><td>cloud memory</td></tr>
+    <tr><td>Self-improvement</td><td>writes skill files</td><td>manual configuration</td><td>Custom GPTs</td></tr>
+    <tr><td>Messaging</td><td>Telegram/Discord/Slack/WhatsApp</td><td>terminal + mobile remote control</td><td>app + phone</td></tr>
+    <tr><td>Data location</td><td>your machine</td><td>your machine for code, cloud for chat</td><td>cloud</td></tr>
+    <tr><td>Learning curve</td><td>one-line install, many settings</td><td>one-line install</td><td>open browser and use</td></tr>
+  </table>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">For Whom</div>
+    <h2>Who It Is For, and Who Can Skip It</h2>
+  </div>
+
+  <p>If you want an agent that keeps watching things in the background - summarizing messages, running scheduled tasks, remembering preferences, and learning from repeated work - Hermes is one of the most serious open-source attempts right now.</p>
+  <p>If you only need help writing code, editing documents, or doing analysis, Claude Code and ChatGPT are already enough. There is no need to maintain another system just for the sake of it.</p>
+  <p>It is still at v0.13, not 1.0. Weekly releases show fast momentum, but also frequent change. It is good for experimenting, less ideal if you need a stable daily system today.</p>
+
+  <div class="verdict">
+    <h3>Why It Is Worth Watching</h3>
+    <p>Not because of the 100K stars. Because it represents a direction: AI tools are moving from "open a chat, use it, close it" toward "an assistant that stays with you and gets to know your workflow." Whether Hermes wins or not, this direction matters.</p>
+    <p>Claude is building memory and Projects. ChatGPT has Custom GPTs and Memory. Hermes takes the most aggressive local-first and open-source route. The paths differ, but the endpoint may rhyme.</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira / Issue #006 / 2026.05</span>
+    <span>Tool Update / Trend Signal</span>
+  </footer>
+</div>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>

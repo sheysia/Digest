@@ -117,9 +117,13 @@
     .limits{grid-template-columns:1fr}
     .footer{flex-direction:column}
   }
+  .note-en{display:none}
+  html[lang="en"] .note-zh{display:none}
+  html[lang="en"] .note-en{display:block}
 </style>
 </head>
-<body>
+<body data-full-i18n-page="note-codex-in-chatgpt">
+<div class="note-zh">
 
 <nav class="nav">
   <a href="../index.html">AI Digest</a>
@@ -304,6 +308,186 @@
     <span>工具上新 · 设置指南</span>
   </footer>
 
+</div>
+</div>
+
+<div class="note-en">
+<nav class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">/</span>
+  <span>Issue #006 / Note</span>
+</nav>
+
+<div class="wrap">
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-tool">TOOL UPDATE</span>
+      <span class="tag tag-tip">SETUP GUIDE</span>
+    </div>
+    <h1>Codex in ChatGPT Is Here:<br>Remote-Control Your Coding AI From Your Phone</h1>
+    <p class="header-sub">On May 14, OpenAI brought Codex into the ChatGPT mobile app. It is not a separate app. It lives inside the ChatGPT app you already use.</p>
+    <div class="header-meta">Source: openai.com / MacRumors / TechCrunch / 9to5Mac / 2026.05.14</div>
+  </header>
+
+  <p class="lead">Codex now has more than 4 million weekly users. Before this, it mostly ran on your computer: you opened Codex on a Mac, and it read code, ran commands, and edited files in the background. Now your phone can step into that loop. You are not writing code on a phone. You are watching what Codex is doing, giving approvals, redirecting it, and checking whether the work is done.</p>
+
+  <div class="flow">
+    <div class="flow-box">
+      <div class="fb-label">Mac</div>
+      <div class="fb-name">Codex runs</div>
+      <div class="fb-desc">reads files, edits code, runs tests</div>
+    </div>
+    <div class="flow-arrow">-</div>
+    <div class="flow-box accent">
+      <div class="fb-label">Secure relay</div>
+      <div class="fb-name">Encrypted link</div>
+      <div class="fb-desc">no public exposure</div>
+    </div>
+    <div class="flow-arrow">-</div>
+    <div class="flow-box">
+      <div class="fb-label">Phone</div>
+      <div class="fb-name">ChatGPT App</div>
+      <div class="fb-desc">watch, approve, instruct</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>Files, secrets, and permissions stay on your computer. What flows back to the phone are screenshots, terminal output, diffs, test results, and actions that need approval. The phone is a remote control, not the host machine.</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">What You Can Do</div>
+    <h2>What You Can Do From the Phone</h2>
+  </div>
+
+  <div class="feats">
+    <div class="feat"><div class="feat-icon">1</div><div>Start a new task from your phone or continue one that is already running on your computer.</div></div>
+    <div class="feat"><div class="feat-icon">2</div><div>See Codex output in real time: screenshots, terminal logs, code diffs, and test results.</div></div>
+    <div class="feat"><div class="feat-icon">3</div><div>Approve Codex actions, such as running a command that needs confirmation.</div></div>
+    <div class="feat"><div class="feat-icon">4</div><div>Switch models, change direction, or add follow-up instructions.</div></div>
+    <div class="feat"><div class="feat-icon">5</div><div>Get a notification when Codex finishes or gets blocked.</div></div>
+  </div>
+
+  <p>Here is the practical scenario: Codex is fixing a bug. It reads files, tries to reproduce the issue, runs tests, and finds two possible fixes. It pauses and asks you to choose. You open your phone on the train, read the tradeoff, choose one path, and Codex keeps going. You did not need to sit in front of the computer the whole time.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Setup</div>
+    <h2>Connect It in Three Steps</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Update both apps</div>
+        <div class="step-desc">Update the Codex app on your Mac and the ChatGPT app on your phone. Both sides need to be current.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Generate the QR code on Mac</div>
+        <div class="step-desc">Open the Codex app and find the Codex mobile option. It will show a QR code.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Scan from the phone</div>
+        <div class="step-desc">Open ChatGPT on your phone and scan the QR code. Once connected, the phone loads the current Codex state from your Mac.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Limits</div>
+    <h2>A Few Limits to Know</h2>
+  </div>
+
+  <div class="limits">
+    <div class="limit">
+      <div class="limit-title">Mac only for now</div>
+      <div class="limit-desc">Windows support is still on the way. The phone connects to a Mac running the Codex app.</div>
+    </div>
+    <div class="limit">
+      <div class="limit-title">The Mac must stay online</div>
+      <div class="limit-desc">The Mac needs to stay awake, connected, and running Codex. If it sleeps, the remote session breaks.</div>
+    </div>
+    <div class="limit">
+      <div class="limit-title">Preview stage</div>
+      <div class="limit-desc">This is still a preview. All plans can use it, including free and Go, while enterprise users get stronger controls.</div>
+    </div>
+    <div class="limit">
+      <div class="limit-title">Install the security update</div>
+      <div class="limit-desc">A recent supply-chain security issue affected the macOS version, and OpenAI requires users to update by June 12.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Context</div>
+    <h2>Anthropic Took a Similar Step in February</h2>
+  </div>
+
+  <p>In February, Anthropic released Remote Control for Claude Code, letting users monitor Claude Code work from a phone. The logic is the same: AI coding tasks are getting longer, and you cannot keep staring at a terminal. You need a mobile entry point to follow progress and step in when needed.</p>
+
+  <div class="vs">
+    <div class="vs-title">Codex Mobile vs Claude Code Remote Control</div>
+    <div class="vs-row">
+      <div class="vs-label">Entry point</div>
+      <div class="vs-a">Inside ChatGPT app</div>
+      <div class="vs-b">Inside Claude app</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-label">Host</div>
+      <div class="vs-a">Mac for now</div>
+      <div class="vs-b">Any terminal running Claude Code</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-label">Plans</div>
+      <div class="vs-a">All plans, including free</div>
+      <div class="vs-b">Pro / Max / Team</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-label">Release</div>
+      <div class="vs-a">2026.05 preview</div>
+      <div class="vs-b">2026.02</div>
+    </div>
+  </div>
+
+  <p>The fight is not really about whose mobile UI looks better. It is about whose coding agent becomes the developer's main working partner. Remote control is just the latest chapter.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Tips</div>
+    <h2>A Few Practical Tips Before Using It</h2>
+  </div>
+
+  <div class="feats">
+    <div class="feat"><div class="feat-icon">Tip</div><div>If you have a Mac mini or an older Mac as a development machine, keep it from sleeping and use the phone as the remote control. It becomes a small always-online coding assistant.</div></div>
+    <div class="feat"><div class="feat-icon">Tip</div><div>Before starting long tasks, write the task, constraints, and completion conditions clearly in Codex. Then the phone view is useful instead of just a stream of terminal output.</div></div>
+    <div class="feat"><div class="feat-icon">Tip</div><div>Enterprise users should know that Remote Control may be off by default and may require an admin to enable it in workspace settings.</div></div>
+    <div class="feat"><div class="feat-icon">Tip</div><div>Take the security update seriously. Update both Codex and ChatGPT before the deadline so the remote workflow keeps working.</div></div>
+  </div>
+
+  <div class="verdict">
+    <h3>One Sentence</h3>
+    <p>AI coding tools are moving from "you sit at the computer and work with it" to "it works on its own, and you can step in at any time." Phone control is only the first step. You do not have to use Codex today, but the direction is worth watching.</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira / Issue #006 / 2026.05</span>
+    <span>Tool Update / Setup Guide</span>
+  </footer>
+</div>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>

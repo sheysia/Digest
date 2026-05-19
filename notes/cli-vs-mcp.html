@@ -141,9 +141,13 @@
     .ic-vs{grid-template-columns:1fr}
     .footer{flex-direction:column}
   }
+  .note-en{display:none}
+  html[lang="en"] .note-zh{display:none}
+  html[lang="en"] .note-en{display:block}
 </style>
 </head>
-<body>
+<body data-full-i18n-page="note-cli-vs-mcp">
+<div class="note-zh">
 
 <nav class="nav">
   <a href="../index.html">AI Digest</a>
@@ -359,6 +363,209 @@
     <span>趋势信号 · 用法洞察</span>
   </footer>
 
+</div>
+</div>
+
+<div class="note-en">
+<nav class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">/</span>
+  <span>Issue #006 / Note</span>
+</nav>
+
+<div class="wrap">
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-trend">TREND SIGNAL</span>
+      <span class="tag tag-tip">WORKFLOW LENS</span>
+    </div>
+    <h1>How Should AI Tools Talk to Other Tools?<br>A Route Debate That Actually Affects You</h1>
+    <p class="header-sub">A developer's six-word take sparked a broader debate about how AI agents should connect to outside tools. It sounds technical, but it will shape how reliable and safe AI feels in daily use.</p>
+    <div class="header-meta">Source: Peter Steinberger (@steipete) / Medium / DEV Community / 2026</div>
+  </header>
+
+  <div class="inline-card">
+    <div class="ic-head">
+      <h3>How do AI tools talk to other tools?</h3>
+      <p>CLI vs MCP - a route debate started by a developer with 190K GitHub stars</p>
+    </div>
+    <div class="ic-body">
+      <div class="ic-exp">When you ask AI to operate Git, check a calendar, or send an email, it needs to call a tool. There are two major paths: <strong>CLI</strong>, where the agent runs commands directly in a terminal, and <strong>MCP</strong>, where it connects through a standardized protocol. Both work. They fit different situations.</div>
+      <div class="ic-vs">
+        <div class="ic-vb cli">
+          <div class="ic-vl">CLI</div>
+          <div class="ic-vn">Command-line tools</div>
+          <div class="ic-vd">Fast, cheap in tokens, and already available. But the user must understand whether a command is safe.</div>
+        </div>
+        <div class="ic-vb mcp">
+          <div class="ic-vl">MCP</div>
+          <div class="ic-vn">Standardized protocol</div>
+          <div class="ic-vd">Permissions and authentication are built in. But it costs tokens and the implementation layer is still young.</div>
+        </div>
+      </div>
+      <div class="ic-row"><div class="ic-rl">Tokens</div><div class="ic-rc">Low</div><div class="ic-rm">High</div></div>
+      <div class="ic-row"><div class="ic-rl">Ready now</div><div class="ic-rc">Decades of tools</div><div class="ic-rm">Servers needed</div></div>
+      <div class="ic-row"><div class="ic-rl">Safety</div><div class="ic-rc">Human judgment</div><div class="ic-rm">Protocol controls</div></div>
+      <div class="ic-row"><div class="ic-rl">Multi-user</div><div class="ic-rc">Not native</div><div class="ic-rm">Native OAuth</div></div>
+      <div class="ic-row" style="margin-bottom:14px"><div class="ic-rl">Maturity</div><div class="ic-rc">Mature</div><div class="ic-rm">Early</div></div>
+      <div class="ic-bottom"><strong>You do not need to pick one forever.</strong> Coding for yourself usually works well with CLI. Building a product for users often needs MCP-style governance.</div>
+    </div>
+    <div class="ic-foot">
+      <span>AI Digest #006</span><span>CLI vs MCP</span>
+    </div>
+  </div>
+
+  <p class="lead">When you ask AI to check a calendar, send an email, or operate Git, the AI needs a way to call tools. Imagine asking an assistant to work in your office: they need to know how to use the phone, printer, and access card. Developers are now debating which path AI should use to discover and operate those tools.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Two Paths</div>
+    <h2>The Everyday Analogy</h2>
+  </div>
+
+  <div class="analogy">
+    <div class="ana-box">
+      <div class="ana-icon">CLI</div>
+      <div class="ana-name">CLI</div>
+      <div class="ana-like">Like calling directly</div>
+      <div class="ana-desc">You know the number and call it yourself. It is fast and direct, with no intermediary. But you need to know which number to call and whether the call is appropriate.</div>
+    </div>
+    <div class="ana-box">
+      <div class="ana-icon">MCP</div>
+      <div class="ana-name">MCP</div>
+      <div class="ana-like">Like going through a front desk</div>
+      <div class="ana-desc">You tell the front desk who you need. It checks the contact, verifies permission, and records the call. It adds a step, but it is safer and easier to govern.</div>
+    </div>
+  </div>
+
+  <p>CLI tools have existed for decades. Git, Docker, and many development tools already have command-line versions. An AI agent can run those commands directly in the terminal without extra integration work.</p>
+
+  <p>MCP, or Model Context Protocol, is a protocol pushed by Anthropic for connecting AI to external services such as Google Drive, Slack, calendars, and email. It adds a layer, but that layer can carry permission management and security controls.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">The Debate</div>
+    <h2>What People Are Arguing About</h2>
+  </div>
+
+  <p>In January, developer Peter Steinberger, the creator of OpenClaw and later an OpenAI hire, made a blunt argument online:</p>
+
+  <div class="quote">
+    "Just use CLI."
+    <span class="quote-src">- Peter Steinberger, creator of OpenClaw</span>
+  </div>
+
+  <p>His point: if an AI needs a tool, let it run the existing terminal command. It is faster, cheaper in tokens, and the tools already exist. Why build a new protocol for every tool?</p>
+
+  <p>The counterargument is safety. Developers can look at a dangerous command and stop. Most users cannot. If an AI is acting on your Gmail or calendar, you need permission boundaries and confirmations. MCP is heavier, but that heaviness is partly the guardrail.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">So What</div>
+    <h2>What This Means for You</h2>
+  </div>
+
+  <p>You may never run commands in a terminal, but you have probably connected Claude or ChatGPT to Google Drive, calendar, or email. A protocol layer like MCP is what makes that feel manageable.</p>
+
+  <div class="scenes">
+    <div class="scene">
+      <div class="scene-q">You use AI locally to code, run tests, and manage a project</div>
+      <div class="scene-a cli">CLI is enough</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">You ask AI to operate your Google Drive or Slack</div>
+      <div class="scene-a mcp">MCP is safer</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">You build a product where AI acts for many users</div>
+      <div class="scene-a mcp">MCP is necessary</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">You automate local file management and personal workflows</div>
+      <div class="scene-a cli">CLI is faster</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">You have both kinds of work</div>
+      <div class="scene-a both">Use both</div>
+    </div>
+  </div>
+
+  <div class="adv-marker"><span class="adv-marker-text">Deep Dive</span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>The Technical Case for CLI</h2>
+  </div>
+
+  <p>Steinberger was not just making a joke. In OpenClaw, he wrote around ten custom CLI tools and let the agent call them through bash, bypassing MCP entirely. OpenAI clearly found the pattern interesting enough to hire him later.</p>
+
+  <p>The core argument is token cost. Anthropic's own engineering writing has noted that tool definitions and tool results can consume tens of thousands of tokens before the agent even starts working on your request. GitHub reduced tool-list overhead by about 50% after consolidating tools. Those tokens are not spent thinking about your task; they are spent reading tool manuals.</p>
+
+  <p>CLI does not require preloading all those manuals. If the agent needs <code>git</code>, it can run <code>git log --oneline -10</code> or check <code>--help</code> when needed. Steinberger calls this progressive disclosure: load information only when it is needed.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>The MCP Counterargument</h2>
+  </div>
+
+  <p>CLI assumes the user can judge whether a command is safe. A developer will stop at <code>rm -rf /</code>, but most users are not developers. If an agent operates Gmail, Calendar, Slack, or Jira on behalf of many users, arbitrary bash is not acceptable.</p>
+
+  <p>MCP's value is standardized tool descriptions, permission labels, OAuth flows, and a multi-tenant governance model. CLI can imitate this only by rebuilding a permission system from scratch.</p>
+
+  <p>Matthew Hall's response is useful here: current MCP implementations can be rough, but that is a criticism of early implementations, not necessarily of the protocol's ceiling.</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>Side-by-Side Comparison</h2>
+  </div>
+
+  <table class="cmp-tbl">
+    <tr><th></th><th>CLI</th><th>MCP</th></tr>
+    <tr><td>Token cost</td><td>Low, called on demand</td><td>High, definitions preload</td></tr>
+    <tr><td>Setup</td><td>Tools already exist</td><td>Server must be built</td></tr>
+    <tr><td>Safety model</td><td>Depends on user judgment</td><td>Permission labels built in</td></tr>
+    <tr><td>Multi-tenant</td><td>Not native</td><td>OAuth-native</td></tr>
+    <tr><td>Composability</td><td>Pipes compose naturally</td><td>Each server is separate</td></tr>
+    <tr><td>Maturity</td><td>Decades old</td><td>Early and rough</td></tr>
+    <tr><td>Best for</td><td>Developers and local work</td><td>Products and user-facing agents</td></tr>
+  </table>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>The Most Interesting Path Is the Middle</h2>
+  </div>
+
+  <p>Steinberger later built <code>mcporter</code>, which compiles any MCP server into a standalone CLI:</p>
+
+  <div class="codeblock"><span class="kw">npx</span> <span class="str">mcporter generate-cli "npx -y chrome-devtools-mcp" --compile</span></div>
+
+  <p>The compiled tool lives locally and is called only when needed. This is not "CLI wins" or "MCP wins." It treats MCP as a standard format for describing tools, and CLI as the execution path.</p>
+
+  <p>The practical judgment: for most developer workflows - building features, running tests, managing Git, automating local work - CLI is faster, cheaper, and more stable. For products where agents operate third-party accounts on behalf of users, MCP's governance model is worth the overhead.</p>
+
+  <div class="callout-blue callout">
+    <p>The future may look like this: MCP becomes the standard format for tool descriptions, while CLI becomes one way agents actually execute work. MCP defines capability; CLI performs capability.</p>
+  </div>
+
+  <div class="verdict">
+    <h3>Remember One Thing</h3>
+    <p>The way AI connects to tools is being redesigned. There is no final winner yet, and both routes have real logic. But the user-facing result is the same: AI will be able to operate more things, faster, at lower cost. The debate ends in a better tool experience for you.</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira / Issue #006 / 2026.05</span>
+    <span>Trend Signal / Workflow Lens</span>
+  </footer>
+</div>
 </div>
 <script src="../assets/js/i18n.js"></script>
 </body>
