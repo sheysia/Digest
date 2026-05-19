@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 工具之间怎么对话？CLI vs MCP 路线之争 | AI Digest #006</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--accent)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-trend{background:#EBF2FD;color:var(--blue)}
+  .tag-tip{background:#F5EFF8;color:var(--purple)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:400;line-height:2;margin-bottom:24px}
+
+  .section-head{margin:40px 0 18px}
+  .section-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--accent);background:#F0F8F7;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+  .callout-blue{border-left-color:var(--blue);background:#EEF4FD}
+  .callout-warn{border-left-color:var(--orange);background:#FDF3EE}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  .quote{border-left:2px solid var(--border);padding:12px 20px;margin:22px 0;color:var(--text-light);font-size:14px;line-height:1.9;font-style:italic}
+  .quote-src{display:block;margin-top:8px;font-size:12px;font-style:normal;color:var(--text-light)}
+
+  /* ── Inline card ── */
+  .inline-card{max-width:520px;margin:22px auto;background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden}
+  .ic-head{background:linear-gradient(135deg,#1A1A2E,#2C2B3E);padding:20px 24px 16px;color:#fff}
+  .ic-head h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;margin-bottom:4px}
+  .ic-head p{font-size:11px;color:#B0ADA6;line-height:1.5}
+  .ic-body{padding:16px 20px 8px}
+  .ic-exp{background:#F0F8F7;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:#3A3A4A;line-height:1.7}
+  .ic-exp strong{color:#2A9D8F}
+  .ic-vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+  .ic-vb{border-radius:8px;padding:12px 14px}
+  .ic-vb.cli{background:#F0F8F7;border:1px solid #2A9D8F}
+  .ic-vb.mcp{background:#EEF4FD;border:1px solid #3A7BD4}
+  .ic-vl{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+  .ic-vb.cli .ic-vl{color:#2A9D8F}
+  .ic-vb.mcp .ic-vl{color:#3A7BD4}
+  .ic-vn{font-size:14px;font-weight:700;color:#1A1A2E;margin-bottom:4px}
+  .ic-vd{font-size:11px;color:#7A7A8A;line-height:1.5}
+  .ic-row{display:flex;gap:6px;margin-bottom:8px;font-size:11.5px;line-height:1.5}
+  .ic-rl{font-weight:700;color:#1A1A2E;min-width:64px;flex-shrink:0}
+  .ic-rc{flex:1;color:#1E7A6F;background:#F0F8F7;border-radius:4px;padding:3px 6px;text-align:center}
+  .ic-rm{flex:1;color:#2A5AA0;background:#EEF4FD;border-radius:4px;padding:3px 6px;text-align:center}
+  .ic-bottom{background:#FAF8F5;border-top:1px solid #EBE8E3;padding:12px 14px;font-size:11.5px;color:#3A3A4A;line-height:1.6;text-align:center;margin:0 -20px}
+  .ic-bottom strong{color:#1A1A2E}
+  .ic-foot{padding:10px 20px 14px;font-size:10px;color:#B0ADA6;border-top:1px solid #EBE8E3;display:flex;justify-content:space-between}
+
+  /* ── Analogy ── */
+  .analogy{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+  .ana-box{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:16px 18px}
+  .ana-icon{font-size:24px;margin-bottom:8px}
+  .ana-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .ana-like{font-size:12px;color:var(--accent-dark);font-weight:600;margin-bottom:6px}
+  .ana-desc{font-size:12.5px;color:var(--text-light);line-height:1.7}
+
+  /* ── Scenes ── */
+  .scenes{display:flex;flex-direction:column;gap:2px;margin:22px 0}
+  .scene{background:var(--card);border:1px solid var(--border-light);padding:14px 18px;display:flex;gap:12px;align-items:flex-start}
+  .scene:first-child{border-radius:10px 10px 0 0}
+  .scene:last-child{border-radius:0 0 10px 10px}
+  .scene-q{font-size:13px;color:var(--text);font-weight:600;flex:1}
+  .scene-a{font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;flex-shrink:0}
+  .scene-a.cli{background:#F0F8F7;color:var(--accent-dark)}
+  .scene-a.mcp{background:#EEF4FD;color:var(--blue)}
+  .scene-a.both{background:#F5EFF8;color:var(--purple)}
+
+  /* ── Compare table ── */
+  .cmp-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .cmp-tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text);font-weight:700;font-size:12px;letter-spacing:.5px}
+  .cmp-tbl td{padding:10px 12px;border-bottom:1px solid var(--border-light);color:var(--text-body);vertical-align:top;line-height:1.7}
+  .cmp-tbl tr:last-child td{border-bottom:none}
+
+  /* ── Codeblock ── */
+  .codeblock{background:#1A1A2E;border-radius:8px;padding:14px 16px;margin:18px 0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:#D4D0C8;overflow-x:auto}
+  .codeblock .kw{color:var(--accent)}
+  .codeblock .str{color:#C0A86E}
+
+  /* ── Advanced marker ── */
+  .adv-marker{display:flex;align-items:center;gap:12px;margin:40px 0 28px;padding:12px 0}
+  .adv-marker::before,.adv-marker::after{content:'';flex:1;height:2px;background:var(--accent)}
+  .adv-marker-text{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;flex-shrink:0}
+
+  .verdict{background:var(--text);color:#EAE7E0;border-radius:10px;padding:28px;margin:28px 0}
+  .verdict h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:14px}
+  .verdict p{font-size:13px;line-height:1.85;color:#B0ADA6;margin-bottom:12px}
+  .verdict p:last-child{margin-bottom:0}
+
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .header h1{font-size:24px}
+    .analogy{grid-template-columns:1fr}
+    .ic-vs{grid-template-columns:1fr}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #006</span>
+</nav>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-trend">趋势信号</span>
+      <span class="tag tag-tip">用法洞察</span>
+    </div>
+    <h1>AI 工具之间怎么对话？<br>一场路线之争，跟你有关</h1>
+    <p class="header-sub">一个开发者说了六个字，引发了一场关于 AI 应该怎么跟外部工具打交道的讨论。这件事听起来很技术，但它决定了你以后用 AI 的体验好不好。</p>
+    <div class="header-meta">📌 来源：Peter Steinberger (@steipete) / Medium / DEV Community · 2026</div>
+  </header>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- INLINE CARD                       -->
+  <!-- ══════════════════════════════════ -->
+  <div class="inline-card">
+    <div class="ic-head">
+      <h3>AI 工具之间怎么对话？</h3>
+      <p>CLI vs MCP — 一个 19 万 Star 开发者引发的路线之争</p>
+    </div>
+    <div class="ic-body">
+      <div class="ic-exp">你让 AI 帮你操作 Git、查日历、发邮件的时候，AI 需要「调用工具」。现在有两条路：<strong>CLI</strong>（直接在终端跑命令）和 <strong>MCP</strong>（走一套标准化协议连接）。两者都能用，但适合的场景不同。</div>
+      <div class="ic-vs">
+        <div class="ic-vb cli">
+          <div class="ic-vl">CLI</div>
+          <div class="ic-vn">命令行工具</div>
+          <div class="ic-vd">快、省 token、工具已经存在。但需要你能判断命令安不安全。</div>
+        </div>
+        <div class="ic-vb mcp">
+          <div class="ic-vl">MCP</div>
+          <div class="ic-vn">标准化协议</div>
+          <div class="ic-vd">有权限管理、有认证。但吃 token，实现还比较早期。</div>
+        </div>
+      </div>
+      <div class="ic-row"><div class="ic-rl">Token</div><div class="ic-rc">低 ✓</div><div class="ic-rm">高</div></div>
+      <div class="ic-row"><div class="ic-rl">现成可用</div><div class="ic-rc">✓ 几十年</div><div class="ic-rm">需要写</div></div>
+      <div class="ic-row"><div class="ic-rl">安全</div><div class="ic-rc">靠人判断</div><div class="ic-rm">✓ 协议内置</div></div>
+      <div class="ic-row"><div class="ic-rl">多用户</div><div class="ic-rc">不支持</div><div class="ic-rm">✓ 原生</div></div>
+      <div class="ic-row" style="margin-bottom:14px"><div class="ic-rl">稳定性</div><div class="ic-rc">✓ 成熟</div><div class="ic-rm">早期</div></div>
+      <div class="ic-bottom"><strong>不需要选一边。</strong>自己写代码 → CLI 够了。做产品给别人用 → MCP 的权限体系是必要的。</div>
+    </div>
+    <div class="ic-foot">
+      <span>AI Digest by Syneira · Issue #006</span>
+      <span>2026.05</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- PART 1: BASICS                    -->
+  <!-- ══════════════════════════════════ -->
+
+  <p class="lead">你让 AI 帮你查日历、发邮件、操作 Git 的时候，AI 需要「调用工具」。就像你让一个助理帮你做事，助理得知道怎么用你办公室里的电话、打印机、门禁卡。现在有两种方式让 AI 认识这些工具，开发者圈子里在争哪种更好。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Two Paths</div>
+    <h2>两条路，用生活场景来说</h2>
+  </div>
+
+  <div class="analogy">
+    <div class="ana-box">
+      <div class="ana-icon">📞</div>
+      <div class="ana-name">CLI</div>
+      <div class="ana-like">像直接打电话</div>
+      <div class="ana-desc">你知道对方号码，拨过去就行。快，直接，不需要中间人。但你得记号码（或者会查号码簿），而且没人帮你筛选哪些电话该打。</div>
+    </div>
+    <div class="ana-box">
+      <div class="ana-icon">🏢</div>
+      <div class="ana-name">MCP</div>
+      <div class="ana-like">像走前台转接</div>
+      <div class="ana-desc">你告诉前台要联系谁，前台帮你查号码、确认权限、记录通话。多了一步，但更安全，不会打错电话，也有记录可查。</div>
+    </div>
+  </div>
+
+  <p>CLI 是命令行工具，已经存在几十年了。你电脑上的 Git、Docker、各种开发工具都有命令行版本。AI 直接在终端跑命令就能用，不需要额外的东西。</p>
+
+  <p>MCP 是 Anthropic 推的一套新协议（Model Context Protocol），让 AI 通过标准化的接口去连接外部服务——你的 Google Drive、Slack、日历、邮箱。它多了一层，但这一层带来了权限管理和安全控制。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">The Debate</div>
+    <h2>争论是什么</h2>
+  </div>
+
+  <p>今年 1 月，一个叫 Peter Steinberger 的开发者（后来被 OpenAI 招走了）在网上说了六个字：</p>
+
+  <div class="quote">
+    MCP 是个错误。Bash 更好。
+    <span class="quote-src">— Peter Steinberger，OpenClaw 作者，GitHub 累计 19 万 Star</span>
+  </div>
+
+  <p>他的意思是：AI 要用什么工具，直接在终端跑命令就行了，干嘛非要走一套复杂的协议？跑命令更快、更省钱（省 token），而且这些命令行工具已经存在了，不需要等谁给你开发一个新的接口。</p>
+
+  <p>反对的人说：你是开发者，你看到一条危险命令会自己停下来。但普通用户不会。如果 AI 要代表你去操作你的邮箱和日历，没有权限管理，万一它删错了东西呢？MCP 虽然多了一步，但这一步是保护你的。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">So What</div>
+    <h2>跟你有什么关系</h2>
+  </div>
+
+  <p>你可能没有在终端跑过命令，但你一定用过 Claude 或 ChatGPT 连接你的 Google Drive、日历、邮箱。那个连接背后走的就是类似 MCP 的协议。</p>
+
+  <p>目前看，两条路并存的可能性最大：</p>
+
+  <div class="scenes">
+    <div class="scene">
+      <div class="scene-q">你自己在终端用 AI 写代码、跑测试、管项目</div>
+      <div class="scene-a cli">CLI 够了</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">你让 AI 帮你操作你的 Google Drive 或 Slack</div>
+      <div class="scene-a mcp">MCP 更合适</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">你做一个产品，让 AI 替你的用户操作他们的账号</div>
+      <div class="scene-a mcp">必须 MCP</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">你想让 AI 自动化你本地的文件管理和日常流程</div>
+      <div class="scene-a cli">CLI 更快</div>
+    </div>
+    <div class="scene">
+      <div class="scene-q">你不确定，或者两种场景都有</div>
+      <div class="scene-a both">两个都用</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- PART 2: ADVANCED                  -->
+  <!-- ══════════════════════════════════ -->
+  <div class="adv-marker"><span class="adv-marker-text">进阶阅读</span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>CLI 阵营的技术论据</h2>
+  </div>
+
+  <p>Steinberger 不是随口说说。他给自己的项目 OpenClaw 写了大约 10 个自定义 CLI 工具，让 AI agent 通过 bash 调用，完全绕过 MCP。OpenAI 显然觉得这个思路有价值，后来把他招了进去。</p>
+
+  <p>核心论点是 token 成本。Anthropic 自己的工程博客提到过，工具定义和工具返回结果有时候会在 agent 开始读你的请求之前就消耗掉 5 万甚至 13.4 万 token。GitHub 在整合工具集之后，光是减少工具列表就省了 2.3 万 token，大约 50%。这些 token 不是用来思考你的问题的，是用来「认识」它手头有哪些工具的。</p>
+
+  <p>CLI 不需要预加载这些说明书。agent 需要用 <code>git</code> 的时候直接跑 <code>git log --oneline -10</code>，需要的时候再查 <code>--help</code>。Steinberger 把这个叫 progressive disclosure：按需加载，不预付成本。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>MCP 阵营的反驳</h2>
+  </div>
+
+  <p>也是一条核心论点：CLI 需要你会判断命令安不安全。开发者在终端里看到 <code>rm -rf /</code> 会本能地停下来，但大多数人不是开发者。如果你的 agent 要代表用户去操作 Gmail、日历、Slack，你不能让它在用户机器上跑任意 bash 命令。</p>
+
+  <p>MCP 的价值在于标准化的接口描述、权限标注（哪些操作安全、哪些需要确认）、OAuth 认证流程。多租户场景下——如果你做的产品需要 agent 代表不同用户操作他们各自的 Google Drive、Jira——MCP 的治理模型值得它的开销。CLI 做不到这一点，除非你自己重新发明一套权限系统。</p>
+
+  <p>Matthew Hall 写了一篇回应文章，承认当前的 MCP 实现确实粗糙——他自己花了一小时排查为什么 Mac 变卡，最后发现 Claude Code 启动的 MCP server 留下了 100 多个僵尸 Node 进程。但他认为批评的是协议的早期实现，不是协议的上限。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>并排看：完整对比</h2>
+  </div>
+
+  <table class="cmp-tbl">
+    <tr><th></th><th>CLI</th><th>MCP</th></tr>
+    <tr><td>Token 开销</td><td>低，按需调用</td><td>高，工具定义预加载</td></tr>
+    <tr><td>上手门槛</td><td>工具已存在，直接用</td><td>需要有人写 server</td></tr>
+    <tr><td>安全模型</td><td>依赖用户判断</td><td>协议内置权限标注</td></tr>
+    <tr><td>多租户</td><td>不支持</td><td>原生支持 OAuth</td></tr>
+    <tr><td>可组合性</td><td>管道（pipe）天然可组合</td><td>每个 server 独立</td></tr>
+    <tr><td>稳定性</td><td>成熟，几十年历史</td><td>早期，实现粗糙</td></tr>
+    <tr><td>适用者</td><td>开发者，终端用户</td><td>产品，面向终端用户的 agent</td></tr>
+  </table>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <div class="section-head">
+    <div class="section-label">Deep Dive</div>
+    <h2>最有意思的是中间路线</h2>
+  </div>
+
+  <p>Steinberger 后来做了一个工具叫 <code>mcporter</code>，一行命令把任意 MCP server 编译成一个独立的 CLI：</p>
+
+  <div class="codeblock"><span class="kw">npx</span> <span class="str">mcporter generate-cli "npx -y chrome-devtools-mcp" --compile</span></div>
+
+  <p>编译出来的东西存在本地，agent 需要时调用，不需要时不占 context。这不是「CLI 赢了」或「MCP 赢了」，而是把 MCP 的工具定义当作一种可编译的中间格式来用。</p>
+
+  <p>DEV Community 上有篇分析的判断可能最准：对 80% 到 90% 的开发者场景——写功能、跑测试、管 git、自动化自己的工作流——CLI 更快、更便宜、更稳定。对需要 agent 代表用户操作第三方服务的产品场景，MCP 的治理模型值得它的开销。2026 年聪明的做法不是选边站，而是两个都用。</p>
+
+  <div class="callout-blue callout">
+    <p>未来可能是这样的：MCP 变成「工具说明书的标准格式」，CLI 变成「AI 实际干活的方式」。两层各管各的，MCP 定义能力，CLI 执行能力。</p>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <div class="verdict">
+    <h3>记住一件事就够了</h3>
+    <p>AI 连接工具的方式正在被重新定义。现在还没有赢家，两条路各有各的道理。但不管哪条路赢，对你来说结果是一样的：AI 能操作的东西会越来越多，操作的速度会越来越快，成本会越来越低。这场争论的终点是你用得更爽。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #006 · 2026.05</span>
+    <span>趋势信号 · 用法洞察</span>
+  </footer>
+
+</div>
+</body>
+</html>

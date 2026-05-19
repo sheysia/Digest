@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Agent：8 周 10 万 Star，这个开源 AI agent 凭什么？ | AI Digest #006</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--accent)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-tool{background:#FDF0EB;color:var(--orange)}
+  .tag-trend{background:#EBF2FD;color:var(--blue)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:400;line-height:2;margin-bottom:24px}
+
+  .section-head{margin:40px 0 18px}
+  .section-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--accent);background:#F0F8F7;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+  .callout-warn{border-left-color:var(--orange);background:#FDF3EE}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:22px 0}
+  .stat{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:14px;text-align:center}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--accent);line-height:1}
+  .stat-label{font-size:11px;color:var(--text-light);margin-top:4px;line-height:1.4}
+
+  /* Feature cards */
+  .feats{display:flex;flex-direction:column;gap:10px;margin:22px 0}
+  .feat{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:16px 20px}
+  .feat-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .feat-icon{font-size:18px}
+  .feat-name{font-size:14px;font-weight:700;color:var(--text)}
+  .feat-desc{font-size:13px;color:var(--text-light);line-height:1.75}
+
+  /* Compare */
+  .cmp-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .cmp-tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text);font-weight:700;font-size:12px;letter-spacing:.5px}
+  .cmp-tbl td{padding:10px 12px;border-bottom:1px solid var(--border-light);color:var(--text-body);vertical-align:top;line-height:1.7}
+  .cmp-tbl tr:last-child td{border-bottom:none}
+
+  /* Desktop section */
+  .desktop-card{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:20px;margin:22px 0}
+  .desktop-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .desktop-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .df{font-size:12.5px;color:var(--text-body);line-height:1.6;padding:8px 10px;background:var(--bg);border-radius:6px}
+  .df strong{color:var(--text)}
+
+  .verdict{background:var(--text);color:#EAE7E0;border-radius:10px;padding:24px;margin:28px 0}
+  .verdict h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}
+  .verdict p{font-size:13px;line-height:1.85;color:#B0ADA6;margin-bottom:12px}
+  .verdict p:last-child{margin-bottom:0}
+
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .header h1{font-size:24px}
+    .stats{grid-template-columns:1fr}
+    .desktop-feats{grid-template-columns:1fr}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #006</span>
+</nav>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-tool">工具上新</span>
+      <span class="tag tag-trend">趋势信号</span>
+    </div>
+    <h1>Hermes Agent：<br>8 周 10 万 Star 的开源 AI，凭什么？</h1>
+    <p class="header-sub">它不是又一个聊天机器人，也不是写代码的助手。它是一个「住在你电脑上、越用越聪明」的私人 agent。最近中文圈讨论很多，值得了解一下它到底是什么。</p>
+    <div class="header-meta">📌 来源：Nous Research / GitHub / Hongkiat / DevPik · hermes-agent.org · 2026.05</div>
+  </header>
+
+  <!-- ══ 数据 ══ -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">156K</div>
+      <div class="stat-label">GitHub Stars</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">295</div>
+      <div class="stat-label">社区贡献者（v0.13）</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">每周</div>
+      <div class="stat-label">发布一个新版本</div>
+    </div>
+  </div>
+
+  <!-- ══ 它是什么 ══ -->
+  <p class="lead">大多数 AI 工具是这样的：你打开一个对话，聊完关掉，下次再打开它什么都不记得了。Hermes Agent 不一样。它装在你自己的电脑或服务器上，一直在后台跑着。你上次让它做了什么、你的偏好是什么、它自己学会了什么技能——这些全都记着，下次直接用。</p>
+
+  <div class="callout">
+    <p>一句话版本：它是一个本地运行、持久记忆、自我进化的私人 AI agent。由 Nous Research 开发（就是做 Hermes 系列模型的那个实验室），MIT 开源，免费。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 核心特性 ══ -->
+  <div class="section-head">
+    <div class="section-label">Core Features</div>
+    <h2>它跟 Claude / ChatGPT 有什么不同</h2>
+  </div>
+
+  <div class="feats">
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">🧠</div>
+        <div class="feat-name">三层记忆</div>
+      </div>
+      <div class="feat-desc">会话记忆（当前对话）、持久记忆（跨 session 保存，本地 SQLite）、自进化记忆（从经验中提炼出可复用的技能）。Claude 和 ChatGPT 也有记忆功能，但它们是云端的，Hermes 的全在你自己机器上。</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">🔄</div>
+        <div class="feat-name">自我进化的 Skill 系统</div>
+      </div>
+      <div class="feat-desc">你让它做了一件事，它做完后会把过程写成一个「技能文件」存下来。下次遇到类似的事，直接调用这个技能，不用重新想。技能是 Markdown 文件，你可以看到、可以编辑、可以分享给别人。</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">🏠</div>
+        <div class="feat-name">永远在线</div>
+      </div>
+      <div class="feat-desc">装好之后它作为系统服务在后台运行。你可以通过 Telegram、Discord、Slack、WhatsApp 给它发消息，它随时响应。不是你打开一个 app 才能用，而是它一直在那。</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">⏰</div>
+        <div class="feat-name">定时任务</div>
+      </div>
+      <div class="feat-desc">内置 Cron 调度。你可以让它每天早上 8 点帮你汇总新闻，每周五下午生成周报，或者定时检查某个数据。不需要你手动触发。</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">🔒</div>
+        <div class="feat-name">数据完全本地</div>
+      </div>
+      <div class="feat-desc">所有记忆、技能、对话历史存在你自己机器上的 SQLite 数据库里。没有遥测、没有跟踪、不经过任何第三方云服务。</div>
+    </div>
+    <div class="feat">
+      <div class="feat-head">
+        <div class="feat-icon">🔌</div>
+        <div class="feat-name">40+ 内置工具</div>
+      </div>
+      <div class="feat-desc">网页搜索、浏览器自动化、图片生成、TTS、代码执行，还支持 MCP 协议连接更多外部服务。模型可以接 Nous Portal、OpenRouter、OpenAI，或者你自己的本地模型。</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ Desktop 版 ══ -->
+  <div class="section-head">
+    <div class="section-label">Desktop</div>
+    <h2>最近火的是 Desktop 版</h2>
+  </div>
+
+  <p>Hermes Agent 本身是命令行工具。最近小红书上讨论的是一个叫 Hermes Desktop 的项目——社区开发者 fathah 做的第三方桌面端，不是 Nous Research 官方出品，但把命令行里的操作搬到了图形界面里。</p>
+
+  <div class="desktop-card">
+    <div class="desktop-title">Desktop 版让人觉得「不只是换了个皮」的几个功能</div>
+    <div class="desktop-feats">
+      <div class="df"><strong>Profile 切换</strong> — 建多个身份，各自独立的配置、模型、人设、工具开关，互不干扰</div>
+      <div class="df"><strong>Cron 可视化</strong> — 以前定时任务是黑箱，现在能直观看到有哪些任务在跑</div>
+      <div class="df"><strong>记忆可编辑</strong> — 以前查记忆敲命令看纯文本，现在在界面上直接改，还能看容量</div>
+      <div class="df"><strong>3D 办公室</strong> — 内置一个叫 Hermes Office 的三维空间，看 agent 在「办公室」里的状态。花哨，但确实新鲜</div>
+    </div>
+  </div>
+
+  <div class="callout-warn callout">
+    <p>⚠️ Desktop 版是第三方社区项目，稳定性还没经过大规模验证。如果你要试，先从 Hermes Agent CLI 本体开始，确认好用了再加 Desktop 层。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 对比 ══ -->
+  <div class="section-head">
+    <div class="section-label">Compare</div>
+    <h2>跟你已经在用的工具怎么比</h2>
+  </div>
+
+  <table class="cmp-tbl">
+    <tr><th></th><th>Hermes Agent</th><th>Claude Code</th><th>ChatGPT / Codex</th></tr>
+    <tr><td>定位</td><td>always-on 私人 agent</td><td>session 制编程助手</td><td>通用 AI + 编程</td></tr>
+    <tr><td>运行方式</td><td>后台常驻</td><td>开 session 用完关</td><td>云端/本地 session</td></tr>
+    <tr><td>记忆</td><td>三层，全本地</td><td>CLAUDE.md + 自动记忆</td><td>云端记忆</td></tr>
+    <tr><td>自进化</td><td>自动写 skill 文件</td><td>不自动，你手写</td><td>Custom GPTs</td></tr>
+    <tr><td>消息触达</td><td>Telegram/Discord/Slack/WhatsApp</td><td>终端 + 手机遥控</td><td>App + 手机</td></tr>
+    <tr><td>数据位置</td><td>你的机器</td><td>你的机器（代码），云端（对话）</td><td>云端</td></tr>
+    <tr><td>上手门槛</td><td>一行命令安装，但配置多</td><td>一行命令安装</td><td>开浏览器就用</td></tr>
+  </table>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 适合谁 ══ -->
+  <div class="section-head">
+    <div class="section-label">For Whom</div>
+    <h2>适合谁，不适合谁</h2>
+  </div>
+
+  <p>如果你想要一个「一直在后台帮你盯着事情」的 agent——汇总消息、定时跑任务、记住你的偏好、越用越懂你——Hermes 是目前最认真在做这件事的开源项目。</p>
+
+  <p>如果你只是需要一个帮你写代码、改文章、做分析的工具，Claude Code 和 ChatGPT 已经够了，没必要为了 Hermes 多维护一套系统。</p>
+
+  <p>目前它还在 v0.13，不是 1.0。每周发版说明迭代快，也说明还在频繁改动。想尝鲜的可以装，想稳定用的再等等。</p>
+
+  <div class="verdict">
+    <h3>为什么值得关注</h3>
+    <p>不是因为 156K star。是因为它代表的方向：AI 从「你开一个对话用完关掉」变成「一个一直在你身边、越来越懂你的助手」。这个方向不管最后赢的是 Hermes 还是别的什么，都是 AI 工具接下来要走的路。</p>
+    <p>Claude 在做记忆和 Projects，ChatGPT 在做 Custom GPTs 和 Memory，Hermes 用开源和本地化走了最激进的一条路。三家路线不同，终点可能相似。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #006 · 2026.05</span>
+    <span>工具上新 · 趋势信号</span>
+  </footer>
+
+</div>
+</body>
+</html>

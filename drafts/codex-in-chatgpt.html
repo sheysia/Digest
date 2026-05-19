@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex in ChatGPT 上线了：用手机遥控你的编程 AI | AI Digest #006</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--accent)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-tool{background:#FDF0EB;color:var(--orange)}
+  .tag-tip{background:#F5EFF8;color:var(--purple)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:400;line-height:2;margin-bottom:24px}
+
+  .section-head{margin:40px 0 18px}
+  .section-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--accent);background:#F0F8F7;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+  .callout-warn{border-left-color:var(--orange);background:#FDF3EE}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  /* Flow */
+  .flow{display:flex;align-items:center;gap:4px;margin:22px 0;flex-wrap:wrap}
+  .flow-box{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:12px 14px;text-align:center;flex:1;min-width:90px}
+  .flow-box .fb-label{font-size:10px;color:var(--text-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+  .flow-box .fb-name{font-size:13px;font-weight:700;color:var(--text)}
+  .flow-box .fb-desc{font-size:11px;color:var(--text-light);margin-top:2px}
+  .flow-box.accent{border-color:var(--accent);background:#F0F8F7}
+  .flow-box.accent .fb-name{color:var(--accent-dark)}
+  .flow-arrow{color:var(--border);font-size:16px;flex-shrink:0}
+
+  /* Steps */
+  .steps{display:flex;flex-direction:column;gap:2px;margin:22px 0}
+  .step{background:var(--card);border:1px solid var(--border-light);padding:14px 18px;display:flex;gap:12px;align-items:flex-start}
+  .step:first-child{border-radius:10px 10px 0 0}
+  .step:last-child{border-radius:0 0 10px 10px}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--accent);min-width:22px}
+  .step-body{flex:1}
+  .step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .step-desc{font-size:12.5px;color:var(--text-light);line-height:1.7}
+
+  /* Feature list */
+  .feats{display:flex;flex-direction:column;gap:8px;margin:20px 0}
+  .feat{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text-body);line-height:1.75}
+  .feat-icon{font-size:15px;flex-shrink:0;margin-top:2px}
+
+  /* Limits */
+  .limits{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+  .limit{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:14px 16px}
+  .limit-title{font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px}
+  .limit-desc{font-size:12px;color:var(--text-light);line-height:1.6}
+
+  /* vs card */
+  .vs{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:18px 20px;margin:22px 0}
+  .vs-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .vs-row{display:flex;gap:8px;margin-bottom:8px;font-size:12px}
+  .vs-label{font-weight:700;color:var(--text);min-width:100px}
+  .vs-a,.vs-b{flex:1;text-align:center;padding:4px 8px;border-radius:4px}
+  .vs-a{background:#EEF4FD;color:var(--blue)}
+  .vs-b{background:#F0F8F7;color:var(--accent-dark)}
+
+  .verdict{background:var(--text);color:#EAE7E0;border-radius:10px;padding:24px;margin:28px 0}
+  .verdict h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}
+  .verdict p{font-size:13px;line-height:1.85;color:#B0ADA6;margin-bottom:0}
+
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .header h1{font-size:24px}
+    .flow{flex-direction:column;align-items:stretch}
+    .flow-arrow{transform:rotate(90deg);text-align:center}
+    .limits{grid-template-columns:1fr}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #006</span>
+</nav>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-tool">工具上新</span>
+      <span class="tag tag-tip">设置指南</span>
+    </div>
+    <h1>Codex in ChatGPT 上线了：<br>用手机遥控你的编程 AI</h1>
+    <p class="header-sub">5 月 14 日，OpenAI 把 Codex 塞进了 ChatGPT 手机 App。不是另一个应用，就在你已经有的那个 ChatGPT 里。</p>
+    <div class="header-meta">📌 来源：openai.com / MacRumors / TechCrunch / 9to5Mac · 2026.05.14</div>
+  </header>
+
+  <!-- ══ 它是什么 ══ -->
+  <p class="lead">Codex 现在每周有 400 多万人在用。之前它只能在电脑上跑——你在 Mac 上开着 Codex，它在后台读代码、跑命令、改文件。现在手机也能介入了。不是在手机上写代码（那不现实），而是让你在不在电脑前的时候也能看到它在做什么、需不需要你的指令、做完了没有。</p>
+
+  <div class="flow">
+    <div class="flow-box">
+      <div class="fb-label">Mac</div>
+      <div class="fb-name">Codex 在跑</div>
+      <div class="fb-desc">读文件、改代码、跑测试</div>
+    </div>
+    <div class="flow-arrow">⇄</div>
+    <div class="flow-box accent">
+      <div class="fb-label">安全中继</div>
+      <div class="fb-name">加密连接</div>
+      <div class="fb-desc">不暴露在公网</div>
+    </div>
+    <div class="flow-arrow">⇄</div>
+    <div class="flow-box">
+      <div class="fb-label">手机</div>
+      <div class="fb-name">ChatGPT App</div>
+      <div class="fb-desc">看进度、批准、下指令</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>文件、密钥、权限这些东西始终留在你的电脑上。流回手机的是截图、终端输出、diff、测试结果和需要你批准的操作。手机是遥控器，不是主机。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 能做什么 ══ -->
+  <div class="section-head">
+    <div class="section-label">What You Can Do</div>
+    <h2>手机上能做什么</h2>
+  </div>
+
+  <div class="feats">
+    <div class="feat"><div class="feat-icon">📱</div><div>在手机上开新的任务，或者接着电脑上已经在跑的任务继续</div></div>
+    <div class="feat"><div class="feat-icon">👀</div><div>实时看到 Codex 的输出：截图、终端日志、代码 diff、测试结果</div></div>
+    <div class="feat"><div class="feat-icon">✅</div><div>批准 Codex 的操作——比如它要跑一个命令，需要你确认</div></div>
+    <div class="feat"><div class="feat-icon">🔀</div><div>切换模型、改变方向、追加指令</div></div>
+    <div class="feat"><div class="feat-icon">🔔</div><div>Codex 做完了或者卡住了，手机会收到通知</div></div>
+  </div>
+
+  <p>实际场景是这样的：Codex 在帮你修一个 bug，查了文件、试着复现、跑了测试，然后发现有两种修法。它暂停了，问你选哪条路。你在地铁上打开手机，看了一眼两个方案的取舍，选了一个，Codex 接着干。整个过程你没有坐在电脑前。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 怎么设置 ══ -->
+  <div class="section-head">
+    <div class="section-label">Setup</div>
+    <h2>三步连上</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">更新两个 App</div>
+        <div class="step-desc">Mac 上更新 Codex App 到最新版，手机上更新 ChatGPT App 到最新版。两边都要更新，缺一个都连不上。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Mac 上生成二维码</div>
+        <div class="step-desc">打开 Codex App，找到「Codex mobile」选项，它会显示一个二维码。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">手机扫码连接</div>
+        <div class="step-desc">打开手机上的 ChatGPT App，扫这个二维码。连上之后手机会自动加载 Mac 上 Codex 的当前状态。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 注意事项 ══ -->
+  <div class="section-head">
+    <div class="section-label">Limits</div>
+    <h2>几个要知道的限制</h2>
+  </div>
+
+  <div class="limits">
+    <div class="limit">
+      <div class="limit-title">目前只支持 Mac</div>
+      <div class="limit-desc">Windows 支持还在路上。手机连接的目标必须是一台开着 Codex App 的 Mac。</div>
+    </div>
+    <div class="limit">
+      <div class="limit-title">Mac 必须在线</div>
+      <div class="limit-desc">Mac 需要保持唤醒状态、联网、并且 Codex App 在运行。合上盖子就断了。</div>
+    </div>
+    <div class="limit">
+      <div class="limit-title">Preview 阶段</div>
+      <div class="limit-desc">目前是预览版。所有计划都能用，包括免费版和 Go 版。但企业版有更强的自动化和合规控制。</div>
+    </div>
+    <div class="limit">
+      <div class="limit-title">安全更新必装</div>
+      <div class="limit-desc">最近有一个供应链安全事件影响了 macOS 版本，OpenAI 要求用户在 6 月 12 日前更新到最新版。</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 对比 Claude ══ -->
+  <div class="section-head">
+    <div class="section-label">Context</div>
+    <h2>Anthropic 2 月就做了类似的事</h2>
+  </div>
+
+  <p>今年 2 月，Anthropic 发布了 Claude Code 的 Remote Control 功能，让用户可以远程监控 Claude Code 的工作。思路一样：AI 编程工具跑的任务越来越长，你不可能一直坐在电脑前盯着，需要一个移动端入口来跟进和干预。</p>
+
+  <div class="vs">
+    <div class="vs-title">Codex Mobile vs Claude Code Remote Control</div>
+    <div class="vs-row">
+      <div class="vs-label">入口</div>
+      <div class="vs-a">ChatGPT App 内</div>
+      <div class="vs-b">Claude App 内</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-label">宿主</div>
+      <div class="vs-a">Mac（Windows 待定）</div>
+      <div class="vs-b">任何跑 Claude Code 的终端</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-label">计划覆盖</div>
+      <div class="vs-a">所有计划含免费</div>
+      <div class="vs-b">Pro / Max / Team</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-label">发布时间</div>
+      <div class="vs-a">2026.05（Preview）</div>
+      <div class="vs-b">2026.02</div>
+    </div>
+  </div>
+
+  <p>两家在争的不是谁的手机界面更好看，而是谁的编程 agent 会成为开发者的主力工具。远程控制只是这场竞争的最新一章。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ Tips ══ -->
+  <div class="section-head">
+    <div class="section-label">Tips</div>
+    <h2>用起来之前的几个小建议</h2>
+  </div>
+
+  <div class="feats">
+    <div class="feat"><div class="feat-icon">💡</div><div>如果你用 Mac mini 或者旧 Mac 当开发机，把它设成不休眠（System Settings → Energy → Prevent automatic sleeping），然后用手机遥控。相当于有了一台永远在线的编程助手。</div></div>
+    <div class="feat"><div class="feat-icon">💡</div><div>长任务跑之前，在 Codex 里把任务描述写清楚，包括完成条件和约束。这样你在手机上看到的信息才有意义，不然只是一堆你看不懂的终端输出。</div></div>
+    <div class="feat"><div class="feat-icon">💡</div><div>企业用户注意：Remote Control 默认是关闭的，需要管理员在 Workspace Settings 里手动开启。如果扫码之后连不上，先找你的 IT。</div></div>
+    <div class="feat"><div class="feat-icon">💡</div><div>那个安全更新是认真的。6 月 12 日之前一定要更新 Codex App 和 ChatGPT App，否则可能无法正常使用。</div></div>
+  </div>
+
+  <div class="verdict">
+    <h3>一句话</h3>
+    <p>AI 编程工具正在从「你坐在电脑前一起干」变成「它自己干，你随时能插手」。手机遥控只是第一步。你不用现在就用 Codex，但这个趋势值得关注——Claude Code 也在同一个方向上走。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #006 · 2026.05</span>
+    <span>工具上新 · 设置指南</span>
+  </footer>
+
+</div>
+</body>
+</html>

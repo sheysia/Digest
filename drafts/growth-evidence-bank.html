@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不用等机会来了才整理自己：成长证据库搭建指南 | AI Digest #006</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--purple)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-scene{background:#EFF5EC;color:var(--green)}
+  .tag-tip{background:#F5EFF8;color:var(--purple)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:400;line-height:2;margin-bottom:24px}
+
+  .section-head{margin:40px 0 18px}
+  .section-label{font-size:10px;font-weight:700;color:var(--purple);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--purple);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--purple);background:#F7F2FA;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+  .callout-green{border-left-color:var(--green);background:#EFF8EE}
+  .callout-accent{border-left-color:var(--accent);background:#F0F8F7}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  /* 6 categories grid */
+  .cat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:20px 0}
+  .cat{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:14px;text-align:center}
+  .cat-icon{font-size:22px;margin-bottom:4px}
+  .cat-name{font-size:13px;font-weight:700;color:var(--text)}
+  .cat-desc{font-size:11px;color:var(--text-light);line-height:1.5;margin-top:2px}
+
+  /* File structure */
+  .file-tree{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:18px 20px;margin:20px 0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;color:var(--text);white-space:pre}
+  .file-tree .folder{color:var(--purple);font-weight:700}
+  .file-tree .comment{color:var(--text-light)}
+
+  /* Steps */
+  .steps{display:flex;flex-direction:column;gap:2px;margin:22px 0}
+  .step{background:var(--card);border:1px solid var(--border-light);padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .step:first-child{border-radius:10px 10px 0 0}
+  .step:last-child{border-radius:0 0 10px 10px}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--purple);min-width:24px}
+  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .step-desc{font-size:13px;color:var(--text-light);line-height:1.75}
+
+  /* Prompt card */
+  .prompt{background:var(--text);border-radius:10px;padding:20px;margin:22px 0;font-size:13px;line-height:1.8;color:#D4D0C8}
+  .prompt-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+
+  /* When to update */
+  .when-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0}
+  .when{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:12px 14px;display:flex;gap:8px;align-items:flex-start}
+  .when-icon{font-size:16px;flex-shrink:0}
+  .when-text{font-size:12.5px;color:var(--text-body);line-height:1.6}
+
+  /* Advanced section */
+  .adv{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:20px;margin:22px 0}
+  .adv-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .adv-desc{font-size:13px;color:var(--text-light);line-height:1.75;margin-bottom:8px}
+  .adv-quote{font-size:12.5px;color:var(--purple);font-style:italic;line-height:1.7}
+
+  .verdict{background:var(--card);border:2px solid var(--purple);border-radius:10px;padding:24px;margin:28px 0}
+  .verdict h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:12px}
+  .verdict p{font-size:13px;line-height:1.85;color:var(--text-body);margin-bottom:0}
+
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .header h1{font-size:24px}
+    .cat-grid{grid-template-columns:1fr 1fr}
+    .when-grid{grid-template-columns:1fr}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #006</span>
+</nav>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-scene">场景拆解</span>
+      <span class="tag tag-tip">用法洞察</span>
+    </div>
+    <h1>不用等机会来了才整理自己：<br>成长证据库搭建指南</h1>
+    <p class="header-sub">升职、跳槽、申请学位、争取项目机会时，最费劲的常常不是能力不够，而是临时想不起自己做过什么。</p>
+    <div class="header-meta">📌 By Syneira Lab · 源自 DMVoice AI Workshop 实践 · 2026.05</div>
+  </header>
+
+  <!-- ══ 开场 ══ -->
+  <p class="lead">绩效评估时临时回忆一年做了什么，更新简历时翻遍邮件找数字，面试时举不出具体例子——这些不是能力问题，是信息管理问题。成长证据库就是为了解决这个：把你的量化成果、项目经历、他人评价、危机贡献、学习记录，长期放在一个随时可调用的地方。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 先收集 6 类 ══ -->
+  <div class="section-head">
+    <div class="section-label">What To Collect</div>
+    <h2>先收集这 6 类</h2>
+  </div>
+
+  <p>不用一次写完，但要知道收什么。这 6 类覆盖了绝大多数职场场景需要的素材。</p>
+
+  <div class="cat-grid">
+    <div class="cat">
+      <div class="cat-icon">📊</div>
+      <div class="cat-name">量化成果</div>
+      <div class="cat-desc">效率、时间、成本、满意度</div>
+    </div>
+    <div class="cat">
+      <div class="cat-icon">📋</div>
+      <div class="cat-name">项目清单</div>
+      <div class="cat-desc">项目名、角色、结果</div>
+    </div>
+    <div class="cat">
+      <div class="cat-icon">💬</div>
+      <div class="cat-name">上级评语</div>
+      <div class="cat-desc">绩效评估里的关键原话</div>
+    </div>
+    <div class="cat">
+      <div class="cat-icon">💌</div>
+      <div class="cat-name">同事反馈</div>
+      <div class="cat-desc">邮件、感谢、协作评价</div>
+    </div>
+    <div class="cat">
+      <div class="cat-icon">⚠️</div>
+      <div class="cat-name">危机时刻</div>
+      <div class="cat-desc">关键问题里你做了什么</div>
+    </div>
+    <div class="cat">
+      <div class="cat-icon">🎓</div>
+      <div class="cat-name">证书 / 学习</div>
+      <div class="cat-desc">考过的证、学过的课</div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 文件结构 ══ -->
+  <div class="section-head">
+    <div class="section-label">Structure</div>
+    <h2>一个文件夹，五个文件就够</h2>
+  </div>
+
+  <p>不需要复杂工具，不用一上来做数据库。先把结构搭起来，后面慢慢补内容。</p>
+
+  <div class="file-tree"><span class="folder">我的成长证据库/</span>
+├── <span class="folder">01-量化成果.md</span>       <span class="comment">数字 + 背景 + 影响</span>
+├── <span class="folder">02-别人怎么评价我.md</span>  <span class="comment">绩效评估、感谢邮件、Slack 里的关键原话</span>
+├── <span class="folder">03-项目清单.md</span>       <span class="comment">项目名 | 你的角色 | 一句话结果</span>
+├── <span class="folder">04-危机时刻.md</span>       <span class="comment">问题是什么 | 你做了什么 | 结果如何</span>
+└── <span class="folder">05-证书和学习.md</span>     <span class="comment">证书名 | 日期 | 学到了什么</span></div>
+
+  <p>每个文件不需要写成文章。一条一条记就行。比如量化成果：「报表手工时间减少 50%」——数字 + 背景 + 影响，一行搞定。重点不是一次写完，而是每次顺手补一点。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 什么时候更新 ══ -->
+  <div class="section-head">
+    <div class="section-label">When</div>
+    <h2>什么时候补一条</h2>
+  </div>
+
+  <div class="when-grid">
+    <div class="when"><div class="when-icon">✅</div><div class="when-text">绩效评估后</div></div>
+    <div class="when"><div class="when-icon">✅</div><div class="when-text">项目上线或交付后</div></div>
+    <div class="when"><div class="when-icon">✅</div><div class="when-text">收到感谢邮件或表扬时</div></div>
+    <div class="when"><div class="when-icon">✅</div><div class="when-text">学完一门课或拿到证书后</div></div>
+    <div class="when"><div class="when-icon">✅</div><div class="when-text">处理完一次紧急问题后</div></div>
+    <div class="when"><div class="when-icon">✅</div><div class="when-text">年底回顾的时候</div></div>
+  </div>
+
+  <div class="callout">
+    <p>不要等到需要更新简历的时候才想起来整理。那时候你已经忘了大部分细节了。每次顺手补一条，30 秒的事。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 让 AI 帮你 ══ -->
+  <div class="section-head">
+    <div class="section-label">AI Assist</div>
+    <h2>让 AI 帮你整理，判断留给自己</h2>
+  </div>
+
+  <p>AI 很适合从一堆材料里提取结构化信息。但哪些成果最值得讲、这次要强调哪条主线，还是要你自己来定。</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">先喂给 AI 这些材料</div>
+        <div class="step-desc">绩效评估、感谢邮件/表扬记录、项目说明或周报、旧简历和旧自我介绍</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">让 AI 帮你做这几件事</div>
+        <div class="step-desc">提取所有量化数字，按主题归类他人评价，把项目经历改写成简历/SOP 语言，对比两年的记录找成长主线</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">你自己来做最后判断</div>
+        <div class="step-desc">哪些成果最能代表你，哪个故事最适合这次机会，哪些内容要展开讲、哪些只保留一句</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prompt">
+    <div class="prompt-label">可以直接复制的提示词</div>
+    请从这份绩效评估中提取：<br>
+    1）量化成果<br>
+    2）可用于简历的项目经历<br>
+    3）值得保存的原话评价<br>
+    并按「成长证据库」格式整理。
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 进阶：让 AI agent 管理 ══ -->
+  <div class="section-head">
+    <div class="section-label">Advanced</div>
+    <h2>进阶：让 AI agent 帮你管理整个库</h2>
+  </div>
+
+  <p>如果你已经用 Claude Code 或 Codex 写过东西，可以更进一步——把证据库变成一个 AI 能读懂的项目。</p>
+
+  <p>具体做法：在文件夹根目录放一个说明文件（Claude Code 用 <code>CLAUDE.md</code>，Codex 用 <code>AGENTS.md</code>），告诉 AI 这个库是做什么的、有哪些规则、什么能改什么不能改。之后每次你打开 AI 编程工具，它就自动知道你的背景、你的主线、你的证据在哪。</p>
+
+  <div class="adv">
+    <div class="adv-title">实际效果</div>
+    <div class="adv-desc">你说「帮我更新简历」，AI 已经知道你的量化成果、你的项目清单、你的上级评语。你说「帮我写套磁信」，AI 已经知道你的研究方向和学术定位。你不需要每次重新解释自己是谁。</div>
+    <div class="adv-quote">最近一次实际搭建中，我让 GPT 推荐用 Claude Code 还是 Codex，它的回答是：「Claude Code 建脑子，Codex 建工具」——让 Claude Code 管长期上下文和写作，让 Codex 做批量转换和格式检查。两个 agent 各读各的说明文件，各干各的长处。</div>
+  </div>
+
+  <div class="callout-green callout">
+    <p>不需要一开始就做进阶版。先建 5 个 Markdown 文件，开始记录。等积累到一定量了，再加 AI agent 管理。工具可以后面再升级，素材丢了就没了。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 30分钟开始 ══ -->
+  <div class="section-head">
+    <div class="section-label">Start Now</div>
+    <h2>今天 30 分钟开始</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">找最近一次绩效评估</div>
+        <div class="step-desc">纸质的拍照，电子的复制。这是你最容易拿到手的第一批素材。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">复制 5 条数字或评语</div>
+        <div class="step-desc">不用多，5 条就够启动。有数字的优先，有原话的优先。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">建一个「我的成长证据库」文件夹</div>
+        <div class="step-desc">电脑上新建一个文件夹，把那 5 条存进去。恭喜，你的证据库建好了。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h3>这件事的意义</h3>
+    <p>机会来的时候，能用的只有你已经记下来的东西。没记下来的，等于没发生过。成长证据库不是一个项目，是一个习惯。今天开始，以后每次顺手补一条就行。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #006 · 2026.05</span>
+    <span>场景拆解 · 用法洞察</span>
+  </footer>
+
+</div>
+</body>
+</html>

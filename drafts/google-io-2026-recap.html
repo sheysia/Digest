@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google I/O 2026 速报：两小时发布会，这几件事跟你有关 | AI Digest #006</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --gred:#DB4437;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--gred)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-break{background:#FDECEA;color:var(--gred)}
+  .tag-trend{background:#EBF2FD;color:var(--blue)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:400;line-height:2;margin-bottom:24px}
+
+  .section-head{margin:40px 0 18px}
+  .section-label{font-size:10px;font-weight:700;color:var(--gred);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--gred);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--accent);background:#F0F8F7;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  /* Stats bar */
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:22px 0}
+  .stat{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:14px;text-align:center}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--gred);line-height:1}
+  .stat-label{font-size:11px;color:var(--text-light);margin-top:4px;line-height:1.4}
+
+  /* Announcement cards */
+  .ann{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:18px 20px;margin:12px 0}
+  .ann-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .ann-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:10px}
+  .ann-cat.model{background:#FDECEA;color:var(--gred)}
+  .ann-cat.agent{background:#EBF2FD;color:var(--blue)}
+  .ann-cat.product{background:#EFF5EC;color:var(--green)}
+  .ann-cat.dev{background:#F5EFF8;color:var(--purple)}
+  .ann-cat.hw{background:#FFF8E1;color:#F57F17}
+  .ann-cat.price{background:#FDF3EE;color:var(--orange)}
+  .ann-name{font-size:15px;font-weight:700;color:var(--text)}
+  .ann-desc{font-size:13px;color:var(--text-light);line-height:1.75}
+  .ann-when{font-size:11px;color:var(--accent-dark);font-weight:600;margin-top:6px}
+
+  /* Compare */
+  .cmp{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:18px 20px;margin:22px 0}
+  .cmp-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .cmp-row{display:flex;gap:6px;margin-bottom:8px;font-size:12px}
+  .cmp-label{font-weight:700;color:var(--text);min-width:80px;flex-shrink:0}
+  .cmp-g,.cmp-a,.cmp-o{flex:1;text-align:center;padding:4px 6px;border-radius:4px;line-height:1.5}
+  .cmp-g{background:#FDECEA;color:var(--gred)}
+  .cmp-a{background:#F0F8F7;color:var(--accent-dark)}
+  .cmp-o{background:#EEF4FD;color:var(--blue)}
+
+  .verdict{background:var(--text);color:#EAE7E0;border-radius:10px;padding:24px;margin:28px 0}
+  .verdict h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}
+  .verdict p{font-size:13px;line-height:1.85;color:#B0ADA6;margin-bottom:12px}
+  .verdict p:last-child{margin-bottom:0}
+
+  .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:20px 16px 56px}
+    .header h1{font-size:24px}
+    .stats{grid-template-columns:1fr}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#">AI Digest</a>
+  <span class="nav-sep">›</span>
+  <span>Issue #006</span>
+</nav>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="header-tags">
+      <span class="tag tag-break">速报</span>
+      <span class="tag tag-trend">趋势信号</span>
+    </div>
+    <h1>Google I/O 2026 速报：<br>两小时发布会，这几件事跟你有关</h1>
+    <p class="header-sub">今天下午刚结束的 Google I/O 2026 主题演讲，将近两小时，全是 AI。信息量太大，帮你筛过一遍，留下值得知道的。</p>
+    <div class="header-meta">📌 2026.05.19 · 来源：Google 官方博客 / 9to5Google / Engadget / TechRadar / Tom's Guide</div>
+  </header>
+
+  <!-- ══ 数字 ══ -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">9 亿</div>
+      <div class="stat-label">Gemini 月活用户，一年翻了一倍</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">9.7 万亿</div>
+      <div class="stat-label">Gemini 每月处理的 token 数</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">Google 超 10 亿用户的产品数</div>
+    </div>
+  </div>
+
+  <p class="lead">Sundar Pichai 上台第一句话就在讲数字。但数字不是重点，重点是 Google 今天在用这些数字铺垫一件事：Gemini 不再是一个聊天助手，它正在变成一个 24 小时替你干活的 agent。</p>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 模型 ══ -->
+  <div class="section-head">
+    <div class="section-label">Models</div>
+    <h2>新模型</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat model">模型</span>
+      <span class="ann-name">Gemini 3.5 Flash</span>
+    </div>
+    <div class="ann-desc">比 3.1 Pro 更强，速度是竞争对手前沿模型的 4 倍。编码、agent 任务、多模态三个方向全面提升。今天开始在 Gemini app、Search AI Mode、Antigravity 2.0 和 API 里全面上线。</div>
+    <div class="ann-when">📅 今天起全球可用</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat model">模型</span>
+      <span class="ann-name">Gemini 3.5 Pro</span>
+    </div>
+    <div class="ann-desc">正在测试中，下个月上线。Flash 是 3.5 系列的第一个，Pro 是更强的版本。</div>
+    <div class="ann-when">📅 下月</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat model">模型</span>
+      <span class="ann-name">Gemini Omni</span>
+    </div>
+    <div class="ann-desc">「create anything from any input」——接受图片、音频、视频、文本输入，输出视频。先从视频生成开始，后续扩展到更多输出格式。</div>
+    <div class="ann-when">📅 今天起可用</div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ Agent ══ -->
+  <div class="section-head">
+    <div class="section-label">Agents</div>
+    <h2>Agent 层：今天最重要的发布</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Gemini Spark</span>
+    </div>
+    <div class="ann-desc">24/7 私人 AI agent。跑在 Google Cloud 的虚拟机上，笔记本合上它也在跑。基于 Gemini 3.5 Flash，集成 Gmail、Docs 等 Workspace 应用，夏天扩展到第三方工具（通过 MCP）。可以帮你监控信用卡账单里的隐藏订阅、追踪孩子学校的邮件通知、从 Gmail 里整理项目笔记生成文档。执行敏感操作前会先问你确认。</div>
+    <div class="ann-when">📅 下周面向 AI Ultra 用户（美国）开放 beta</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Daily Brief</span>
+    </div>
+    <div class="ann-desc">每天早上给你一份个人简报。从 Gmail、Calendar、Tasks 里筛选当天要做的事，按优先级排列，附下一步建议。</div>
+    <div class="ann-when">📅 今天起面向 AI Plus / Pro / Ultra 用户上线（美国）</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Information Agents（Search）</span>
+    </div>
+    <div class="ann-desc">在 Google Search 里 24/7 后台运行，持续跟踪你关心的事——博客、新闻、社交帖子、金融数据、体育赛事——有更新就通知你。</div>
+    <div class="ann-when">📅 今夏面向 AI Pro / Ultra（美国）</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat agent">Agent</span>
+      <span class="ann-name">Android Halo</span>
+    </div>
+    <div class="ann-desc">手机上看 agent 在干什么的入口。屏幕顶部显示当前 agent 任务状态，有消息会提醒。</div>
+    <div class="ann-when">📅 今年晚些时候</div>
+  </div>
+
+  <div class="callout">
+    <p>Spark 的定位跟我们之前介绍的 Hermes Agent 非常像——都是 always-on、后台常驻、帮你盯着事情。区别是 Spark 跑在 Google Cloud 上（你不用自己维护服务器），但数据也在 Google 那边。Hermes 跑在你自己机器上，数据完全本地。两条路，各有取舍。</p>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 开发者 ══ -->
+  <div class="section-head">
+    <div class="section-label">Developer</div>
+    <h2>开发者工具</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat dev">开发</span>
+      <span class="ann-name">Antigravity 2.0</span>
+    </div>
+    <div class="ann-desc">Google 的 agent-first 编程平台。桌面端、CLI、SDK 今天全球可用。基于 Gemini 3.5 Flash，12 倍速度提升。多个子 agent 可以并行编码和测试。现场演示用 Antigravity 几十秒造了一个能跑 Doom 的简易操作系统。</div>
+    <div class="ann-when">📅 今天全球可用</div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-title">三家 Agent 编程工具对比</div>
+    <div class="cmp-row"><div class="cmp-label"></div><div class="cmp-g">Antigravity 2.0</div><div class="cmp-a">Claude Code</div><div class="cmp-o">Codex</div></div>
+    <div class="cmp-row"><div class="cmp-label">模型</div><div class="cmp-g">Gemini 3.5 Flash</div><div class="cmp-a">Claude Opus/Sonnet</div><div class="cmp-o">GPT / Codex</div></div>
+    <div class="cmp-row"><div class="cmp-label">形态</div><div class="cmp-g">桌面 + CLI + SDK</div><div class="cmp-a">CLI</div><div class="cmp-o">桌面 + CLI</div></div>
+    <div class="cmp-row"><div class="cmp-label">并行 agent</div><div class="cmp-g">✓ 多子 agent</div><div class="cmp-a">Agent View（新）</div><div class="cmp-o">单会话</div></div>
+    <div class="cmp-row"><div class="cmp-label">手机遥控</div><div class="cmp-g">—</div><div class="cmp-a">Remote Control</div><div class="cmp-o">ChatGPT App</div></div>
+    <div class="cmp-row"><div class="cmp-label">发布状态</div><div class="cmp-g">今天全球可用</div><div class="cmp-a">正式发布</div><div class="cmp-o">Preview</div></div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 价格 ══ -->
+  <div class="section-head">
+    <div class="section-label">Pricing</div>
+    <h2>价格变了</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat price">价格</span>
+      <span class="ann-name">AI Ultra 分两档了</span>
+    </div>
+    <div class="ann-desc">新增 $100/月档位：Gemini app 和 Antigravity 用量是 Pro（$20/月）的 5 倍，含 YouTube Premium、20TB 云存储。原来的 $250 顶配档降到 $200/月，用量是 Pro 的 20 倍。同时 Gemini app 从「每日提示词次数限制」改成「compute 用量计费」——按你请求的复杂度和使用的功能来算，不再按次数。</div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 产品更新 ══ -->
+  <div class="section-head">
+    <div class="section-label">Products</div>
+    <h2>几个值得注意的产品更新</h2>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat product">产品</span>
+      <span class="ann-name">Google Search 近 30 年最大改版</span>
+    </div>
+    <div class="ann-desc">AI Overviews 和 AI Mode 合并成统一体验。搜索框用 AI 生成建议（不只是自动补全），支持图片视频输入。还能在搜索里直接用 Antigravity 生成迷你应用（仪表板、追踪器）。全球今天上线。</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat product">产品</span>
+      <span class="ann-name">Docs Live / Gmail Live / Ask YouTube</span>
+    </div>
+    <div class="ann-desc">对着 Google Docs 说话就能创建文档（语音 brain dump）。Gmail 里用对话式搜索找邮件。YouTube 里用对话式搜索找视频内容。</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat hw">硬件</span>
+      <span class="ann-name">Android XR 音频眼镜</span>
+    </div>
+    <div class="ann-desc">Samsung、Warby Parker、Gentle Monster、XREAL 等多家合作。通过语音和耳机交互，不在镜片上显示信息。支持导航、翻译、拍照。今秋发布，支持 iPhone。</div>
+  </div>
+
+  <div class="ann">
+    <div class="ann-head">
+      <span class="ann-cat product">产品</span>
+      <span class="ann-name">SynthID + C2PA 扩展</span>
+    </div>
+    <div class="ann-desc">AI 生成内容水印验证扩展到 Search 和 Chrome。OpenAI 也宣布会使用 Google 的内容验证标准。这是两家竞争对手在安全问题上的罕见合作。</div>
+  </div>
+
+  <div class="divider"><span class="divider-dot"></span></div>
+
+  <!-- ══ 判断 ══ -->
+  <div class="verdict">
+    <h3>这场发布会真正在说什么</h3>
+    <p>两个小时讲了几十个产品，但主线只有一条：Google 在把 Gemini 从「你问它答」变成「它替你做」。Spark 是 24/7 agent，Information Agents 是后台监控，Daily Brief 是每日代办，Android Halo 是手机上看 agent 状态——所有东西都指向同一个方向：AI 不再等你来找它，它主动帮你盯着事情。</p>
+    <p>Anthropic 在做同样的事（Claude Code + Remote Control），OpenAI 也在做同样的事（Codex + ChatGPT 手机遥控 + Deployment Company）。三家的路径不同，但终点一样。</p>
+    <p>Demis Hassabis 结尾说了一句：「AGI is now on the horizon.」不管你信不信这句话，今天发布的这些产品已经在改变你跟 AI 打交道的方式了。</p>
+  </div>
+
+  <footer class="footer">
+    <span>AI Digest by Syneira · Issue #006 · 2026.05.19</span>
+    <span>速报 · 趋势信号</span>
+  </footer>
+
+</div>
+</body>
+</html>
