@@ -1,0 +1,55 @@
+week: "__WEEK__"
+issue_number: "__ISSUE__"
+date_range:
+  start: "__START__"
+  end: "__END__"
+
+theme:
+  zh:
+  en:
+
+issue:
+  file: "issues/__ISSUE__.html"
+  status: draft
+
+cards:
+  - id: card-01
+    source_candidate_id:
+    bucket: tool
+    tag_zh:
+    tag_en:
+    title_zh:
+    title_en:
+    source_label:
+    source_url:
+    note_link:
+    highlight_zh:
+    highlight_en:
+    so_what_zh:
+    so_what_en:
+    good_for_zh:
+      -
+    good_for_en:
+      -
+
+notes:
+  - slug:
+    title_zh:
+    title_en:
+    source_card_id:
+    status: optional
+
+tools:
+  - slug:
+    title_zh:
+    title_en:
+    source_card_id:
+    status: optional
+
+publishing:
+  homepage_latest: false
+  issue_hub: false
+  archive: false
+  i18n_checked: false
+  links_checked: false
+  metadata_checked: false

@@ -1,0 +1,30 @@
+week: "__WEEK__"
+issue: "__ISSUE__"
+date_range:
+  start: "__START__"
+  end: "__END__"
+
+candidates:
+  - id: c001
+    status: candidate
+    source_type: ai_sourced
+    source_name:
+    source_url:
+    published_at:
+    title:
+    bucket: issue_card
+    one_line:
+    why_it_matters:
+    syneira_fit:
+    suggested_angle:
+    verification_notes:
+    scores:
+      relevance: 0
+      practicality: 0
+      credibility: 0
+      freshness: 0
+      non_obviousness: 0
+      tone_fit: 0
+      total: 0
+    recommendation: maybe
+    final_decision: undecided

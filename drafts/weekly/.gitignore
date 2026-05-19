@@ -1,0 +1,4 @@
+# Dated weekly drafts can contain unpublished editorial material.
+# Keep them local by default; force-add only when intentionally publishing drafts.
+20*/
+current/
