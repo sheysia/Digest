@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Issue #006 (May 13–19, 2026) · 从 Google I/O 到 Codex mobile，再到 agent 记忆和个人成长证据库：AI 正在从聊天窗口走向长期任务。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI Digest Issue #006 | By Syneira" />
+  <meta property="og:description" content="Issue #006 (May 13–19, 2026) · 从 Google I/O 到 Codex mobile，再到 agent 记忆和个人成长证据库：AI 正在从聊天窗口走向长期任务。" />
+  <meta property="og:url" content="https://syneira.org/issues/006.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Digest Issue #006 | By Syneira" />
+  <meta name="twitter:description" content="Issue #006 (May 13–19, 2026) · 从 Google I/O 到 Codex mobile，再到 agent 记忆和个人成长证据库：AI 正在从聊天窗口走向长期任务。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>AI Digest Issue #006 | By Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; color:#2C2C2C; line-height:1.85; font-size:15px; background:#FAF8F5; }
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .nav a { font-size:13px; color:#2A9D8F; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:12px 24px 60px; }
+
+  .header { text-align:center; padding-bottom:20px; border-bottom:2.5px solid #2A9D8F; margin-bottom:24px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:#999; text-transform:uppercase; margin-bottom:6px; }
+  .header-title { font-size:26px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.3; }
+  .header-meta { font-size:12px; color:#999; }
+  .header-sub { font-size:14px; color:#2A9D8F; margin-top:8px; font-style:italic; }
+
+  .section { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .section.tool { background:#FDF0EB; border-left:4px solid #E8643B; }
+  .section.trend { background:#EBF2FD; border-left:4px solid #3A7BD4; }
+  .section.scene { background:#EFF5EC; border-left:4px solid #5A8E5A; }
+  .section.tip { background:#F5EFF8; border-left:4px solid #9B6DB7; }
+  .section.life { background:#E8F6F3; border-left:4px solid #2A9D8F; }
+  .section h2 { font-size:16px; font-weight:700; }
+  .section.tool h2 { color:#E8643B; }
+  .section.trend h2 { color:#3A7BD4; }
+  .section.scene h2 { color:#5A8E5A; }
+  .section.tip h2 { color:#9B6DB7; }
+  .section.life h2 { color:#2A9D8F; }
+
+  .card { background:#FFF; border:1px solid #E0DCD7; border-radius:10px; padding:18px 20px; margin-bottom:16px; }
+  .card-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .tag-tool { background:#FDF0EB; color:#D4603A; }
+  .tag-trend { background:#EBF2FD; color:#3A7BD4; }
+  .tag-scene { background:#EFF5EC; color:#5A8E5A; }
+  .tag-tip { background:#F5EFF8; color:#9B6DB7; }
+  .tag-life { background:#E8F6F3; color:#2A9D8F; }
+  .card-num { font-size:11px; color:#AAA; font-weight:600; }
+  .card-title { font-size:17px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.4; }
+  .card-source { font-size:11px; color:#999; margin-bottom:12px; }
+
+  .label { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .label-h { color:#D4603A; }
+  .label-s { color:#3A7BD4; }
+  .label-w { color:#5A8E5A; }
+
+  .card p { font-size:14px; line-height:1.85; margin-bottom:10px; color:#444; }
+  .card strong { font-weight:700; color:#1A1A2E; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5F3F0; color:#777; border:0.5px solid #E0DCD7; margin-right:4px; }
+  .read-more { display:inline-block; font-size:12px; color:#2A9D8F; font-weight:600; text-decoration:none; margin-top:6px; }
+
+  .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
+  .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
+</style>
+</head>
+<body data-full-i18n-page="issue-006">
+
+<div class="nav"><a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a></div>
+
+<div class="wrap issue-zh">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #006</div>
+  <div class="header-meta">May 13&ndash;19, 2026 &middot; 6 picks + 6 notes</div>
+  <div class="header-sub">AI 正在从聊天窗口，走向长期任务和真实工作流</div>
+</div>
+
+<div class="section trend"><h2>本期速递 &middot; Hot Take</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">速报</span><span class="card-num">#01</span></div>
+  <div class="card-title">Google I/O 2026 &mdash; 两小时发布会，主线其实只有一条</div>
+  <div class="card-source">&#x1f4cc; 2026.05.19 &middot; 来源：Google 官方博客 / AP / Axios</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Google 今天把 Gemini 3.5 Flash、Gemini Omni、Gemini Spark、Daily Brief、Information Agents、Antigravity 2.0、Search AI Mode 和 XR 眼镜一口气摆出来。信息很多，但主线很清楚：<strong>Google 不想让 Gemini 只当聊天框，它要变成后台一直帮你盯事、做事、提醒你的 agent 层。</strong></p>
+  <p>最值得看的是 Spark 和 Daily Brief。前者是 24/7 私人 agent，跑在 Google Cloud 上；后者每天早上从 Gmail、Calendar、Tasks 里整理你当天真正要处理的事。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>这次不是单个模型升级，而是 Google 把 AI 嵌回自己最强的地方：Search、Workspace、Android、YouTube 和硬件入口。对普通用户来说，未来的 AI 不是你打开一个页面问问题，而是它已经在你常用工具里替你守着信息流。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Google Workspace 用户</span><span class="badge">关注个人 agent 的人</span><span class="badge">产品 / 策略观察者</span></p>
+  <a href="../notes/google-io-2026-recap.html" class="read-more">&#x1f4d6; 阅读完整速报 &rarr;</a>
+</div>
+
+<div class="section tool"><h2>工具上新</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#02</span></div>
+  <div class="card-title">Codex in ChatGPT &mdash; 用手机遥控你的编程 AI</div>
+  <div class="card-source">&#x1f4cc; 2026.05.14 &middot; 来源：OpenAI 官方博客 / ChatGPT Release Notes</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>OpenAI 把 Codex 接进 ChatGPT 手机 App。你不需要在手机上写代码，而是可以在手机上看 Codex 正在干什么、批准下一步、改方向、看 diff 和测试结果。Codex 继续在连接的电脑或远程环境里工作，手机只是遥控器。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>AI 编程正在从“坐在电脑前和它一起干”变成“它自己跑，你随时插手”。这对长任务很关键：修 bug、查日志、跑测试、等结果，很多时候你只需要在分叉点做决定，不需要全程盯着终端。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">开发者</span><span class="badge">Codex 用户</span><span class="badge">远程/长任务工作流</span></p>
+  <a href="../notes/codex-in-chatgpt.html" class="read-more">&#x1f4d6; 阅读设置与限制 &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#03</span></div>
+  <div class="card-title">Hermes Agent &mdash; 开源 agent 的重点不是聊天，是记忆</div>
+  <div class="card-source">&#x1f4cc; 来源：Nous Research / GitHub / hermes-agent.org</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Hermes Agent 这类开源 agent 火起来，不是因为它又能陪你聊天，而是因为它把“长期记住你怎么做事”放在第一位：持久记忆、技能沉淀、后台常驻、定时任务、本地数据。它代表的是另一条路线：不把所有个人工作流都交给大厂云端。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>如果 Google Spark 是“云端常驻 agent”，Hermes 更像“住在你自己机器上的私人 agent”。普通用户现在未必马上装，但这个方向值得看：未来工具的核心竞争可能不是模型聪不聪明，而是它能不能越用越懂你。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">技术背景用户</span><span class="badge">本地优先 / 隐私关注者</span><span class="badge">agent 观察者</span></p>
+  <a href="../notes/hermes-agent-explainer.html" class="read-more">&#x1f4d6; 阅读完整解释 &rarr;</a>
+</div>
+
+<div class="section tip"><h2>用法洞察</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">用法洞察</span><span class="card-num">#04</span></div>
+  <div class="card-title">CLI vs MCP &mdash; AI 工具之间怎么对话，为什么跟你有关</div>
+  <div class="card-source">&#x1f4cc; 来源：Anthropic Engineering / OpenClaw / DEV Community</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>AI 要帮你查日历、读文件、跑 Git，就必须“调用工具”。现在有两条路线：<strong>CLI</strong> 像直接打电话，快、省 token、工具成熟；<strong>MCP</strong> 像走前台转接，多一层协议，但权限、认证和多用户场景更清楚。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>这不是开发者圈的纯技术吵架。它决定了未来 AI 自动化的体验：自己在电脑上用 AI 跑任务，CLI 可能更快；让 AI 代表普通用户操作 Google Drive、Slack、邮箱，MCP 的安全模型更重要。聪明的方向不是选边站，而是按场景混用。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">AI 工具重度用户</span><span class="badge">开发者</span><span class="badge">想理解 agent 成本/安全的人</span></p>
+  <a href="../notes/cli-vs-mcp.html" class="read-more">&#x1f4d6; 阅读完整拆解 &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">用法洞察</span><span class="card-num">#05</span></div>
+  <div class="card-title">GPT 和 Claude 为什么“想法不一样”？</div>
+  <div class="card-source">&#x1f4cc; 来源：OpenAI / Anthropic alignment research</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>很多人感觉 GPT 更快、更直接，Claude 更谨慎、更会先理解上下文。这不是玄学，和训练路线有关：OpenAI 早期用 RLHF 把“人更喜欢哪个答案”做成反馈；Anthropic 的 Constitutional AI 则强调用一套书面原则让模型自我批判和修正。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>不要只问“哪个模型最好”。更实用的问题是：这个任务需要快、发散、先给版本，还是需要稳、长上下文、少编造？创意起草可以先 GPT，复杂长文和代码审阅可以多让 Claude 过一遍。多模型协作会越来越常见。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">日常多模型用户</span><span class="badge">写作 / 编程 / 分析工作流</span><span class="badge">想少踩模型偏好坑的人</span></p>
+  <a href="../notes/gpt-vs-claude-design.html" class="read-more">&#x1f4d6; 阅读模型差异指南 &rarr;</a>
+</div>
+
+<div class="section scene"><h2>场景拆解</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">实践笔记</span><span class="card-num">#06</span></div>
+  <div class="card-title">成长证据库 &mdash; 不用等机会来了才整理自己</div>
+  <div class="card-source">&#x1f4cc; By Syneira Lab &middot; DMVoice AI Workshop 实践</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>升职、跳槽、申请学位、争取项目机会时，最痛苦的常常不是你没做过事，而是临时想不起自己做过什么。成长证据库就是把量化成果、项目经历、上级评价、同事反馈、危机贡献、学习记录长期放在一个随时能调用的地方。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>这是一篇很适合我们社群的实践指南：不需要复杂工具，一个文件夹、五个文件就够。AI 可以帮你从绩效评估、感谢邮件和项目说明里提取结构，但最后判断“这次机会该讲哪条主线”的人还是你。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">准备升职/跳槽的人</span><span class="badge">申请学位/项目机会的人</span><span class="badge">想长期沉淀职业素材的人</span></p>
+  <a href="../notes/growth-evidence-bank.html" class="read-more">&#x1f4d6; 阅读搭建指南 &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    由社群成员精选 &middot; 每周一期 + 不定期深度指南<br>
+    筛选标准：实用 &gt; 炫酷 &middot; 能用 &gt; 能看<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">趋势信号</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具上新</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">用法洞察</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">场景拆解</span>
+    <br><br>
+    &#x1f4ac; 看到好内容？随手转发到群里，下期可能就收录了<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Join us? Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; 留言讨论 / Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #006</div>
+  <div class="header-meta">May 13&ndash;19, 2026 &middot; 6 picks + 6 notes</div>
+  <div class="header-sub">AI is moving from chat windows into long-running work</div>
+</div>
+
+<div class="section trend"><h2>Hot Take</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Breaking Recap</span><span class="card-num">#01</span></div>
+  <div class="card-title">Google I/O 2026 — A Two-Hour Keynote With One Clear Through-Line</div>
+  <div class="card-source">&#x1f4cc; 2026.05.19 &middot; Source: Google official blogs / AP / Axios</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Google announced Gemini 3.5 Flash, Gemini Omni, Gemini Spark, Daily Brief, Information Agents, Antigravity 2.0, Search AI Mode and XR glasses. The list is long, but the message is simple: <strong>Google does not want Gemini to stay inside a chat box. It wants Gemini to become the agent layer that watches, acts, and reminds across your tools.</strong></p>
+  <p>The most useful signals are Spark and Daily Brief. Spark is a 24/7 personal agent running on Google Cloud. Daily Brief turns Gmail, Calendar and Tasks into a prioritized morning brief.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This is not just a model update. Google is embedding AI back into its strongest surfaces: Search, Workspace, Android, YouTube and hardware. For everyday users, future AI may not be a page you open to ask questions. It may already be inside the tools where your work lives.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Google Workspace users</span><span class="badge">Personal-agent watchers</span><span class="badge">Product and strategy readers</span></p>
+  <a href="../notes/google-io-2026-recap.html" class="read-more">&#x1f4d6; Read the full recap &rarr;</a>
+</div>
+
+<div class="section tool"><h2>Tool Updates</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#02</span></div>
+  <div class="card-title">Codex in ChatGPT — Remote-Control Your Coding Agent From Your Phone</div>
+  <div class="card-source">&#x1f4cc; 2026.05.14 &middot; Source: OpenAI official blog / ChatGPT release notes</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>OpenAI brought Codex into the ChatGPT mobile app. You are not coding on your phone. You are checking what Codex is doing, approving next steps, changing direction, reviewing diffs and reading test results while Codex continues working on a connected computer or remote environment.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>AI coding is shifting from "sit at the computer and pair with it" to "let it run, then step in when needed." That matters for long tasks: debugging, log review, test runs and implementation branches often need your decision at a few key points, not your eyes on the terminal the entire time.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Developers</span><span class="badge">Codex users</span><span class="badge">Remote and long-running workflows</span></p>
+  <a href="../notes/codex-in-chatgpt.html" class="read-more">&#x1f4d6; Read setup and limits &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#03</span></div>
+  <div class="card-title">Hermes Agent — The Point Is Not Chat, It Is Memory</div>
+  <div class="card-source">&#x1f4cc; Source: Nous Research / GitHub / hermes-agent.org</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Hermes Agent is not interesting because it is another chatbot. It is interesting because it puts long-term work memory first: persistent memory, skill capture, background service behavior, scheduled tasks, and local data. It represents a different path: not every personal workflow has to live in a big cloud vendor's agent layer.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>If Google Spark is the cloud-resident agent, Hermes is closer to a personal agent living on your own machine. Most non-technical readers do not need to install it right now, but the direction matters: the next competition may be less about model IQ and more about whether a tool can learn your way of working over time.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Technical users</span><span class="badge">Local-first / privacy-minded users</span><span class="badge">Agent watchers</span></p>
+  <a href="../notes/hermes-agent-explainer.html" class="read-more">&#x1f4d6; Read the explainer &rarr;</a>
+</div>
+
+<div class="section tip"><h2>Workflow Insights</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Workflow Insight</span><span class="card-num">#04</span></div>
+  <div class="card-title">CLI vs MCP — How AI Tools Talk to Other Tools</div>
+  <div class="card-source">&#x1f4cc; Source: Anthropic Engineering / OpenClaw / DEV Community</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>When AI checks your calendar, reads files, or runs Git, it has to call tools. Two routes are competing: <strong>CLI</strong>, which is like dialing directly, fast and token-efficient with mature tools; and <strong>MCP</strong>, which is like going through a front desk, with more structure around permissions, authentication and multi-user access.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This is not just a developer argument. It affects how future automation feels. If you are running local tasks for yourself, CLI may be faster. If an AI product needs to operate a user's Google Drive, Slack or email account, MCP-style governance matters. The practical answer is not one winner; it is choosing by context.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Heavy AI tool users</span><span class="badge">Developers</span><span class="badge">People tracking agent cost and safety</span></p>
+  <a href="../notes/cli-vs-mcp.html" class="read-more">&#x1f4d6; Read the full breakdown &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Workflow Insight</span><span class="card-num">#05</span></div>
+  <div class="card-title">Why Do GPT and Claude "Think" Differently?</div>
+  <div class="card-source">&#x1f4cc; Source: OpenAI / Anthropic alignment research</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Many users feel that GPT is faster and more direct, while Claude is more cautious and context-aware. That is not magic. It comes partly from different alignment traditions: OpenAI's early instruction-following work used RLHF around what humans preferred; Anthropic's Constitutional AI emphasizes written principles and model self-critique.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Stop asking only "which model is best?" Ask what the task needs: fast and generative, or careful with long context and lower hallucination risk? Use GPT to get a first version quickly; use Claude to review long documents, code structure, and nuanced reasoning. Multi-model workflows will become normal.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Multi-model users</span><span class="badge">Writing / coding / analysis workflows</span><span class="badge">People trying to avoid model-fit mistakes</span></p>
+  <a href="../notes/gpt-vs-claude-design.html" class="read-more">&#x1f4d6; Read the model-fit guide &rarr;</a>
+</div>
+
+<div class="section scene"><h2>Use Case</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Practice Note</span><span class="card-num">#06</span></div>
+  <div class="card-title">Growth Evidence Bank — Do Not Wait for Opportunity to Organize Yourself</div>
+  <div class="card-source">&#x1f4cc; By Syneira Lab &middot; DMVoice AI Workshop practice</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>When it is time to ask for a promotion, change jobs, apply to a program or fight for a project opportunity, the hardest part is often not that you lack evidence. It is that you cannot remember the evidence. A growth evidence bank stores quantified wins, projects, manager feedback, peer praise, crisis contributions and learning records in one place.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This is a very Syneira-style workflow: no complex tool required, just one folder and five files. AI can help extract structure from reviews, thank-you emails and project docs, but you still decide which story matters for the specific opportunity in front of you.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">People preparing for promotion or job change</span><span class="badge">Program/project applicants</span><span class="badge">Anyone building long-term career evidence</span></p>
+  <a href="../notes/growth-evidence-bank.html" class="read-more">&#x1f4d6; Read the setup guide &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    Curated by community members &middot; Weekly issue + occasional deep dives<br>
+    Filter: useful &gt; flashy &middot; usable &gt; impressive<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signal</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Workflow Insight</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Use Case</span>
+    <br><br>
+    &#x1f4ac; Found something good? Share it with the group. It may become a future pick.<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a>
+</div>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

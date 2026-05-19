@@ -1,0 +1,3 @@
+# Raw intake drafts are local editorial material, not public site pages.
+drafts/*.html
+drafts/*.webp
