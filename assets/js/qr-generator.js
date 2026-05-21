@@ -2,6 +2,7 @@
   const messages = {
     zh: {
       placeholder: "粘贴网址、报名链接、资料页，或输入任意文字",
+      previewEmpty: "等待输入",
       empty: "输入内容后会自动生成二维码。",
       ready: "二维码已生成。",
       contrast: "颜色对比偏低，建议换成更深的前景色以便扫码。",
@@ -18,6 +19,7 @@
     },
     en: {
       placeholder: "Paste a URL, signup link, resource page, or any text",
+      previewEmpty: "Waiting for content",
       empty: "Enter content to generate a QR code automatically.",
       ready: "QR code generated.",
       contrast: "Color contrast is low. Use a darker foreground for easier scanning.",
@@ -127,7 +129,10 @@
     context.strokeRect(context.lineWidth, context.lineWidth, size - context.lineWidth * 2, size - context.lineWidth * 2);
     currentQr = null;
     currentSvg = "";
-    if (els.previewText) els.previewText.textContent = "";
+    if (els.previewText) {
+      els.previewText.textContent = t("previewEmpty");
+      els.previewText.removeAttribute("title");
+    }
     setActionsEnabled(false);
   }
 
