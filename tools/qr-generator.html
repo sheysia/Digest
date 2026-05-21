@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh" data-i18n-title="qr.meta.title" data-i18n-description="qr.meta.description">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>二维码生成器 · AI Digest by Syneira Lab</title>
+  <meta name="description" content="一个简洁、长期可用的本地二维码生成器，可导出 PNG 或 SVG。" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="QR Code Generator · AI Digest by Syneira" />
+  <meta property="og:description" content="一个简洁、长期可用的本地二维码生成器，可导出 PNG 或 SVG。" />
+  <meta property="og:url" content="https://syneira.org/tools/qr-generator.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/tools-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="AI Digest Tools & Projects preview" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QR Code Generator · AI Digest by Syneira" />
+  <meta name="twitter:description" content="一个简洁、长期可用的本地二维码生成器，可导出 PNG 或 SVG。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/tools-preview.png" />
+  <meta name="twitter:image:alt" content="AI Digest Tools & Projects preview" />
+
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <main class="qr-page" data-full-i18n-page>
+    <a class="page-toplink" href="index.html" data-i18n="nav.back">← 返回首页 / Back to Home</a>
+
+    <section class="tools-hero qr-hero">
+      <span class="tools-kicker" data-i18n="qr.kicker">UTILITY · QR</span>
+      <h1 data-i18n="qr.title">二维码生成器</h1>
+      <p data-i18n="qr.lead">
+        给链接、报名页、资料页和现场分享准备的轻量工具。输入内容，微调样式，直接下载或复制，二维码本身不设有效期。
+      </p>
+    </section>
+
+    <section class="qr-workbench" aria-labelledby="qr-input-title">
+      <section class="qr-panel qr-input-panel">
+        <div class="qr-panel-head">
+          <span class="qr-step">1</span>
+          <div>
+            <h2 id="qr-input-title" data-i18n="qr.content.title">内容</h2>
+            <p data-i18n="qr.content.help">粘贴一个长期稳定的链接，或输入任意文字。</p>
+          </div>
+        </div>
+
+        <label class="qr-field">
+          <span data-i18n="qr.input.label">文本或 URL</span>
+          <textarea id="qrInput" class="qr-input" rows="7" maxlength="1800" spellcheck="false" autofocus>https://syneira.org/tools/qr-generator.html</textarea>
+        </label>
+
+        <div class="qr-input-meta">
+          <span id="qrCount">0 / 1800</span>
+          <button type="button" id="qrClear" class="qr-text-button" data-i18n="qr.clear">清空</button>
+        </div>
+
+        <div class="qr-section-block">
+          <h3 data-i18n="qr.style.title">样式</h3>
+
+          <div class="qr-control-grid">
+            <label class="qr-field">
+              <span data-i18n="qr.size.label">尺寸</span>
+              <select id="qrSize">
+                <option value="512" data-i18n="qr.size.compact">标准 512px</option>
+                <option value="768" selected data-i18n="qr.size.large">清晰 768px</option>
+                <option value="1024" data-i18n="qr.size.poster">海报 1024px</option>
+              </select>
+            </label>
+
+            <label class="qr-field">
+              <span data-i18n="qr.ecc.label">容错</span>
+              <select id="qrEcc">
+                <option value="M" data-i18n="qr.ecc.standard">常规</option>
+                <option value="Q" data-i18n="qr.ecc.better">更稳</option>
+                <option value="H" selected data-i18n="qr.ecc.high">高容错</option>
+              </select>
+            </label>
+
+            <label class="qr-field">
+              <span data-i18n="qr.foreground">前景色</span>
+              <input type="color" id="qrForeground" value="#000000" />
+            </label>
+
+            <label class="qr-field">
+              <span data-i18n="qr.background">背景色</span>
+              <input type="color" id="qrBackground" value="#ffffff" />
+            </label>
+          </div>
+
+          <div class="qr-swatch-row" aria-label="Color presets">
+            <button type="button" class="qr-swatch is-active" data-fg="#000000" data-bg="#ffffff" style="--swatch-a:#000000;--swatch-b:#ffffff">
+              <span>B/W</span>
+            </button>
+            <button type="button" class="qr-swatch" data-fg="#007a78" data-bg="#ffffff" style="--swatch-a:#007a78;--swatch-b:#ffffff">
+              <span>Teal</span>
+            </button>
+            <button type="button" class="qr-swatch" data-fg="#5b5fc7" data-bg="#ffffff" style="--swatch-a:#5b5fc7;--swatch-b:#ffffff">
+              <span>Iris</span>
+            </button>
+            <button type="button" class="qr-swatch" data-fg="#25324d" data-bg="#f7f9fc" style="--swatch-a:#25324d;--swatch-b:#f7f9fc">
+              <span>Slate</span>
+            </button>
+          </div>
+
+          <div class="qr-mini-notes" aria-label="QR code notes">
+            <h3 data-i18n="qr.notes.title">小提醒</h3>
+            <ul>
+              <li data-i18n="qr.notes.black">默认黑白最稳，日常分享不用改色。</li>
+              <li data-i18n="qr.notes.stable">二维码不会过期，但目标链接要长期稳定。</li>
+              <li data-i18n="qr.notes.local">生成过程只在本浏览器完成，不上传内容。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="qr-panel qr-output-panel" aria-labelledby="qr-output-title">
+        <div class="qr-panel-head">
+          <span class="qr-step">2</span>
+          <div>
+            <h2 id="qr-output-title" data-i18n="qr.output.title">预览与导出</h2>
+            <p data-i18n="qr.output.help">生成在浏览器本地完成，不上传内容。</p>
+          </div>
+        </div>
+
+        <div class="qr-preview-frame">
+          <canvas id="qrCanvas" width="768" height="768" aria-label="Generated QR code"></canvas>
+        </div>
+
+        <div class="qr-result-summary">
+          <span data-i18n="qr.result.label">编码内容</span>
+          <code id="qrPreviewText">https://syneira.org/tools/qr-generator.html</code>
+        </div>
+
+        <p id="qrStatus" class="qr-status" role="status" aria-live="polite"></p>
+
+        <div class="qr-actions">
+          <button type="button" id="qrDownloadPng" class="page-button primary" data-i18n="qr.downloadPng">下载 PNG</button>
+          <button type="button" id="qrCopyPng" class="page-button secondary" data-i18n="qr.copyPng">复制 PNG</button>
+          <button type="button" id="qrDownloadSvg" class="page-button subtle" data-i18n="qr.downloadSvg">下载 SVG</button>
+        </div>
+
+        <p class="qr-privacy" data-i18n="qr.privacy">
+          印刷或发群前建议先用手机扫一次，确认目标页面和展示尺寸都没问题。
+        </p>
+      </section>
+    </section>
+
+    <section class="qr-explain" aria-labelledby="qr-explain-title">
+      <span class="qr-explain-kicker" data-i18n="qr.why.kicker">WHY THIS TOOL</span>
+      <h2 id="qr-explain-title" data-i18n="qr.why.title">为什么自己做一个</h2>
+      <p data-i18n="qr.why.p1">
+        很多在线二维码工具会把你输入的网址发到外部服务器，有些还会加短链、跳转或追踪参数。
+      </p>
+      <p data-i18n="qr.why.p2">
+        这个页面直接在浏览器里把原始内容编码成二维码，不加中间层，不设置到期时间，也不需要账号。
+      </p>
+      <div class="qr-explain-tip">
+        <span aria-hidden="true"></span>
+        <p data-i18n="qr.why.tip">日常使用保留黑白和高容错最稳；只有在明确知道扫码场景时，再微调颜色。</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/js/vendor/qrcode-generator.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/qr-generator.js"></script>
+</body>
+</html>

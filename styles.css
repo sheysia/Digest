@@ -1516,11 +1516,390 @@ a {
 
 /* Works even if a simple old index used plain links inside the page. */
 .tools-page > a,
+.qr-page > a,
 .tutorials-page > a,
 .page-shell > a {
   color: #4f5fb5;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+}
+
+/* ---------- QR generator ---------- */
+.qr-page {
+  width: min(100% - 40px, 1120px);
+  margin: 0 auto;
+  padding: 96px 0 72px;
+}
+
+.qr-hero h1 {
+  letter-spacing: 0;
+}
+
+.qr-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.qr-panel {
+  border: 1px solid rgba(112, 112, 196, 0.14);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(247,250,252,0.90) 100%);
+  box-shadow: 0 14px 34px rgba(26, 22, 66, 0.055);
+  padding: 24px;
+}
+
+.qr-panel-head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.qr-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(99, 199, 203, 0.18), rgba(112, 112, 196, 0.16));
+  color: #375c8b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.qr-panel h2,
+.qr-section-block h3 {
+  margin: 0;
+  color: #20223d;
+  line-height: 1.25;
+}
+
+.qr-panel h2 {
+  font-size: 22px;
+}
+
+.qr-panel-head p {
+  margin: 6px 0 0;
+  color: #68708d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.qr-field {
+  display: grid;
+  gap: 8px;
+}
+
+.qr-field > span {
+  color: #424968;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.qr-input,
+.qr-field select,
+.qr-field input[type="color"] {
+  width: 100%;
+  border: 1px solid rgba(112, 112, 196, 0.18);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #20223d;
+  font: inherit;
+}
+
+.qr-input {
+  min-height: 176px;
+  padding: 14px 16px;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+.qr-field select {
+  min-height: 44px;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.qr-field input[type="color"] {
+  height: 44px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.qr-input:focus,
+.qr-field select:focus,
+.qr-field input[type="color"]:focus {
+  outline: 3px solid rgba(99, 199, 203, 0.20);
+  border-color: rgba(15, 143, 140, 0.45);
+}
+
+.qr-input-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: #7a8098;
+  font-size: 12px;
+}
+
+.qr-text-button {
+  border: 0;
+  background: transparent;
+  color: #4f5fb5;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.qr-text-button:hover {
+  color: #0f8f8c;
+}
+
+.qr-section-block {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(112, 112, 196, 0.12);
+}
+
+.qr-section-block h3 {
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.qr-control-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.qr-swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.qr-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 7px 11px;
+  border: 1px solid rgba(112, 112, 196, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #424968;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.qr-swatch::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(32, 34, 61, 0.10);
+  background: linear-gradient(135deg, var(--swatch-a) 0 50%, var(--swatch-b) 50% 100%);
+}
+
+.qr-swatch.is-active {
+  border-color: rgba(15, 143, 140, 0.42);
+  box-shadow: 0 0 0 3px rgba(99, 199, 203, 0.14);
+}
+
+.qr-mini-notes {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(99, 199, 203, 0.18);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(99, 199, 203, 0.09), rgba(112, 112, 196, 0.06)),
+    rgba(255, 255, 255, 0.70);
+}
+
+.qr-mini-notes h3 {
+  margin: 0 0 8px;
+  color: #20223d;
+  font-size: 14px;
+}
+
+.qr-mini-notes ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: #5d6387;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.qr-output-panel {
+  display: grid;
+}
+
+.qr-preview-frame {
+  display: grid;
+  place-items: center;
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  margin: 0 auto 16px;
+  padding: 18px;
+  border: 1px solid rgba(112, 112, 196, 0.14);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(99, 199, 203, 0.06), rgba(112, 112, 196, 0.06)),
+    #ffffff;
+}
+
+.qr-preview-frame canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  border-radius: 8px;
+}
+
+.qr-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.qr-actions .page-button {
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+}
+
+.qr-actions .page-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none;
+}
+
+.qr-result-summary {
+  display: grid;
+  gap: 5px;
+  width: min(100%, 420px);
+  margin: 0 auto 12px;
+  text-align: left;
+}
+
+.qr-result-summary span {
+  color: #7a8098;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.qr-result-summary code {
+  display: block;
+  overflow: hidden;
+  padding: 9px 11px;
+  border: 1px solid rgba(112, 112, 196, 0.12);
+  border-radius: 8px;
+  background: rgba(247, 250, 252, 0.82);
+  color: #424968;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qr-status {
+  min-height: 22px;
+  margin: 0;
+  color: #68708d;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.qr-status[data-tone="good"] {
+  color: #0f766e;
+}
+
+.qr-status[data-tone="warning"] {
+  color: #69538c;
+}
+
+.qr-privacy {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-left: 3px solid #6fc7c5;
+  border-radius: 8px;
+  background: rgba(99, 199, 203, 0.08);
+  color: #52616b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.qr-explain {
+  max-width: 760px;
+  margin: 38px 0 0;
+  padding-top: 26px;
+  border-top: 1px solid rgba(112, 112, 196, 0.14);
+}
+
+.qr-explain-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #6874ad;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.qr-explain h2 {
+  margin: 0 0 12px;
+  color: #20223d;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.qr-explain p {
+  margin: 0 0 12px;
+  color: #5d6387;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.qr-explain-tip {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 3px solid #0f8f8c;
+  border-radius: 0 10px 10px 0;
+  background: rgba(99, 199, 203, 0.08);
+}
+
+.qr-explain-tip span {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #0f8f8c;
+}
+
+.qr-explain-tip p {
+  margin: 0;
+  color: #424968;
+  font-size: 13px;
+  line-height: 1.75;
 }
 
 /* ---------- Simple article / tutorial content pages ---------- */
@@ -1654,6 +2033,7 @@ a {
 
   .page-shell,
   .tools-page,
+  .qr-page,
   .tutorials-page,
   .article-page,
   .tutorial-page,
@@ -1664,9 +2044,14 @@ a {
 
   .page-hero,
   .tools-hero,
+  .qr-hero,
   .tutorials-hero {
     padding: 26px 22px;
     border-radius: 22px;
+  }
+
+  .qr-workbench {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1705,6 +2090,20 @@ a {
   .tutorials-hero p {
     font-size: 15px;
     line-height: 1.75;
+  }
+
+  .qr-panel {
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+
+  .qr-control-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .qr-preview-frame {
+    padding: 12px;
+    border-radius: 14px;
   }
 }
 
