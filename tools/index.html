@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Tools · AI Digest by Syneira Lab</title>
-  <meta name="description" content="轻量工具合集 · AI Digest by Syneira Lab" />
+  <meta name="description" content="轻量工具与项目入口 · AI Digest by Syneira Lab" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Tools · AI Digest by Syneira" />
-  <meta property="og:description" content="轻量工具合集——从真实使用场景里长出来的小实验，按需打开来用。" />
+  <meta property="og:description" content="Syneira Lab 的轻量工具与项目入口：社区、家庭看板、文化互动、纪念空间和实用小工具。" />
   <meta property="og:url" content="https://syneira.org/tools/" />
   <meta property="og:site_name" content="AI Digest by Syneira" />
   <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
@@ -21,59 +21,103 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tools · AI Digest by Syneira" />
-  <meta name="twitter:description" content="轻量工具合集——从真实使用场景里长出来的小实验，按需打开来用。" />
+  <meta name="twitter:description" content="Syneira Lab 的轻量工具与项目入口：社区、家庭看板、文化互动、纪念空间和实用小工具。" />
   <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
 
   <link rel="stylesheet" href="../styles.css" />
 </head>
 
 <body>
-
   <main class="tools-page">
+    <a class="page-toplink" href="../index.html" data-i18n="nav.back">← 返回首页 / Back to Home</a>
 
     <section class="tools-hero">
-      <span class="tools-kicker" data-i18n="toolsIndex.kicker">TOOLS</span>
-      <h1 data-i18n="toolsIndex.title">一些慢慢长出来的小工具</h1>
+      <span class="tools-kicker" data-i18n="toolsIndex.kicker">TOOLS · 工具</span>
+      <h1 data-i18n="toolsIndex.title">从真实场景里长出来的工具和小项目</h1>
       <p data-i18n="toolsIndex.lead">
-        这些是从日常使用 AI 过程里长出来的小实验，
-        有的还很粗糙，但都在往“更真实的使用场景”靠近。
+        这里不是产品展柜，而是一张正在长大的工作台：社区协作、家庭看板、文化互动、纪念空间，以及一些可以随手打开用的轻量工具。
       </p>
     </section>
 
-    <section class="tools-grid">
+    <section class="tools-section" aria-labelledby="featured-tools">
+      <div class="tools-section-head">
+        <span class="tools-section-kicker" data-i18n="toolsIndex.featured.kicker">LIVE PROJECTS</span>
+        <h2 id="featured-tools" data-i18n="toolsIndex.featured.title">公开项目入口</h2>
+        <p data-i18n="toolsIndex.featured.lead">这些是已经有线上地址、可以直接访问或进入登录流程的项目。</p>
+      </div>
 
-      <a href="https://ccf-planner.vercel.app/" class="tool-card" target="_blank" rel="noopener">
-        <h3>Claude Cert Planner ↗</h3>
-        <p data-i18n="toolsIndex.ccf.text">Claude 认证备考手账：AI 模拟题、课程追踪、视频记录、综合统计</p>
-      </a>
+      <div class="tools-grid tools-grid-featured">
+        <a href="https://myfamboard.vercel.app/" class="tool-card tool-card-featured" target="_blank" rel="noopener">
+          <span class="tool-meta" data-i18n="toolsIndex.famboard.meta">FAMILY · LIVE</span>
+          <h3>FamBoard ↗</h3>
+          <p data-i18n="toolsIndex.famboard.text">家庭共享看板：把日程、任务和家庭状态放在一个打开就知道的位置。</p>
+        </a>
 
-      <a href="https://mergecheck.streamlit.app/" class="tool-card" target="_blank" rel="noopener">
-        <h3>MergeCheck ↗</h3>
-        <p data-i18n="toolsIndex.mergecheck.text">用传统代码验证 AI 合并的文件：算指纹、对总和、防漏防错</p>
-      </a>
+        <a href="https://salonette.syneira.org/" class="tool-card tool-card-featured" target="_blank" rel="noopener">
+          <span class="tool-meta" data-i18n="toolsIndex.salonette.meta">COMMUNITY · LIVE</span>
+          <h3>Salonette ↗</h3>
+          <p data-i18n="toolsIndex.salonette.text">DMVoice AI 女性 Workgroup 的社区空间，用来分组、沉淀链接、组织项目和讨论。</p>
+        </a>
 
-      <a href="star-tracker.html" class="tool-card">
-        <h3>Star Tracker</h3>
-        <p data-i18n="toolsIndex.star.text">记录状态与节奏的小工具</p>
-      </a>
+        <a href="https://china-quest-collab.vercel.app/" class="tool-card tool-card-featured" target="_blank" rel="noopener">
+          <span class="tool-meta" data-i18n="toolsIndex.multiculture.meta">CULTURE · LIVE</span>
+          <h3>Multiculture / China Quest ↗</h3>
+          <p data-i18n="toolsIndex.multiculture.text">给 Multicultural Night 使用的中国文化互动游戏，适合现场展示和孩子边玩边学。</p>
+        </a>
 
-      <a href="cruise-planner-zh.html" class="tool-card">
-        <h3>Cruise Planner</h3>
-        <p data-i18n="toolsIndex.cruise.text">亲子出行规划（中文）</p>
-      </a>
-
-      <a href="birthday-planner.html" class="tool-card">
-        <h3>Birthday Planner</h3>
-        <p data-i18n="toolsIndex.birthday.text">活动准备与清单管理</p>
-      </a>
-
-      <a href="style-playground.html" class="tool-card">
-        <h3>Style Playground</h3>
-        <p data-i18n="toolsIndex.style.text">视觉风格实验场</p>
-      </a>
-
+        <a href="https://nianroom.syneira.org/" class="tool-card tool-card-featured" target="_blank" rel="noopener">
+          <span class="tool-meta" data-i18n="toolsIndex.nianroom.meta">FAMILY · INVITE</span>
+          <h3>NianRoom 念堂 ↗</h3>
+          <p data-i18n="toolsIndex.nianroom.text">给家人共建的在线纪念空间：记忆墙、照片、仪式互动和家族故事沉淀。</p>
+        </a>
+      </div>
     </section>
 
+    <section class="tools-section" aria-labelledby="utility-tools">
+      <div class="tools-section-head">
+        <span class="tools-section-kicker" data-i18n="toolsIndex.utility.kicker">UTILITY SHELF</span>
+        <h2 id="utility-tools" data-i18n="toolsIndex.utility.title">实用小工具</h2>
+        <p data-i18n="toolsIndex.utility.lead">这些更像工作流里的小零件：需要时打开，用完就走。</p>
+      </div>
+
+      <div class="tools-grid">
+        <a href="https://ccf-planner.vercel.app/" class="tool-card" target="_blank" rel="noopener">
+          <span class="tool-meta" data-i18n="toolsIndex.ccf.meta">STUDY · LIVE</span>
+          <h3>Claude Cert Planner ↗</h3>
+          <p data-i18n="toolsIndex.ccf.text">Claude 认证备考手账：AI 模拟题、课程追踪、视频记录、综合统计。</p>
+        </a>
+
+        <a href="https://mergecheck.streamlit.app/" class="tool-card" target="_blank" rel="noopener">
+          <span class="tool-meta" data-i18n="toolsIndex.mergecheck.meta">DATA · LIVE</span>
+          <h3>MergeCheck ↗</h3>
+          <p data-i18n="toolsIndex.mergecheck.text">用传统代码验证 AI 合并的文件：算指纹、对总和、防漏防错。</p>
+        </a>
+
+        <a href="star-tracker.html" class="tool-card">
+          <span class="tool-meta" data-i18n="toolsIndex.star.meta">TRACKER · LOCAL</span>
+          <h3>Star Tracker</h3>
+          <p data-i18n="toolsIndex.star.text">记录状态与节奏的小工具。</p>
+        </a>
+
+        <a href="cruise-planner-zh.html" class="tool-card">
+          <span class="tool-meta" data-i18n="toolsIndex.cruise.meta">TRAVEL · LOCAL</span>
+          <h3>Cruise Planner</h3>
+          <p data-i18n="toolsIndex.cruise.text">亲子出行规划（中文）。</p>
+        </a>
+
+        <a href="birthday-planner.html" class="tool-card">
+          <span class="tool-meta" data-i18n="toolsIndex.birthday.meta">EVENT · LOCAL</span>
+          <h3>Birthday Planner</h3>
+          <p data-i18n="toolsIndex.birthday.text">活动准备与清单管理。</p>
+        </a>
+
+        <a href="style-playground.html" class="tool-card">
+          <span class="tool-meta" data-i18n="toolsIndex.style.meta">VISUAL · LOCAL</span>
+          <h3>Style Playground</h3>
+          <p data-i18n="toolsIndex.style.text">视觉风格实验场。</p>
+        </a>
+      </div>
+    </section>
   </main>
 
   <script src="../assets/js/i18n.js"></script>
