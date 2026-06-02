@@ -34,13 +34,13 @@ const I18N = {
     "about.card6.title": "线上线下活动",
     "about.card6.sub": "从阅读到讨论，再到真实连接",
     "latest.label": "最新一期",
-    "latest.summary": "6 条精选 + 6 篇手记 · AI 正在从聊天窗口走向长期任务",
-    "latest.item1": "Google I/O 2026 — AI 从聊天框走向 agent 层",
-    "latest.item2": "Codex in ChatGPT — 用手机遥控你的编程 AI",
-    "latest.item3": "Hermes Agent — 开源 agent 的重点是长期记忆",
-    "latest.item4": "CLI vs MCP — AI 工具之间怎么对话",
-    "latest.item5": "GPT 和 Claude 为什么“想法不一样”？",
-    "latest.item6": "成长证据库 — 不用等机会来了才整理自己",
+    “latest.summary”: “6 条精选 + 6 篇手记 · 模型更诚实了、算力下沉了、平台选边了、社群项目落地了”,
+    “latest.item1”: “Claude Opus 4.8 — 不只是更聪明，是更诚实”,
+    “latest.item2”: “NVIDIA RTX Spark + Vera Rubin — 算力从数据中心到笔记本”,
+    “latest.item3”: “Anthropic 估值 $9000 亿 — AI 公司开始赚钱了”,
+    “latest.item4”: “Microsoft Build 2026 — agent-first 不再是口号”,
+    “latest.item5”: “Anthropic 计费改革 + 模型退役 — 6/15 生效”,
+    “latest.item6”: “China Quest 完成小结 — 从想法到学校现场”,
     "latest.cta": "阅读本期 →",
     "explore.title": "把 AI 内容，延伸到真实的使用与实践",
     "explore.text": "从 Digest，到用法拆解与轻量工具，尝试把信息、判断与实际使用场景连接起来。",
@@ -249,13 +249,13 @@ const I18N = {
     "about.card6.title": "Online and Offline",
     "about.card6.sub": "From reading, to discussion, to real connection.",
     "latest.label": "Latest Issue",
-    "latest.summary": "6 picks + 6 notes · AI is moving from chat windows into long-running work",
-    "latest.item1": "Google I/O 2026 — AI moves from chat box to agent layer",
-    "latest.item2": "Codex in ChatGPT — remote-control your coding AI from your phone",
-    "latest.item3": "Hermes Agent — open-source agents are becoming memory systems",
-    "latest.item4": "CLI vs MCP — how AI tools talk to other tools",
-    "latest.item5": "Why do GPT and Claude feel different?",
-    "latest.item6": "Growth Evidence Bank — organize yourself before opportunity arrives",
+    "latest.summary": "6 picks + 6 notes · Models get more honest, compute goes portable, platforms pick sides, community projects land",
+    "latest.item1": "Claude Opus 4.8 — not just smarter, more honest",
+    "latest.item2": "NVIDIA RTX Spark + Vera Rubin — compute leaps from data center to laptop",
+    "latest.item3": "Anthropic hits $900B — AI companies are making money now",
+    "latest.item4": "Microsoft Build 2026 — agent-first is no longer a slogan",
+    "latest.item5": "Anthropic billing overhaul + model retirement — effective 6/15",
+    "latest.item6": "China Quest recap — from idea to school night",
     "latest.cta": "Read this issue →",
     "explore.title": "From AI Content to Real Use",
     "explore.text": "From the Digest to practical notes and lightweight tools, we connect information, judgment, and everyday use cases.",
@@ -433,6 +433,34 @@ const I18N = {
 };
 
 const PAGE_SUMMARIES = {
+  "issues/007.html": {
+    title: "Issue #007",
+    summary: "Claude Opus 4.8, NVIDIA RTX Spark and Vera Rubin, Anthropic $900B valuation, Microsoft Build 2026, billing and model retirement changes, and the China Quest community project recap."
+  },
+  "notes/claude-opus-4-8.html": {
+    title: "Claude Opus 4.8",
+    summary: "Anthropic released Opus 4.8 with 4x improved honesty in code review, stronger agentic coding, and new Claude Code features including ultracode mode and dynamic workflows."
+  },
+  "notes/nvidia-rtx-spark-rubin.html": {
+    title: "NVIDIA RTX Spark + Vera Rubin",
+    summary: "At Computex 2026 NVIDIA unveiled RTX Spark (1 petaflop AI in a laptop) and confirmed Vera Rubin data-center platform is in full production, with a roadmap stretching to 2030."
+  },
+  "notes/anthropic-900b-valuation.html": {
+    title: "Anthropic Hits $900B",
+    summary: "Anthropic closed a $30B round surpassing OpenAI in valuation, projecting $10.9B Q2 revenue (up 130%) and approaching its first quarterly profit."
+  },
+  "notes/microsoft-build-2026.html": {
+    title: "Microsoft Build 2026",
+    summary: "Azure AI Foundry goes multi-model, GitHub Copilot adds multi-agent orchestration, and Nadella frames Microsoft as an agent-first multi-model platform."
+  },
+  "notes/anthropic-billing-model-retirement.html": {
+    title: "Anthropic Billing and Model Retirement",
+    summary: "Effective June 15: subscription splits into interactive and Agent SDK credit pools; original Sonnet 4.0 and Opus 4.0 retire (4.6/4.7/4.8 unaffected)."
+  },
+  "notes/china-quest-recap.html": {
+    title: "China Quest Recap",
+    summary: "The community-built Chinese culture game went from idea to school Multicultural Night with overwhelmingly positive feedback, proving AI-assisted vibe coding can close the full build-to-deployment loop."
+  },
   "issues/006.html": {
     title: "Issue #006",
     summary: "Google I/O 2026, Codex mobile, Hermes Agent, CLI vs MCP, model-fit differences between GPT and Claude, and a practical growth evidence bank workflow."

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Issue #007 (May 26 – Jun 1, 2026) · Claude Opus 4.8、NVIDIA RTX Spark、Anthropic $9000 亿、Microsoft Build 2026、计费改革与模型退役、China Quest 完成复盘。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI Digest Issue #007 | By Syneira" />
+  <meta property="og:description" content="Issue #007 (May 26 – Jun 1, 2026) · Claude 4.8 更诚实了、NVIDIA 把 1PF 塞进笔记本、Anthropic 估值超 OpenAI、Build 2026 的 agent-first 蓝图。" />
+  <meta property="og:url" content="https://syneira.org/issues/007.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Digest Issue #007 | By Syneira" />
+  <meta name="twitter:description" content="Issue #007 (May 26 – Jun 1, 2026) · Claude 4.8 更诚实了、NVIDIA 把 1PF 塞进笔记本、Anthropic 估值超 OpenAI、Build 2026 的 agent-first 蓝图。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>AI Digest Issue #007 | By Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; color:#2C2C2C; line-height:1.85; font-size:15px; background:#FAF8F5; }
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .nav a { font-size:13px; color:#2A9D8F; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:12px 24px 60px; }
+
+  .header { text-align:center; padding-bottom:20px; border-bottom:2.5px solid #2A9D8F; margin-bottom:24px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:#999; text-transform:uppercase; margin-bottom:6px; }
+  .header-title { font-size:26px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.3; }
+  .header-meta { font-size:12px; color:#999; }
+  .header-sub { font-size:14px; color:#2A9D8F; margin-top:8px; font-style:italic; }
+
+  .section { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .section.tool { background:#FDF0EB; border-left:4px solid #E8643B; }
+  .section.trend { background:#EBF2FD; border-left:4px solid #3A7BD4; }
+  .section.scene { background:#EFF5EC; border-left:4px solid #5A8E5A; }
+  .section.tip { background:#F5EFF8; border-left:4px solid #9B6DB7; }
+  .section.life { background:#E8F6F3; border-left:4px solid #2A9D8F; }
+  .section h2 { font-size:16px; font-weight:700; }
+  .section.tool h2 { color:#E8643B; }
+  .section.trend h2 { color:#3A7BD4; }
+  .section.scene h2 { color:#5A8E5A; }
+  .section.tip h2 { color:#9B6DB7; }
+  .section.life h2 { color:#2A9D8F; }
+
+  .card { background:#FFF; border:1px solid #E0DCD7; border-radius:10px; padding:18px 20px; margin-bottom:16px; }
+  .card-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .tag-tool { background:#FDF0EB; color:#D4603A; }
+  .tag-trend { background:#EBF2FD; color:#3A7BD4; }
+  .tag-scene { background:#EFF5EC; color:#5A8E5A; }
+  .tag-tip { background:#F5EFF8; color:#9B6DB7; }
+  .tag-life { background:#E8F6F3; color:#2A9D8F; }
+  .card-num { font-size:11px; color:#AAA; font-weight:600; }
+  .card-title { font-size:17px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.4; }
+  .card-source { font-size:11px; color:#999; margin-bottom:12px; }
+
+  .label { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .label-h { color:#D4603A; }
+  .label-s { color:#3A7BD4; }
+  .label-w { color:#5A8E5A; }
+
+  .card p { font-size:14px; line-height:1.85; margin-bottom:10px; color:#444; }
+  .card strong { font-weight:700; color:#1A1A2E; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5F3F0; color:#777; border:0.5px solid #E0DCD7; margin-right:4px; }
+  .read-more { display:inline-block; font-size:12px; color:#2A9D8F; font-weight:600; text-decoration:none; margin-top:6px; }
+
+  .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
+  .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
+</style>
+</head>
+<body data-full-i18n-page="issue-007">
+
+<div class="nav"><a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a></div>
+
+<!-- ==================== 中文版 ==================== -->
+<div class="wrap issue-zh">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #007</div>
+  <div class="header-meta">May 26 &ndash; Jun 1, 2026 &middot; 6 picks + 6 notes</div>
+  <div class="header-sub">模型更诚实了、算力下沉了、平台选边了、社群项目落地了</div>
+</div>
+
+<div class="section tool"><h2>工具更新 &middot; Tool Update</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具更新</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude Opus 4.8：不只是更聪明，是更诚实</div>
+  <div class="card-source">&#x1f4cc; 2026.05.28 &middot; 来源：Anthropic 官方博客</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Anthropic 发布 Opus 4.8，定价不变但有三个实质变化：<strong>诚实度提高 4 倍</strong>（主动标记代码问题而不是礼貌性略过）、agentic coding 能力提升、Claude Code 新增 ultracode 模式和动态工作流。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>模型竞争正在从"谁更聪明"转向"谁更可靠"。当能力已经足够完成大多数任务时，诚实度和一致性才是决定用户留存的关键。Opus 4.6 / 4.7 不受影响，继续可用。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Claude 日常用户</span><span class="badge">开发者</span><span class="badge">AI 工具选型</span></p>
+  <a href="../notes/claude-opus-4-8.html" class="read-more">&#x1f4d6; 阅读完整分析 &rarr;</a>
+</div>
+
+<div class="section trend"><h2>趋势信号 &middot; Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">趋势</span><span class="card-num">#02</span></div>
+  <div class="card-title">NVIDIA RTX Spark + Vera Rubin：从笔记本到数据中心的算力跳跃</div>
+  <div class="card-source">&#x1f4cc; 2026.05.26-28 &middot; 来源：NVIDIA Computex / Tom's Hardware</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Computex 2026 上 NVIDIA 亮了两张牌：RTX Spark 把 Blackwell GPU + MediaTek 20 核 CPU 封装成超级芯片，<strong>1 petaflop AI 算力塞进笔记本</strong>，今秋上市。同时 Vera Rubin 数据中心平台正式量产，路线图画到 2030（Rosa Feynman）。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>AI 算力不再只是数据中心的事。NVIDIA 同时推消费端和基础设施端，说明需求在两头都在加速。对普通用户来说，今秋选购笔记本时本地跑 AI 的体验会有质的提升。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">关注硬件的消费者</span><span class="badge">AI 开发者</span><span class="badge">行业观察者</span></p>
+  <a href="../notes/nvidia-rtx-spark-rubin.html" class="read-more">&#x1f4d6; 阅读完整拆解 &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">行业</span><span class="card-num">#03</span></div>
+  <div class="card-title">Anthropic 估值 $9000 亿：AI 公司开始赚钱了</div>
+  <div class="card-source">&#x1f4cc; 2026.05 &middot; 来源：Bloomberg / Financial Times</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Anthropic 完成 $300 亿融资，估值超 $9000 亿（超越 OpenAI 的 $8520 亿）。Q2 收入预计 $109 亿，同比增长 130%，<strong>接近成立以来的首次季度盈利</strong>。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>AI 赛道从"烧钱换故事"进入"烧钱但真能赚回来"的阶段。赚钱的公司比烧钱的公司更有动力改善产品和维持合理定价。对用户来说这是好信号。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">行业观察者</span><span class="badge">投资/产业分析</span><span class="badge">Claude 用户</span></p>
+  <a href="../notes/anthropic-900b-valuation.html" class="read-more">&#x1f4d6; 阅读行业分析 &rarr;</a>
+</div>
+
+<div class="section scene"><h2>生态速报 &middot; Ecosystem</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">生态</span><span class="card-num">#04</span></div>
+  <div class="card-title">Microsoft Build 2026：agent-first 不再是口号</div>
+  <div class="card-source">&#x1f4cc; 2026.06.02-03 &middot; 来源：Microsoft Build / The Verge</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Azure AI Foundry 支持多模型（不锁定供应商）、GitHub Copilot 上线多智能体编排（agent 替代部分 CI/CD 人工环节）、Windows AI SDK 让本地应用原生接入 AI。Nadella 定位 Microsoft 为 <strong>"agent-first multi-model platform"</strong>。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Microsoft 不赌哪个模型赢，赌的是不管谁赢你都在 Microsoft 的平台上用。Google I/O 的策略是"AI 嵌入自有产品"，Build 的策略是"让 AI 成为别人产品的底座"。两条路都对，关键看谁执行更快。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">开发者 / GitHub 用户</span><span class="badge">企业 IT 决策者</span><span class="badge">平台观察者</span></p>
+  <a href="../notes/microsoft-build-2026.html" class="read-more">&#x1f4d6; 阅读完整解读 &rarr;</a>
+</div>
+
+<div class="section tip"><h2>实用信息 &middot; Practical</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">实用</span><span class="card-num">#05</span></div>
+  <div class="card-title">Anthropic 计费改革 + 模型退役：6/15 生效，你需要知道的</div>
+  <div class="card-source">&#x1f4cc; 生效日期 2026.06.15 &middot; 来源：Anthropic 官方文档</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>6/15 起订阅额度拆成两个池：日常交互不变，Agent SDK / claude -p / GitHub Actions 走独立计费池（Pro $20/月，按 API 费率消耗）。同日退役 <strong>Sonnet 4.0 和 Opus 4.0 初版</strong>（2025 年 5 月版本），Opus 4.6 / 4.7 / 4.8 全部不受影响。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>如果你只用网页版或终端对话，基本无感。需要行动的是 API 里还在调用初版 4.0 模型的项目（6/15 前迁移），以及用 Agent SDK 做自动化的开发者（留意新计费池额度）。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Claude 订阅用户</span><span class="badge">API 开发者</span><span class="badge">Agent SDK 用户</span></p>
+  <a href="../notes/anthropic-billing-model-retirement.html" class="read-more">&#x1f4d6; 阅读退役清单与迁移指南 &rarr;</a>
+</div>
+
+<div class="section life"><h2>Spotlight &middot; 社群实践</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">Spotlight</span><span class="card-num">#06</span></div>
+  <div class="card-title">China Quest 完成小结：从想法到学校现场</div>
+  <div class="card-source">&#x1f4cc; by DMVoice 女性AI Workgroup</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>社群协作的中国文化互动游戏 China Quest 从创意到上线到学校 Multicultural Night 现场使用，<strong>反馈远超预期</strong>。三个模块（文化转盘、城市探索、汉服时间线）全部上线，多位成员协作完成，包括第一次用 Git 的新手。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>这个项目验证了一件事：不需要专业开发团队，一群有想法的人用 AI 辅助工具就能在短时间内做出真正能用、现场反馈很好的东西。从构思到现场使用，整个闭环走完了。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">社群实践感兴趣的人</span><span class="badge">想用 AI 做项目的非技术人</span><span class="badge">学校活动组织者</span></p>
+  <a href="../notes/china-quest-recap.html" class="read-more">&#x1f4d6; 阅读完整复盘 &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    由社群成员精选 &middot; 每周一期 + 不定期深度指南<br>
+    筛选标准：实用 &gt; 炫酷 &middot; 能用 &gt; 能看<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">趋势信号</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具更新</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">实用信息</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">生态速报</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Spotlight</span>
+    <br><br>
+    &#x1f4ac; 看到好内容？随手转发到群里，下期可能就收录了<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Join us? Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; 留言讨论 / Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<!-- ==================== English version ==================== -->
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #007</div>
+  <div class="header-meta">May 26 &ndash; Jun 1, 2026 &middot; 6 picks + 6 notes</div>
+  <div class="header-sub">Models get more honest, compute goes portable, platforms pick sides, community projects land</div>
+</div>
+
+<div class="section tool"><h2>Tool Update</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Update</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude Opus 4.8: Not Just Smarter, More Honest</div>
+  <div class="card-source">&#x1f4cc; 2026.05.28 &middot; Source: Anthropic official blog</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Anthropic released Opus 4.8, same pricing but three real changes: <strong>4x more likely to flag code issues</strong> instead of politely ignoring them, stronger agentic coding, and Claude Code gets ultracode mode and dynamic workflows.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Model competition is shifting from "who is smarter" to "who is more reliable." When capability is already enough for most tasks, honesty and consistency determine user retention. Opus 4.6 / 4.7 remain available.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude users</span><span class="badge">Developers</span><span class="badge">AI tool evaluation</span></p>
+  <a href="../notes/claude-opus-4-8.html" class="read-more">&#x1f4d6; Read the full analysis &rarr;</a>
+</div>
+
+<div class="section trend"><h2>Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend</span><span class="card-num">#02</span></div>
+  <div class="card-title">NVIDIA RTX Spark + Vera Rubin: The Compute Leap From Laptop to Data Center</div>
+  <div class="card-source">&#x1f4cc; 2026.05.26-28 &middot; Source: NVIDIA Computex / Tom's Hardware</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>At Computex 2026 NVIDIA showed two plays: RTX Spark packs a Blackwell GPU and MediaTek 20-core CPU into a superchip delivering <strong>1 petaflop of AI performance in a laptop</strong>, shipping this fall. Meanwhile Vera Rubin, the data-center platform, entered full production with a roadmap stretching to 2030 (Rosa Feynman).</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>AI compute is no longer just a data-center story. NVIDIA is pushing both consumer and infrastructure endpoints simultaneously, which signals demand is accelerating at both ends. For everyday users, local AI workflows on a laptop will feel qualitatively different this fall.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Hardware watchers</span><span class="badge">AI developers</span><span class="badge">Industry observers</span></p>
+  <a href="../notes/nvidia-rtx-spark-rubin.html" class="read-more">&#x1f4d6; Read the breakdown &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Industry</span><span class="card-num">#03</span></div>
+  <div class="card-title">Anthropic Hits $900B Valuation: AI Companies Are Starting to Make Money</div>
+  <div class="card-source">&#x1f4cc; 2026.05 &middot; Source: Bloomberg / Financial Times</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Anthropic closed a $30B round, valuation exceeding $900B (past OpenAI's $852B). Q2 revenue projected at $10.9B, up 130% year-over-year, <strong>approaching the company's first-ever quarterly operating profit</strong>.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>The AI sector is moving from "burn cash for narrative" to "burn cash but actually earn it back." Profitable companies have stronger incentives to improve product experience and maintain reasonable pricing. That is a positive signal for users.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Industry watchers</span><span class="badge">Investors / analysts</span><span class="badge">Claude users</span></p>
+  <a href="../notes/anthropic-900b-valuation.html" class="read-more">&#x1f4d6; Read the analysis &rarr;</a>
+</div>
+
+<div class="section scene"><h2>Ecosystem</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Ecosystem</span><span class="card-num">#04</span></div>
+  <div class="card-title">Microsoft Build 2026: Agent-First Is No Longer a Slogan</div>
+  <div class="card-source">&#x1f4cc; 2026.06.02-03 &middot; Source: Microsoft Build / The Verge</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Azure AI Foundry now supports multi-model (no vendor lock-in). GitHub Copilot ships multi-agent orchestration (agents replace parts of CI/CD manual steps). Windows AI SDK lets native apps plug into AI models. Nadella positions Microsoft as an <strong>"agent-first multi-model platform."</strong></p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Microsoft is not betting on which model wins. It is betting that no matter which model wins, you will use it on a Microsoft platform. Google I/O's strategy was "embed AI into own products." Build's strategy is "make AI the foundation for everyone else's products." Both valid, execution decides.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Developers / GitHub users</span><span class="badge">Enterprise IT</span><span class="badge">Platform watchers</span></p>
+  <a href="../notes/microsoft-build-2026.html" class="read-more">&#x1f4d6; Read the recap &rarr;</a>
+</div>
+
+<div class="section tip"><h2>Practical Info</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Practical</span><span class="card-num">#05</span></div>
+  <div class="card-title">Anthropic Billing Overhaul + Model Retirement: What Changes on 6/15</div>
+  <div class="card-source">&#x1f4cc; Effective 2026.06.15 &middot; Source: Anthropic docs</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Starting 6/15, subscription credits split into two pools: interactive usage stays the same; Agent SDK / claude -p / GitHub Actions get a separate credit pool (Pro: $20/mo at API rates). Same day, <strong>original Sonnet 4.0 and Opus 4.0</strong> (May 2025 vintage) retire. Opus 4.6 / 4.7 / 4.8 are completely unaffected.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>If you only use the web app or terminal chat, you will notice nothing. Action required only for API projects still calling the original 4.0 model IDs (migrate before 6/15) and Agent SDK automation users (note the new credit pool limits).</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude subscribers</span><span class="badge">API developers</span><span class="badge">Agent SDK users</span></p>
+  <a href="../notes/anthropic-billing-model-retirement.html" class="read-more">&#x1f4d6; Read retirement list and migration guide &rarr;</a>
+</div>
+
+<div class="section life"><h2>Spotlight</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">Spotlight</span><span class="card-num">#06</span></div>
+  <div class="card-title">China Quest Recap: From Idea to School Night</div>
+  <div class="card-source">&#x1f4cc; by DMVoice Women's AI Workgroup</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>The community-built Chinese culture game China Quest went from idea to live deployment to actual use at a school Multicultural Night, with <strong>feedback far exceeding expectations</strong>. Three modules (culture wheel, city explorer, Hanfu timeline) shipped. Multiple contributors collaborated, including first-time Git users.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This project proved that a group of motivated people can build something genuinely useful in a short time with AI-assisted tools, no professional dev team needed. The full loop from idea to on-site positive feedback closed successfully.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Community project fans</span><span class="badge">Non-technical AI builders</span><span class="badge">School event organizers</span></p>
+  <a href="../notes/china-quest-recap.html" class="read-more">&#x1f4d6; Read the full recap &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    Curated by community members &middot; Weekly issue + occasional deep dives<br>
+    Filter: useful &gt; flashy &middot; usable &gt; impressive<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signal</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Practical Info</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Ecosystem</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Spotlight</span>
+    <br><br>
+    &#x1f4ac; Found something good? Share it with the group. It may become a future pick.<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a>
+</div>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>
