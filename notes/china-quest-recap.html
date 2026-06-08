@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="China Quest 从创意到上线到现场使用：一群妈妈用 AI 辅助 vibe coding 给学校 Multicultural Night 做的中国文化互动游戏，反馈超预期。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="China Quest 完成小结：从想法到学校现场 | AI Digest #007" />
+  <meta property="og:description" content="China Quest 从创意到上线到现场使用：一群妈妈用 AI 辅助 vibe coding 给学校 Multicultural Night 做的中国文化互动游戏，反馈超预期。" />
+  <meta property="og:url" content="https://syneira.org/notes/china-quest-recap.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="China Quest 完成小结：从想法到学校现场 | AI Digest #007" />
+  <meta name="twitter:description" content="China Quest 从创意到上线到现场使用：一群妈妈用 AI 辅助 vibe coding 给学校 Multicultural Night 做的中国文化互动游戏，反馈超预期。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>China Quest 完成小结：从想法到学校现场 | AI Digest #007</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--accent)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-spotlight{background:#E8F6F3;color:var(--accent)}
+  .tag-life{background:#E8F6F3;color:var(--accent)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3;margin:36px 0 14px}
+  h3{font-size:16px;font-weight:700;color:var(--text);margin:24px 0 10px}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--accent);background:#F0F8F7;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+
+  .timeline{margin:22px 0;padding-left:24px;border-left:2px solid var(--border-light)}
+  .timeline-item{margin-bottom:20px;position:relative}
+  .timeline-item::before{content:'';position:absolute;left:-29px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+  .timeline-label{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+  .timeline-item p{margin-bottom:6px;font-size:14px}
+
+  .module-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:18px 0}
+  .module{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:14px;text-align:center}
+  .module-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .module-status{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;display:inline-block}
+  .module-status.live{background:#E8F6F3;color:var(--accent)}
+
+  ul{margin:0 0 18px 20px}
+  li{margin-bottom:8px;line-height:1.8}
+
+  .badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:6px;background:#F5F3F0;color:#777;border:0.5px solid var(--border);margin-right:4px}
+
+  .link-card{display:block;background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:16px 20px;margin:10px 0;text-decoration:none;color:var(--text-body);transition:border-color .15s}
+  .link-card:hover{border-color:var(--accent)}
+  .link-card-title{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px}
+  .link-card-desc{font-size:13px;color:var(--text-light)}
+
+  .footer{text-align:center;padding-top:20px;border-top:1px solid var(--border);margin-top:40px;font-size:11px;color:#BBB}
+  .footer a{color:var(--accent);text-decoration:none;font-weight:600}
+
+  @media(max-width:520px){
+    .module-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">/</span>
+  <a href="../issues/007.html">Issue #007</a>
+  <span class="nav-sep">/</span>
+  <span>China Quest 完成小结</span>
+</div>
+
+<div class="wrap">
+
+<div class="header">
+  <div class="header-tags">
+    <span class="tag tag-spotlight">Spotlight</span>
+    <span class="tag tag-life">社群实践</span>
+  </div>
+  <h1>China Quest 完成小结：从想法到学校现场</h1>
+  <div class="header-sub">一群妈妈用 AI 辅助 vibe coding，在几周内做出了一个给孩子玩的中国文化互动游戏，带到学校 Multicultural Night 现场使用。反馈远超预期。这篇是整个过程的回顾和复盘。</div>
+  <div class="header-meta">AI Digest Issue #007 &middot; Spotlight &middot; by DMVoice 女性AI Workgroup</div>
+</div>
+
+<h2>这个项目是什么</h2>
+
+<p>China Quest 是 DMVoice 女性 AI 学习社群的一个实践项目：给学校 Multicultural Night（多元文化之夜）做一个中国文化互动游戏，让孩子们边玩边了解中国文化。</p>
+
+<p>它不是一个人的作品，而是社群多位成员协作完成的。参与者的背景各不相同（有技术背景的、有完全没写过代码的），工具是 AI 辅助的 vibe coding。</p>
+
+<div class="module-grid">
+  <div class="module">
+    <div class="module-name">Culture Quiz</div>
+    <div class="module-status live">转盘问答 &middot; Live</div>
+  </div>
+  <div class="module">
+    <div class="module-name">City Quest</div>
+    <div class="module-status live">城市探索 &middot; Live</div>
+  </div>
+  <div class="module">
+    <div class="module-name">Hanfu Style</div>
+    <div class="module-status live">汉服时间线 &middot; Live</div>
+  </div>
+</div>
+
+<h2>时间线回顾</h2>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-label">起点</div>
+    <p>社群讨论中有人提到学校要办 Multicultural Night，中国展位需要互动内容。大家觉得可以做一个网页版游戏，手机打开就能玩，不需要下载安装。</p>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-label">开发</div>
+    <p>用 AI 辅助 vibe coding 快速搭建。先做了文化知识转盘问答（最直观的互动形式），然后陆续加了城市探索和汉服朝代时间线。多人协作通过 GitHub 完成，有几位成员是第一次用 Git。</p>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-label">部署</div>
+    <p>部署到三个地址，分别服务不同学校和场景：主站（Vercel）、Herbert Hoover Middle School 定制版（GitHub Pages）、International Night 版（Netlify）。</p>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-label">现场</div>
+    <p>在学校 Multicultural Night 上正式使用。现场展示效果好，孩子们互动积极，老师和家长反馈非常正面。</p>
+  </div>
+</div>
+
+<h2>反馈：比预期好很多</h2>
+
+<!-- TODO: Sasha 可以在这里补充具体的反馈细节、孩子们的反应、老师/家长的评价等 -->
+
+<p>现场反馈远超预期。几个让我们意外的点：</p>
+
+<ul>
+  <li><strong>孩子参与度很高：</strong>转盘问答是最受欢迎的模块，孩子们会反复玩；城市探索和汉服时间线也有稳定的互动</li>
+  <li><strong>不同年龄都能玩：</strong>原本担心低年级孩子看不懂，实际上通过图片和简单交互，小朋友也玩得很开心</li>
+  <li><strong>老师和家长认可：</strong>多位老师表示这是当晚互动性最好的展位之一</li>
+  <li><strong>技术零故障：</strong>全程没有出现加载失败或显示异常，纯静态部署的稳定性经受住了考验</li>
+</ul>
+
+<div class="callout">
+  <p>这个项目最有说服力的不是技术本身，而是验证了一件事：<strong>不需要专业开发团队，一群有想法的人用 AI 辅助工具就能在短时间内做出真正能用的东西</strong>。而且从构思到上线到现场反馈，整个闭环走完了。</p>
+</div>
+
+<div class="divider"><span class="divider-dot"></span></div>
+
+<h2>复盘：什么做对了，什么可以改</h2>
+
+<h3>做对的</h3>
+<ul>
+  <li><strong>从真实需求出发：</strong>不是为了做项目而做项目，而是学校活动真的需要这个东西</li>
+  <li><strong>选对形式：</strong>网页版、手机直接打开、不需要下载。降低了现场使用的摩擦</li>
+  <li><strong>多人协作有效：</strong>GitHub 协作流程虽然对新手有学习成本，但让多人并行工作成为可能</li>
+  <li><strong>AI 辅助降低门槛：</strong>没有编程背景的成员也能贡献内容和参与开发</li>
+</ul>
+
+<h3>可以改进的</h3>
+<ul>
+  <li>更多游戏模块（Lucky Card、Foodie、Zodiac 等）还在计划中，下一次可以内容更丰富</li>
+  <li>多语言支持：目前主要是中英双语，但部分内容的英文翻译可以更完善</li>
+  <li>数据收集：现场没有做系统的使用数据统计（比如哪个模块最受欢迎、平均互动时长），下次可以加上</li>
+</ul>
+
+<h2>线上入口</h2>
+
+<a href="https://china-quest-collab.vercel.app/" class="link-card" target="_blank" rel="noopener">
+  <div class="link-card-title">China Quest 主站 &nearr;</div>
+  <div class="link-card-desc">Vercel 部署，包含所有游戏模块</div>
+</a>
+
+<a href="https://acepathathletics.github.io/chinese-culture-wheel/" class="link-card" target="_blank" rel="noopener">
+  <div class="link-card-title">Herbert Hoover Middle School 版 &nearr;</div>
+  <div class="link-card-desc">GitHub Pages 部署，转盘问答定制版</div>
+</a>
+
+<a href="https://leafy-sawine-84667e.netlify.app" class="link-card" target="_blank" rel="noopener">
+  <div class="link-card-title">International Night 版 &nearr;</div>
+  <div class="link-card-desc">Netlify 部署，国际文化之夜场景</div>
+</a>
+
+<p style="margin-top:24px;font-size:14px;color:var(--text-light);">
+  &rarr; 完整项目介绍和模块详情见 <a href="spotlight-china-quest.html" style="color:var(--accent);font-weight:600;">China Quest Spotlight 页面</a>
+</p>
+
+<div class="divider"><span class="divider-dot"></span></div>
+
+<h2>下一步</h2>
+
+<p>China Quest 不是一次性项目。更多游戏模块正在规划中（美食图鉴、十二生肖、名画猜猜看等），欢迎按兴趣加入贡献。同时，社群还有 FamBoard（家庭看板）、二手平台、运动赛事分析等更多 projects 在进行中。</p>
+
+<div class="callout">
+  <p><strong>想参与？</strong>不需要会写代码。内容策划、文案、测试、翻译都需要人。通过 <a href="https://salonette.syneira.org/" style="color:var(--accent);font-weight:600;">Salonette</a> 了解更多或报名加入。</p>
+</div>
+
+<h2>适合谁</h2>
+<p>
+  <span class="badge">社群实践感兴趣的人</span>
+  <span class="badge">想用 AI 做项目的非技术人</span>
+  <span class="badge">学校活动组织者</span>
+  <span class="badge">文化传播实践者</span>
+</p>
+
+<div class="footer">
+  <p><a href="../issues/007.html">&larr; 返回 Issue #007</a> &middot; <a href="../index.html">AI Digest 首页</a></p>
+</div>
+
+</div>
+
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>
