@@ -34,13 +34,14 @@ const I18N = {
     "about.card6.title": "线上线下活动",
     "about.card6.sub": "从阅读到讨论，再到真实连接",
     "latest.label": "最新一期",
-    "latest.summary": "6 picks + 6 notes · Fable 5 来了、双双 IPO、Siri 重写、安全论文敲警钟、社群项目落地了",
+    "latest.summary": "7 picks + 7 notes · Fable 5 来了、双双 IPO、Siri 重写、安全论文敲警钟、AI 学习游戏、社群项目落地了",
     "latest.item1": "Claude Fable 5 -- Anthropic 把最强模型交到了所有人手里",
     "latest.item2": "WWDC 2026 -- Siri 重写了，Apple Intelligence 终于像回事了",
     "latest.item3": "Anthropic + OpenAI -- 一周内双双递交 IPO",
     "latest.item4": "Data Agent 安全 -- 当 AI 帮你查数据，谁在帮攻击者查你的数据",
     "latest.item5": "快讯 -- ChatGPT 全球卖广告 / Gemini 3.5 Flash",
     "latest.item6": "China Quest 完成小结 -- 从想法到学校现场",
+    "latest.item7": "AI 互动学习 -- 一套提示词把任何学科变成游戏",
     "latest.cta": "阅读本期 →",
     "explore.title": "把 AI 内容，延伸到真实的使用与实践",
     "explore.text": "从 Digest，到用法拆解与轻量工具，尝试把信息、判断与实际使用场景连接起来。",
@@ -249,13 +250,14 @@ const I18N = {
     "about.card6.title": "Online and Offline",
     "about.card6.sub": "From reading, to discussion, to real connection.",
     "latest.label": "Latest Issue",
-    "latest.summary": "6 picks + 6 notes · Fable 5 launches, dual IPOs, Siri rewritten, Data Agent alert, community project lands",
+    "latest.summary": "7 picks + 7 notes · Fable 5 launches, dual IPOs, Siri rewritten, Data Agent alert, gamified learning, community project lands",
     "latest.item1": "Claude Fable 5 -- Anthropic gives the strongest model to everyone",
     "latest.item2": "WWDC 2026 -- Siri rewritten, Apple Intelligence finally delivers",
     "latest.item3": "Anthropic + OpenAI -- dual IPO filings within one week",
     "latest.item4": "Data Agent Security -- who is querying YOUR data?",
     "latest.item5": "Quick Takes -- ChatGPT global ads / Gemini 3.5 Flash",
     "latest.item6": "China Quest recap -- from idea to school night",
+    "latest.item7": "Gamified Learning -- one prompt to turn any subject into a game",
     "latest.cta": "Read this issue →",
     "explore.title": "From AI Content to Real Use",
     "explore.text": "From the Digest to practical notes and lightweight tools, we connect information, judgment, and everyday use cases.",
@@ -435,7 +437,11 @@ const I18N = {
 const PAGE_SUMMARIES = {
   "issues/008.html": {
     title: "Issue #008",
-    summary: "Claude Fable 5 launches, Anthropic and OpenAI file dual IPOs within one week, WWDC 2026 rewrites Siri on Gemini, a research paper exposes Data Agent security gaps, ChatGPT goes global with ads, Gemini 3.5 Flash benchmarks, and the China Quest community project lands at school."
+    summary: "Claude Fable 5 launches, Anthropic and OpenAI file dual IPOs, WWDC 2026 rewrites Siri on Gemini, Data Agent security gaps exposed, ChatGPT ads go global, Gemini 3.5 Flash benchmarks, a gamified learning prompt template, and the China Quest community project lands at school."
+  },
+  "notes/gamified-learning.html": {
+    title: "Gamified Learning With AI",
+    summary: "A copy-paste prompt template that turns any subject into an interactive HTML learning game using familiar life contexts. Fill four blanks, paste into Claude or ChatGPT, get a playable page in ten minutes."
   },
   "issues/007.html": {
     title: "Issue #007",
