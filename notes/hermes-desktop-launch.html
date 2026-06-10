@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hermes Agent 官方桌面版 6/2 发布：开源 agent 从终端走向所有人，持久记忆、技能自学、多平台同步，MIT 免费。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Hermes Agent 官方桌面版来了：开源 agent 从终端走向所有人 | AI Digest #007" />
+  <meta property="og:description" content="Hermes Agent 官方桌面版 6/2 发布：开源 agent 从终端走向所有人，持久记忆、技能自学、多平台同步，MIT 免费。" />
+  <meta property="og:url" content="https://syneira.org/notes/hermes-desktop-launch.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hermes Agent 官方桌面版来了：开源 agent 从终端走向所有人 | AI Digest #007" />
+  <meta name="twitter:description" content="Hermes Agent 官方桌面版 6/2 发布：开源 agent 从终端走向所有人，持久记忆、技能自学、多平台同步，MIT 免费。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>Hermes Agent 官方桌面版来了：开源 agent 从终端走向所有人 | AI Digest #007</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#FAF8F5;--card:#FFFFFF;
+    --text:#1A1A2E;--text-body:#3A3A4A;--text-light:#7A7A8A;
+    --accent:#2A9D8F;--accent-dark:#1E7A6F;
+    --orange:#E8643B;--blue:#3A7BD4;--green:#5A8E5A;--purple:#9B6DB7;
+    --border:#E0DCD7;--border-light:#EBE8E3;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:1.95;font-size:15px;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .nav{max-width:720px;margin:0 auto;padding:20px 24px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light)}
+  .nav a{color:var(--accent);text-decoration:none;font-weight:500}
+  .nav-sep{color:var(--border)}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 24px 72px}
+
+  .header{margin-bottom:36px;padding-bottom:28px;border-bottom:2.5px solid var(--orange)}
+  .header-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+  .tag-tool{background:#FDF0EB;color:var(--orange)}
+  .tag-trend{background:#EBF2FD;color:var(--blue)}
+  .header h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .header-sub{font-size:15px;color:var(--text-light);line-height:1.8;font-weight:300}
+  .header-meta{margin-top:16px;font-size:11px;color:var(--text-light);letter-spacing:.5px}
+
+  p{margin-bottom:18px}
+  h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3;margin:36px 0 14px}
+  h3{font-size:16px;font-weight:700;color:var(--text);margin:24px 0 10px}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:36px 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+  .divider-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0}
+
+  .callout{border-left:3px solid var(--accent);background:#F0F8F7;padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0}
+  .callout.warn{border-left-color:var(--orange);background:#FFF8F5}
+  .callout p{margin:0;font-size:13.5px;color:var(--text);line-height:1.85}
+
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:22px 0}
+  .stat{background:var(--card);border:1px solid var(--border-light);border-radius:8px;padding:14px;text-align:center}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--orange);line-height:1}
+  .stat-label{font-size:11px;color:var(--text-light);margin-top:4px;line-height:1.4}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:22px 0}
+  .compare-box{background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:16px}
+  .compare-box h4{font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text)}
+  .compare-box p{font-size:12.5px;margin-bottom:5px;line-height:1.7;color:var(--text-body)}
+  .compare-box .highlight{font-size:11px;font-weight:600;color:var(--accent);margin-top:6px}
+
+  ul{margin:0 0 18px 20px}
+  li{margin-bottom:8px;line-height:1.8}
+
+  .cost-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px}
+  .cost-table th,.cost-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border-light)}
+  .cost-table th{font-weight:700;color:var(--text);font-size:12px;text-transform:uppercase;letter-spacing:.5px;background:var(--card)}
+  .cost-table td{color:var(--text-body)}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);border:1px solid var(--border);padding:1px 5px;border-radius:3px;color:var(--text)}
+
+  .badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:6px;background:#F5F3F0;color:#777;border:0.5px solid var(--border);margin-right:4px}
+
+  .link-card{display:block;background:var(--card);border:1px solid var(--border-light);border-radius:10px;padding:16px 20px;margin:10px 0;text-decoration:none;color:var(--text-body);transition:border-color .15s}
+  .link-card:hover{border-color:var(--accent)}
+  .link-card-title{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px}
+  .link-card-desc{font-size:13px;color:var(--text-light)}
+
+  .footer{text-align:center;padding-top:20px;border-top:1px solid var(--border);margin-top:40px;font-size:11px;color:#BBB}
+  .footer a{color:var(--accent);text-decoration:none;font-weight:600}
+
+  @media(max-width:520px){
+    .compare{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">AI Digest</a>
+  <span class="nav-sep">/</span>
+  <a href="../issues/007.html">Issue #007</a>
+  <span class="nav-sep">/</span>
+  <span>Hermes Desktop</span>
+</div>
+
+<div class="wrap">
+
+<div class="header">
+  <div class="header-tags">
+    <span class="tag tag-tool">工具上新</span>
+    <span class="tag tag-trend">趋势</span>
+  </div>
+  <h1>Hermes Agent 官方桌面版来了：开源 agent 从终端走向所有人</h1>
+  <div class="header-sub">6 月 2 日，Nous Research 发布了 Hermes Desktop v0.15.2 公开预览版。这个四个月内拿下 180K GitHub stars 的开源 agent，终于不再要求用户会用终端了。它的核心卖点不是"又一个聊天窗口"，而是一个会记住你、会自学技能、跨平台同步的本地 agent。</div>
+  <div class="header-meta">AI Digest Issue #007 &middot; 2026.06.02 &middot; By Syneira &middot; 来源：Nous Research / Decrypt / MarkTechPost</div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">180K+</div>
+    <div class="stat-label">GitHub Stars<br>4 个月内</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3 平台</div>
+    <div class="stat-label">macOS / Windows<br>/ Linux</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">MIT</div>
+    <div class="stat-label">完全开源<br>免费使用</div>
+  </div>
+</div>
+
+<h2>先说背景</h2>
+
+<p>Hermes Agent 是 Nous Research 今年 2 月推出的开源 AI agent 框架。上期 Digest（#006）介绍过它的核心理念：<strong>重点不是聊天，是记忆</strong>。它和 ChatGPT、Claude 最大的区别是，它跨会话记住你怎么做事，会把解决问题的方法沉淀成可复用的"技能"，而且常驻在你的本地机器上。</p>
+
+<p>问题是，之前只能通过终端命令行使用。对大量非技术用户来说，这基本等于"看得见、用不了"。社区陆续做了一些第三方 GUI，但都不是官方出品，体验参差不齐。</p>
+
+<p>6 月 2 日，Nous Research 自己动手了。</p>
+
+<h2>Hermes Desktop 是什么</h2>
+
+<p>Hermes Desktop v0.15.2 是<strong>官方出品的原生桌面应用</strong>，不是社区做的。Decrypt 的标题是 "Hermes Ends AI Agent Terminal Era"。</p>
+
+<p>几个关键点：</p>
+
+<ul>
+  <li><strong>和 CLI 共享同一个 agent 核心：</strong>记忆、技能、配置、API keys、会话历史全部通用。桌面版只是一个新的交互界面，不是一个分叉产品</li>
+  <li><strong>一键安装 + 应用内自动更新：</strong>不需要装 Python、不需要配环境变量、不需要命令行</li>
+  <li><strong>拖拽文件聊天：</strong>直接把文件拖进对话窗口</li>
+  <li><strong>内置模型选择器：</strong>状态栏里切换模型（可以用 OpenAI、Anthropic、本地 Ollama 等）</li>
+  <li><strong>多 Profile 并发：</strong>可以同时运行多个 agent 配置</li>
+  <li><strong>Electron + React + Python 后端：</strong>技术栈主流，社区好贡献</li>
+</ul>
+
+<div class="callout warn">
+  <p><strong>注意：</strong>当前是 Public Preview 阶段，预期会有粗糙的地方。Windows 安装器没有代码签名，SmartScreen 会弹安全警告，需要手动点"仍要运行"。</p>
+</div>
+
+<h2>为什么 Hermes 和 ChatGPT/Claude 桌面版不一样</h2>
+
+<p>这三个产品看起来都是"桌面上的 AI 对话窗口"，但定位完全不同：</p>
+
+<div class="compare">
+  <div class="compare-box">
+    <h4>Hermes Desktop</h4>
+    <p>开源本地 agent</p>
+    <p>跨会话持久记忆</p>
+    <p>技能自学 + 沉淀</p>
+    <p>定时任务 + 后台常驻</p>
+    <p>多平台同步（Telegram / Discord / Slack / 邮件）</p>
+    <p>自带模型（可本地可云端）</p>
+    <div class="highlight">"住在你机器上的私人 agent"</div>
+  </div>
+  <div class="compare-box">
+    <h4>Claude Desktop</h4>
+    <p>Anthropic 官方客户端</p>
+    <p>会话内深度推理强</p>
+    <p>MCP 工具集成</p>
+    <p>记忆有限（项目级）</p>
+    <p>绑定 Claude 模型</p>
+    <p>订阅制</p>
+    <div class="highlight">"最强的 AI 工作伙伴"</div>
+  </div>
+  <div class="compare-box">
+    <h4>ChatGPT Desktop</h4>
+    <p>OpenAI 官方客户端</p>
+    <p>屏幕共享 + 语音对话</p>
+    <p>插件生态</p>
+    <p>无跨会话记忆</p>
+    <p>绑定 GPT 模型</p>
+    <p>订阅制</p>
+    <div class="highlight">"随时能聊的 AI 助手"</div>
+  </div>
+</div>
+
+<div class="callout">
+  <p>简单说：ChatGPT 桌面版是"随叫随到的对话"，Claude 桌面版是"深度工作的搭档"，Hermes 是"越用越懂你的本地 agent"。它们不是互斥的，很多人会同时用不止一个。</p>
+</div>
+
+<div class="divider"><span class="divider-dot"></span></div>
+
+<h2>Hermes 的核心能力拆解</h2>
+
+<h3>1. 持久记忆</h3>
+<p>Hermes 会跨会话记住你说过什么、做过什么、偏好什么。不是"聊天记录搜索"，而是结构化的用户模型。你不需要每次开新对话都重新解释自己是谁、在做什么项目。</p>
+
+<h3>2. 技能自学</h3>
+<p>当 Hermes 帮你解决了一个问题，它会把解决方案沉淀成一个"技能"。下次遇到类似问题，直接调用，不需要重新推理。时间越长，它能做的事越多。</p>
+
+<h3>3. 多平台一个记忆</h3>
+<p>桌面版、CLI、Telegram、Discord、Slack、WhatsApp、Signal、邮件。不管你从哪个入口和它对话，它都是同一个 agent、同一份记忆。这是目前市面上很少有产品做到的。</p>
+
+<h3>4. 定时任务 + 后台常驻</h3>
+<p>你可以让 Hermes 定期检查某个数据源、定时发提醒、按计划执行任务。它不只在你打开窗口时工作。</p>
+
+<h2>成本：多少钱</h2>
+
+<table class="cost-table">
+  <tr><th>方案</th><th>月成本</th><th>配置</th></tr>
+  <tr><td>纯本地</td><td>$0（只有电费）</td><td>Ollama 跑本地模型，适合有 GPU 的机器</td></tr>
+  <tr><td>经济型</td><td>~$6-8</td><td>便宜 VPS + DeepSeek V4 API</td></tr>
+  <tr><td>高配型</td><td>$30-80</td><td>更好的 VPS + Claude Sonnet 4.6 API</td></tr>
+</table>
+
+<p>Hermes 本身完全免费（MIT 开源）。你付的是底层模型的 API 调用费和（如果需要）服务器费用。如果你的电脑性能够用，跑本地模型可以做到零成本。</p>
+
+<div class="divider"><span class="divider-dot"></span></div>
+
+<h2>怎么上手</h2>
+
+<p>最快的路径：</p>
+<ol style="margin:0 0 18px 20px">
+  <li>去 <a href="https://hermes-agent.nousresearch.com/desktop" style="color:var(--accent);font-weight:600;">hermes-agent.nousresearch.com/desktop</a> 下载对应系统的安装包</li>
+  <li>安装并打开（Windows 会弹 SmartScreen 警告，点"仍要运行"）</li>
+  <li>在状态栏选择模型（推荐先用 OpenRouter 或 Anthropic API，体验最好）</li>
+  <li>开始对话，它会自动建立你的用户档案和记忆</li>
+</ol>
+
+<div class="callout">
+  <p><strong>如果你之前用过 CLI 版：</strong>桌面版会自动读取你已有的配置、记忆和技能，无缝衔接。</p>
+</div>
+
+<h2>现阶段的限制</h2>
+
+<ul>
+  <li><strong>Public Preview：</strong>不是正式 1.0，会有 bug 和缺失功能</li>
+  <li><strong>没有 IDE/代码编辑器集成：</strong>如果你主要需求是 coding copilot，Claude Code 或 GitHub Copilot 更合适</li>
+  <li><strong>Windows 安装器未签名：</strong>SmartScreen 警告可能吓到不熟悉的用户</li>
+  <li><strong>需要一定的模型配置理解：</strong>虽然比 CLI 简单很多，但"选哪个模型、API key 怎么配"对纯小白还是有门槛</li>
+  <li><strong>Telegram 网关 token 成本偏高：</strong>通过 Telegram 用的话，token 消耗是 CLI 的 2-3 倍</li>
+</ul>
+
+<h2>So What：跟你有什么关系</h2>
+
+<p><strong>如果你想要一个"越用越懂你"的 AI 助手：</strong>Hermes 目前是这个方向上最成熟的开源方案。桌面版的发布意味着你不再需要会用终端。</p>
+
+<p><strong>如果你已经在用 Claude / ChatGPT：</strong>Hermes 不是替代品，而是互补。Claude 在深度推理和编码上更强，ChatGPT 在日常对话和语音上更方便，Hermes 的优势在"长期记忆 + 自动化 + 多平台同步"。可以同时用。</p>
+
+<p><strong>如果你关注 AI 行业趋势：</strong>一个开源项目四个月拿到 180K stars，说明市场对"本地优先、记忆持久、用户可控"的 agent 有真实需求。这和大厂的云端 agent 路线形成了有意思的互补。</p>
+
+<h2>相关链接</h2>
+
+<a href="https://hermes-agent.nousresearch.com/desktop" class="link-card" target="_blank" rel="noopener">
+  <div class="link-card-title">Hermes Desktop 官方下载 &nearr;</div>
+  <div class="link-card-desc">macOS / Windows / Linux，Public Preview v0.15.2</div>
+</a>
+
+<a href="https://github.com/nousresearch/hermes-agent" class="link-card" target="_blank" rel="noopener">
+  <div class="link-card-title">GitHub 仓库 &nearr;</div>
+  <div class="link-card-desc">MIT 开源，180K+ stars</div>
+</a>
+
+<a href="https://hermes-agent.nousresearch.com/docs/" class="link-card" target="_blank" rel="noopener">
+  <div class="link-card-title">官方文档 &nearr;</div>
+  <div class="link-card-desc">安装、配置、API 集成指南</div>
+</a>
+
+<p style="margin-top:18px;font-size:13px;color:var(--text-light);">
+  &rarr; 上期 Hermes 核心理念介绍见 <a href="hermes-agent-explainer.html" style="color:var(--accent);font-weight:600;">Issue #006 Hermes Agent 解释</a>
+</p>
+
+<div class="divider"><span class="divider-dot"></span></div>
+
+<h2>适合谁</h2>
+<p>
+  <span class="badge">想要长期记忆 AI 助手的人</span>
+  <span class="badge">本地优先 / 隐私关注者</span>
+  <span class="badge">多平台工作流用户</span>
+  <span class="badge">AI agent 观察者</span>
+  <span class="badge">开源爱好者</span>
+</p>
+
+<div class="footer">
+  <p><a href="../issues/007.html">&larr; 返回 Issue #007</a> &middot; <a href="../index.html">AI Digest 首页</a></p>
+</div>
+
+</div>
+
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>
