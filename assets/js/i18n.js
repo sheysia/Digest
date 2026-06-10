@@ -34,14 +34,13 @@ const I18N = {
     "about.card6.title": "线上线下活动",
     "about.card6.sub": "从阅读到讨论，再到真实连接",
     "latest.label": "最新一期",
-    "latest.summary": "7 条精选 + 7 篇手记 · 模型更诚实了、算力下沉了、平台选边了、社群项目落地了",
-    "latest.item1": "Claude Opus 4.8 — 不只是更聪明，是更诚实",
-    "latest.item2": "Hermes 官方桌面版 — 开源 agent 从终端走向所有人",
-    "latest.item3": "NVIDIA RTX Spark + Vera Rubin — 算力跳跃",
-    "latest.item4": "Anthropic 估值 $9000 亿 — AI 公司开始赚钱了",
-    "latest.item5": "Microsoft Build 2026 — agent-first 不再是口号",
-    "latest.item6": "Anthropic 计费改革 + 模型退役 — 6/15 生效",
-    "latest.item7": "China Quest 完成小结 — 从想法到学校现场",
+    "latest.summary": "6 picks + 6 notes · Fable 5 来了、双双 IPO、Siri 重写、安全论文敲警钟、社群项目落地了",
+    "latest.item1": "Claude Fable 5 -- Anthropic 把最强模型交到了所有人手里",
+    "latest.item2": "WWDC 2026 -- Siri 重写了，Apple Intelligence 终于像回事了",
+    "latest.item3": "Anthropic + OpenAI -- 一周内双双递交 IPO",
+    "latest.item4": "Data Agent 安全 -- 当 AI 帮你查数据，谁在帮攻击者查你的数据",
+    "latest.item5": "快讯 -- ChatGPT 全球卖广告 / Gemini 3.5 Flash",
+    "latest.item6": "China Quest 完成小结 -- 从想法到学校现场",
     "latest.cta": "阅读本期 →",
     "explore.title": "把 AI 内容，延伸到真实的使用与实践",
     "explore.text": "从 Digest，到用法拆解与轻量工具，尝试把信息、判断与实际使用场景连接起来。",
@@ -250,14 +249,13 @@ const I18N = {
     "about.card6.title": "Online and Offline",
     "about.card6.sub": "From reading, to discussion, to real connection.",
     "latest.label": "Latest Issue",
-    "latest.summary": "7 picks + 7 notes · Models get more honest, compute goes portable, platforms pick sides, community projects land",
-    "latest.item1": "Claude Opus 4.8 — not just smarter, more honest",
-    "latest.item2": "Hermes official desktop — open-source agent leaves the terminal",
-    "latest.item3": "NVIDIA RTX Spark + Vera Rubin — the compute leap",
-    "latest.item4": "Anthropic hits $900B — AI companies are making money now",
-    "latest.item5": "Microsoft Build 2026 — agent-first is no longer a slogan",
-    "latest.item6": "Anthropic billing overhaul + model retirement — effective 6/15",
-    "latest.item7": "China Quest recap — from idea to school night",
+    "latest.summary": "6 picks + 6 notes · Fable 5 launches, dual IPOs, Siri rewritten, Data Agent alert, community project lands",
+    "latest.item1": "Claude Fable 5 -- Anthropic gives the strongest model to everyone",
+    "latest.item2": "WWDC 2026 -- Siri rewritten, Apple Intelligence finally delivers",
+    "latest.item3": "Anthropic + OpenAI -- dual IPO filings within one week",
+    "latest.item4": "Data Agent Security -- who is querying YOUR data?",
+    "latest.item5": "Quick Takes -- ChatGPT global ads / Gemini 3.5 Flash",
+    "latest.item6": "China Quest recap -- from idea to school night",
     "latest.cta": "Read this issue →",
     "explore.title": "From AI Content to Real Use",
     "explore.text": "From the Digest to practical notes and lightweight tools, we connect information, judgment, and everyday use cases.",
@@ -435,9 +433,13 @@ const I18N = {
 };
 
 const PAGE_SUMMARIES = {
+  "issues/008.html": {
+    title: "Issue #008",
+    summary: "Claude Fable 5 launches, Anthropic and OpenAI file dual IPOs within one week, WWDC 2026 rewrites Siri on Gemini, a research paper exposes Data Agent security gaps, ChatGPT goes global with ads, Gemini 3.5 Flash benchmarks, and the China Quest community project lands at school."
+  },
   "issues/007.html": {
     title: "Issue #007",
-    summary: "Claude Opus 4.8, NVIDIA RTX Spark and Vera Rubin, Anthropic $900B valuation, Microsoft Build 2026, billing and model retirement changes, and the China Quest community project recap."
+    summary: "Claude Opus 4.8 deep dive, Hermes Desktop launch, NVIDIA RTX Spark and Vera Rubin at Computex, Anthropic $900B valuation, Microsoft Build 2026 agent-first platform, and Anthropic billing and model retirement changes."
   },
   "notes/hermes-desktop-launch.html": {
     title: "Hermes Agent Desktop Launch",
@@ -462,6 +464,26 @@ const PAGE_SUMMARIES = {
   "notes/anthropic-billing-model-retirement.html": {
     title: "Anthropic Billing and Model Retirement",
     summary: "Effective June 15: subscription splits into interactive and Agent SDK credit pools; original Sonnet 4.0 and Opus 4.0 retire (4.6/4.7/4.8 unaffected)."
+  },
+  "notes/claude-fable-5.html": {
+    title: "Claude Fable 5 / Mythos 5",
+    summary: "Anthropic released Claude Fable 5 and Mythos 5 on June 9. Same base model, different safety guardrails. Fable is for everyone (with classifier-gated fallback to Opus 4.8), Mythos is for vetted cybersecurity partners. API pricing: $10/$50 per M tokens. Pro/Max subscribers get free access until June 22."
+  },
+  "notes/wwdc-2026.html": {
+    title: "WWDC 2026",
+    summary: "Tim Cook's final WWDC. Siri rewrites its backend on Google Gemini, gaining cross-app context and multi-step actions. iOS 27 focuses on performance. Photos Spatial Reframe and natural-language calendar input are the most practical new features."
+  },
+  "notes/data-agents-attack.html": {
+    title: "Data Agents Under Attack",
+    summary: "A research paper from NTU, PolyU, and Tsinghua exposes a new attack surface in LLM-driven data agents: individually harmless queries that leak sensitive data when combined. Three vulnerability layers, 14 attack techniques, all six tested systems have real gaps."
+  },
+  "notes/ipo-anthropic-openai.html": {
+    title: "Anthropic + OpenAI Dual IPO",
+    summary: "Anthropic filed S-1 confidentially on June 1 ($965B valuation). OpenAI filed on June 8 ($852B valuation). Combined pipeline exceeds $1.8 trillion. AI's two most important companies are about to start quarterly reporting to Wall Street."
+  },
+  "notes/quick-takes-007.html": {
+    title: "Quick Takes: ChatGPT Ads + Gemini Flash",
+    summary: "Two quick items: ChatGPT ads go global (UK first, CPM ~$60, annualized ad revenue past $100M). Gemini 3.5 Flash ships at 284 tokens/sec, positioned for speed and cost rather than frontier reasoning."
   },
   "notes/china-quest-recap.html": {
     title: "China Quest Recap",

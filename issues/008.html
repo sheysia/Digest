@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Issue #008 (Jun 2 - Jun 9, 2026) · Claude Fable 5、WWDC 2026、Anthropic + OpenAI 双双 IPO、Data Agent 安全、ChatGPT 广告、Gemini Flash、China Quest。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI Digest Issue #008 | By Syneira" />
+  <meta property="og:description" content="Issue #008 (Jun 2 - Jun 9, 2026) · Claude Fable 5、WWDC 2026、Anthropic + OpenAI 双双 IPO、Data Agent 安全、ChatGPT 广告、Gemini Flash、China Quest。" />
+  <meta property="og:url" content="https://syneira.org/issues/008.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Digest Issue #008 | By Syneira" />
+  <meta name="twitter:description" content="Issue #008 (Jun 2 - Jun 9, 2026) · Claude Fable 5、WWDC 2026、Anthropic + OpenAI 双双 IPO、Data Agent 安全、ChatGPT 广告、Gemini Flash、China Quest。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.png" />
+<title>AI Digest Issue #008 | By Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; color:#2C2C2C; line-height:1.85; font-size:15px; background:#FAF8F5; }
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .nav a { font-size:13px; color:#2A9D8F; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:12px 24px 60px; }
+
+  .header { text-align:center; padding-bottom:20px; border-bottom:2.5px solid #2A9D8F; margin-bottom:24px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:#999; text-transform:uppercase; margin-bottom:6px; }
+  .header-title { font-size:26px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.3; }
+  .header-meta { font-size:12px; color:#999; }
+  .header-sub { font-size:14px; color:#2A9D8F; margin-top:8px; font-style:italic; }
+
+  .section { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .section.tool { background:#FDF0EB; border-left:4px solid #E8643B; }
+  .section.trend { background:#EBF2FD; border-left:4px solid #3A7BD4; }
+  .section.scene { background:#EFF5EC; border-left:4px solid #5A8E5A; }
+  .section.tip { background:#F5EFF8; border-left:4px solid #9B6DB7; }
+  .section.life { background:#E8F6F3; border-left:4px solid #2A9D8F; }
+  .section h2 { font-size:16px; font-weight:700; }
+  .section.tool h2 { color:#E8643B; }
+  .section.trend h2 { color:#3A7BD4; }
+  .section.scene h2 { color:#5A8E5A; }
+  .section.tip h2 { color:#9B6DB7; }
+  .section.life h2 { color:#2A9D8F; }
+
+  .card { background:#FFF; border:1px solid #E0DCD7; border-radius:10px; padding:18px 20px; margin-bottom:16px; }
+  .card-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .tag-tool { background:#FDF0EB; color:#D4603A; }
+  .tag-trend { background:#EBF2FD; color:#3A7BD4; }
+  .tag-scene { background:#EFF5EC; color:#5A8E5A; }
+  .tag-tip { background:#F5EFF8; color:#9B6DB7; }
+  .tag-life { background:#E8F6F3; color:#2A9D8F; }
+  .card-num { font-size:11px; color:#AAA; font-weight:600; }
+  .card-title { font-size:17px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.4; }
+  .card-source { font-size:11px; color:#999; margin-bottom:12px; }
+
+  .label { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .label-h { color:#D4603A; }
+  .label-s { color:#3A7BD4; }
+  .label-w { color:#5A8E5A; }
+
+  .card p { font-size:14px; line-height:1.85; margin-bottom:10px; color:#444; }
+  .card strong { font-weight:700; color:#1A1A2E; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5F3F0; color:#777; border:0.5px solid #E0DCD7; margin-right:4px; }
+  .read-more { display:inline-block; font-size:12px; color:#2A9D8F; font-weight:600; text-decoration:none; margin-top:6px; }
+
+  .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
+  .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
+</style>
+</head>
+<body data-full-i18n-page="issue-008">
+
+<div class="nav"><a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a></div>
+
+<!-- ==================== 中文版 ==================== -->
+<div class="wrap issue-zh">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #008</div>
+  <div class="header-meta">Jun 2 &ndash; Jun 9, 2026 &middot; 6 picks + 6 notes</div>
+  <div class="header-sub">Fable 5 来了、双双 IPO、Siri 重写、安全论文敲警钟、社群项目落地了</div>
+</div>
+
+<div class="section tool"><h2>工具更新 &middot; Tool Update</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude Fable 5：Anthropic 把最强模型交到了所有人手里</div>
+  <div class="card-source">&#x1f4cc; 2026.06.09 &middot; 来源：Anthropic 官方博客</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Anthropic 同时发布 Claude Fable 5 和 Mythos 5，共享同一底层模型，区别在安全护栏。Fable 面向所有用户，Mythos 只对审核过的合作伙伴开放。API 定价 $10/$50 per M tokens，<strong>Pro/Max 订阅用户 6/22 前免费使用</strong>。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>模型能力的增长在加速，Opus 4.8 才发布几个月就被超越。同时成本门槛在抬高：Fable 5 输出价格是 DeepSeek V4 Pro 的 57 倍。"能力越强的模型越贵"正在成为常态。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Claude Pro/Max 用户</span><span class="badge">开发者</span><span class="badge">AI 工具选型</span></p>
+  <a href="../notes/claude-fable-5.html" class="read-more">&#x1f4d6; 阅读深度解读 &rarr;</a>
+</div>
+
+<div class="section trend"><h2>趋势信号 &middot; Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">趋势</span><span class="card-num">#02</span></div>
+  <div class="card-title">WWDC 2026：Siri 重写了，Apple Intelligence 终于像回事了</div>
+  <div class="card-source">&#x1f4cc; 2026.06.09 &middot; 来源：Apple WWDC Keynote</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Tim Cook 最后一次 WWDC。Siri 底层换了 Google Gemini，获得<strong>跨 app 上下文理解和多步操作执行</strong>能力。照片 Spatial Reframe 可以后期重构图。iOS 27 定位"修内功"，性能优先。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Apple 不做独立 AI 聊天产品，把 AI 织入已有的 app 和系统交互。Siri 定位是"你手机上所有 app 的统一入口"。跟 OpenAI 和 Google 的路线分歧越来越清晰。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Apple 用户</span><span class="badge">消费科技关注者</span><span class="badge">产品观察者</span></p>
+  <a href="../notes/wwdc-2026.html" class="read-more">&#x1f4d6; 阅读发布会速览 &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">行业</span><span class="card-num">#03</span></div>
+  <div class="card-title">Anthropic 和 OpenAI 一周内双双递交 IPO</div>
+  <div class="card-source">&#x1f4cc; 2026.06.01 &amp; 06.08 &middot; 来源：Bloomberg / Financial Times</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Anthropic 6/1 保密提交 S-1，估值 $9650 亿。OpenAI 6/8 保密提交 S-1，估值 $8520 亿。<strong>合计超 1.8 万亿美元</strong>。AI 行业最重要的两家公司即将向华尔街每季度交答卷。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>上市意味着公开财报、解释增长、面对市场耐心的考验。两家商业模式差异会被放大：OpenAI 走广告+订阅+API，Anthropic 走纯订阅+API+企业合同。Anthropic 估值反超 OpenAI，说明市场更看好 B2B 路线。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">行业观察者</span><span class="badge">投资/产业分析</span><span class="badge">Claude 用户</span></p>
+  <a href="../notes/ipo-anthropic-openai.html" class="read-more">&#x1f4d6; 阅读趋势分析 &rarr;</a>
+</div>
+
+<div class="section scene"><h2>生态速报 &middot; Ecosystem</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">论文解读</span><span class="card-num">#04</span></div>
+  <div class="card-title">当 AI 帮你查数据的时候，谁在帮攻击者查你的数据？</div>
+  <div class="card-source">&#x1f4cc; 2026.06.07 &middot; 来源：arXiv 2606.08661 &middot; 南洋理工/香港理工/清华</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>LLM 驱动的 Data Agent（Databricks Genie, Snowflake Cortex 等）正在企业中广泛采用。这篇论文揭示了一个全新攻击面：<strong>单条查询无害，组合起来就泄密</strong>。三层漏洞框架（解释/执行/策略），14 种攻击技术，6 个系统全部存在实质漏洞。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Agent 安全不只是"别让它说有害内容"。当 Agent 接入真实数据源和执行环境，分析过程本身成为攻击面。企业的数据库权限控制还停留在 Agent 出现之前的范式，这个缺口正在被量化。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">数据工程师/DBA</span><span class="badge">AI Agent 开发者</span><span class="badge">安全从业者</span></p>
+  <a href="../notes/data-agents-attack.html" class="read-more">&#x1f4d6; 阅读论文解读 &rarr;</a>
+</div>
+
+<div class="section tip"><h2>实用信息 &middot; Practical</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">快讯</span><span class="card-num">#05</span></div>
+  <div class="card-title">快讯：ChatGPT 开始全球卖广告 / Gemini 3.5 Flash 跑分亮眼</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; 来源：多渠道</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>OpenAI 的 ChatGPT 广告从美国扩展到英国，CPM 约 $60，年化广告收入过 $1 亿。Google 发布 Gemini 3.5 Flash，<strong>284 tokens/sec</strong>，主打快+便宜。Apple Siri AI 底层也换成了 Gemini。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>两条动态背后是一个信号：AI 产品的商业模式在分化。OpenAI 走广告变现（Altman 两年前说是"最后手段"），Anthropic 明确不放广告，Google 靠速度型模型抢基础设施位。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">ChatGPT 用户</span><span class="badge">AI 工具选型</span><span class="badge">行业观察者</span></p>
+  <a href="../notes/quick-takes-007.html" class="read-more">&#x1f4d6; 阅读快讯 &rarr;</a>
+</div>
+
+<div class="section life"><h2>Spotlight &middot; 社群实践</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">Spotlight</span><span class="card-num">#06</span></div>
+  <div class="card-title">China Quest 完成小结：从想法到学校现场</div>
+  <div class="card-source">&#x1f4cc; by DMVoice 女性AI Workgroup</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>社群协作的中国文化互动游戏 China Quest 从创意到上线到学校 Multicultural Night 现场使用，<strong>反馈远超预期</strong>。三个模块（文化转盘、城市探索、汉服时间线）全部上线，多位成员协作完成，包括第一次用 Git 的新手。本期附项目回顾视频。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>这个项目验证了一件事：不需要专业开发团队，一群有想法的人用 AI 辅助工具就能在短时间内做出真正能用、现场反馈很好的东西。从构思到现场使用，整个闭环走完了。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">社群实践感兴趣的人</span><span class="badge">想用 AI 做项目的非技术人</span><span class="badge">学校活动组织者</span></p>
+  <a href="../notes/china-quest-recap.html" class="read-more">&#x1f4d6; 阅读完整复盘（含视频）&rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    由社群成员精选 &middot; 每周一期 + 不定期深度指南<br>
+    筛选标准：实用 &gt; 炫酷 &middot; 能用 &gt; 能看<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">趋势信号</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具更新</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">实用信息</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">生态速报</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Spotlight</span>
+    <br><br>
+    &#x1f4ac; 看到好内容？随手转发到群里，下期可能就收录了<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Join us? Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; 留言讨论 / Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<!-- ==================== English version ==================== -->
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #008</div>
+  <div class="header-meta">Jun 2 &ndash; Jun 9, 2026 &middot; 6 picks + 6 notes</div>
+  <div class="header-sub">Fable 5 launches, dual IPOs, Siri rewritten, Data Agent alert, community project lands</div>
+</div>
+
+<div class="section tool"><h2>Tool Update</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Launch</span><span class="card-num">#01</span></div>
+  <div class="card-title">Claude Fable 5: Anthropic Gives the Strongest Model to Everyone</div>
+  <div class="card-source">&#x1f4cc; 2026.06.09 &middot; Source: Anthropic official blog</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Anthropic released Claude Fable 5 and Mythos 5, sharing the same base model with different safety guardrails. Fable is for everyone, Mythos is for vetted partners only. API pricing: $10/$50 per M tokens. <strong>Pro/Max subscribers get free access until June 22.</strong></p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Model capability is accelerating faster than adaptation. Fable 5 output costs 57x more than DeepSeek V4 Pro. "More capable models cost more" is becoming the norm.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude Pro/Max users</span><span class="badge">Developers</span><span class="badge">AI tool evaluation</span></p>
+  <a href="../notes/claude-fable-5.html" class="read-more">&#x1f4d6; Read the deep dive &rarr;</a>
+</div>
+
+<div class="section trend"><h2>Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend</span><span class="card-num">#02</span></div>
+  <div class="card-title">WWDC 2026: Siri Rewritten, Apple Intelligence Finally Delivers</div>
+  <div class="card-source">&#x1f4cc; 2026.06.09 &middot; Source: Apple WWDC Keynote</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Tim Cook's last WWDC. Siri backend switches to Google Gemini, gaining <strong>cross-app context understanding and multi-step action execution</strong>. Photos Spatial Reframe lets you recompose shots. iOS 27 focuses on performance.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Apple is not building a standalone AI chat product. It weaves AI into existing apps and system interactions. Siri is "the unified entry point for all apps on your phone," diverging from both OpenAI and Google.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Apple users</span><span class="badge">Consumer tech watchers</span><span class="badge">Product observers</span></p>
+  <a href="../notes/wwdc-2026.html" class="read-more">&#x1f4d6; Read the recap &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Industry</span><span class="card-num">#03</span></div>
+  <div class="card-title">Anthropic and OpenAI File Dual IPOs Within One Week</div>
+  <div class="card-source">&#x1f4cc; 2026.06.01 &amp; 06.08 &middot; Source: Bloomberg / Financial Times</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Anthropic filed S-1 confidentially on June 1 ($965B). OpenAI filed on June 8 ($852B). <strong>Combined pipeline exceeds $1.8 trillion.</strong> AI's two most important companies start quarterly reporting to Wall Street.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Going public means quarterly earnings, explaining growth, facing market patience. Business model divergence amplifies: OpenAI runs ads+subscriptions+API, Anthropic runs pure subscriptions+API+enterprise. Anthropic surpassing OpenAI in valuation signals market preference for B2B.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Industry watchers</span><span class="badge">Investors / analysts</span><span class="badge">Claude users</span></p>
+  <a href="../notes/ipo-anthropic-openai.html" class="read-more">&#x1f4d6; Read the analysis &rarr;</a>
+</div>
+
+<div class="section scene"><h2>Ecosystem</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Paper Review</span><span class="card-num">#04</span></div>
+  <div class="card-title">When AI Queries Your Data, Who Is Querying YOUR Data?</div>
+  <div class="card-source">&#x1f4cc; 2026.06.07 &middot; Source: arXiv 2606.08661 &middot; NTU / PolyU / Tsinghua</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>LLM-driven Data Agents (Databricks Genie, Snowflake Cortex, etc.) are widely deployed. This paper reveals a new attack surface: <strong>individually harmless queries that leak sensitive data when combined.</strong> Three vulnerability layers, 14 attack techniques, all six tested systems have real gaps.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Agent security is not just about harmful content. When agents connect to real data and execution environments, the analysis process itself becomes the attack surface. Enterprise database controls still reflect pre-agent design paradigms.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Data engineers / DBAs</span><span class="badge">AI Agent developers</span><span class="badge">Security professionals</span></p>
+  <a href="../notes/data-agents-attack.html" class="read-more">&#x1f4d6; Read the paper review &rarr;</a>
+</div>
+
+<div class="section tip"><h2>Practical Info</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Quick Takes</span><span class="card-num">#05</span></div>
+  <div class="card-title">Quick Takes: ChatGPT Goes Global With Ads / Gemini 3.5 Flash Benchmarks</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; Source: multiple</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>ChatGPT ads expand from US to UK, CPM ~$60, annualized ad revenue past $100M. Gemini 3.5 Flash ships at <strong>284 tokens/sec</strong>, positioned for speed and cost. Apple Siri AI also runs on Gemini under the hood.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Behind both items: AI product business models are diverging. OpenAI monetizes with ads (Altman called it "a last resort" two years ago), Anthropic explicitly won't serve ads, Google competes on infra with speed-tier models.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">ChatGPT users</span><span class="badge">AI tool evaluation</span><span class="badge">Industry watchers</span></p>
+  <a href="../notes/quick-takes-007.html" class="read-more">&#x1f4d6; Read the quick takes &rarr;</a>
+</div>
+
+<div class="section life"><h2>Spotlight</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">Spotlight</span><span class="card-num">#06</span></div>
+  <div class="card-title">China Quest Recap: From Idea to School Night</div>
+  <div class="card-source">&#x1f4cc; by DMVoice Women's AI Workgroup</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>The community-built Chinese culture game China Quest went from idea to live deployment to a school Multicultural Night, with <strong>feedback far exceeding expectations</strong>. Three modules shipped. Multiple contributors collaborated, including first-time Git users. This issue includes a project video.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>This project proved that a group of motivated people can build something genuinely useful in a short time with AI-assisted tools, no professional dev team needed. The full loop from idea to on-site positive feedback closed successfully.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Community project fans</span><span class="badge">Non-technical AI builders</span><span class="badge">School event organizers</span></p>
+  <a href="../notes/china-quest-recap.html" class="read-more">&#x1f4d6; Read the full recap (with video) &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    Curated by community members &middot; Weekly issue + occasional deep dives<br>
+    Filter: useful &gt; flashy &middot; usable &gt; impressive<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signal</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Practical Info</span>
+    <span class="badge" style="background:#EFF5EC;color:#5A8E5A;border:none;">Ecosystem</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Spotlight</span>
+    <br><br>
+    &#x1f4ac; Found something good? Share it with the group. It may become a future pick.<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a>
+</div>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>
