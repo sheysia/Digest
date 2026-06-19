@@ -1,3 +1,21 @@
 # Raw intake drafts are local editorial material, not public site pages.
 drafts/*.html
 drafts/*.webp
+drafts/*-unzipped/
+drafts/007-unzipped/
+drafts/009-unzipped/
+
+# Zip archives (source material, not site content)
+*.zip
+
+# macOS artifacts
+.DS_Store
+__MACOSX/
+
+# Source material directories (not site content)
+EventSalesTracker/
+
+# Root-level loose HTML files that are not part of the site structure
+# (site pages live in notes/, issues/, tools/, guides/)
+/ai-digest-*.html
+/quest-academy-proposal.html
