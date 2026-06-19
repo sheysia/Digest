@@ -34,14 +34,15 @@ const I18N = {
     "about.card6.title": "线上线下活动",
     "about.card6.sub": "从阅读到讨论，再到真实连接",
     "latest.label": "最新一期",
-    "latest.summary": "7 picks + 7 notes · Fable 5 来了、双双 IPO、Siri 重写、安全论文敲警钟、AI 学习游戏、社群项目落地了",
-    "latest.item1": "Claude Fable 5 -- Anthropic 把最强模型交到了所有人手里",
-    "latest.item2": "WWDC 2026 -- Siri 重写了，Apple Intelligence 终于像回事了",
-    "latest.item3": "Anthropic + OpenAI -- 一周内双双递交 IPO",
-    "latest.item4": "Data Agent 安全 -- 当 AI 帮你查数据，谁在帮攻击者查你的数据",
-    "latest.item5": "快讯 -- ChatGPT 全球卖广告 / Gemini 3.5 Flash",
-    "latest.item6": "China Quest 完成小结 -- 从想法到学校现场",
-    "latest.item7": "AI 互动学习 -- 一套提示词把任何学科变成游戏",
+    "latest.summary": "8 picks + 8 notes · Artifacts 重新定义交付物、知识管理转向、Fable 5 回归、学得快不是无用功、CCAF 认证全攻略、Quest Academy、Event Sales Tracker 复盘",
+    "latest.item1": "Claude Code Artifacts -- 代码不再是交付物，决策才是",
+    "latest.item2": "知识管理转向 -- 从存储检索到策展编译",
+    "latest.item3": "Fable 5 回归速报 -- 出口管制、首尔发布会、关键时间节点",
+    "latest.item4": "学得快是不是无用功 -- 判断力才是不会过时的技能",
+    "latest.item5": "CCAF 认证: Agent Skills 学习笔记",
+    "latest.item6": "CCAF 认证: MCP 学习笔记",
+    "latest.item7": "Quest Academy -- 一起给孩子造一个会长大的学习游戏",
+    "latest.item8": "Event Sales Tracker -- 社群作品复盘，从 slide deck 到完整项目",
     "latest.cta": "阅读本期 →",
     "explore.title": "把 AI 内容，延伸到真实的使用与实践",
     "explore.text": "从 Digest，到用法拆解与轻量工具，尝试把信息、判断与实际使用场景连接起来。",
@@ -146,6 +147,8 @@ const I18N = {
     "toolsIndex.multiculture.text": "给 Multicultural Night 使用的中国文化互动游戏，适合现场展示和孩子边玩边学。",
     "toolsIndex.nianroom.meta": "家庭 · 邀请制",
     "toolsIndex.nianroom.text": "给家人共建的在线纪念空间：记忆墙、照片、仪式互动和家族故事沉淀。",
+    "toolsIndex.eventsale.meta": "活动 · 线上",
+    "toolsIndex.eventsale.text": "活动售票追踪工具：Excel 导入、实时仪表盘、离线可用，隐私优先设计。",
     "toolsIndex.ccf.meta": "学习 · 线上",
     "toolsIndex.ccf.text": "Claude 认证备考手账：AI 模拟题、课程追踪、视频记录、综合统计。",
     "toolsIndex.mergecheck.meta": "数据 · 线上",
@@ -250,14 +253,15 @@ const I18N = {
     "about.card6.title": "Online and Offline",
     "about.card6.sub": "From reading, to discussion, to real connection.",
     "latest.label": "Latest Issue",
-    "latest.summary": "7 picks + 7 notes · Fable 5 launches, dual IPOs, Siri rewritten, Data Agent alert, gamified learning, community project lands",
-    "latest.item1": "Claude Fable 5 -- Anthropic gives the strongest model to everyone",
-    "latest.item2": "WWDC 2026 -- Siri rewritten, Apple Intelligence finally delivers",
-    "latest.item3": "Anthropic + OpenAI -- dual IPO filings within one week",
-    "latest.item4": "Data Agent Security -- who is querying YOUR data?",
-    "latest.item5": "Quick Takes -- ChatGPT global ads / Gemini 3.5 Flash",
-    "latest.item6": "China Quest recap -- from idea to school night",
-    "latest.item7": "Gamified Learning -- one prompt to turn any subject into a game",
+    "latest.summary": "8 picks + 8 notes · Artifacts redefine deliverables, knowledge management shifts, Fable 5 returns, learning fast pays off, CCAF cert guides, Quest Academy, Event Sales Tracker retrospective",
+    "latest.item1": "Claude Code Artifacts -- code is no longer the deliverable, decisions are",
+    "latest.item2": "Knowledge Management Shift -- from storage to curation and compilation",
+    "latest.item3": "Fable 5 Return -- export controls, Seoul launch, key dates",
+    "latest.item4": "Is Learning Fast a Waste of Time? -- judgment is the skill that lasts",
+    "latest.item5": "CCAF Cert: Agent Skills study notes",
+    "latest.item6": "CCAF Cert: MCP study notes",
+    "latest.item7": "Quest Academy -- building a growing learning game for kids, together",
+    "latest.item8": "Event Sales Tracker -- community project retrospective, from slide deck to full app",
     "latest.cta": "Read this issue →",
     "explore.title": "From AI Content to Real Use",
     "explore.text": "From the Digest to practical notes and lightweight tools, we connect information, judgment, and everyday use cases.",
@@ -362,6 +366,8 @@ const I18N = {
     "toolsIndex.multiculture.text": "A China culture game for Multicultural Night, designed for live display and kid-friendly learning.",
     "toolsIndex.nianroom.meta": "FAMILY · INVITE",
     "toolsIndex.nianroom.text": "A family memorial space for shared memories, photos, rituals, and family stories.",
+    "toolsIndex.eventsale.meta": "EVENT · LIVE",
+    "toolsIndex.eventsale.text": "Event ticket sales tracker: Excel import, real-time dashboard, offline-ready, privacy-first design.",
     "toolsIndex.ccf.meta": "STUDY · LIVE",
     "toolsIndex.ccf.text": "A Claude certification study planner with practice questions, course tracking, video logs, and stats.",
     "toolsIndex.mergecheck.meta": "DATA · LIVE",
@@ -435,6 +441,42 @@ const I18N = {
 };
 
 const PAGE_SUMMARIES = {
+  "issues/009.html": {
+    title: "Issue #009",
+    summary: "Claude Code Artifacts redefine deliverables, knowledge management shifts from storage to curation, Fable 5 returns after export controls, learning judgment in the AI era, two complete CCAF certification study guides, and a Quest Academy community co-build proposal for gamified kids' learning."
+  },
+  "notes/quest-academy-proposal.html": {
+    title: "Quest Academy Proposal",
+    summary: "A community co-build proposal for a gamified learning platform: each contributor claims a subject module (music, Chinese literacy, math, etc.), designs Quest content with AI assistance, and the tech team assembles it into a multi-subject platform with XP, levels, and badges."
+  },
+  "notes/claude-code-artifacts.html": {
+    title: "Claude Code Artifacts",
+    summary: "Claude Code adds Artifacts: coding session results packaged as interactive web pages with live-updating URLs and version history. The shift from code as deliverable to decisions as deliverable."
+  },
+  "notes/knowledge-management-shift.html": {
+    title: "Knowledge Management Is Quietly Shifting",
+    summary: "From Syneira Vault to Karpathy's LLM Wiki to Google OKF, three independent developments converge: AI-era knowledge management is about curation and compilation, not storage and retrieval."
+  },
+  "notes/fable-5-return.html": {
+    title: "Fable 5 Return Briefing",
+    summary: "Fable 5 timeline, pricing ($10/$50 per M tokens), free period (until 6/22), Seoul office opening, and the geopolitical compliance risk that caused the first-ever export-control model takedown."
+  },
+  "notes/learning-in-ai-era.html": {
+    title: "Is Learning Fast a Waste of Time?",
+    summary: "From Karpathy's Software 3.0 framework: AI has jagged intelligence, tools expire but judgment compounds, and the ability to calibrate trust in AI output is the skill that lasts."
+  },
+  "notes/ccaf-agent-skills.html": {
+    title: "CCAF: Agent Skills Study Notes",
+    summary: "Complete study notes for Anthropic's CCAF course on Agent Skills: creation, configuration, multi-file structures, Skills vs CLAUDE.md vs Hooks comparison, distribution, troubleshooting, and exam mapping."
+  },
+  "notes/ccaf-mcp.html": {
+    title: "CCAF: MCP Study Notes",
+    summary: "Complete study notes for Anthropic's CCAF course on Model Context Protocol: architecture, Python SDK, Resources, Prompts, Tools vs Resources vs Prompts comparison, and practical implementation."
+  },
+  "notes/event-sales-tracker.html": {
+    title: "Event Sales Tracker Retrospective",
+    summary: "A community project retrospective on building a ticket sales tracking tool: React + Supabase + Recharts stack, privacy-first design, iterative feedback-driven development, and lessons from shipping a real tool for a real event."
+  },
   "issues/008.html": {
     title: "Issue #008",
     summary: "Claude Fable 5 launches, Anthropic and OpenAI file dual IPOs, WWDC 2026 rewrites Siri on Gemini, Data Agent security gaps exposed, ChatGPT ads go global, Gemini 3.5 Flash benchmarks, a gamified learning prompt template, and the China Quest community project lands at school."

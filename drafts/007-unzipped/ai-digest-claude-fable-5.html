@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Fable 5：Anthropic 把最强模型交到了所有人手里 | AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --white:#FFFFFF;--iris-light:#F4F3F1;--iris:#E8E6E1;
+    --grey:#B0ADA6;--grey-mid:#8A8780;
+    --text:#2C2B28;--text-body:#4A4945;--text-light:#9A9890;
+    --teal:#2A9D8F;--teal-dark:#1E7A6F;--black:#1A1918;
+    --orange:#C97B4B;--blue:#4A7BA8;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:2;font-size:15px;background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 28px 72px}
+
+  /* ── Header ── */
+  .header{margin:32px 0 40px}
+  .header-brand{font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:6px}
+  .header-issue{font-size:11px;color:var(--teal);letter-spacing:1px;margin-bottom:20px}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:16px}
+  .header-sub{font-size:15px;color:var(--grey-mid);line-height:1.7;font-weight:300}
+  .header-meta{font-size:11px;color:var(--grey);margin-top:20px;letter-spacing:0.5px}
+  .header-line{width:40px;height:2px;background:var(--teal);margin-top:28px}
+
+  /* ── Divider ── */
+  .divider{display:flex;align-items:center;gap:16px;margin:44px 0 36px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--iris)}
+  .divider .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+  /* ── Section ── */
+  .section-head{margin-bottom:20px}
+  .section-label{font-size:11px;font-weight:500;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--black);line-height:1.3}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:300;line-height:2.1}
+
+  /* ── Code ── */
+  code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--iris-light);border:1px solid var(--iris);padding:1px 6px;border-radius:3px;color:var(--text)}
+
+  /* ── Tip ── */
+  .tip{border-left:3px solid var(--teal);padding:14px 18px;margin:24px 0;background:var(--iris-light);border-radius:0 6px 6px 0}
+  .tip-mark{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;position:relative;top:-1px}
+  .tip p{margin:0;font-size:13.5px;color:var(--text);line-height:1.8}
+
+  /* ── Scene ── */
+  .scene{border-left:2px solid var(--iris);padding:12px 18px;margin:20px 0 24px;color:var(--grey-mid);font-size:14px;line-height:1.9}
+  .scene em{font-style:italic;color:var(--text-light)}
+
+  /* ── Table ── */
+  .tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--iris);color:var(--text);font-weight:700;font-size:12px;letter-spacing:0.5px}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--iris);color:var(--text-body);vertical-align:top;line-height:1.6}
+  .tbl tr:last-child td{border-bottom:none}
+
+  /* ── Step cards ── */
+  .progression{display:flex;flex-direction:column;gap:2px;margin:24px 0}
+  .step{background:var(--iris-light);padding:16px 20px;display:flex;gap:14px;align-items:flex-start}
+  .step:first-child{border-radius:8px 8px 0 0}
+  .step:last-child{border-radius:0 0 8px 8px}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1;min-width:24px;padding-top:2px}
+  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .step-desc{font-size:13px;color:var(--grey-mid);line-height:1.7}
+
+  /* ── Closing ── */
+  .closing{margin-top:56px;text-align:center;font-size:14px;color:var(--text-body);line-height:2}
+  .closing .brand{margin-top:20px;font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase}
+
+  /* ── Footer ── */
+  .footer{margin-top:28px;padding-top:28px;border-top:1px solid var(--iris);font-size:12px;color:var(--grey);line-height:1.8;text-align:center}
+
+  @media(max-width:640px){
+    .wrap{padding:28px 20px 56px}
+    .header-title{font-size:27px}
+    .section-title{font-size:21px}
+  }
+
+  @media(prefers-color-scheme:dark){
+    :root{
+      --white:#1A1A1E;--iris-light:#2A2A2E;--iris:#333338;
+      --grey:#6A6A70;--grey-mid:#8A8A90;
+      --text:#E8E6E1;--text-body:#C5C3BE;--text-light:#7A7A80;
+      --teal:#3DBDB0;--teal-dark:#5AD4C7;--black:#F0EEEA;
+    }
+    body{background:#141416}
+    .step{background:#1E1E22}
+    .tip{background:#1E1E22}
+    .scene{border-left-color:#444448}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <div class="header-issue">Issue #006</div>
+    <h1 class="header-title">Claude Fable 5：Anthropic 把最强模型交到了所有人手里</h1>
+    <p class="header-sub">
+      同一个模型，两种面目。一个叫寓言，一个叫神话。区别不在能力，在护栏。
+    </p>
+    <div class="header-meta">2026.06.09 · 深度解读</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- ═══ SECTION: 发生了什么 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">What Happened</div>
+    <div class="section-title">今天发生了什么</div>
+  </div>
+
+  <p>2026 年 6 月 9 日，Anthropic 同时发布了两个模型：Claude Fable 5 和 Claude Mythos 5。</p>
+
+  <p>这两个名字容易让人觉得是两个不同的模型。其实不是。它们共享同一个底层模型，区别只在于安全限制的松紧。Fable 是面向所有用户的版本，内置了安全分类器，遇到网络安全、生物化学等高危请求时会自动降级到 Opus 4.8 来回答。Mythos 则解除了部分限制，只对经过审核的网络安全合作伙伴开放，通过 Project Glasswing 分发。</p>
+
+  <p>命名本身就在讲这件事。Fable 来自拉丁语 fabula，意思是「可以公开讲述的故事」。Mythos 来自希腊语，是「只在少数人之间流传的神话」。名字不同，故事一样，只是听众不同。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>Anthropic 在官方博文里特意用了一个脚注解释：Mythos-class 是一个新的模型等级，能力位于 Opus 之上。Fable 5 是第一个面向公众的 Mythos 级模型。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 能力 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Capabilities</div>
+    <div class="section-title">它强在哪</div>
+  </div>
+
+  <p>Anthropic 的措辞是「任务越长、越复杂，Fable 5 相对其他模型的领先优势越大」。几个值得注意的方面：</p>
+
+  <div class="progression">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">代码工程</div>
+        <div class="step-desc">Stripe 在早期测试中，用 Fable 5 对一个 5000 万行 Ruby 代码库做全库迁移，一天完成，传统团队需要两个月。在 Cognition 的 FrontierCode 评测上，Fable 5 是所有前沿模型中得分最高的，而且在中等投入下就能达到。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">视觉理解</div>
+        <div class="step-desc">上一代模型玩宝可梦火红需要复杂的辅助工具才能勉强推进，Fable 5 只靠原始截图就打通了全程，不用地图、不用导航辅助、不用额外游戏状态信息。它还能从科学图表中精确提取数据，或者仅凭网页截图还原出源代码。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">持久记忆与长上下文</div>
+        <div class="step-desc">在百万 token 级别的长任务中保持专注。Anthropic 让模型玩 Slay the Spire 卡牌游戏做测试，给它持久文件记忆后，Fable 5 的性能提升幅度是 Opus 4.8 的三倍，到达最终关卡的频率也是三倍。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">生命科学（Mythos 版本）</div>
+        <div class="step-desc">内部蛋白质设计团队报告药物设计流程加速约 10 倍。模型在没有人工介入的情况下完成了选择结合位点、运行蛋白质设计工具、从失败中恢复的全流程，14 个蛋白质靶点中有 9 个产生了值得进一步研究的候选方案。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    还有一个细节容易被忽略：Mythos 5 做了一项长达一周多的自主基因组学研究，整合了 138 个物种的单细胞数据，自行设计并训练了一个机器学习模型，其表现超过了近期发表在 Science 上的同类研究，体积却只有后者的百分之一。Anthropic 表示将在未来几个月发表这些结果。
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 安全 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Safety</div>
+    <div class="section-title">护栏怎么工作的</div>
+  </div>
+
+  <p>Fable 5 的安全机制不是隐藏功能，而是公开的设计选择。当模型检测到涉及网络安全、生物化学、模型蒸馏等高危领域的请求时，会自动退回到 Opus 4.8 来回答。</p>
+
+  <p>Anthropic 坦承这个机制调得偏保守。平均来看，不到 5% 的对话会触发安全降级，但其中会有误伤，比如有人反馈正常的代码安全加固请求也被拦截了。官方说会持续优化，降低误报率。</p>
+
+  <p>外部安全测试方面，Anthropic 做了超过 1000 小时的 bug bounty 测试，没有人找到通用的越狱方法。自动化对齐评估显示 Mythos 5 的不对齐行为水平与 Opus 4.8 接近。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>对于使用 Mythos 级模型的商业客户，Anthropic 强制保留 30 天的流量数据用于安全监控，但明确表示不会用这些数据训练新模型。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 定价 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">多少钱，怎么用</div>
+  </div>
+
+  <p>API 定价：输入 $10 / 百万 token，输出 $50 / 百万 token。这个价格不到 Mythos Preview 的一半，但仍然是目前市面上最贵的公开模型之一。</p>
+
+  <table class="tbl">
+    <tr><th>模型</th><th>输入</th><th>输出</th></tr>
+    <tr>
+      <td><strong>Claude Fable 5</strong></td>
+      <td>$10 / 1M tokens</td>
+      <td>$50 / 1M tokens</td>
+    </tr>
+    <tr>
+      <td>Claude Opus 4.8</td>
+      <td>$5 / 1M tokens</td>
+      <td>$25 / 1M tokens</td>
+    </tr>
+    <tr>
+      <td>GPT 5.5</td>
+      <td>$5 / 1M tokens</td>
+      <td>$30 / 1M tokens</td>
+    </tr>
+    <tr>
+      <td>DeepSeek V4 Pro</td>
+      <td>$0.44 / 1M tokens</td>
+      <td>$0.87 / 1M tokens</td>
+    </tr>
+  </table>
+
+  <p>订阅用户的时间窗口很重要：6 月 9 日到 6 月 22 日，Pro / Max / Team / Enterprise 订阅用户可以免费使用 Fable 5。6 月 23 日开始，将改为消耗 usage credits。如果产能允许，Anthropic 会延长免费窗口，或在之后恢复订阅内包含，但没有承诺具体时间。</p>
+
+  <div class="scene">
+    有早期用户反馈，单次复杂任务可能消耗大量额度。如果你是 Max 会员，建议在免费窗口内先试一两个重活，感受一下额度消耗速度，再决定之后的用法。
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 早期反馈 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Early Signal</div>
+    <div class="section-title">早期用户在说什么</div>
+  </div>
+
+  <p>Anthropic 在官方博文中引用了一批早期合作伙伴的评价。几个有信息量的：</p>
+
+  <p>Cursor CEO 说 Fable 5 在 CursorBench 上是目前最强的模型，打开了一类之前没法做的长周期编程问题。GitHub 产品负责人说它在复杂、长线编码任务上的自主性和可靠性超出了之前的基准。Replit 方面也确认这是他们测试过的最强 Claude 模型，在自主编码和原型搭建上有明显进步。</p>
+
+  <p>法律科技公司 Harvey 的工程师提到，在盲测中他们的律师发现 Fable 5 的法律文件标注每次都追平或超过了现有模型。Boltzmann 的 CEO 说它的推理水平达到了高级研究科学家级别，能自己选方向、分配资源、推翻自己的错误判断。</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 怎么看 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">So What</div>
+    <div class="section-title">几个值得想的问题</div>
+  </div>
+
+  <p><strong>成本门槛在抬高。</strong>Fable 5 的输出价格是 DeepSeek V4 Pro 的 57 倍。这不只是定价策略的差异，它在重新定义「谁用得起最好的 AI」。对于个人用户和小团队来说，高频调用 Fable 5 的成本是实实在在的约束。「能力越强的模型越贵」正在成为常态，AI 工具的分层可能比我们想象的来得更快。</p>
+
+  <p><strong>安全和能力的张力会持续存在。</strong>同一个模型，加护栏叫 Fable，去护栏叫 Mythos。这种设计清晰但也脆弱，护栏调得太紧会误伤正常使用，调得太松又有真实风险。Anthropic 选择了偏保守的起点，但 5% 的误触率对于高频用户来说不算低。这个平衡会是持续调整的过程。</p>
+
+  <p><strong>模型能力的增长速度在加速。</strong>Opus 4.8 发布才几个月，Fable 5 就在几乎所有维度上超过了它。从四月的 Mythos Preview 到今天的公开版本，间隔只有两个月。对于做 AI 相关工作的人来说，工具的迭代速度已经快过学习和适应的速度。可能越来越重要的不是精通某个模型，而是建立一套能快速评估和切换工具的工作流。</p>
+
+  <p><strong>Anthropic 在押注一个新的分发模式。</strong>不是所有人拿同一个模型，而是同一个模型按风险等级分层开放。Glasswing 给网络安全伙伴，可信赖的生物研究者拿另一档，普通用户拿带护栏的版本。这种分层模式如果跑通，可能会成为行业标准。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>免费窗口到 6 月 22 日。如果你有 Pro 或 Max 订阅，现在就能用。不用等，直接打开 Claude 试，选模型的地方已经多了 Fable 5 的选项。</p>
+  </div>
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+  <div class="footer">
+    AI Digest by Syneira · Issue #006 · 2026.06.09<br>
+    内容由 AI 辅助整理，经人工审核编辑
+  </div>
+
+</div>
+</body>
+</html>

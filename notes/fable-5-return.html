@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fable 5 回归速报: 出口管制下架始末、首尔发布会、定价、免费期, 以及你需要在 6/20 前做的事。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.jpg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Fable 5 回归速报: 出口管制、首尔发布会、和你需要知道的时间节点 | AI Digest #009" />
+  <meta property="og:description" content="Fable 5 回归速报: 出口管制下架始末、首尔发布会、定价、免费期, 以及你需要在 6/20 前做的事。" />
+  <meta property="og:url" content="https://syneira.org/notes/fable-5-return.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fable 5 回归速报: 出口管制、首尔发布会、和你需要知道的时间节点 | AI Digest #009" />
+  <meta name="twitter:description" content="Fable 5 回归速报: 出口管制下架始末、首尔发布会、定价、免费期, 以及你需要在 6/20 前做的事。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+<title>Fable 5 回归速报 | AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --white:#FFFFFF;--iris-light:#F4F3F1;--iris:#E8E6E1;
+    --grey:#B0ADA6;--grey-mid:#8A8780;
+    --text:#2C2B28;--text-body:#4A4945;--text-light:#9A9890;
+    --teal:#2A9D8F;--teal-dark:#1E7A6F;--black:#1A1918;
+    --orange:#C97B4B;--blue:#4A7BA8;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:2;font-size:15px;background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 28px 72px}
+
+  .header{margin:32px 0 40px}
+  .header-brand{font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:6px}
+  .header-issue{font-size:11px;color:var(--teal);letter-spacing:1px;margin-bottom:20px}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:16px}
+  .header-sub{font-size:15px;color:var(--grey-mid);line-height:1.7;font-weight:300}
+  .header-meta{font-size:11px;color:var(--grey);margin-top:20px;letter-spacing:0.5px}
+  .header-line{width:40px;height:2px;background:var(--teal);margin-top:28px}
+
+  .divider{display:flex;align-items:center;gap:16px;margin:44px 0 36px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--iris)}
+  .divider .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+  .section-head{margin-bottom:20px}
+  .section-label{font-size:11px;font-weight:500;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--black);line-height:1.3}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:300;line-height:2.1}
+
+  .tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--iris);color:var(--text);font-weight:700;font-size:12px;letter-spacing:0.5px}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--iris);color:var(--text-body);vertical-align:top;line-height:1.6}
+  .tbl tr:last-child td{border-bottom:none}
+
+  .timeline{display:flex;flex-direction:column;gap:0;margin:24px 0}
+  .tl-item{display:flex;gap:16px;align-items:flex-start;position:relative;padding-bottom:24px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:'';position:absolute;left:7px;top:18px;bottom:0;width:1px;background:var(--iris)}
+  .tl-item:last-child::before{display:none}
+  .tl-dot{width:15px;height:15px;border-radius:50%;border:2px solid var(--teal);background:var(--white);flex-shrink:0;margin-top:4px;position:relative;z-index:1}
+  .tl-dot.active{background:var(--teal)}
+  .tl-dot.warn{border-color:var(--orange)}
+  .tl-dot.warn.active{background:var(--orange)}
+  .tl-content{}
+  .tl-date{font-size:12px;font-weight:700;color:var(--text);letter-spacing:0.5px;margin-bottom:2px}
+  .tl-desc{font-size:13.5px;color:var(--text-body);line-height:1.8}
+
+  .tip{border-left:3px solid var(--teal);padding:14px 18px;margin:24px 0;background:var(--iris-light);border-radius:0 6px 6px 0}
+  .tip-mark{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;position:relative;top:-1px}
+  .tip p{margin:0;font-size:13.5px;color:var(--text);line-height:1.8}
+  .tip.warn{border-left-color:var(--orange)}
+  .tip.warn .tip-mark{background:var(--orange)}
+
+  .action-list{background:var(--iris-light);border-radius:8px;padding:20px 24px;margin:24px 0}
+  .action-list-label{font-size:11px;font-weight:500;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+  .action-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
+  .action-item:last-child{margin-bottom:0}
+  .action-check{width:16px;height:16px;border:2px solid var(--teal);border-radius:3px;flex-shrink:0;margin-top:3px}
+  .action-text{font-size:14px;color:var(--text);line-height:1.7}
+  .action-text .date-tag{display:inline-block;background:var(--teal);color:var(--white);font-size:11px;padding:1px 8px;border-radius:10px;font-weight:500;margin-left:6px;vertical-align:middle;position:relative;top:-1px}
+  .action-text .date-tag.urgent{background:var(--orange)}
+
+  .scene{border-left:2px solid var(--iris);padding:12px 18px;margin:20px 0 24px;color:var(--grey-mid);font-size:14px;line-height:1.9}
+  .scene em{font-style:italic;color:var(--text-light)}
+
+  .footer{margin-top:56px;padding-top:28px;border-top:1px solid var(--iris);font-size:12px;color:var(--grey);line-height:1.8;text-align:center}
+
+  @media(max-width:640px){
+    .wrap{padding:28px 20px 56px}
+    .header-title{font-size:27px}
+    .section-title{font-size:21px}
+  }
+
+  @media(prefers-color-scheme:dark){
+    :root{
+      --white:#1A1A1E;--iris-light:#2A2A2E;--iris:#333338;
+      --grey:#6A6A70;--grey-mid:#8A8A90;
+      --text:#E8E6E1;--text-body:#C5C3BE;--text-light:#7A7A80;
+      --teal:#3DBDB0;--teal-dark:#5AD4C7;--black:#F0EEEA;
+      --orange:#E09060;
+    }
+    body{background:#141416}
+    .tl-dot{background:#141416}
+    .tl-dot.active{background:var(--teal)}
+    .tl-dot.warn.active{background:var(--orange)}
+    .action-list{background:#1E1E22}
+    .scene{border-left-color:#444448}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <div class="header-issue">Issue #009 · 快讯</div>
+    <h1 class="header-title">Fable 5 回归速报<br>出口管制、首尔发布会、和你需要知道的时间节点</h1>
+    <p class="header-sub">
+      Anthropic 最强模型 Fable 5 在上线三天后因美国出口管制被全球下架，一周后确认回归。这篇速报梳理完整时间线、定价、免费期截止日，以及你现在需要做的事。
+    </p>
+    <div class="header-meta">2026.06.19 · 速报</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- SECTION: 时间线 -->
+  <!-- ════════════════════════════════════ -->
+
+  <div class="section-head">
+    <div class="section-label">Timeline</div>
+    <div class="section-title">完整时间线</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot active"></div>
+      <div class="tl-content">
+        <div class="tl-date">6 月 9 日</div>
+        <div class="tl-desc">Anthropic 发布 <strong>Claude Fable 5</strong>（前沿模型）和 <strong>Mythos 5</strong>（旗舰模型）。Fable 5 对所有 Pro/Max 用户免费开放。</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot warn active"></div>
+      <div class="tl-content">
+        <div class="tl-date">6 月 12 日</div>
+        <div class="tl-desc">美国商务部依据出口管制法规，要求 Anthropic 在全球范围内下架 Fable 5。触发原因：Fable 5 的训练基础设施涉及一家韩国电信公司，该公司与中国存在业务关联，触发了管制条款。Mythos 5 未受影响。</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot active"></div>
+      <div class="tl-content">
+        <div class="tl-date">6 月 18 日</div>
+        <div class="tl-desc">Anthropic 国际业务 MD <strong>Chris Ciauri</strong> 在首尔活动上确认：Fable 5 将恢复服务。同日宣布首尔办公室成立（Anthropic 第 12 个全球办公室）。</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-date">6 月 20 日（预计）</div>
+        <div class="tl-desc">Fable 5 预期恢复上线。退款资格截止日期，需在此日前确认。</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-date">6 月 22 日</div>
+        <div class="tl-desc">Pro/Max 用户免费使用 Fable 5 的窗口关闭。</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-date">6 月 23 日起</div>
+        <div class="tl-desc">Fable 5 转为 Usage Credits 计费模式。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- SECTION: 关键事实 -->
+  <!-- ════════════════════════════════════ -->
+
+  <div class="section-head">
+    <div class="section-label">Key Facts</div>
+    <div class="section-title">关键信息一览</div>
+  </div>
+
+  <table class="tbl">
+    <tr><th>项目</th><th>详情</th></tr>
+    <tr>
+      <td><strong>下架原因</strong></td>
+      <td>美国出口管制。训练基础设施涉及韩国电信公司的中国业务关联，触发管制条款</td>
+    </tr>
+    <tr>
+      <td><strong>影响范围</strong></td>
+      <td>仅 Fable 5，Mythos 5 不受影响</td>
+    </tr>
+    <tr>
+      <td><strong>API 定价</strong></td>
+      <td>输入 $10/M tokens，输出 $50/M tokens</td>
+    </tr>
+    <tr>
+      <td><strong>免费期</strong></td>
+      <td>Pro/Max 用户可免费使用至 6/22，6/23 起转 Usage Credits</td>
+    </tr>
+    <tr>
+      <td><strong>首尔办公室</strong></td>
+      <td>Anthropic 第 12 个全球办公室。韩国是其增长最快的市场之一</td>
+    </tr>
+    <tr>
+      <td><strong>Project Glasswing</strong></td>
+      <td>约 150 家合作伙伴（包括 Google、Nvidia、Samsung、SK）</td>
+    </tr>
+    <tr>
+      <td><strong>退款截止</strong></td>
+      <td>6/20 前确认退款资格</td>
+    </tr>
+  </table>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- SECTION: Action Items -->
+  <!-- ════════════════════════════════════ -->
+
+  <div class="section-head">
+    <div class="section-label">Action Items</div>
+    <div class="section-title">你现在需要做的事</div>
+  </div>
+
+  <div class="action-list">
+    <div class="action-list-label">待办清单</div>
+    <div class="action-item">
+      <div class="action-check"></div>
+      <div class="action-text">确认退款资格 <span class="date-tag urgent">6/20 前</span></div>
+    </div>
+    <div class="action-item">
+      <div class="action-check"></div>
+      <div class="action-text">如果在用 Fable 5 API，检查集成代码是否有降级处理逻辑</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check"></div>
+      <div class="action-text">Pro/Max 用户：抓紧免费窗口测试 Fable 5 <span class="date-tag">6/22 截止</span></div>
+    </div>
+    <div class="action-item">
+      <div class="action-check"></div>
+      <div class="action-text">评估 6/23 后是否需要预充 Usage Credits</div>
+    </div>
+  </div>
+
+  <div class="tip warn">
+    <p><span class="tip-mark"></span>如果你在下架期间因为 Fable 5 不可用而产生了额外成本（例如切换到其他模型的开销），务必在 6/20 前联系 Anthropic 确认退款资格。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <div class="scene">
+    这次事件暴露了 AI 前沿模型面临的一个新风险维度：不是技术问题，不是安全问题，而是地缘政治合规。训练基础设施的供应链足够长，任何一环涉及管制实体都可能导致产品全球下架。对于依赖单一模型供应商的团队来说，这是一个值得认真对待的信号。
+  </div>
+
+  <div class="footer">
+    AI Digest by Syneira · Issue #009 · 2026.06<br>
+    信息来源: Anthropic 官方公告、Korea JoongAng Daily 报道及公开信息整理
+  </div>
+
+</div>
+</body>
+</html>

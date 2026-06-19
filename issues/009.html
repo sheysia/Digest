@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Issue #009 (Jun 10 - Jun 19, 2026) · Claude Code Artifacts、知识管理转向、Fable 5 回归、学得快是不是无用功、CCAF 认证笔记、Quest Academy。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.jpg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI Digest Issue #009 | By Syneira" />
+  <meta property="og:description" content="Issue #009 (Jun 10 - Jun 19, 2026) · Claude Code Artifacts、知识管理转向、Fable 5 回归、学得快是不是无用功、CCAF 认证笔记。" />
+  <meta property="og:url" content="https://syneira.org/issues/009.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Digest Issue #009 | By Syneira" />
+  <meta name="twitter:description" content="Issue #009 (Jun 10 - Jun 19, 2026) · Claude Code Artifacts、知识管理转向、Fable 5 回归、学得快是不是无用功、CCAF 认证笔记。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+<title>AI Digest Issue #009 | By Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC',sans-serif; color:#2C2C2C; line-height:1.85; font-size:15px; background:#FAF8F5; }
+  .nav { max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .nav a { font-size:13px; color:#2A9D8F; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:12px 24px 60px; }
+
+  .header { text-align:center; padding-bottom:20px; border-bottom:2.5px solid #2A9D8F; margin-bottom:24px; }
+  .header-brand { font-size:10px; letter-spacing:4px; color:#999; text-transform:uppercase; margin-bottom:6px; }
+  .header-title { font-size:26px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.3; }
+  .header-meta { font-size:12px; color:#999; }
+  .header-sub { font-size:14px; color:#2A9D8F; margin-top:8px; font-style:italic; }
+
+  .section { padding:10px 16px; border-radius:6px; margin:28px 0 14px; }
+  .section.tool { background:#FDF0EB; border-left:4px solid #E8643B; }
+  .section.trend { background:#EBF2FD; border-left:4px solid #3A7BD4; }
+  .section.scene { background:#EFF5EC; border-left:4px solid #5A8E5A; }
+  .section.tip { background:#F5EFF8; border-left:4px solid #9B6DB7; }
+  .section.life { background:#E8F6F3; border-left:4px solid #2A9D8F; }
+  .section h2 { font-size:16px; font-weight:700; }
+  .section.tool h2 { color:#E8643B; }
+  .section.trend h2 { color:#3A7BD4; }
+  .section.scene h2 { color:#5A8E5A; }
+  .section.tip h2 { color:#9B6DB7; }
+  .section.life h2 { color:#2A9D8F; }
+
+  .card { background:#FFF; border:1px solid #E0DCD7; border-radius:10px; padding:18px 20px; margin-bottom:16px; }
+  .card-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .tag-tool { background:#FDF0EB; color:#D4603A; }
+  .tag-trend { background:#EBF2FD; color:#3A7BD4; }
+  .tag-scene { background:#EFF5EC; color:#5A8E5A; }
+  .tag-tip { background:#F5EFF8; color:#9B6DB7; }
+  .tag-life { background:#E8F6F3; color:#2A9D8F; }
+  .card-num { font-size:11px; color:#AAA; font-weight:600; }
+  .card-title { font-size:17px; font-weight:700; color:#1A1A2E; margin-bottom:4px; line-height:1.4; }
+  .card-source { font-size:11px; color:#999; margin-bottom:12px; }
+
+  .label { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+  .label-h { color:#D4603A; }
+  .label-s { color:#3A7BD4; }
+  .label-w { color:#5A8E5A; }
+
+  .card p { font-size:14px; line-height:1.85; margin-bottom:10px; color:#444; }
+  .card strong { font-weight:700; color:#1A1A2E; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px; background:#F5F3F0; color:#777; border:0.5px solid #E0DCD7; margin-right:4px; }
+  .read-more { display:inline-block; font-size:12px; color:#2A9D8F; font-weight:600; text-decoration:none; margin-top:6px; }
+
+  .footer { text-align:center; padding-top:20px; border-top:1px solid #E0DCD7; margin-top:28px; font-size:11px; color:#BBB; }
+  .footer-brand { font-size:12px; letter-spacing:2px; color:#666; font-weight:700; margin-bottom:4px; }
+  .issue-en { display:none; }
+  html[lang="en"] .issue-zh { display:none; }
+  html[lang="en"] .issue-en { display:block; }
+</style>
+</head>
+<body data-full-i18n-page="issue-009">
+
+<div class="nav"><a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a></div>
+
+<!-- ==================== 中文版 ==================== -->
+<div class="wrap issue-zh">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #009</div>
+  <div class="header-meta">Jun 10 &ndash; Jun 19, 2026 &middot; 8 picks + 8 notes</div>
+  <div class="header-sub">Artifacts 重新定义交付物、知识管理安静转向、Fable 5 回归、学得快不是无用功、CCAF 认证全攻略、Quest Academy 社群共建</div>
+</div>
+
+<div class="section tool"><h2>工具更新 &middot; Tool Update</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">工具上新</span><span class="card-num">#01</span></div>
+  <div class="card-title">代码不再是交付物：Claude Code Artifacts 背后的协作范式转移</div>
+  <div class="card-source">&#x1f4cc; 2026.06.18 &middot; 来源：Anthropic 官方博客</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Claude Code 新增 Artifacts 功能，把编码会话的成果打包成可交互网页。团队成员打开链接就能看到最新状态，<strong>同一 URL 原地热更新</strong>，保留版本历史。目前 Beta，仅 Team/Enterprise 可用。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>当 Agent 生成代码的速度比团队对齐需求的速度还快时，代码不再是核心交付物，决策才是。Artifacts 是这个变化的第一个产品形态：从代码到决策，从截图到实时视图。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Claude Code 用户</span><span class="badge">工程团队</span><span class="badge">PM / 管理者</span></p>
+  <a href="../notes/claude-code-artifacts.html" class="read-more">&#x1f4d6; 阅读深度解读 &rarr;</a>
+</div>
+
+<div class="section trend"><h2>趋势信号 &middot; Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">趋势</span><span class="card-num">#02</span></div>
+  <div class="card-title">知识管理正在发生一次安静的转向</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; By Syneira Lab</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>从 Syneira Vault 到 Karpathy 的 LLM Wiki，再到 Google OKF，三件独立发生的事情指向同一个方向：<strong>AI 时代的知识管理，核心不再是存储和检索，而是策展和编译</strong>。RAG 没有积累，LLM Wiki 编译一次持续维护，OKF 让知识包可以跨工具互通。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>格式可以标准化，维护可以自动化，但思考没法代理。AI 做整理，人做消化。系统帮你把信息收进来、分好类、找到关联，但变成你的判断力，需要你自己坐在那里想一想。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">知识管理关注者</span><span class="badge">Claude Code / Obsidian 用户</span><span class="badge">个人效率爱好者</span></p>
+  <a href="../notes/knowledge-management-shift.html" class="read-more">&#x1f4d6; 阅读趋势分析 &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">速报</span><span class="card-num">#03</span></div>
+  <div class="card-title">Fable 5 回归速报：出口管制、首尔发布会、和你需要知道的时间节点</div>
+  <div class="card-source">&#x1f4cc; 2026.06.18 &middot; 来源：Korea JoongAng Daily</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Fable 5 上线 3 天后因美国出口管制全球下线。6/18 Anthropic 国际业务董事总经理 Chris Ciauri 在首尔确认<strong>数日内恢复上线</strong>。同日开设首尔办公室。定价 $10/$50 per M tokens，<strong>6/22 前 Pro/Max 免费使用</strong>。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Fable 5 事件暴露了 AI 模型部署的地缘政治风险：不是技术问题，不是安全问题，是合作伙伴关系触发了出口管制条款。这种下线方式以前没有先例。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Claude 用户</span><span class="badge">Fable 5 等待者</span><span class="badge">行业观察者</span></p>
+  <a href="../notes/fable-5-return.html" class="read-more">&#x1f4d6; 阅读速报 &rarr;</a>
+</div>
+
+<div class="section life"><h2>个人实践 &middot; Perspective</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">实践</span><span class="card-num">#04</span></div>
+  <div class="card-title">学得快是不是无用功</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; By Syneira Lab</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>从 Karpathy 的 "Software Is Changing (Again)" 演讲展开：Software 3.0 用自然语言编程，AI 有 <strong>Jagged Intelligence</strong>（参差不齐的智能），人的核心角色是判断什么时候该信它、什么时候该拦它。这种校准不是学一次就够的技能，是持续的感知训练。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>会过时的是某个工具的操作界面。不会过时的是怎么设计人和 AI 协作的流程、怎么在参差不齐中保持判断力。模型越强，你的判断力杠杆越长。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">正在学 AI 工具的人</span><span class="badge">对"学了会不会白学"有疑虑的人</span><span class="badge">Karpathy 关注者</span></p>
+  <a href="../notes/learning-in-ai-era.html" class="read-more">&#x1f4d6; 阅读个人实践 &rarr;</a>
+</div>
+
+<div class="section tip"><h2>用法洞察 &middot; Learning Guide</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">学习指南</span><span class="card-num">#05</span></div>
+  <div class="card-title">CCAF 认证笔记：Introduction to Agent Skills</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; organized by Syneira &middot; 6 节课完整整理</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Anthropic CCAF 官方认证课程 "Introduction to Agent Skills" 的完整学习笔记。<strong>Skills 是可复用的 markdown 指令文件</strong>，Claude Code 根据任务自动匹配加载。覆盖创建、配置、多文件结构、功能对比、分发、排错，附考试考点映射。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Skills 是 Claude Code 自定义能力的核心机制。理解 Skills vs CLAUDE.md vs Slash Commands vs Hooks vs Subagents 的边界，是高效使用 Claude Code 的基础。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">Claude Code 用户</span><span class="badge">CCAF 备考者</span><span class="badge">AI 工具深度用户</span></p>
+  <a href="../notes/ccaf-agent-skills.html" class="read-more">&#x1f4d6; 阅读完整笔记 &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">学习指南</span><span class="card-num">#06</span></div>
+  <div class="card-title">CCAF 认证笔记：Introduction to Model Context Protocol (MCP)</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; organized by Syneira &middot; 14 节课完整整理</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>Anthropic CCAF 官方认证课程 "Introduction to MCP" 的完整学习笔记。MCP 是连接 AI 应用和外部系统的开源标准，<strong>像 USB-C 为 AI 提供统一接口</strong>。覆盖架构 (Host/Client/Server)、Python SDK 构建服务器、Resources、Prompts 三大原语对比、实战要点。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>MCP 正在成为 AI 工具连接的事实标准。Claude、ChatGPT、VS Code、Cursor 都已支持。理解 Tools vs Resources vs Prompts 的分工，是构建 AI 应用的基本功。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">开发者</span><span class="badge">CCAF 备考者</span><span class="badge">MCP 入门者</span></p>
+  <a href="../notes/ccaf-mcp.html" class="read-more">&#x1f4d6; 阅读完整笔记 &rarr;</a>
+</div>
+
+<div class="section scene"><h2>场景拆解 &middot; Use Case</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">场景</span><span class="card-num">#07</span></div>
+  <div class="card-title">Quest Academy：一起给孩子造一个会长大的学习游戏</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; DMVoice AI 女性 Workgroup &times; Syneira Lab</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>把社群里散落的教育类项目想法串起来：音乐基础、中文识字、英语词汇、数学思维、小记者、金融启蒙。<strong>每人认领一个模块，用统一的 Quest 结构设计内容，AI 辅助生成题目和反馈</strong>，技术组搭建游戏化引擎（XP、等级、徽章），拼出一个多学科学习平台。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>China Quest 验证了社群共建模式可行。Quest Academy 是下一步：从一次性活动变成持续成长的产品。参与者练的是内容创作和 AI 工具使用，产出的是孩子真正在用的东西。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">有孩子的家长</span><span class="badge">对教育内容设计感兴趣的人</span><span class="badge">想练 AI 内容创作的人</span></p>
+  <a href="../notes/quest-academy-proposal.html" class="read-more">&#x1f4d6; 阅读完整提案 &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">回顾</span><span class="card-num">#08</span></div>
+  <div class="card-title">Event Sales Tracker：用 AI 一个下午做一个工具</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; DMVoice AI Group &times; Syneira Lab</div>
+  <div class="label label-h">&starf; 亮点说人话</div>
+  <p>社区线下活动需要现场记账，POS 太重、记事本太轻。<strong>一个下午，用 AI 辅助从零做了一个纯前端 PWA</strong>：React + IndexedDB，零后端零运维零登录，扫码即用，数据完全本地。上线后根据现场反馈快速迭代了四轮。</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>不是所有项目都需要后端。PWA + IndexedDB 在临时活动场景下完全够用。AI 辅助把"一个下午从零到上线"变成了现实，这种节奏以前不可能。</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; 适合谁</div>
+  <p><span class="badge">社群活动组织者</span><span class="badge">想用 AI 做工具的人</span><span class="badge">PWA 感兴趣者</span></p>
+  <a href="../notes/event-sales-tracker.html" class="read-more">&#x1f4d6; 阅读项目复盘 &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    由社群成员精选 &middot; 每周一期 + 不定期深度指南<br>
+    筛选标准：实用 &gt; 炫酷 &middot; 能用 &gt; 能看<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">趋势信号</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">工具更新</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">用法洞察</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">个人实践</span>
+    <br><br>
+    &#x1f4ac; 看到好内容？随手转发到群里，下期可能就收录了<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Join us? Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; 留言讨论 / Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<!-- ==================== English version ==================== -->
+<div class="wrap issue-en">
+
+<div class="header">
+  <div class="header-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <div class="header-title">Issue #009</div>
+  <div class="header-meta">Jun 10 &ndash; Jun 19, 2026 &middot; 8 picks + 8 notes</div>
+  <div class="header-sub">Artifacts redefine deliverables, knowledge management shifts, Fable 5 returns, learning fast pays off, CCAF cert guides, Quest Academy co-build</div>
+</div>
+
+<div class="section tool"><h2>Tool Update</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tool">Tool Launch</span><span class="card-num">#01</span></div>
+  <div class="card-title">Code Is No Longer the Deliverable: The Collaboration Shift Behind Claude Code Artifacts</div>
+  <div class="card-source">&#x1f4cc; 2026.06.18 &middot; Source: Anthropic official blog</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Claude Code adds Artifacts: package coding session results into interactive web pages. Team members open a link to see the latest state. <strong>Same URL, live-updated</strong>, with version history. Currently Beta, Team/Enterprise only.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>When agents generate code faster than teams can align on requirements, code stops being the core deliverable. Decisions are. Artifacts are the first product shape of that shift.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude Code users</span><span class="badge">Engineering teams</span><span class="badge">PMs / managers</span></p>
+  <a href="../notes/claude-code-artifacts.html" class="read-more">&#x1f4d6; Read the deep dive &rarr;</a>
+</div>
+
+<div class="section trend"><h2>Trend Signal</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Trend</span><span class="card-num">#02</span></div>
+  <div class="card-title">Knowledge Management Is Quietly Shifting</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; By Syneira Lab</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>From Syneira Vault to Karpathy's LLM Wiki to Google's OKF, three independent developments point the same direction: <strong>AI-era knowledge management is about curation and compilation, not storage and retrieval.</strong> RAG has no memory. LLM Wiki compiles once and maintains. OKF makes knowledge packages portable.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Formats can be standardized, maintenance can be automated, but thinking cannot be delegated. AI organizes; you digest. The system sorts and links, but turning it into your judgment still requires sitting down and thinking.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Knowledge management fans</span><span class="badge">Claude Code / Obsidian users</span><span class="badge">Productivity enthusiasts</span></p>
+  <a href="../notes/knowledge-management-shift.html" class="read-more">&#x1f4d6; Read the trend analysis &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-trend">Breaking</span><span class="card-num">#03</span></div>
+  <div class="card-title">Fable 5 Return: Export Controls, Seoul Launch, and Key Dates</div>
+  <div class="card-source">&#x1f4cc; 2026.06.18 &middot; Source: Korea JoongAng Daily</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Fable 5 went offline worldwide 3 days after launch due to US export controls. On 6/18, Anthropic's Chris Ciauri (MD of International) confirmed <strong>return within days</strong> at a Seoul event. Pricing: $10/$50 per M tokens. <strong>Free for Pro/Max until 6/22.</strong></p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>The Fable 5 incident exposed geopolitical risk in AI model deployment: not a technical or safety issue, but a partner relationship triggering export control clauses. This type of takedown has no precedent.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude users</span><span class="badge">Fable 5 waiters</span><span class="badge">Industry watchers</span></p>
+  <a href="../notes/fable-5-return.html" class="read-more">&#x1f4d6; Read the briefing &rarr;</a>
+</div>
+
+<div class="section life"><h2>Perspective</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-life">Perspective</span><span class="card-num">#04</span></div>
+  <div class="card-title">Is Learning Fast a Waste of Time?</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; By Syneira Lab</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>From Karpathy's "Software Is Changing (Again)" talk: Software 3.0 programs in natural language. AI has <strong>Jagged Intelligence</strong>, brilliant one second, wrong the next. Your core role is knowing when to trust it and when to stop it. This calibration is not a one-time skill but an ongoing practice.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>What expires is a tool's UI. What doesn't is knowing how to design human-AI collaboration, how to maintain judgment amidst inconsistency. The stronger the model, the longer the lever on your judgment.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">AI tool learners</span><span class="badge">Anyone wondering if learning AI is worth it</span><span class="badge">Karpathy followers</span></p>
+  <a href="../notes/learning-in-ai-era.html" class="read-more">&#x1f4d6; Read the perspective &rarr;</a>
+</div>
+
+<div class="section tip"><h2>Learning Guide</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Study Guide</span><span class="card-num">#05</span></div>
+  <div class="card-title">CCAF Certification Notes: Introduction to Agent Skills</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; organized by Syneira &middot; 6 lessons, full coverage</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Complete study notes for Anthropic's CCAF course "Introduction to Agent Skills." <strong>Skills are reusable markdown instruction files</strong> that Claude Code auto-matches to tasks. Covers creation, configuration, multi-file structures, feature comparison, distribution, troubleshooting, plus exam mapping.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Skills are the core customization mechanism in Claude Code. Understanding Skills vs CLAUDE.md vs Slash Commands vs Hooks vs Subagents is essential for power users.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Claude Code users</span><span class="badge">CCAF exam takers</span><span class="badge">AI power users</span></p>
+  <a href="../notes/ccaf-agent-skills.html" class="read-more">&#x1f4d6; Read the full notes &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-tip">Study Guide</span><span class="card-num">#06</span></div>
+  <div class="card-title">CCAF Certification Notes: Introduction to MCP</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; organized by Syneira &middot; 14 lessons, full coverage</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Complete study notes for "Introduction to Model Context Protocol." MCP is an open standard for connecting AI apps to external systems, <strong>like USB-C for AI.</strong> Covers architecture (Host/Client/Server), Python SDK, Resources, Prompts, and the three primitives comparison.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>MCP is becoming the de facto standard for AI tool connections. Claude, ChatGPT, VS Code, and Cursor all support it. Understanding Tools vs Resources vs Prompts is foundational for building AI applications.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Developers</span><span class="badge">CCAF exam takers</span><span class="badge">MCP beginners</span></p>
+  <a href="../notes/ccaf-mcp.html" class="read-more">&#x1f4d6; Read the full notes &rarr;</a>
+</div>
+
+<div class="section scene"><h2>Use Case</h2></div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Use Case</span><span class="card-num">#07</span></div>
+  <div class="card-title">Quest Academy: Building a Growing Learning Game for Kids, Together</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; DMVoice AI Women's Workgroup &times; Syneira Lab</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>Connecting scattered education project ideas from the community: music theory, Chinese literacy, English vocabulary, math thinking, junior reporter, financial literacy. <strong>Each person claims a module, designs content using a unified Quest structure, with AI-assisted question and feedback generation.</strong> The tech team builds the gamification engine (XP, levels, badges) into a multi-subject learning platform.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>China Quest proved the community co-build model works. Quest Academy is the next step: from a one-time event to a product that grows. Participants practice content creation and AI tools; the output is something kids actually use.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Parents</span><span class="badge">Education content designers</span><span class="badge">AI content creation learners</span></p>
+  <a href="../notes/quest-academy-proposal.html" class="read-more">&#x1f4d6; Read the full proposal &rarr;</a>
+</div>
+
+<div class="card">
+  <div class="card-head"><span class="tag tag-scene">Retrospective</span><span class="card-num">#08</span></div>
+  <div class="card-title">Event Sales Tracker: Building a Tool in One Afternoon with AI</div>
+  <div class="card-source">&#x1f4cc; 2026.06 &middot; DMVoice AI Group &times; Syneira Lab</div>
+  <div class="label label-h">&starf; Plain-English Highlight</div>
+  <p>A community yard sale needed on-site sales tracking. POS systems were too heavy, notes too light. <strong>In one afternoon, built a pure-frontend PWA with AI assistance</strong>: React + IndexedDB, zero backend, zero ops, zero login. Scan a QR code to use, all data stays on-device. Four rounds of iteration based on real field feedback.</p>
+  <div class="label label-s">&#x1f4a1; So What</div>
+  <p>Not every project needs a backend. PWA + IndexedDB is enough for pop-up event scenarios. AI assistance made "zero to deployed in one afternoon" real. That pace was not possible before.</p>
+  <div class="label label-w">&#x1f469;&zwj;&#x1f4bb; Best For</div>
+  <p><span class="badge">Community event organizers</span><span class="badge">AI tool builders</span><span class="badge">PWA curious</span></p>
+  <a href="../notes/event-sales-tracker.html" class="read-more">&#x1f4d6; Read the retrospective &rarr;</a>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">&starf; AI DIGEST by Syneira &starf;</div>
+  <p>
+    Curated by community members &middot; Weekly issue + occasional deep dives<br>
+    Filter: useful &gt; flashy &middot; usable &gt; impressive<br><br>
+    <span class="badge" style="background:#EBF2FD;color:#3A7BD4;border:none;">Trend Signal</span>
+    <span class="badge" style="background:#FDF0EB;color:#D4603A;border:none;">Tool Update</span>
+    <span class="badge" style="background:#F5EFF8;color:#9B6DB7;border:none;">Learning Guide</span>
+    <span class="badge" style="background:#E8F6F3;color:#2A9D8F;border:none;">Perspective</span>
+    <br><br>
+    &#x1f4ac; Found something good? Share it with the group. It may become a future pick.<br><br>
+    &#x1f91d; <a href="https://salonette.syneira.org/" target="_blank" rel="noopener" style="color:#7e73ff;text-decoration:none;font-weight:600;">Access Group Salone &#x2197;</a><br><br>
+    <a href="../feedback.html" style="color:#2A9D8F;text-decoration:none;font-weight:600;">&#x1f4ac; Leave a comment &rarr;</a>
+  </p>
+</div>
+
+</div>
+
+<div class="nav" style="padding-bottom:40px; text-align:center;">
+  <a href="../index.html" data-i18n="nav.back">&larr; 返回首页 / Back to Home</a>
+</div>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

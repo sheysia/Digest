@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Event Sales Tracker · 项目复盘</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="tpl-est">
+<div class="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide" data-title="Cover">
+    <p class="kicker">project retrospective / 2026-06</p>
+    <h1 class="h1 anim-fade-up" data-anim="fade-up">Event Sales Tracker<br><span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">用 AI 一个下午做一个工具</span></h1>
+    <p class="lede mt-m">线下活动销售记录 PWA：从需求到上线的完整复盘</p>
+    <div class="speaker"><div class="av"></div><div><b>Syneira Lab</b><span>DMVoice AI Group · sale.syneira.org</span></div></div>
+    <div class="deck-footer"><span class="mono">#PWA #React #offline-first</span><span class="slide-number" data-current="1" data-total="9"></span></div>
+  </section>
+
+  <!-- 2. 项目起因 -->
+  <section class="slide" data-title="Why">
+    <p class="kicker">// why</p>
+    <h2 class="h2">起因：社区活动需要工具支持</h2>
+    <div class="grid g2 mt-l" style="align-items:start">
+      <div>
+        <p class="lede">社区有一场线下活动（yard sale / pop-up market），我们社群作为 support，需要现场记录销售。</p>
+        <div class="stack mt-l" style="gap:12px">
+          <div class="card"><h4>场景约束</h4><p class="dim">单人单 iPad，户外使用，网络不稳定，一边聊天一边记账</p></div>
+          <div class="card"><h4>现有工具不合适</h4><p class="dim">POS 系统太重，记事本太轻，Excel 不够快</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-top:40px">
+          <h4>决定自己做</h4>
+          <p class="dim" style="font-size:18px;line-height:1.7;margin-top:12px">
+            最小可用<br>
+            当天能上线<br>
+            扫码就能用<br>
+            不需要下载安装
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 技术选型 -->
+  <section class="slide" data-title="Tech Stack">
+    <p class="kicker">// tech stack</p>
+    <h2 class="h2">技术选型：能不建服务器就不建</h2>
+    <div class="grid g3 mt-l">
+      <div class="card card-accent"><h4>React + Vite + TS</h4><p class="dim">开发速度快，静态构建，无 SSR</p></div>
+      <div class="card card-accent"><h4>IndexedDB (Dexie)</h4><p class="dim">数据存设备本地，从不上传，浏览器就是数据库</p></div>
+      <div class="card card-accent"><h4>Tailwind CSS v4</h4><p class="dim">@theme token 出 UI，触屏优先，大按钮</p></div>
+      <div class="card card-teal"><h4>SheetJS</h4><p class="dim">浏览器端解析 Excel，不需要服务器</p></div>
+      <div class="card card-teal"><h4>vite-plugin-pwa</h4><p class="dim">Workbox 离线缓存，添加到主屏幕后完全离线可用</p></div>
+      <div class="card card-teal"><h4>Vercel</h4><p class="dim">push 即部署，自定义域名 sale.syneira.org</p></div>
+    </div>
+    <p class="lede mt-l">纯前端 PWA：零后端、零运维、零登录、零成本</p>
+  </section>
+
+  <!-- 4. 核心设计决策 -->
+  <section class="slide" data-title="Design Decisions">
+    <p class="kicker">// design decisions</p>
+    <h2 class="h2">五个关键设计决策</h2>
+    <div class="stack mt-l" style="gap:14px">
+      <div class="iter-row"><span class="label">决策 1</span><span class="body">两张表（Items + Sales）<span class="arrow">→</span> 一个商品多次卖出、不同价格、不同收款方式，撤销干净</span></div>
+      <div class="iter-row"><span class="label">决策 2</span><span class="body">Sold 弹窗两次点击完成 <span class="arrow">→</span> 户外单手操作，成交价和 Cash 都默认填好</span></div>
+      <div class="iter-row"><span class="label">决策 3</span><span class="body">按收款方式分项汇总 <span class="arrow">→</span> Cash / Venmo / Zelle 对账才是真正需求</span></div>
+      <div class="iter-row"><span class="label">决策 4</span><span class="body">强推 Add to Home Screen <span class="arrow">→</span> Safari 7 天清除策略，主屏幕 PWA 豁免</span></div>
+      <div class="iter-row"><span class="label">决策 5</span><span class="body">默认价格 $1 <span class="arrow">→</span> yard sale 物品金额小，减少输入</span></div>
+    </div>
+  </section>
+
+  <!-- 5. 功能清单 -->
+  <section class="slide" data-title="Features">
+    <p class="kicker">// features</p>
+    <h2 class="h2">v1 功能清单</h2>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="icon">📥</div><b>Excel 导入</b><div class="sub">自动识别表头、预览、追加/替换</div></div>
+      <div class="feat-item"><div class="icon">✏️</div><b>添加 / 编辑商品</b><div class="sub">价格默认 $1，库存等比调整</div></div>
+      <div class="feat-item"><div class="icon">📷</div><b>拍照缩略图</b><div class="sub">200px 压缩，可选，认出就行</div></div>
+      <div class="feat-item"><div class="icon">💰</div><b>SOLD 流程</b><div class="sub">确认价格 / 数量 / 收款方式</div></div>
+      <div class="feat-item"><div class="icon">↩️</div><b>撤销</b><div class="sub">Toast 弹窗 + 汇总页每行</div></div>
+      <div class="feat-item"><div class="icon">📊</div><b>汇总页</b><div class="sub">总收入、分项、复制 / 分享</div></div>
+      <div class="feat-item"><div class="icon">📤</div><b>导出</b><div class="sub">CSV + XLSX 备份，独立按钮</div></div>
+      <div class="feat-item"><div class="icon">🛡️</div><b>两步清空防护</b><div class="sub">先提示导出，再确认清空</div></div>
+      <div class="feat-item"><div class="icon">📱</div><b>QR 指引卡</b><div class="sub">可打印 HTML，活动现场发放</div></div>
+    </div>
+  </section>
+
+  <!-- 6. 迭代过程 -->
+  <section class="slide" data-title="Iterations">
+    <p class="kicker">// user feedback → ship</p>
+    <h2 class="h2">迭代：反馈驱动，几分钟上线</h2>
+    <div class="stack mt-l" style="gap:14px">
+      <div class="iter-row"><span class="label">v1.0</span><span class="body">基础功能上线：导入、售出、汇总、导出</span></div>
+      <div class="iter-row"><span class="label">反馈 1</span><span class="body">价格默认太高 <span class="arrow">→</span> 改为默认 $1</span></div>
+      <div class="iter-row"><span class="label">反馈 2</span><span class="body">希望能拍照识别商品 <span class="arrow">→</span> 加了可选拍照，缩略图显示在卡片上</span></div>
+      <div class="iter-row"><span class="label">反馈 3</span><span class="body">需要双域名 <span class="arrow">→</span> 短域名方便传播 + 长域名保持透明度</span></div>
+      <div class="iter-row"><span class="label">反馈 4</span><span class="body">需要现场指引 <span class="arrow">→</span> 生成可打印 QR 指引卡</span></div>
+    </div>
+    <p class="lede mt-l">每次改动都是 AI 辅助 → git push → Vercel 自动部署 → 刷新即生效</p>
+  </section>
+
+  <!-- 7. 隐私与信任 -->
+  <section class="slide" data-title="Privacy">
+    <p class="kicker">// privacy & trust</p>
+    <h2 class="h2">隐私与信任设计</h2>
+    <div class="grid g2 mt-l" style="align-items:start">
+      <div>
+        <div class="stack" style="gap:14px">
+          <div class="card card-accent"><h4>数据完全本地</h4><p class="dim">所有销售数据存在设备上，从不上传，无服务器、无数据库</p></div>
+          <div class="card card-accent"><h4>无登录无追踪</h4><p class="dim">不需要注册账号，不收集任何用户信息</p></div>
+          <div class="card card-accent"><h4>透明声明</h4><p class="dim">Settings 底部明确说明技术架构和隐私策略</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-teal" style="margin-top:0">
+          <h4>双域名策略</h4>
+          <p class="dim" style="font-size:16px;line-height:1.8;margin-top:12px">
+            <b style="color:var(--accent)">sale.syneira.org</b><br>
+            短域名，方便记忆和口头传播<br><br>
+            <b style="color:var(--accent-2)">eventsale.vercel.app</b><br>
+            Vercel 托管地址，保持平台透明度
+          </p>
+          <p class="dim" style="margin-top:16px;font-style:italic">"Sales tracker for your convenience, optional to use"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 启发 -->
+  <section class="slide" data-title="Takeaways">
+    <p class="kicker">// takeaways</p>
+    <h2 class="h2">给社群的启发</h2>
+    <div class="grid g3 mt-l">
+      <div class="card card-accent"><h4>不是所有项目都需要后端</h4><p class="dim">PWA + IndexedDB 在临时活动场景下完全够用，零成本零运维</p></div>
+      <div class="card card-accent"><h4>AI 辅助 = 速度</h4><p class="dim">一个下午从零到上线，AI 处理样板代码，人专注决策和体验</p></div>
+      <div class="card card-accent"><h4>反馈 → 迭代 → 上线</h4><p class="dim">每次改动几分钟 push 上线，这个节奏比完美设计更重要</p></div>
+    </div>
+    <div class="grid g2 mt-m">
+      <div class="card card-teal"><h4>最小可用 > 完美设计</h4><p class="dim">先做能用的，再根据真实反馈优化，不猜用户需要什么</p></div>
+      <div class="card card-teal"><h4>信任靠透明</h4><p class="dim">数据本地、隐私声明、正规托管，用户看到就放心</p></div>
+    </div>
+  </section>
+
+  <!-- 9. 尾页 -->
+  <section class="slide center tc" data-title="End">
+    <div>
+      <h2 class="h2" style="font-size:36px;margin-bottom:8px">扫码体验</h2>
+      <p class="lede" style="font-size:28px;margin:20px auto"><b style="color:var(--accent)">sale.syneira.org</b></p>
+      <p class="lede" style="font-size:14px;margin:4px auto;color:var(--text-3)">(eventsale.vercel.app)</p>
+      <div class="row mt-l" style="justify-content:center;gap:12px">
+        <span class="tag">GitHub: sheysia/event-sales-tracker</span>
+      </div>
+      <p style="margin-top:40px;color:var(--text-3);font-size:14px">DMVoice AI Group | Syneira Lab · 2026-06</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+</body></html>

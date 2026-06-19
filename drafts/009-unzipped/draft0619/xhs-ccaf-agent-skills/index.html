@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=540, initial-scale=1" />
+  <title>CCAF · Introduction to Agent Skills</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ════ 01 封面 ════ -->
+<section class="page cover">
+  <div class="page-inner cover-inner">
+    <div class="cover-vline"></div>
+    <span class="cover-kicker">CCAF CERTIFICATION</span>
+    <h1 class="cover-title">课程精华<span class="en">Introduction to<br>Agent Skills</span></h1>
+    <p class="cover-answer">Anthropic 官方认证课程<br>6节课精华浓缩 × 考试考点映射</p>
+    <div class="cover-line"></div>
+    <div class="author-bar">
+      <div class="avatar"></div>
+      <span class="author-name">organized by Syneira</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 02 课程介绍 ════ -->
+<section class="page ruled">
+  <div class="page-inner">
+    <h2 class="section-title">关于这门课</h2>
+    <div class="text-block">
+      <p>Anthropic 官方认证课程，共 6 节，教你如何让 Claude Code <strong>学一次，自动用</strong>。</p>
+      <p>涵盖 Skills 的创建、配置、多文件组织、与 CLAUDE.md / Hooks / Subagents 的区别、团队共享与排错。</p>
+    </div>
+    <div class="about-en">
+      <p>In this course, you'll learn how to stop repeating yourself and start teaching Claude once.</p>
+      <p>You'll discover what Skills are, how they differ from CLAUDE.md, hooks, and subagents. You'll create Skills from scratch, configure advanced options like <strong>allowed-tools</strong>, organize multi-file structures with progressive disclosure, share them via Git / plugins / enterprise settings, and troubleshoot common issues.</p>
+    </div>
+    <div class="callout" style="margin-top:10px">
+      <strong>完整笔记请下载 PDF 版本</strong><br>
+      图文为精华浓缩，全课程详细整理见 PDF
+    </div>
+  </div>
+</section>
+
+<!-- ════ 03 课程目录 ════ -->
+<section class="page">
+  <div class="page-inner">
+    <h2 class="section-title">Curriculum</h2>
+    <div class="curriculum-list">
+      <div class="cur-item done">
+        <div class="cur-num">01</div>
+        <div class="cur-content">
+          <div class="cur-title">What are skills?</div>
+          <div class="cur-desc">定义、存放位置、与其他功能初步对比</div>
+        </div>
+      </div>
+      <div class="cur-item done">
+        <div class="cur-num">02</div>
+        <div class="cur-content">
+          <div class="cur-title">Creating your first skill</div>
+          <div class="cur-desc">从零创建、测试、匹配机制、优先级</div>
+        </div>
+      </div>
+      <div class="cur-item done">
+        <div class="cur-num">03</div>
+        <div class="cur-content">
+          <div class="cur-title">Configuration and multi-file skills</div>
+          <div class="cur-desc">allowed-tools、model、progressive disclosure</div>
+        </div>
+      </div>
+      <div class="cur-item done">
+        <div class="cur-num">04</div>
+        <div class="cur-content">
+          <div class="cur-title">Skills vs. other Claude Code features</div>
+          <div class="cur-desc">CLAUDE.md / Hooks / Subagents / Slash Commands</div>
+        </div>
+      </div>
+      <div class="cur-item done">
+        <div class="cur-num">05</div>
+        <div class="cur-content">
+          <div class="cur-title">Sharing skills</div>
+          <div class="cur-desc">Git 共享、Plugins、Enterprise、Subagent 集成</div>
+        </div>
+      </div>
+      <div class="cur-item done">
+        <div class="cur-num">06</div>
+        <div class="cur-content">
+          <div class="cur-title">Troubleshooting skills</div>
+          <div class="cur-desc">不触发、不加载、优先级冲突、运行时错误</div>
+        </div>
+      </div>
+    </div>
+    <div class="completion-badge">6 of 6 lessons completed (100%)</div>
+  </div>
+</section>
+
+<!-- ════ 04 Skills 定义 + 存放 ════ -->
+<section class="page ruled">
+  <div class="page-inner">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Skills 是什么 + 在哪里</h2>
+    <div class="callout">
+      Skills = 可复用的 <strong>markdown 指令文件</strong>，Claude Code 根据任务自动匹配加载。
+    </div>
+    <div class="sub-label">存放位置</div>
+    <table class="info-table">
+      <tr><th>位置</th><th>路径</th><th>共享</th></tr>
+      <tr><td><strong>个人</strong></td><td><code>~/.claude/skills/</code></td><td>仅自己，跨项目</td></tr>
+      <tr><td><strong>项目</strong></td><td><code>.claude/skills/</code></td><td>Git 共享团队</td></tr>
+    </table>
+    <div class="callout hl" style="margin-top:10px">
+      <strong>优先级（考试高频）</strong><br>
+      Enterprise > Personal > Project > Plugins
+    </div>
+  </div>
+</section>
+
+<!-- ════ 03 核心结构与加载 ════ -->
+<section class="page">
+  <div class="page-inner">
+    <span class="section-num">02</span>
+    <h2 class="section-title">核心结构与加载机制</h2>
+    <div class="code-block"><span class="cmt">---</span>
+<span class="kw">name:</span> <span class="str">pr-review</span>
+<span class="kw">description:</span> <span class="str">Reviews pull requests</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">for code quality.</span>
+<span class="cmt">---</span>
+<span class="cmt">（下面写具体指令）</span></div>
+    <div class="sub-label">加载机制</div>
+    <div class="text-block">
+      <p>启动时只加载 <strong>name + description</strong>，不占满 context</p>
+      <p>请求匹配时才加载完整内容</p>
+      <p>加载前会有<strong>确认提示</strong></p>
+      <p>description 是 Claude 匹配请求的唯一依据</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 04 Chapter 分隔 ════ -->
+<section class="page chapter lit">
+  <div class="page-inner chapter-inner">
+    <span class="chapter-num">Part 02</span>
+    <h2 class="chapter-title">配置与对比</h2>
+    <p class="chapter-subtitle">高级字段、工具限制，以及<br>Skills 和其他功能的核心区别</p>
+  </div>
+</section>
+
+<!-- ════ 05 Frontmatter + allowed-tools ════ -->
+<section class="page ruled">
+  <div class="page-inner">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Frontmatter 与工具限制</h2>
+    <table class="info-table">
+      <tr><th>字段</th><th class="cell-center">必填</th><th>作用</th></tr>
+      <tr><td><strong>name</strong></td><td class="cell-center">✅</td><td>标识 skill</td></tr>
+      <tr><td><strong>description</strong></td><td class="cell-center">✅</td><td>Claude 匹配请求的依据</td></tr>
+      <tr><td><strong>allowed-tools</strong></td><td class="cell-center"></td><td>限制 skill 可用的工具</td></tr>
+      <tr><td><strong>model</strong></td><td class="cell-center"></td><td>指定使用哪个模型</td></tr>
+    </table>
+    <div class="code-block" style="margin-top:10px"><span class="kw">allowed-tools:</span> <span class="str">Read, Grep, Glob, Bash</span>
+<span class="cmt"># 只允许读操作 → 安全审计/只读场景</span></div>
+    <div class="text-block" style="margin-top:10px">
+      <p>SKILL.md 控制在 <strong>500 行以内</strong></p>
+      <p>详细参考放 references/ 子目录，按需读取</p>
+      <p>脚本执行不加载源码，<strong>只输出消耗 token</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 06 功能对比 (KEY) ════ -->
+<section class="page compact">
+  <div class="page-inner">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Skills vs 其他功能</h2>
+    <table class="info-table">
+      <tr><th>功能</th><th>加载时机</th><th>触发方式</th><th class="cell-center">隔离</th></tr>
+      <tr><td><strong>CLAUDE.md</strong></td><td>每次对话</td><td>自动</td><td class="cell-center">_</td></tr>
+      <tr><td><strong>Skills</strong></td><td>按需匹配</td><td>自动</td><td class="cell-center">_</td></tr>
+      <tr><td><strong>Slash Cmd</strong></td><td>不自动</td><td>手动输入</td><td class="cell-center">_</td></tr>
+      <tr><td><strong>Hooks</strong></td><td>事件触发</td><td>自动</td><td class="cell-center">_</td></tr>
+      <tr class="hl-row"><td><strong>Subagents</strong></td><td>独立上下文</td><td>委派任务</td><td class="cell-center">✅</td></tr>
+    </table>
+    <div class="callout hl" style="margin-top:10px">
+      <strong>考试判断框架</strong><br>
+      始终生效 → CLAUDE.md<br>
+      按任务自动匹配 → Skills<br>
+      手动调用 → Slash Commands<br>
+      确定性合规 → Hooks<br>
+      隔离执行 → Subagents
+    </div>
+  </div>
+</section>
+
+<!-- ════ 07 共享与分发 ════ -->
+<section class="page">
+  <div class="page-inner">
+    <span class="section-num">05</span>
+    <h2 class="section-title">共享与分发</h2>
+    <table class="info-table">
+      <tr><th>方式</th><th>适用场景</th><th>优先级</th></tr>
+      <tr><td><strong>项目 .claude/</strong></td><td>团队标准，Git 共享</td><td>Project</td></tr>
+      <tr><td><strong>Plugins</strong></td><td>跨项目社区分发</td><td>最低</td></tr>
+      <tr><td><strong>Enterprise</strong></td><td>组织强制标准</td><td>最高</td></tr>
+    </table>
+    <div class="callout" style="margin-top:12px">
+      <strong>Subagent × Skills 陷阱（考试常考）</strong><br>
+      ❌ Subagent <strong>不自动继承</strong> skills<br>
+      ❌ 内置 agent（Explorer/Plan/Verify）<strong>完全无法</strong>访问 skills<br>
+      ✅ 自定义 subagent 在 frontmatter 里<strong>显式声明 skills 字段</strong>才能使用
+    </div>
+    <div class="code-block" style="margin-top:10px"><span class="kw">skills:</span> <span class="str">accessibility-audit, performance-check</span>
+<span class="cmt"># 在自定义 agent frontmatter 中声明</span></div>
+  </div>
+</section>
+
+<!-- ════ 08 排错速查 ════ -->
+<section class="page compact">
+  <div class="page-inner">
+    <span class="section-num">06</span>
+    <h2 class="section-title">排错速查</h2>
+    <table class="info-table">
+      <tr><th>问题</th><th>原因</th><th>解决</th></tr>
+      <tr><td>Skill 不触发</td><td>description 不匹配</td><td>加入实际关键词</td></tr>
+      <tr><td>Skill 不加载</td><td>文件结构错误</td><td>SKILL.md 在命名目录内</td></tr>
+      <tr><td>用错了 Skill</td><td>多个 description 太像</td><td>让描述更具区分度</td></tr>
+      <tr><td>被覆盖</td><td>优先级冲突</td><td>改名或检查层级</td></tr>
+      <tr><td>运行时错误</td><td>依赖/权限/路径</td><td>chmod +x，前斜杠路径</td></tr>
+    </table>
+    <div class="callout" style="margin-top:10px">
+      <strong>调试工具</strong><br>
+      <code>claude --debug</code> 查看加载错误日志<br>
+      Agent skills validator 检查结构问题
+    </div>
+    <div class="text-block" style="margin-top:8px">
+      <p>Plugin skills 不出现？清除缓存，重启，重新安装</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 09 考试映射 ════ -->
+<section class="page compact">
+  <div class="page-inner">
+    <span class="section-num">07</span>
+    <h2 class="section-title">考试映射</h2>
+    <span class="exam-tag covered">课程覆盖 · TASK 3.2</span>
+    <div class="marker-list">
+      <div class="marker-item"><span class="mk">✅</span> Skills 存放位置（personal vs project）</div>
+      <div class="marker-item"><span class="mk">✅</span> SKILL.md frontmatter（name, description, allowed-tools）</div>
+      <div class="marker-item"><span class="mk">✅</span> Skills vs CLAUDE.md vs Slash Commands 区别</div>
+      <div class="marker-item"><span class="mk">✅</span> context: fork 概念（通过 subagent 隔离）</div>
+    </div>
+    <span class="exam-tag gap" style="margin-top:10px">课程未讲但会考</span>
+    <div class="marker-list">
+      <div class="marker-item"><span class="mk">⚠️</span> context: fork 作为 frontmatter 的具体配置</div>
+      <div class="marker-item"><span class="mk">⚠️</span> argument-hint frontmatter 参数提示</div>
+      <div class="marker-item"><span class="mk">⚠️</span> .claude/commands/ 的 slash commands 创建</div>
+      <div class="marker-item"><span class="mk">⚠️</span> Skills 在 CI/CD 场景中的应用</div>
+      <div class="marker-item"><span class="mk">⚠️</span> Skills（按需）vs CLAUDE.md（always-on）判断题</div>
+    </div>
+    <div class="callout hl" style="margin-top:8px">
+      <strong>典型考题</strong> Skill 执行产生大量 verbose 输出，如何防止污染主对话？<br>→ <strong>context: fork</strong> 在隔离 sub-agent 中运行
+    </div>
+  </div>
+</section>
+
+<!-- ════ 12 结尾 ════ -->
+<section class="page ending">
+  <div class="page-inner ending-inner">
+    <p class="ending-quote">
+      如果你发现自己在<br>
+      反复向 Claude 解释同一件事，<br>
+      <strong>那就是一个 Skill<br>等着被写出来。</strong>
+    </p>
+    <div class="final-divider"></div>
+    <p class="section-ending">
+      CCAF · Introduction to Agent Skills<br>
+      课程精华 × 考试映射
+    </p>
+    <p class="pdf-note">全课程完整笔记 + 详细考点分析<br>请下载 PDF 版本</p>
+    <div class="author-bar">
+      <div class="avatar"></div>
+      <div class="author-info">
+        <span class="author-name">organized by Syneira</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

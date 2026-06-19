@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="从 Karpathy 的 Software 1.0/2.0/3.0 框架出发，探讨 AI 时代学习什么不会过时。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.jpg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="学得快是不是无用功 | AI Digest #009" />
+  <meta property="og:description" content="从 Karpathy 的 Software 1.0/2.0/3.0 框架出发，探讨 AI 时代学习什么不会过时。" />
+  <meta property="og:url" content="https://syneira.org/notes/learning-in-ai-era.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="学得快是不是无用功 | AI Digest #009" />
+  <meta name="twitter:description" content="从 Karpathy 的 Software 1.0/2.0/3.0 框架出发，探讨 AI 时代学习什么不会过时。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+<title>学得快是不是无用功 | AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --white:#FFFFFF;--iris-light:#F4F3F1;--iris:#E8E6E1;
+    --grey:#B0ADA6;--grey-mid:#8A8780;
+    --text:#2C2B28;--text-body:#4A4945;--text-light:#9A9890;
+    --teal:#2A9D8F;--teal-dark:#1E7A6F;--black:#1A1918;
+    --orange:#C97B4B;--blue:#4A7BA8;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:2;font-size:15px;background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 28px 72px}
+
+  /* ── Header ── */
+  .header{margin:32px 0 40px}
+  .header-brand{font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:6px}
+  .header-issue{font-size:11px;color:var(--teal);letter-spacing:1px;margin-bottom:20px}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:16px}
+  .header-sub{font-size:15px;color:var(--grey-mid);line-height:1.7;font-weight:300}
+  .header-meta{font-size:11px;color:var(--grey);margin-top:20px;letter-spacing:0.5px}
+  .header-line{width:40px;height:2px;background:var(--teal);margin-top:28px}
+
+  /* ── Divider ── */
+  .divider{display:flex;align-items:center;gap:16px;margin:44px 0 36px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--iris)}
+  .divider .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+  /* ── Section ── */
+  .section-head{margin-bottom:20px}
+  .section-label{font-size:11px;font-weight:500;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--black);line-height:1.3}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:300;line-height:2.1}
+
+  /* ── Code ── */
+  code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--iris-light);border:1px solid var(--iris);padding:1px 6px;border-radius:3px;color:var(--text)}
+
+  /* ── Tip ── */
+  .tip{border-left:3px solid var(--teal);padding:14px 18px;margin:24px 0;background:var(--iris-light);border-radius:0 6px 6px 0}
+  .tip-mark{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;position:relative;top:-1px}
+  .tip p{margin:0;font-size:13.5px;color:var(--text);line-height:1.8}
+
+  /* ── Scene ── */
+  .scene{border-left:2px solid var(--iris);padding:12px 18px;margin:20px 0 24px;color:var(--grey-mid);font-size:14px;line-height:1.9}
+  .scene em{font-style:italic;color:var(--text-light)}
+
+  /* ── Table ── */
+  .tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--iris);color:var(--text);font-weight:700;font-size:12px;letter-spacing:0.5px}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--iris);color:var(--text-body);vertical-align:top;line-height:1.6}
+  .tbl tr:last-child td{border-bottom:none}
+
+  /* ── Step cards ── */
+  .progression{display:flex;flex-direction:column;gap:2px;margin:24px 0}
+  .step{background:var(--iris-light);padding:16px 20px;display:flex;gap:14px;align-items:flex-start}
+  .step:first-child{border-radius:8px 8px 0 0}
+  .step:last-child{border-radius:0 0 8px 8px}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1;min-width:24px;padding-top:2px}
+  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .step-desc{font-size:13px;color:var(--grey-mid);line-height:1.7}
+
+  /* ── Closing ── */
+  .closing{margin-top:56px;text-align:center;font-size:14px;color:var(--text-body);line-height:2}
+  .closing .brand{margin-top:20px;font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase}
+
+  /* ── Footer ── */
+  .footer{margin-top:28px;padding-top:28px;border-top:1px solid var(--iris);font-size:12px;color:var(--grey);line-height:1.8;text-align:center}
+
+  @media(max-width:640px){
+    .wrap{padding:28px 20px 56px}
+    .header-title{font-size:27px}
+    .section-title{font-size:21px}
+  }
+
+  @media(prefers-color-scheme:dark){
+    :root{
+      --white:#1A1A1E;--iris-light:#2A2A2E;--iris:#333338;
+      --grey:#6A6A70;--grey-mid:#8A8A90;
+      --text:#E8E6E1;--text-body:#C5C3BE;--text-light:#7A7A80;
+      --teal:#3DBDB0;--teal-dark:#5AD4C7;--black:#F0EEEA;
+    }
+    body{background:#141416}
+    .step{background:#1E1E22}
+    .tip{background:#1E1E22}
+    .scene{border-left-color:#444448}
+  }
+</style>
+</head>
+<body>
+<div style="max-width:680px;margin:0 auto;padding:20px 28px 0;font-size:12px;color:#9A9890;">
+  <a href="../index.html" style="color:#2A9D8F;text-decoration:none;font-weight:500;">AI Digest</a>
+  <span style="color:#E8E6E1;">/</span>
+  <a href="../issues/009.html" style="color:#2A9D8F;text-decoration:none;font-weight:500;">Issue #009</a>
+  <span style="color:#E8E6E1;">/</span>
+  <span>学得快是不是无用功</span>
+</div>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <div class="header-issue">Issue #009</div>
+    <h1 class="header-title">学得快是不是无用功</h1>
+    <p class="header-sub">
+      Karpathy 把软件分成三代，把我们定位在计算的 1960 年代。在这个尺度上，「学不学」根本不是问题，问题是你学的是哪一层。
+    </p>
+    <div class="header-meta">2026.06.19 · 个人实践</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- ═══ SECTION: Software 1.0 / 2.0 / 3.0 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Framework</div>
+    <div class="section-title">Software 1.0 / 2.0 / 3.0</div>
+  </div>
+
+  <p>最近看了 Karpathy 在 YC AI Startup School 的演讲，"Software Is Changing (Again)"。四十分钟，没有一句废话。看完之后想了很久，不是因为他说了什么惊人的预言，而是因为他把我这一年多隐约感觉到但说不清楚的东西，用一个干净的框架讲明白了。</p>
+
+  <p>他把软件分成三代。Software 1.0 是我们熟悉的代码，Python、C++，人写的逻辑。Software 2.0 是神经网络，你不直接写逻辑，你给数据和目标，让训练过程「长出」逻辑。Software 3.0 是现在正在发生的事，你用自然语言写提示词，让 LLM 执行。编程语言变成了英语，或者中文。</p>
+
+  <div class="progression">
+    <div class="step">
+      <div class="step-num">1.0</div>
+      <div class="step-body">
+        <div class="step-title">传统代码</div>
+        <div class="step-desc">Python、C++，人写逻辑，机器执行。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2.0</div>
+      <div class="step-body">
+        <div class="step-title">神经网络</div>
+        <div class="step-desc">给数据和目标，让训练过程「长出」逻辑。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3.0</div>
+      <div class="step-body">
+        <div class="step-title">自然语言编程</div>
+        <div class="step-desc">用提示词让 LLM 执行。编程语言变成了英语，或者中文。</div>
+      </div>
+    </div>
+  </div>
+
+  <p>这不是修辞。我回头看自己这半年的工作方式，发现确实如此。我写给 AI 的那些配置文件和规则文档，表面上是 Markdown，但它们的功能是程序。分流规则是路由逻辑，流程说明是函数定义。我不是在「用」一个工具，我是在给一台新型计算机编程。只不过编程语言碰巧是我说的话。</p>
+
+  <p>想通这件事之后，「学得快是不是无用功」这个问题就变了。</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 会过时的 vs 不会过时的 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">What Lasts</div>
+    <div class="section-title">会过时的是语法，不会过时的是思维方式</div>
+  </div>
+
+  <p>网上流传一句话，说 AI 时代学得够慢就不用学了。这句话被安在 Karpathy 头上，但他没说过。他说的是一件更具体的事：提示词模板会过时，工具安装教程会过时，某个版本的操作技巧会过时。这些确实在以月甚至周的速度贬值。如果你学的就是这些，那确实很容易产生「学了也白学」的感觉。</p>
+
+  <p>但 Karpathy 真正在讨论的问题比这大得多。他说的是，一个全新的计算范式出现了，规模相当于操作系统的诞生。不是某个 App 更新了版本，是整个计算的底层逻辑变了。在这个尺度上，「学不学」根本不是问题，问题是你学的是哪一层。</p>
+
+  <div class="scene">
+    他用了一个很精确的类比：LLM 不是电力那样的标准化商品，它更像操作系统。有闭源的（像 Windows 和 macOS 对应 OpenAI 和 Anthropic），有开源的（像 Linux 对应 Llama），有生态，有应用层。而我们当前所处的阶段，大约相当于计算的 1960 年代。所有 LLM 都集中在云端的大型机上，我们都只是通过网络访问的瘦客户端。个人计算革命还没来。
+  </div>
+
+  <p>1960 年代这个定位很值得停下来想一想。如果它成立，意味着我们面前还有小型机、个人电脑、互联网、移动互联网至少四五轮范式迁移。每一轮，具体的语言、框架、工具都会换一遍。1960 年代学的 FORTRAN 语法到今天确实没什么用了。但 1960 年代建立起来的对计算本质的理解，对「程序是什么、数据结构解决什么问题、系统怎么拆分模块」的直觉，穿越了之后的每一轮换代。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>对应到今天，会过时的是「某个模型的提示词该怎么写」，不会过时的是「怎么设计一个让 AI 和人有效协作的系统」。前者是语法，后者是思维方式。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: Jagged Intelligence ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Jagged Intelligence</div>
+    <div class="section-title">判断 AI 什么时候该信，什么时候该拦</div>
+  </div>
+
+  <p>Karpathy 自己造了一个词叫 Jagged Intelligence，参差不齐的智能。他说跟 LLM 协作的感觉是，同时在跟一个顶尖的系统编程博士和一个十岁小孩说话。它上一秒解决了一个复杂的架构问题，下一秒可能会犯一个离谱的低级错误。</p>
+
+  <p>这个观察和我的日常体验完全吻合。但更值得思考的是他从中引出的判断：人类在这个协作关系中的核心角色，是在 AI 表现为十岁小孩的那些时刻介入。</p>
+
+  <p>这件事听起来简单，做起来不简单。因为 AI 不会告诉你「我现在是十岁小孩模式」。它犯错的时候和它正确的时候一样自信。你必须自己判断什么时候该信它，什么时候该拦它。这个判断力不是读一篇文章就能获得的，它来自于大量的、具体的、和 AI 一起工作的经历。每一次你发现 AI 的输出有问题并纠正了它，你的校准就精进了一点。</p>
+
+  <div class="scene">
+    Karpathy 在今年四月的另一次对话里说了一句更精确的话：每次模型升级，你之前建立的边界感就要重新调整。因为模型变强了，之前做不到的事现在能做了，之前可靠的地方可能因为能力扩展反而引入了新的不可预测性。所以这不是学一次就够的技能，是一种持续的感知训练。
+  </div>
+
+  <p>那些「不学」的人，并不是在省时间，是在放弃建立这种感知的机会。等他们终于开始用 AI 的时候，工具确实更好用了，但他们面对的是一个从零开始的校准过程，没有任何存量直觉可以借用。</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 可验证性 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Verifiability</div>
+    <div class="section-title">AI 能自动化的是你能验证的东西</div>
+  </div>
+
+  <p>Karpathy 还提了一个判断 AI 边界的维度：可验证性。他说 AI 能自动化的是你能验证的东西。代码对不对，跑一遍测试就知道。数学算得准不准，有标准答案。这些领域 AI 进步极快，因为强化学习有清晰的奖励信号。</p>
+
+  <p>但很多真正重要的决策落在可验证性的另一端。一个选题值不值得深入，一篇文章的调性是否匹配读者的期待，一个产品方向该不该继续投入，这些判断没有标准答案，也没有自动化的验证方式。AI 可以帮你生成选项、整理素材、加速执行，但「选哪个」「要不要做」「做到什么程度停下来」这些决策，依然完全依赖于人的判断力。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>判断力的来源，恰恰是经验。是你做过、错过、纠正过、反复权衡过之后，慢慢长出来的东西。AI 加速了执行，但没有缩短判断力积累所需要的时间。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: vibe coding 到产品 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Beyond Code</div>
+    <div class="section-title">代码是最容易的部分</div>
+  </div>
+
+  <p>Karpathy 在演讲里讲了自己的一个经历。他用 vibe coding 做了一个小应用，写代码本身几个小时就搞定了。但部署上线花了整整一周，全是配置认证、支付、域名这些环节，每一步都是在浏览器后台手动点击。他说，代码是最容易的部分。</p>
+
+  <p>这句话背后的含义比表面更深。它说的不只是「部署很烦」，它说的是：AI 降低了把想法变成代码的门槛，但没有降低把代码变成产品的门槛。后者需要的不是编程能力，是工程判断力，知道一个东西从原型到上线之间有哪些环节、哪些坑、哪些决策点。这种结构性理解不会因为换了一个框架或换了一个部署平台而失效。</p>
+
+  <div class="scene">
+    Karpathy 用了钢铁侠的比喻来描述当前人和 AI 的关系。他说我们现在应该造的是战甲，不是全自主机器人。战甲有一个「自主度滑块」，你可以调整 AI 在什么程度上自己做决定、什么程度上等你确认。他明确警告说，很多人对 agent 太兴奋了。如果 AI 一次给你一千行的代码改动，那对你没用，因为你是瓶颈，你必须确认每一行都没问题。
+  </div>
+
+  <p>他的建议是小步快跑，让 AI 生成小块的、可审查的输出，人快速验证，然后进入下一轮。他把这叫做「生成-验证循环」，说让这个循环尽可能快地转起来，才是当前阶段的关键。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>我们和 AI 协作时真正在练习的，不是「怎么用 AI」，是「怎么验证 AI」。学会提问只是入门，学会判断回答的质量才是真正的能力。而后者没有速成的办法，只有在一次次具体的验证中积累。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION: 结论 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Conclusion</div>
+    <div class="section-title">学什么层决定是否过时</div>
+  </div>
+
+  <p>所以学得快是不是无用功？</p>
+
+  <p>要看你学的是什么。学某个工具的操作界面，大概率会过时。学怎么设计人和 AI 协作的流程，怎么在 AI 的参差不齐中保持判断力，怎么区分哪些事该放手让 AI 做、哪些事必须自己把关，这些不但不会过时，反而会随着模型变强而增值。因为模型越强，你能驾驭的范围越大，你的判断力的杠杆越长。</p>
+
+  <p>我没有资格说学得慢的人就一定吃亏。对很多人来说，等一等确实是合理的选择。</p>
+
+  <p>但我自己选择不等。不是因为焦虑，是因为这件事本身有意思。每天和一台新型计算机协作，感受自己对它的理解一点点变深，这个过程本身就值得。</p>
+
+  <p>至于学的东西会不会过时，我不太担心。那些会过时的部分，恰好不是我花时间最多的地方。</p>
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+  <div class="footer">
+    AI Digest by Syneira · Issue #009 · 2026.06<br>
+    内容由 AI 辅助整理，经人工审核编辑
+  </div>
+
+</div>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

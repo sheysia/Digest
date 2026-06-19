@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Event Sales Tracker: 用 AI 一个下午做一个线下活动销售记录工具，从需求到上线的完整复盘。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.jpg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Event Sales Tracker 项目复盘 | AI Digest #009" />
+  <meta property="og:description" content="用 AI 一个下午做一个线下活动销售记录工具，从需求到上线的完整复盘。" />
+  <meta property="og:url" content="https://syneira.org/notes/event-sales-tracker.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Event Sales Tracker 项目复盘 | AI Digest #009" />
+  <meta name="twitter:description" content="用 AI 一个下午做一个线下活动销售记录工具，从需求到上线的完整复盘。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+<title>Event Sales Tracker 项目复盘 | AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --white:#FFFFFF;--iris-light:#F4F3F1;--iris:#E8E6E1;
+    --grey:#B0ADA6;--grey-mid:#8A8780;
+    --text:#2C2B28;--text-body:#4A4945;--text-light:#9A9890;
+    --teal:#2A9D8F;--teal-dark:#1E7A6F;--black:#1A1918;
+    --orange:#C97B4B;--blue:#4A7BA8;--purple:#7B7FA8;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:2;font-size:15px;background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 28px 72px}
+
+  .header{margin:32px 0 40px}
+  .header-brand{font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:6px}
+  .header-issue{font-size:11px;color:var(--teal);letter-spacing:1px;margin-bottom:20px}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:16px}
+  .header-sub{font-size:15px;color:var(--grey-mid);line-height:1.7;font-weight:300}
+  .header-meta{font-size:11px;color:var(--grey);margin-top:20px;letter-spacing:0.5px}
+  .header-line{width:40px;height:2px;background:var(--teal);margin-top:28px}
+
+  .divider{display:flex;align-items:center;gap:16px;margin:44px 0 36px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--iris)}
+  .divider .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+  .section-head{margin-bottom:20px}
+  .section-label{font-size:11px;font-weight:500;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--black);line-height:1.3}
+
+  p{margin-bottom:18px}
+
+  code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--iris-light);border:1px solid var(--iris);padding:1px 6px;border-radius:3px;color:var(--text)}
+
+  .tip{border-left:3px solid var(--teal);padding:14px 18px;margin:24px 0;background:var(--iris-light);border-radius:0 6px 6px 0}
+  .tip-mark{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;position:relative;top:-1px}
+  .tip p{margin:0;font-size:13.5px;color:var(--text);line-height:1.8}
+
+  .scene{border-left:2px solid var(--iris);padding:12px 18px;margin:20px 0 24px;color:var(--grey-mid);font-size:14px;line-height:1.9}
+
+  /* Tech stack pills */
+  .tech-grid{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+  .tech-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1px solid var(--iris);color:var(--text);background:var(--iris-light)}
+  .tech-pill.primary{border-color:var(--teal);color:var(--teal-dark);background:rgba(42,157,143,0.08)}
+
+  /* Decision list */
+  .decision-list{margin:20px 0}
+  .decision{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--iris);align-items:baseline}
+  .decision:last-child{border-bottom:none}
+  .decision-num{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--teal);min-width:28px;flex-shrink:0}
+  .decision-body{flex:1}
+  .decision-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .decision-desc{font-size:13px;color:var(--grey-mid);line-height:1.7}
+
+  /* Feature grid */
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0}
+  .feat{background:var(--iris-light);border-radius:8px;padding:14px 16px;text-align:center}
+  .feat-icon{font-size:20px;margin-bottom:6px}
+  .feat-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .feat-desc{font-size:11px;color:var(--grey-mid);line-height:1.5}
+
+  /* Iteration timeline */
+  .iter{display:flex;gap:14px;margin-bottom:16px}
+  .iter-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--teal);min-width:56px;flex-shrink:0;padding-top:2px}
+  .iter-text{font-size:14px;color:var(--text-body);line-height:1.7}
+
+  .closing{margin-top:56px;text-align:center;font-size:14px;color:var(--text-body);line-height:2}
+  .closing .brand{margin-top:20px;font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase}
+
+  .footer{margin-top:28px;padding-top:28px;border-top:1px solid var(--iris);font-size:12px;color:var(--grey);line-height:1.8;text-align:center}
+
+  @media(max-width:640px){
+    .wrap{padding:28px 20px 56px}
+    .header-title{font-size:27px}
+    .section-title{font-size:21px}
+    .feat-grid{grid-template-columns:1fr 1fr}
+  }
+
+  @media(prefers-color-scheme:dark){
+    :root{
+      --white:#1A1A1E;--iris-light:#2A2A2E;--iris:#333338;
+      --grey:#6A6A70;--grey-mid:#8A8A90;
+      --text:#E8E6E1;--text-body:#C5C3BE;--text-light:#7A7A80;
+      --teal:#3DBDB0;--teal-dark:#5AD4C7;--black:#F0EEEA;
+    }
+    body{background:#141416}
+    .tech-pill{background:#1E1E22;border-color:#444448}
+    .tech-pill.primary{background:rgba(61,189,176,0.1);border-color:rgba(61,189,176,0.3)}
+    .feat{background:#1E1E22}
+  }
+</style>
+</head>
+<body>
+<div style="max-width:680px;margin:0 auto;padding:20px 28px 0;font-size:12px;color:#9A9890;">
+  <a href="../index.html" style="color:#2A9D8F;text-decoration:none;font-weight:500;">AI Digest</a>
+  <span style="color:#E8E6E1;">/</span>
+  <a href="../issues/009.html" style="color:#2A9D8F;text-decoration:none;font-weight:500;">Issue #009</a>
+  <span style="color:#E8E6E1;">/</span>
+  <span>Event Sales Tracker</span>
+</div>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <div class="header-issue">Issue #009 &middot; 社群作品回顾</div>
+    <h1 class="header-title">Event Sales Tracker<br>用 AI 一个下午做一个工具</h1>
+    <p class="header-sub">
+      社区有一场线下活动需要现场记账。现有工具要么太重要么太轻，于是决定自己做一个。从需求确认到部署上线，一个下午，一个纯前端 PWA，零后端零运维零成本。
+    </p>
+    <div class="header-meta">2026.06 &middot; 社群作品回顾 &middot; DMVoice AI Group &times; Syneira Lab</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- ═══ 起因 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Why</div>
+    <div class="section-title">社区活动需要工具支持</div>
+  </div>
+
+  <p>社区有一场线下活动（yard sale / pop-up market），我们社群作为 support，需要现场记录销售。场景约束很明确：单人单 iPad，户外使用，网络不稳定，一边聊天一边记账。</p>
+
+  <p>看了一圈现有工具：POS 系统太重，需要注册账号、绑定支付；记事本太轻，没有汇总和导出；Excel 不够快，现场一手拿东西一手操作的时候跟不上节奏。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>决定自己做。要求：最小可用，当天能上线，扫码就能用，不需要下载安装。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 技术选型 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Tech Stack</div>
+    <div class="section-title">能不建服务器就不建</div>
+  </div>
+
+  <p>整个项目是一个纯前端 PWA。没有后端，没有数据库服务，没有用户登录。数据存在设备本地的 IndexedDB 里，从不上传。</p>
+
+  <div class="tech-grid">
+    <span class="tech-pill primary">React + Vite + TS</span>
+    <span class="tech-pill primary">IndexedDB (Dexie)</span>
+    <span class="tech-pill primary">Tailwind CSS v4</span>
+    <span class="tech-pill">SheetJS</span>
+    <span class="tech-pill">vite-plugin-pwa</span>
+    <span class="tech-pill">Vercel</span>
+  </div>
+
+  <p>SheetJS 在浏览器端解析 Excel，不需要服务器参与。vite-plugin-pwa 用 Workbox 做离线缓存，添加到主屏幕后完全离线可用。Vercel push 即部署，自定义域名 <code>sale.syneira.org</code>。</p>
+
+  <div class="scene">
+    纯前端 PWA 的好处：零后端、零运维、零登录、零成本。部署在 Vercel 上，push 一次就上线。
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 设计决策 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Design Decisions</div>
+    <div class="section-title">五个关键设计决策</div>
+  </div>
+
+  <p>做这种临时工具，设计决策比技术选型更重要。每个决策都来自真实的使用场景：</p>
+
+  <div class="decision-list">
+    <div class="decision">
+      <div class="decision-num">1</div>
+      <div class="decision-body">
+        <div class="decision-title">两张表（Items + Sales）</div>
+        <div class="decision-desc">一个商品可以多次卖出、不同价格、不同收款方式。撤销的时候可以精确到每一笔。</div>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="decision-num">2</div>
+      <div class="decision-body">
+        <div class="decision-title">Sold 弹窗两次点击完成</div>
+        <div class="decision-desc">户外单手操作，成交价和 Cash 都默认填好。大多数情况下点两下就记完一笔。</div>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="decision-num">3</div>
+      <div class="decision-body">
+        <div class="decision-title">按收款方式分项汇总</div>
+        <div class="decision-desc">Cash / Venmo / Zelle 分开统计。活动结束后真正需要的是按收款方式对账，不是看总数。</div>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="decision-num">4</div>
+      <div class="decision-body">
+        <div class="decision-title">强推 Add to Home Screen</div>
+        <div class="decision-desc">Safari 7 天清除站点数据的策略，但主屏幕 PWA 豁免。加到主屏幕 = 数据不会丢。</div>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="decision-num">5</div>
+      <div class="decision-body">
+        <div class="decision-title">默认价格 $1</div>
+        <div class="decision-desc">Yard sale 物品金额普遍很小，默认 $1 减少每次输入。大金额手动改，小金额直接过。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 功能 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Features</div>
+    <div class="section-title">v1 功能清单</div>
+  </div>
+
+  <div class="feat-grid">
+    <div class="feat"><div class="feat-icon">📥</div><div class="feat-name">Excel 导入</div><div class="feat-desc">自动识别表头，预览，追加/替换</div></div>
+    <div class="feat"><div class="feat-icon">✏️</div><div class="feat-name">添加/编辑</div><div class="feat-desc">价格默认 $1，库存等比调整</div></div>
+    <div class="feat"><div class="feat-icon">📷</div><div class="feat-name">拍照缩略图</div><div class="feat-desc">200px 压缩，可选，认出就行</div></div>
+    <div class="feat"><div class="feat-icon">💰</div><div class="feat-name">SOLD 流程</div><div class="feat-desc">确认价格/数量/收款方式</div></div>
+    <div class="feat"><div class="feat-icon">↩️</div><div class="feat-name">撤销</div><div class="feat-desc">Toast 弹窗 + 汇总页逐行</div></div>
+    <div class="feat"><div class="feat-icon">📊</div><div class="feat-name">汇总页</div><div class="feat-desc">总收入、分项、复制/分享</div></div>
+    <div class="feat"><div class="feat-icon">📤</div><div class="feat-name">导出</div><div class="feat-desc">CSV + XLSX 备份</div></div>
+    <div class="feat"><div class="feat-icon">🛡️</div><div class="feat-name">两步清空</div><div class="feat-desc">先提示导出，再确认清空</div></div>
+    <div class="feat"><div class="feat-icon">📱</div><div class="feat-name">QR 指引卡</div><div class="feat-desc">可打印 HTML，现场发放</div></div>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 迭代 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Iterations</div>
+    <div class="section-title">反馈驱动，几分钟上线</div>
+  </div>
+
+  <p>v1 上线后根据真实使用反馈快速迭代。每次改动都是同一个节奏：AI 辅助改代码，git push，Vercel 自动部署，刷新即生效。</p>
+
+  <div class="iter"><span class="iter-tag">v1.0</span><span class="iter-text">基础功能上线：导入、售出、汇总、导出</span></div>
+  <div class="iter"><span class="iter-tag">反馈 1</span><span class="iter-text">价格默认太高 &rarr; 改为默认 $1</span></div>
+  <div class="iter"><span class="iter-tag">反馈 2</span><span class="iter-text">希望能拍照识别商品 &rarr; 加了可选拍照，缩略图显示在卡片上</span></div>
+  <div class="iter"><span class="iter-tag">反馈 3</span><span class="iter-text">需要双域名 &rarr; 短域名方便传播 + 长域名保持透明度</span></div>
+  <div class="iter"><span class="iter-tag">反馈 4</span><span class="iter-text">需要现场指引 &rarr; 生成可打印 QR 指引卡</span></div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 隐私 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Privacy</div>
+    <div class="section-title">隐私与信任设计</div>
+  </div>
+
+  <p>给社区做工具，信任是第一优先级。这个工具的隐私策略可以用一句话概括：<strong>所有数据都在你的设备上，从不上传，从不经过任何服务器。</strong></p>
+
+  <p>不需要注册账号，不收集任何用户信息。Settings 底部有明确的技术架构和隐私声明。双域名策略让使用者可以验证：<code>sale.syneira.org</code> 是短域名方便传播，<code>eventsale.vercel.app</code> 是 Vercel 托管地址保持平台透明度。</p>
+
+  <div class="scene">
+    "Sales tracker for your convenience, optional to use." 工具是可选的，数据是你的，信任靠透明。
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 启发 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Takeaways</div>
+    <div class="section-title">给社群的启发</div>
+  </div>
+
+  <p><strong>不是所有项目都需要后端。</strong> PWA + IndexedDB 在临时活动场景下完全够用。零成本零运维，活动结束后不用管。</p>
+
+  <p><strong>AI 辅助 = 速度。</strong> 一个下午从零到上线。AI 处理样板代码和重复工作，人专注在设计决策和用户体验上。这种节奏在以前不可能。</p>
+
+  <p><strong>反馈驱动比完美设计重要。</strong> 先做最小可用版本，上线后根据真实使用反馈迭代。每次改动几分钟 push 上线，不猜用户需要什么。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>最小可用 > 完美设计。信任靠透明。这两条适用于所有社群工具项目。</p>
+  </div>
+
+  <p style="text-align:center;margin-top:32px;">
+    <a href="https://sale.syneira.org/" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none;font-weight:600;font-size:16px;">sale.syneira.org &nearr;</a>
+    <br>
+    <span style="font-size:12px;color:var(--grey);">GitHub: sheysia/event-sales-tracker</span>
+  </p>
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 &middot; 能用 > 能看</p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+  <div class="footer">
+    AI Digest by Syneira &middot; Issue #009 &middot; 2026.06<br>
+    DMVoice AI Group &times; Syneira Lab
+  </div>
+
+</div>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

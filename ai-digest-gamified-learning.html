@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一套提示词，让 AI 把任何学科变成互动游戏 | AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--white:#FFFFFF;--iris-light:#F4F3F1;--iris:#E8E6E1;--grey:#B0ADA6;--grey-mid:#8A8780;--text:#2C2B28;--text-body:#4A4945;--text-light:#9A9890;--teal:#2A9D8F;--teal-dark:#1E7A6F;--black:#1A1918;--orange:#C97B4B;--blue:#4A7BA8}
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:2;font-size:15px;background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 28px 72px}
+  .header{margin:32px 0 40px}
+  .header-brand{font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:6px}
+  .header-issue{font-size:11px;color:var(--teal);letter-spacing:1px;margin-bottom:20px}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:16px}
+  .header-sub{font-size:15px;color:var(--grey-mid);line-height:1.7;font-weight:300}
+  .header-meta{font-size:11px;color:var(--grey);margin-top:20px;letter-spacing:0.5px}
+  .header-line{width:40px;height:2px;background:var(--teal);margin-top:28px}
+  .divider{display:flex;align-items:center;gap:16px;margin:44px 0 36px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--iris)}
+  .divider .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+  .section-head{margin-bottom:20px}
+  .section-label{font-size:11px;font-weight:500;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--black);line-height:1.3}
+  p{margin-bottom:18px}
+  .tip{border-left:3px solid var(--teal);padding:14px 18px;margin:24px 0;background:var(--iris-light);border-radius:0 6px 6px 0}
+  .tip-mark{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;position:relative;top:-1px}
+  .tip p{margin:0;font-size:13.5px;color:var(--text);line-height:1.8}
+  .scene{border-left:2px solid var(--iris);padding:12px 18px;margin:20px 0 24px;color:var(--grey-mid);font-size:14px;line-height:1.9}
+  .scene em{font-style:italic;color:var(--text-light)}
+  .prompt-block{background:var(--iris-light);border:1px solid var(--iris);border-radius:8px;padding:22px 24px;margin:24px 0;font-size:14px;line-height:2;color:var(--text)}
+  .prompt-block .prompt-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+  .prompt-block .fill{color:var(--teal-dark);font-weight:700}
+  .prompt-block p{margin-bottom:12px}
+  .prompt-block p:last-child{margin-bottom:0}
+
+  /* ── Example cards ── */
+  .example-grid{display:flex;flex-direction:column;gap:12px;margin:24px 0}
+  .example-card{background:var(--iris-light);border-radius:8px;padding:18px 20px}
+  .example-card .ec-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .example-card .ec-subject{font-size:14px;font-weight:700;color:var(--text)}
+  .example-card .ec-for{font-size:11px;color:var(--grey-mid);letter-spacing:0.5px}
+  .example-card .ec-metaphor{font-size:13px;color:var(--teal-dark);font-weight:500;margin-bottom:6px}
+  .example-card .ec-desc{font-size:13px;color:var(--grey-mid);line-height:1.7}
+
+  .progression{display:flex;flex-direction:column;gap:2px;margin:24px 0}
+  .step{background:var(--iris-light);padding:16px 20px;display:flex;gap:14px;align-items:flex-start}
+  .step:first-child{border-radius:8px 8px 0 0}
+  .step:last-child{border-radius:0 0 8px 8px}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1;min-width:24px;padding-top:2px}
+  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .step-desc{font-size:13px;color:var(--grey-mid);line-height:1.7}
+
+  .closing{margin-top:56px;text-align:center;font-size:14px;color:var(--text-body);line-height:2}
+  .closing .brand{margin-top:20px;font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase}
+  .footer{margin-top:28px;padding-top:28px;border-top:1px solid var(--iris);font-size:12px;color:var(--grey);line-height:1.8;text-align:center}
+  @media(max-width:640px){.wrap{padding:28px 20px 56px}.header-title{font-size:27px}.section-title{font-size:21px}}
+  @media(prefers-color-scheme:dark){:root{--white:#1A1A1E;--iris-light:#2A2A2E;--iris:#333338;--grey:#6A6A70;--grey-mid:#8A8A90;--text:#E8E6E1;--text-body:#C5C3BE;--text-light:#7A7A80;--teal:#3DBDB0;--teal-dark:#5AD4C7;--black:#F0EEEA}body{background:#141416}.step{background:#1E1E22}.tip{background:#1E1E22}.prompt-block{background:#1E1E22;border-color:#333338}.example-card{background:#1E1E22}.scene{border-left-color:#444448}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <div class="header-issue">Issue #006 · 实用指南</div>
+    <h1 class="header-title">一套提示词，让 AI 把任何学科变成互动游戏</h1>
+    <p class="header-sub">
+      给孩子复习也好，自己学新东西也好。把一个你陌生的知识，用一个你熟悉的场景重新讲一遍，十分钟出一个可以玩的 HTML 页面。
+    </p>
+    <div class="header-meta">2026.06 · 实操 · 可直接复制使用</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- ═══ 理念 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Idea</div>
+    <div class="section-title">核心思路：用熟悉的语境解释陌生的知识</div>
+  </div>
+
+  <p>孩子觉得分数运算无聊，但每天帮你量米做饭。AI 能做的事情是：用做饭的场景重新讲一遍分数，然后把它变成一个有进度条、有即时反馈、有通关奖励的互动页面。</p>
+
+  <p>这个方法的关键不是「让 AI 出题」，而是让 AI 用学习者已经熟悉的生活经验做类比。同样的知识点，换一套语境讲，理解速度完全不同。</p>
+
+  <p>下面这套提示词，一次复制给 Claude 或 ChatGPT，它会直接输出一个单文件 HTML 页面，浏览器打开就能用，不需要任何技术背景。</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 提示词 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Prompt</div>
+    <div class="section-title">直接复制的提示词模板</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-label">复制以下内容，修改【】里的部分</div>
+
+    <p>我想用「玩着学」的方式掌握【<span class="fill">主题，例如：分数运算 / 美国历史 / 基础理财</span>】。</p>
+
+    <p>学习者的年龄/水平：【<span class="fill">例如：小学四年级 / 初中生 / 零基础成人</span>】</p>
+
+    <p>我的背景/熟悉的语境是【<span class="fill">例如：做饭 / 打篮球 / 网上购物 / 开车</span>】，请尽量用这个语境打比方来讲解。</p>
+
+    <p>目标深度：【<span class="fill">能上手实操 / 建立概念 / 应对考试</span>】</p>
+
+    <p>请帮我做一个单文件 HTML 网页，一套互动讲解，要求：</p>
+
+    <p>1. 进阶路径：把这个主题拆成 3-6 个有先后依赖的关卡，先易后难，像一棵技能树。</p>
+    <p>2. 嚼碎：每个关卡先用我熟悉的语境做一段三句以内的极简讲解，再配 2-3 道不同形式的小题（单选 / 配对 / 排序 / 真假速判），每题答完立刻给对错 + 一句为什么。</p>
+    <p>3. 应用：最后给一个「练习场」，让我用刚学的知识做一个贴近真实的决定，并给我反馈。</p>
+    <p>4. 体验：有进度条、即时反馈、过关激励，视觉风格统一。</p>
+    <p>5. 难度刚好踩在「有点费劲但做得出来」之间，别太简单也别劝退。</p>
+
+    <p>先给我整体关卡大纲让我确认，再逐关生成。</p>
+  </div>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>用 Claude Code 或者 Claude Chat 的 Artifacts 功能效果最好，它会直接输出可运行的 HTML。ChatGPT 也能用，让它输出完整代码后存成 .html 文件，双击打开即可。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 示例 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Examples</div>
+    <div class="section-title">给你几个现成的搭配灵感</div>
+  </div>
+
+  <p>【主题】和【语境】的搭配是这套方法的灵魂。下面是几个跟我们群友生活相关的例子，直接替换到提示词的【】里就能用。</p>
+
+  <div class="example-grid">
+
+    <div class="example-card">
+      <div class="ec-header">
+        <span class="ec-subject">分数与比例运算</span>
+        <span class="ec-for">小学 3-5 年级</span>
+      </div>
+      <div class="ec-metaphor">语境：做饭量米、调味料配比</div>
+      <div class="ec-desc">半杯米加水的比例是多少？食谱说 4 人份，今天只做 2 人份，盐减多少？孩子天天看你做饭，这些数字对他们来说不是抽象的。</div>
+    </div>
+
+    <div class="example-card">
+      <div class="ec-header">
+        <span class="ec-subject">美国政府三权分立</span>
+        <span class="ec-for">初中 Civics</span>
+      </div>
+      <div class="ec-metaphor">语境：学校里的角色分工</div>
+      <div class="ec-desc">校长定规则像国会立法，老师执行规则像行政分支，学生会申诉像司法审查。用孩子每天待的地方来解释他们课本上的概念。</div>
+    </div>
+
+    <div class="example-card">
+      <div class="ec-header">
+        <span class="ec-subject">基础理财：预算与储蓄</span>
+        <span class="ec-for">自己学 / 亲子</span>
+      </div>
+      <div class="ec-metaphor">语境：做饭 / 超市购物</div>
+      <div class="ec-desc">每周买菜预算 $150，怎么分配蛋白质、蔬菜、零食的比例？哪些是必须开支哪些可以砍？理财的底层逻辑跟做一周菜单是一回事。</div>
+    </div>
+
+    <div class="example-card">
+      <div class="ec-header">
+        <span class="ec-subject">英语写作结构</span>
+        <span class="ec-for">初高中 ELA</span>
+      </div>
+      <div class="ec-metaphor">语境：搭乐高 / 盖房子</div>
+      <div class="ec-desc">Topic sentence 是地基，supporting details 是墙壁，conclusion 是屋顶。少了哪一块房子都站不住。段落结构用建筑的逻辑讲，比背模板有用。</div>
+    </div>
+
+    <div class="example-card">
+      <div class="ec-header">
+        <span class="ec-subject">职场数据分析入门</span>
+        <span class="ec-for">自己学</span>
+      </div>
+      <div class="ec-metaphor">语境：看孩子的成绩单</div>
+      <div class="ec-desc">平均分、中位数、趋势、离群值——这些统计概念你在看孩子成绩单的时候其实一直在用，只是不知道它们的名字。用成绩单数据学 Excel 数据分析，零基础也能上手。</div>
+    </div>
+
+    <div class="example-card">
+      <div class="ec-header">
+        <span class="ec-subject">中文阅读理解</span>
+        <span class="ec-for">中文学校 / 亲子</span>
+      </div>
+      <div class="ec-metaphor">语境：看动画片 / 讲故事</div>
+      <div class="ec-desc">用孩子看过的中文动画情节做阅读理解题。谁是主角？他为什么做这个选择？如果换一种做法会怎样？阅读理解不是课本专利。</div>
+    </div>
+
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ 怎么用 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">How To</div>
+    <div class="section-title">具体怎么操作</div>
+  </div>
+
+  <div class="progression">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">复制提示词，填入你的主题和语境</div>
+        <div class="step-desc">想清楚两件事：孩子（或自己）要学的是什么，他/她日常最熟悉的场景是什么。两者越具体越好。「做饭」比「生活」好，「周末篮球训练」比「运动」好。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">发给 AI，先看大纲</div>
+        <div class="step-desc">提示词最后一句要求 AI 先给大纲再生成内容。看看关卡拆分是否合理，难度是否合适，语境类比是否贴切。不满意就让它调整。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">确认后让 AI 生成完整 HTML</div>
+        <div class="step-desc">Claude 的 Artifacts 会直接在右侧面板渲染出来，可以马上试玩。如果用其他工具，把输出的代码存成 .html 文件，浏览器双击打开就行。手机也能用。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">跟孩子一起玩，或者自己闯关</div>
+        <div class="step-desc">有进度条、有即时反馈、有通关激励。一个主题大概 10-15 分钟能做完。做完一个，换个主题再来一个。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <em>这个方法的底层逻辑是：</em>学习最大的障碍不是内容难，是「跟我无关」。当 AI 用你已经理解的经验去解释你还不懂的知识，理解成本直接降一半。剩下的一半靠练习补，而互动小题提供了练习的场景和即时反馈。
+  </div>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>如果做出来效果不错，可以发到群里分享。其他人换一个主题和语境，同样的提示词又能生成一个全新的学习页面。一套模板，无限复用。</p>
+  </div>
+
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+  <div class="footer">
+    AI Digest by Syneira · Issue #006 · 2026.06<br>
+    内容由 AI 辅助整理，经人工审核编辑
+  </div>
+
+</div>
+</body>
+</html>

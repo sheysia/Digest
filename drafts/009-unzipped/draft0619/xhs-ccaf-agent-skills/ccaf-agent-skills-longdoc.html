@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Introduction to Agent Skills · 课程精华与考试映射</title>
+<meta name="author" content="Syneira">
+<meta name="description" content="Anthropic CCAF 认证课程 Introduction to Agent Skills 6节课完整笔记，含考试考点映射">
+<meta name="keywords" content="CCAF, Agent Skills, Claude Code, 认证, 考试">
+<meta name="generator" content="Kami">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  @page {
+    size: A4;
+    margin: 20mm 22mm 22mm 22mm;
+    background: #f5f4ed;
+    @bottom-center {
+      content: counter(page) "  ·  CCAF · Introduction to Agent Skills";
+      font-family: "Inter", "Noto Sans SC", system-ui, sans-serif;
+      font-size: 8.5pt;
+      color: #6b6a64;
+    }
+  }
+  @page:first {
+    @bottom-center { content: ""; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --near-black:#141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --border:    #e8e6dc;
+    --border-soft:#e5e3d8;
+    --tag-bg:    #E4ECF5;
+    --warn-bg:   #FFF8E1;
+    --warn-border: #E6A817;
+    --sans: "Noto Sans SC", "PingFang SC", "Helvetica Neue", system-ui, sans-serif;
+    --en: "Inter", "Helvetica Neue", system-ui, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  }
+
+  html, body { background: var(--parchment); }
+  @media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 20mm 22mm 22mm 22mm; }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--sans);
+    font-size: 10.5pt;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    widows: 3; orphans: 3;
+  }
+
+  /* Cover */
+  .cover {
+    min-height: 220mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50mm 0 0 0;
+    break-after: page;
+  }
+  .cover-eyebrow {
+    display: inline-flex; align-items: center; gap: 8pt;
+    font-family: var(--en); font-size: 9.5pt; color: var(--brand);
+    letter-spacing: 2pt; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 18pt;
+  }
+  .cover-eyebrow::before {
+    content: ""; width: 9pt; height: 1.5pt; border-radius: 0.75pt;
+    background: var(--brand); flex-shrink: 0;
+  }
+  .cover-title {
+    font-family: var(--en); font-size: 32pt; font-weight: 700; color: var(--near-black);
+    line-height: 1.2; margin-bottom: 16pt;
+  }
+  .cover-sub {
+    font-size: 12pt; color: var(--olive); line-height: 1.7;
+    max-width: 85%; margin-bottom: 30pt;
+  }
+  .cover-meta {
+    font-size: 10pt; color: var(--stone); line-height: 1.5;
+  }
+  .cover-meta strong { color: var(--dark-warm); font-weight: 500; }
+
+  /* Headings */
+  h1 {
+    font-size: 20pt; font-weight: 700; line-height: 1.25;
+    margin: 0 0 10pt 0;
+    border-left: 2.5pt solid var(--brand); border-radius: 1.5pt;
+    padding-left: 8pt; color: var(--near-black);
+    break-after: avoid;
+  }
+  h2 {
+    font-size: 13pt; font-weight: 700; line-height: 1.35;
+    margin: 18pt 0 8pt 0; color: var(--near-black);
+    break-after: avoid;
+  }
+  h3 {
+    font-size: 11.5pt; font-weight: 600; line-height: 1.35;
+    margin: 14pt 0 6pt 0; color: var(--dark-warm);
+    break-after: avoid;
+  }
+  .chapter-num {
+    font-family: var(--en); font-size: 9.5pt; color: var(--brand);
+    letter-spacing: 1.5pt; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 6pt;
+  }
+
+  /* Text */
+  p { margin: 0 0 8pt 0; line-height: 1.6; }
+  .lead { font-size: 11pt; line-height: 1.65; color: var(--dark-warm); margin-bottom: 12pt; }
+  .hl { color: var(--brand); font-weight: 600; }
+  strong { font-weight: 600; }
+  .en-note {
+    font-family: var(--en); font-size: 9.5pt; line-height: 1.6;
+    color: var(--stone); font-style: italic; margin: 4pt 0 8pt 0;
+    padding-left: 10pt; border-left: 1.5pt solid var(--border);
+  }
+
+  ul, ol { margin: 6pt 0 10pt 0; padding-left: 20pt; line-height: 1.55; }
+  ul li::marker { color: var(--brand); }
+  ol li::marker { color: var(--brand); font-weight: 500; }
+  li { margin-bottom: 3pt; }
+
+  /* Code */
+  code {
+    font-family: var(--mono); font-size: 8.5pt;
+    background: var(--ivory); padding: 1pt 4pt; border-radius: 2pt;
+    color: var(--dark-warm);
+  }
+  pre {
+    font-family: var(--mono); font-size: 9pt; line-height: 1.5;
+    background: var(--ivory); border-radius: 4pt;
+    padding: 10pt 14pt; margin: 8pt 0; white-space: pre-wrap;
+    color: var(--near-black); break-inside: avoid;
+  }
+  pre code { background: transparent; padding: 0; font-size: inherit; }
+
+  /* Table */
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: 9.5pt; margin: 10pt 0; break-inside: avoid;
+  }
+  th {
+    text-align: left; font-weight: 600; color: var(--dark-warm);
+    padding: 6pt 8pt; border-bottom: 1pt solid var(--border);
+    font-size: 9pt; letter-spacing: 0.03em;
+  }
+  td {
+    padding: 5pt 8pt; border-bottom: 0.3pt solid var(--border-soft);
+    vertical-align: top;
+  }
+  table.compact th { padding: 3pt 6pt; font-size: 8.5pt; }
+  table.compact td { padding: 3pt 6pt; font-size: 8.5pt; line-height: 1.45; }
+  table.striped tbody tr:nth-child(even) td { background: var(--ivory); }
+
+  /* Callout */
+  .callout {
+    background: var(--ivory);
+    border-left: 2pt solid var(--brand);
+    padding: 10pt 14pt; border-radius: 3pt;
+    margin: 10pt 0; line-height: 1.55;
+    break-inside: avoid;
+  }
+  .callout-warn {
+    background: var(--warn-bg);
+    border-left: 2pt solid var(--warn-border);
+    padding: 10pt 14pt; border-radius: 3pt;
+    margin: 10pt 0; line-height: 1.55;
+    break-inside: avoid;
+  }
+
+  /* Tag */
+  .tag {
+    display: inline-block; background: var(--tag-bg);
+    color: var(--brand); font-size: 9pt; font-weight: 500;
+    padding: 1pt 6pt; border-radius: 3pt; margin-right: 4pt;
+  }
+  .tag-warn {
+    display: inline-block; background: var(--warn-bg);
+    color: #B8860B; font-size: 9pt; font-weight: 500;
+    padding: 1pt 6pt; border-radius: 3pt; margin-right: 4pt;
+  }
+
+  blockquote {
+    border-left: 2pt solid var(--brand);
+    margin: 10pt 0; padding: 4pt 0 4pt 14pt;
+    color: var(--olive); line-height: 1.55;
+    break-inside: avoid;
+  }
+
+  .chapter { break-before: page; }
+
+  /* Colophon */
+  .colophon {
+    margin-top: 40pt; padding-top: 16pt;
+    border-top: 0.5pt solid var(--border);
+    font-size: 9pt; color: var(--stone); line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══ -->
+<section class="cover">
+  <div>
+    <div class="cover-eyebrow">CCAF Certification Series</div>
+    <div class="cover-title">Introduction to<br>Agent Skills</div>
+    <div class="cover-sub">Anthropic 官方认证课程完整笔记<br>6节课精华整理 + 考试考点映射</div>
+  </div>
+  <div class="cover-meta">
+    <strong>organized by Syneira</strong><br>
+    2026.06
+  </div>
+</section>
+
+<!-- ═══ 01 Skills 概述 ═══ -->
+<section class="chapter">
+  <div class="chapter-num">01 · What Are Skills</div>
+  <h1>Skills 是什么</h1>
+
+  <p class="lead">Skills 是可复用的 markdown 指令文件，Claude Code 根据任务自动匹配并加载。写一次，之后每次遇到匹配的任务，Claude 自动应用。</p>
+  <p class="en-note">"Skills are reusable markdown instruction files. You teach Claude once, and it applies that knowledge automatically whenever a matching task comes up."</p>
+
+  <h2>核心概念</h2>
+  <p>每个 Skill 是一个文件夹，内含一个 <code>SKILL.md</code> 文件。文件分两部分：frontmatter（元数据）和具体指令。Claude 用 <code>description</code> 字段进行语义匹配，当你的请求和描述含义重叠时，Skill 被激活。</p>
+  <p class="en-note">"Each skill lives in its own named folder containing a SKILL.md file. The file has two parts: YAML frontmatter with metadata, and the instruction body below."</p>
+
+  <pre><code>---
+name: pr-review
+description: Reviews pull requests for code quality.
+             Use when reviewing PRs or checking code changes.
+---
+
+When writing a PR description:
+1. Run `git diff main...HEAD` to see all changes
+2. Write a description following this format:
+   ## What / ## Why / ## Changes</code></pre>
+
+  <h2>存放位置</h2>
+  <table>
+    <tr><th>位置</th><th>路径</th><th>共享范围</th></tr>
+    <tr><td>个人</td><td><code>~/.claude/skills/</code></td><td>仅自己，跨所有项目生效</td></tr>
+    <tr><td>项目</td><td><code>.claude/skills/</code></td><td>通过 Git 共享给团队</td></tr>
+  </table>
+  <p>Windows 下个人路径为 <code>C:/Users/&lt;user&gt;/.claude/skills</code>。项目 Skills 随代码提交到版本控制，团队成员 clone 后自动获得。</p>
+
+  <h2>加载机制</h2>
+  <p class="en-note">"At startup, Claude only loads the name and description of each skill. The full content is loaded on-demand when a request matches."</p>
+  <ul>
+    <li>启动时只加载每个 Skill 的 <span class="hl">name + description</span>，不占满 context window</li>
+    <li>当请求匹配时，Claude 提示确认后才加载完整 SKILL.md 内容</li>
+    <li>按需加载意味着你可以有很多 Skills 而不影响日常对话</li>
+  </ul>
+
+  <h2>优先级</h2>
+  <div class="callout">
+    <strong>优先级（考试高频）：</strong>Enterprise > Personal > Project > Plugins<br>
+    同名冲突时，高优先级覆盖低优先级。建议使用有区分度的命名避免冲突，如 <code>frontend-review</code> 而非 <code>review</code>。
+  </div>
+</section>
+
+<!-- ═══ 02 创建与测试 ═══ -->
+<section class="chapter">
+  <div class="chapter-num">02 · Creating Your First Skill</div>
+  <h1>创建与测试</h1>
+
+  <p class="lead">从零创建一个 Skill 只需两步：建目录、写 SKILL.md。</p>
+  <p class="en-note">"Creating a skill is straightforward: make a folder, add a SKILL.md, and restart Claude Code."</p>
+
+  <h2>创建步骤</h2>
+  <ol>
+    <li>在 skills 文件夹下创建以 skill 名称命名的目录：<code>mkdir -p ~/.claude/skills/pr-description</code></li>
+    <li>在该目录下创建 <code>SKILL.md</code> 文件，写入 frontmatter + 指令</li>
+    <li>重启 Claude Code，新 Skill 在下次启动时可用</li>
+    <li>用匹配的请求测试（如 "write a PR description for my changes"），观察 Skill 是否被加载</li>
+  </ol>
+
+  <h2>Frontmatter 结构</h2>
+  <table>
+    <tr><th>字段</th><th>必填</th><th>说明</th></tr>
+    <tr><td><code>name</code></td><td>✅</td><td>标识符，小写字母 + 数字 + 连字符，最长 64 字符，应与目录名一致</td></tr>
+    <tr><td><code>description</code></td><td>✅</td><td>Claude 用来匹配请求的依据，最长 1024 字符。这是最重要的字段</td></tr>
+    <tr><td><code>allowed-tools</code></td><td></td><td>限制 Skill 激活时可用的工具列表</td></tr>
+    <tr><td><code>model</code></td><td></td><td>指定使用哪个 Claude 模型</td></tr>
+  </table>
+
+  <h2>更新与删除</h2>
+  <p>更新：直接编辑 <code>SKILL.md</code>。删除：删除整个 Skill 目录。所有更改需<span class="hl">重启 Claude Code</span> 后生效。</p>
+  <p class="en-note">"To update a skill, edit the SKILL.md file directly. To remove it, delete the entire skill folder. Changes take effect after restarting Claude Code."</p>
+</section>
+
+<!-- ═══ 03 高级配置 ═══ -->
+<section class="chapter">
+  <div class="chapter-num">03 · Configuration &amp; Multi-File Skills</div>
+  <h1>高级配置与多文件结构</h1>
+
+  <p class="lead">通过 allowed-tools 限制工具访问，通过多文件结构实现 progressive disclosure，在保持 context 高效的同时支持复杂场景。</p>
+  <p class="en-note">"Use allowed-tools to restrict tool access, and multi-file structures for progressive disclosure, keeping the context window efficient while supporting complex workflows."</p>
+
+  <h2>allowed-tools：工具限制</h2>
+  <p>有时你希望 Skill 只能读取文件而不能修改，适用于安全审计、只读分析等场景：</p>
+  <pre><code>---
+name: codebase-onboarding
+description: Helps new developers understand the codebase.
+allowed-tools: Read, Grep, Glob, Bash
+model: sonnet
+---</code></pre>
+  <p>当 Skill 激活时，Claude 只能使用声明的工具，其他工具被限制。如果省略 <code>allowed-tools</code>，则不做任何限制，沿用正常权限模型。</p>
+
+  <h2>Progressive Disclosure（渐进式加载）</h2>
+  <p class="en-note">"Don't put everything in a single 2000-line SKILL.md. Use progressive disclosure: keep the core instructions short, and put detailed references in subdirectories that Claude reads on demand."</p>
+  <p>将所有内容塞进一个 2000 行的 SKILL.md 会占用大量 context window 且难以维护。更好的做法：</p>
+  <ul>
+    <li>SKILL.md 控制在 <span class="hl">500 行以内</span>，只放核心指令</li>
+    <li>详细参考放在 <code>references/</code> 子目录，Claude 按需读取</li>
+    <li>脚本放在 <code>scripts/</code> 子目录，执行时不加载源码到 context，<span class="hl">只有输出消耗 token</span></li>
+    <li>静态资源放在 <code>assets/</code> 子目录</li>
+  </ul>
+
+  <h3>推荐目录结构</h3>
+  <pre><code>my-skill/
+├── SKILL.md              # 核心指令（< 500 行）
+├── scripts/              # 可执行脚本
+├── references/           # 参考文档
+└── assets/               # 模板、图片等</code></pre>
+
+  <p>在 SKILL.md 中用清晰的指令告诉 Claude 何时读取子文件：</p>
+  <blockquote>When the user asks about system architecture, read <code>references/architecture-guide.md</code>.</blockquote>
+
+  <h2>写好 Description</h2>
+  <p class="en-note">"The description is how Claude decides whether to load a skill. A good description answers: what does this skill do, and when should it be used?"</p>
+  <p>Description 是 Claude 匹配请求的唯一依据。一个好的 description 应该回答两个问题：</p>
+  <ol>
+    <li>这个 Skill 做什么？</li>
+    <li>什么时候应该使用它？</li>
+  </ol>
+  <p>如果 Skill 没有按预期触发，先检查 description 是否包含了用户实际会使用的关键词和表述方式。</p>
+</section>
+
+<!-- ═══ 04 功能对比 ═══ -->
+<section class="chapter">
+  <div class="chapter-num">04 · Skills vs. Other Features</div>
+  <h1>Skills 与其他功能的对比</h1>
+
+  <p class="lead">Claude Code 有多种自定义方式。选错了会增加不必要的复杂度，选对了才能各司其职。</p>
+  <p class="en-note">"Claude Code offers several customization mechanisms. Choosing the right one avoids unnecessary complexity."</p>
+
+  <h2>核心对比表</h2>
+  <table class="striped">
+    <tr><th>功能</th><th>加载时机</th><th>触发方式</th><th>隔离性</th><th>适用场景</th></tr>
+    <tr><td><strong>CLAUDE.md</strong></td><td>每次对话都加载</td><td>自动（always-on）</td><td>无</td><td>项目级标准，始终生效的规则</td></tr>
+    <tr><td><strong>Skills</strong></td><td>按需匹配加载</td><td>自动（request-driven）</td><td>无</td><td>特定任务的专业知识</td></tr>
+    <tr><td><strong>Slash Commands</strong></td><td>不自动加载</td><td>手动输入命令</td><td>无</td><td>用户主动调用的操作</td></tr>
+    <tr><td><strong>Hooks</strong></td><td>事件触发</td><td>自动（event-driven）</td><td>无</td><td>文件保存/工具调用时的自动操作</td></tr>
+    <tr><td><strong>Subagents</strong></td><td>独立上下文</td><td>委派任务</td><td><span class="hl">✅ 隔离</span></td><td>需要独立执行环境的委派工作</td></tr>
+  </table>
+
+  <h2>选择判断框架</h2>
+  <div class="callout">
+    <ul>
+      <li>需要<strong>始终生效</strong>（如 "永远用 TypeScript strict mode"）→ CLAUDE.md</li>
+      <li>需要<strong>按任务自动匹配</strong>（如 "PR review 用这套 checklist"）→ Skills</li>
+      <li>需要<strong>手动调用</strong>（如 "/deploy 触发部署"）→ Slash Commands</li>
+      <li>需要<strong>确定性合规</strong>（如 "每次保存文件都跑 linter"）→ Hooks</li>
+      <li>需要<strong>隔离执行</strong>（如 "交给独立 agent 做安全审计"）→ Subagents</li>
+    </ul>
+  </div>
+
+  <h2>CLAUDE.md vs Skills 的边界</h2>
+  <p class="en-note">"CLAUDE.md is always-on: it loads into every conversation. Skills are on-demand: they load only when the task matches. Put universal rules in CLAUDE.md, task-specific expertise in Skills."</p>
+  <p>CLAUDE.md 适合放：项目通用的编码标准、"永远不要修改数据库 schema" 之类的硬约束、框架偏好。</p>
+  <p>Skills 适合放：PR review checklist、commit message 格式、文档模板、特定框架的 debug 流程。区别在于：<span class="hl">CLAUDE.md 的内容每次都占 context，Skills 只在需要时加载。</span></p>
+</section>
+
+<!-- ═══ 05 共享与分发 ═══ -->
+<section class="chapter">
+  <div class="chapter-num">05 · Sharing Skills</div>
+  <h1>共享与分发</h1>
+
+  <p class="lead">一个人用好的 Skill 可以帮团队标准化工作流，前提是用对分发方式。</p>
+  <p class="en-note">"Skills you build for yourself can standardize workflows for your whole team, if you choose the right distribution method."</p>
+
+  <h2>三种分发方式</h2>
+  <table>
+    <tr><th>方式</th><th>适用场景</th><th>优先级</th><th>机制</th></tr>
+    <tr><td><strong>项目 .claude/skills/</strong></td><td>团队标准</td><td>Project</td><td>Git commit，clone 即获取</td></tr>
+    <tr><td><strong>Plugins</strong></td><td>跨项目社区分发</td><td>最低</td><td>通过 marketplace 安装</td></tr>
+    <tr><td><strong>Enterprise Managed</strong></td><td>组织强制标准</td><td>最高</td><td>管理员统一部署，不可覆盖</td></tr>
+  </table>
+
+  <p>Enterprise 管理设置支持 <code>strictKnownMarketplaces</code> 字段，限制 plugin 只能从指定来源安装（如公司内部 GitHub repo 或 npm scope）。</p>
+
+  <h2>Subagent 与 Skills 的关系</h2>
+  <p class="en-note">"Subagents do NOT automatically inherit skills from the parent session. Built-in agents (Explorer, Plan, Verify) cannot access skills at all. Custom subagents must explicitly declare skills in their frontmatter."</p>
+  <div class="callout-warn">
+    <strong>重要陷阱（考试常考）：</strong>
+    <ul>
+      <li>❌ Subagent <strong>不自动继承</strong>当前会话的 Skills</li>
+      <li>❌ 内置 agent（Explorer、Plan、Verify）<strong>完全无法访问</strong> Skills</li>
+      <li>✅ 只有自定义 subagent 在其 frontmatter 中<strong>显式声明 <code>skills</code> 字段</strong>才能使用</li>
+    </ul>
+  </div>
+
+  <p>创建自定义 subagent 时，在 <code>.claude/agents/</code> 目录下定义 agent 文件，用 <code>/agents</code> 命令交互式创建：</p>
+  <pre><code>---
+name: frontend-security-accessibility-reviewer
+description: "Reviews frontend code for accessibility..."
+tools: Bash, Glob, Grep, Read, WebFetch, WebSearch
+model: sonnet
+skills: accessibility-audit, performance-check
+---</code></pre>
+  <p>Skills 在 subagent 启动时加载（不是按需），且列出的 Skills 必须存在于 <code>.claude/skills/</code> 目录中。</p>
+</section>
+
+<!-- ═══ 06 排错 ═══ -->
+<section class="chapter">
+  <div class="chapter-num">06 · Troubleshooting</div>
+  <h1>排错指南</h1>
+
+  <p class="lead">Skill 不工作时，问题通常可以归为几个可预测的类别。</p>
+  <p class="en-note">"When a skill doesn't work, the issue usually falls into a few predictable categories: not triggering, not loading, wrong skill selected, being overridden, or runtime errors."</p>
+
+  <h2>常见问题速查</h2>
+  <table class="striped">
+    <tr><th>问题</th><th>常见原因</th><th>解决方法</th></tr>
+    <tr><td>Skill 不触发</td><td>description 和用户请求语义不匹配</td><td>加入用户实际会说的关键词和表述方式</td></tr>
+    <tr><td>Skill 不加载</td><td>文件结构错误</td><td>SKILL.md 必须在命名目录内（不是直接放在 skills/ 根目录），文件名大小写正确</td></tr>
+    <tr><td>用错了 Skill</td><td>多个 Skill 的 description 太相似</td><td>让 description 更具体、有区分度</td></tr>
+    <tr><td>被覆盖</td><td>优先级冲突（同名 Skill 存在于更高优先级位置）</td><td>重命名或检查 Enterprise > Personal > Project > Plugins 层级</td></tr>
+    <tr><td>运行时错误</td><td>依赖缺失、权限不足、路径问题</td><td>确保 <code>chmod +x</code> 给脚本、路径用前斜杠、安装所需依赖</td></tr>
+    <tr><td>Plugin Skills 不出现</td><td>缓存问题或 plugin 结构错误</td><td>清除缓存，重启 Claude Code，重新安装 plugin</td></tr>
+  </table>
+
+  <h2>调试工具</h2>
+  <ul>
+    <li><code>claude --debug</code>：启动时查看 Skill 加载日志，定位加载错误</li>
+    <li><strong>Agent skills validator</strong>：第三方工具，检查 Skill 目录结构和 frontmatter 格式是否正确</li>
+    <li>询问 Claude "what skills are available"：验证 Skill 是否成功注册</li>
+  </ul>
+
+  <h2>排错优先级</h2>
+  <ol>
+    <li>先用 validator 检查结构问题</li>
+    <li>再用 <code>claude --debug</code> 查看加载日志</li>
+    <li>如果加载正常但不触发，调整 description 的关键词</li>
+    <li>如果触发但行为不对，检查指令内容和 allowed-tools 配置</li>
+  </ol>
+</section>
+
+<!-- ═══ 07 考试映射 ═══ -->
+<section class="chapter">
+  <div class="chapter-num">07 · Exam Mapping</div>
+  <h1>考试映射：Task Statement 3.2</h1>
+
+  <p class="lead">课程覆盖了 CCAF 考试 Task Statement 3.2 的大部分考点，但有几个重要考点课程没有深入讲解。</p>
+  <p class="en-note">"Task Statement 3.2: Customize the behavior of Claude Code by writing skills, slash commands, and hooks."</p>
+
+  <h2>课程已覆盖的考点</h2>
+  <table>
+    <tr><th>考点</th><th>对应课程内容</th></tr>
+    <tr><td><span class="tag">覆盖</span> Skills 存放位置</td><td>Lesson 1-2：personal (<code>~/.claude/skills/</code>) vs project (<code>.claude/skills/</code>)</td></tr>
+    <tr><td><span class="tag">覆盖</span> SKILL.md frontmatter</td><td>Lesson 2-3：name, description, allowed-tools, model 字段</td></tr>
+    <tr><td><span class="tag">覆盖</span> Skills vs 其他功能</td><td>Lesson 4：Skills vs CLAUDE.md vs Slash Commands vs Hooks vs Subagents 详细对比</td></tr>
+    <tr><td><span class="tag">覆盖</span> context: fork 概念</td><td>Lesson 5：通过 subagent 隔离执行的概念（但未深入具体配置）</td></tr>
+  </table>
+
+  <h2>课程未讲但考试会考的</h2>
+  <div class="callout-warn">
+    <strong>以下考点需要额外学习：</strong>
+  </div>
+  <table>
+    <tr><th>考点</th><th>说明</th></tr>
+    <tr><td><span class="tag-warn">未覆盖</span> context: fork 具体配置</td><td>考纲 3.2 明确提到 context: fork 作为 frontmatter 选项，课程仅通过 subagent 概念间接涉及</td></tr>
+    <tr><td><span class="tag-warn">未覆盖</span> argument-hint frontmatter</td><td>用于提示用户输入参数的 frontmatter 字段</td></tr>
+    <tr><td><span class="tag-warn">未覆盖</span> .claude/commands/ slash commands</td><td>考纲 3.2 涵盖，课程仅在对比时提及，未深入讲解如何创建</td></tr>
+    <tr><td><span class="tag-warn">未覆盖</span> Skills 在 CI/CD 中的应用</td><td>自动化流水线中 Skills 的使用场景</td></tr>
+    <tr><td><span class="tag-warn">未覆盖</span> Skills vs CLAUDE.md 判断题</td><td>考试中频繁出现的场景判断：给定需求选择正确的自定义方式</td></tr>
+  </table>
+
+  <h2>典型考题示例</h2>
+  <blockquote>
+    你的团队需要一个代码审查流程，在 Skill 执行时产生大量 verbose 输出。如何防止这些输出污染主对话上下文？<br><br>
+    <strong>答案：使用 <code>context: fork</code> 在隔离的 sub-agent 中运行 Skill。</strong>
+  </blockquote>
+
+  <h2>备考建议</h2>
+  <ol>
+    <li>课程内容作为基础，重点掌握<span class="hl">功能对比表</span>和<span class="hl">优先级顺序</span></li>
+    <li>额外学习 <code>context: fork</code> 和 <code>argument-hint</code> 的具体用法</li>
+    <li>练习场景判断题：给定一个需求，快速判断应该用 CLAUDE.md、Skills、Slash Commands、Hooks 还是 Subagents</li>
+    <li>理解 Subagent 与 Skills 的关系：不自动继承、需显式声明、内置 agent 完全无法访问</li>
+  </ol>
+
+  <div class="colophon">
+    <strong>organized by Syneira</strong><br>
+    基于 Anthropic CCAF 认证课程 "Introduction to Agent Skills" (6 lessons) 整理<br>
+    课程完成度 100% · 2026.06
+  </div>
+</section>
+
+</body>
+</html>

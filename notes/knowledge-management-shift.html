@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="从 Syneira Vault 到 Karpathy 的 LLM Wiki，再到 Google OKF：AI 时代的知识管理正在转向策展和编译。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.jpg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="知识管理正在发生一次安静的转向 | AI Digest #009" />
+  <meta property="og:description" content="从 Syneira Vault 到 Karpathy 的 LLM Wiki，再到 Google OKF：AI 时代的知识管理正在转向策展和编译。" />
+  <meta property="og:url" content="https://syneira.org/notes/knowledge-management-shift.html" />
+  <meta property="og:site_name" content="AI Digest by Syneira" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="知识管理正在发生一次安静的转向 | AI Digest #009" />
+  <meta name="twitter:description" content="从 Syneira Vault 到 Karpathy 的 LLM Wiki，再到 Google OKF：AI 时代的知识管理正在转向策展和编译。" />
+  <meta name="twitter:image" content="https://syneira.org/assets/images/preview-cover.jpg" />
+<title>知识管理正在发生一次安静的转向 | AI Digest by Syneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --white:#FFFFFF;--iris-light:#F4F3F1;--iris:#E8E6E1;
+    --grey:#B0ADA6;--grey-mid:#8A8780;
+    --text:#2C2B28;--text-body:#4A4945;--text-light:#9A9890;
+    --teal:#2A9D8F;--teal-dark:#1E7A6F;--black:#1A1918;
+    --orange:#C97B4B;--blue:#4A7BA8;
+  }
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--text-body);line-height:2;font-size:15px;background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 28px 72px}
+
+  /* ── Header ── */
+  .header{margin:32px 0 40px}
+  .header-brand{font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase;margin-bottom:6px}
+  .header-issue{font-size:11px;color:var(--teal);letter-spacing:1px;margin-bottom:20px}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:16px}
+  .header-sub{font-size:15px;color:var(--grey-mid);line-height:1.7;font-weight:300}
+  .header-meta{font-size:11px;color:var(--grey);margin-top:20px;letter-spacing:0.5px}
+  .header-line{width:40px;height:2px;background:var(--teal);margin-top:28px}
+
+  /* ── Divider ── */
+  .divider{display:flex;align-items:center;gap:16px;margin:44px 0 36px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--iris)}
+  .divider .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+  /* ── Section ── */
+  .section-head{margin-bottom:20px}
+  .section-label{font-size:11px;font-weight:500;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--black);line-height:1.3}
+
+  p{margin-bottom:18px}
+  .lead{font-size:16px;color:var(--text);font-weight:300;line-height:2.1}
+
+  /* ── Code ── */
+  code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--iris-light);border:1px solid var(--iris);padding:1px 6px;border-radius:3px;color:var(--text)}
+
+  /* ── Tip ── */
+  .tip{border-left:3px solid var(--teal);padding:14px 18px;margin:24px 0;background:var(--iris-light);border-radius:0 6px 6px 0}
+  .tip-mark{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;position:relative;top:-1px}
+  .tip p{margin:0;font-size:13.5px;color:var(--text);line-height:1.8}
+
+  /* ── Scene ── */
+  .scene{border-left:2px solid var(--iris);padding:12px 18px;margin:20px 0 24px;color:var(--grey-mid);font-size:14px;line-height:1.9}
+  .scene em{font-style:italic;color:var(--text-light)}
+
+  /* ── Table ── */
+  .tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  .tbl th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--iris);color:var(--text);font-weight:700;font-size:12px;letter-spacing:0.5px}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--iris);color:var(--text-body);vertical-align:top;line-height:1.6}
+  .tbl tr:last-child td{border-bottom:none}
+
+  /* ── Step cards ── */
+  .progression{display:flex;flex-direction:column;gap:2px;margin:24px 0}
+  .step{background:var(--iris-light);padding:16px 20px;display:flex;gap:14px;align-items:flex-start}
+  .step:first-child{border-radius:8px 8px 0 0}
+  .step:last-child{border-radius:0 0 8px 8px}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1;min-width:24px;padding-top:2px}
+  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .step-desc{font-size:13px;color:var(--grey-mid);line-height:1.7}
+
+  /* ── Sources ── */
+  .sources{margin:24px 0;font-size:13px;color:var(--grey-mid);line-height:2}
+  .sources-title{font-size:12px;font-weight:500;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+  .sources li{margin-bottom:6px;list-style:none;padding-left:16px;position:relative}
+  .sources li::before{content:'·';position:absolute;left:0;color:var(--teal);font-weight:700}
+
+  /* ── Closing ── */
+  .closing{margin-top:56px;text-align:center;font-size:14px;color:var(--text-body);line-height:2}
+  .closing .brand{margin-top:20px;font-size:10px;letter-spacing:4px;color:var(--grey);text-transform:uppercase}
+
+  /* ── Footer ── */
+  .footer{margin-top:28px;padding-top:28px;border-top:1px solid var(--iris);font-size:12px;color:var(--grey);line-height:1.8;text-align:center}
+
+  @media(max-width:640px){
+    .wrap{padding:28px 20px 56px}
+    .header-title{font-size:27px}
+    .section-title{font-size:21px}
+  }
+
+  /* ── Bilingual toggle ── */
+  .note-en{display:none}
+  html[lang="en"] .note-zh{display:none}
+  html[lang="en"] .note-en{display:block}
+
+  @media(prefers-color-scheme:dark){
+    :root{
+      --white:#1A1A1E;--iris-light:#2A2A2E;--iris:#333338;
+      --grey:#6A6A70;--grey-mid:#8A8A90;
+      --text:#E8E6E1;--text-body:#C5C3BE;--text-light:#7A7A80;
+      --teal:#3DBDB0;--teal-dark:#5AD4C7;--black:#F0EEEA;
+    }
+    body{background:#141416}
+    .step{background:#1E1E22}
+    .tip{background:#1E1E22}
+    .scene{border-left-color:#444448}
+  }
+</style>
+</head>
+<body>
+<div style="max-width:680px;margin:0 auto;padding:20px 28px 0;font-size:12px;color:#9A9890;">
+  <a href="../index.html" style="color:#2A9D8F;text-decoration:none;font-weight:500;">AI Digest</a>
+  <span style="color:#E8E6E1;">/</span>
+  <a href="../issues/009.html" style="color:#2A9D8F;text-decoration:none;font-weight:500;">Issue #009</a>
+  <span style="color:#E8E6E1;">/</span>
+  <span>知识管理转向</span>
+</div>
+<div class="wrap note-zh">
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <div class="header-issue">Issue #009</div>
+    <h1 class="header-title">知识管理正在发生一次安静的转向</h1>
+    <p class="header-sub">
+      从 Syneira Vault 到 Karpathy 的 LLM Wiki，再到 Google OKF，三件独立发生的事情指向同一个方向：AI 时代的知识管理，核心不再是存储和检索，而是策展和编译。
+    </p>
+    <div class="header-meta">2026.06.19 · 趋势信号</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- ═══ SECTION 1: 起点 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Starting Point</div>
+    <div class="section-title">搭一个自己的知识系统</div>
+  </div>
+
+  <p>今年四五月的时候，我在给自己搭一套个人知识系统。</p>
+
+  <p>起因很简单：每天接触的信息来源太杂了。截图、PDF、跟 Claude 聊天的记录、微信群里转的帖子、偶尔存的技术文章。这些东西散落在手机相册、iCloud、聊天记录、浏览器书签里，存的时候觉得有用，过两天就找不到了。</p>
+
+  <p>我想要的不复杂：一个文件夹，什么格式的东西都能往里扔。AI 帮我读内容、判断主题、分到对应的项目下面。每天跑一次，出一份处理记录。每周汇总一次，告诉我这周关注最多的是什么，哪些散落的信息之间可能有联系。</p>
+
+  <p>所以我用 Claude Code 搭了一个叫 Syneira Vault 的东西。本质上就是一个 Markdown 文件夹。根目录放一个导航文件，告诉 AI 这个库的结构是什么样的，不同类型的信息应该去哪里。身份信息、写作偏好、品牌规范各写一个文件，项目状态各写一个文件。AI 每次处理新输入之前，先读导航，再做分类。分错了我纠正，纠正的规则写回导航文件，下次就不会再错。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>没什么技术门槛。所有内容是 Markdown，放在本地，任何编辑器都能打开。今天给 Claude 读，明天给别的模型读，不用改一个字。</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 2: Karpathy ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">LLM Wiki</div>
+    <div class="section-title">Karpathy 的 llm-wiki.md</div>
+  </div>
+
+  <p>搭完这个系统大概两周后，Karpathy 发了一篇 gist。</p>
+
+  <p>Andrej Karpathy，前 Tesla AI 总监，前 OpenAI 创始团队成员。他在 GitHub 上发了一个叫 <code>llm-wiki.md</code> 的文件，只有一篇 Markdown 的篇幅，两个月拿了五千多颗星。</p>
+
+  <p>他描述的模式，我读完觉得非常熟悉。</p>
+
+  <p>他说，大多数人用 LLM 处理文档的方式是 RAG：上传一堆文件，查询时检索相关片段，生成回答。这能用，但每次都在从零开始。问一个需要综合五份文档才能回答的问题，LLM 每次都要重新找、重新拼，什么都没有积累下来。</p>
+
+  <p>他提出的替代方案是：让 LLM 不只是在查询时检索，而是主动把知识编译成一个持久的、结构化的 Markdown 知识库，然后持续维护它。新的来源进来，LLM 读取内容，更新相关的页面，补充交叉引用，标注跟已有结论矛盾的地方。知识被整理一次，然后保持更新，而不是在每个查询上重新推导。</p>
+
+  <p>他把这个知识库分成三层：</p>
+
+  <div class="progression">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Raw（原始来源）</div>
+        <div class="step-desc">文章、论文、数据文件。不可变，LLM 只读不改。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Wiki（知识层）</div>
+        <div class="step-desc">由 LLM 生成和维护的 Markdown 页面，包括实体页、概念页、综合摘要、比较分析。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Schema（配置层）</div>
+        <div class="step-desc">一个配置文件（Claude Code 里叫 <code>CLAUDE.md</code>），告诉 LLM 知识库的结构、处理规范、输入规则。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    Karpathy 有一句话让我印象很深：Obsidian 是 IDE，LLM 是程序员，wiki 是代码库。你几乎不自己写 wiki。你的工作是策展来源、探索方向、提出正确的问题。所有苦力活（总结、交叉引用、归档、记账），由 LLM 来做。
+  </div>
+
+  <p>人类放弃维护 wiki 的原因，恰好是 LLM 擅长的事。LLM 不会觉得无聊，不会忘记更新交叉引用，一次可以处理 15 个文件。</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 3: Google OKF ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Open Knowledge Format</div>
+    <div class="section-title">Google 把它标准化了</div>
+  </div>
+
+  <p>又过了大约六周，Google Cloud 发布了 Open Knowledge Format。</p>
+
+  <p>OKF 做的事情，用一句话说：把 Karpathy 描述的这种"用 Markdown 组织知识给 AI 读"的模式，写成了一份正式的、有版本号的开放规范。</p>
+
+  <p>具体来说，OKF 定义了一种叫"知识包"的结构。一个知识包就是一个文件夹，里面每个 Markdown 文件描述一个"概念"，可以是一张数据表、一个业务指标、一套 API。文件顶部用 YAML 写几个结构化字段，唯一必填的只有 <code>type</code>，告诉读的人这个文件描述的是什么类型的东西。文件之间用普通 Markdown 链接表达关系。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>没有专用 SDK，没有数据库，没有需要注册的服务。Apache 2.0 许可证，谁都可以用。</p>
+  </div>
+
+  <p>Google 在博文里把要解决的问题叫做 "context-assembly problem"。企业内部的知识散落在元数据目录、wiki、代码注释、各种工具里。每搭一个新 Agent，就得从这些地方重新拼一次上下文。每个工具供应商有自己的知识图谱 schema，知识被锁在产出它的工具后面。OKF 想做的，是给知识一个通用的打包格式，让不同的生产者和消费者之间可以互相读取。</p>
+
+  <div class="scene">
+    值得注意的是，Google 同步更新了自家的 Knowledge Catalog，让它可以直接导入 OKF 格式的知识包并提供给 Google Cloud 的 Agent 使用。格式是开放的，但商业路径已经铺好了。
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 4: 放在一起看 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Convergence</div>
+    <div class="section-title">三件事放在一起看</div>
+  </div>
+
+  <p>这三件事放在一起看，有意思的不是任何单独一个，而是它们指向同一个方向。</p>
+
+  <p>我搭 vault 的时候没有读过 Karpathy 的 gist（还没发布）。Karpathy 写 gist 的时候大概也没有想到 Google 两个月后会把它标准化。但我们各自独立地做了类似的选择：用 Markdown 而不是数据库，用文件夹结构而不是专有平台，让 AI 做分类和维护，人做判断和决策。</p>
+
+  <p>这不是巧合。这是一个正在形成的共识：<strong>AI 时代的知识管理，核心不再是存储和检索，而是策展和编译。</strong></p>
+
+  <div class="progression">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">RAG：保留原文，查询时检索</div>
+        <div class="step-desc">在很多场景下够用，但没有积累。每次查询都是一次性的，什么都没有建立起来。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">LLM Wiki：把知识编译一次，持续维护</div>
+        <div class="step-desc">随着你不断添加来源、不断纠正分类，知识库本身在变厚。交叉引用已经建好了，矛盾已经被标注了，综合结论已经反映了你读过的所有内容。下次查询的时候，AI 不是从零开始，而是在一个已经被整理过的基础上工作。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">OKF：让知识包可以跨工具互通</div>
+        <div class="step-desc">不是你整理了只能自己用，而是可以打包、分享、跨工具互通。被别人的 Agent 读取。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 5: 关于人的问题 ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">The Human Part</div>
+    <div class="section-title">但关于人的问题</div>
+  </div>
+
+  <p>这三件事放在一起看完，我脑子里一直转着一个问题，不是技术问题，是关于人的。</p>
+
+  <p>Karpathy 的 wiki 之所以有用，不是因为他有一个很酷的文件夹结构，也不是因为他用了什么高级 prompt。是因为他本身是那个领域最顶尖的思考者之一。他知道该往 <code>raw/</code> 里喂什么素材，知道该对 AI 提什么问题，能判断 AI 生成的每一段内容对不对、准不准、有没有遗漏。工具放大了他的能力，但能力是他自己的。</p>
+
+  <p>我搭 vault 的时候也意识到了类似的事情。AI 帮我分类、生成摘要、发现关联，这些它做得很好。但每次周报出来，那些"关联发现"到底有没有价值，不是 AI 能判断的。"这三条来自不同来源的笔记可以串成一篇文章"，这句话看起来是 AI 说的，但只有我知道它是不是真的能串起来，串起来之后想对谁说，用什么角度切入。如果我不花时间去读那些被整理好的内容，不去想它们之间的关系，不去做"这个值得写，那个先放放"的判断，那个 vault 就只是一个很整齐的文件柜。</p>
+
+  <div class="scene">
+    知识管理领域有一个老模型，DIKW，讲的是信息怎么一层一层变成可以用的东西：数据变成信息需要解读，信息变成知识需要思考，知识变成判断力需要实践。每一步的转化都需要人的介入。
+  </div>
+
+  <p>AI 可以帮你把数据整理成信息，甚至帮你把信息初步组织成知识的样子，但从"看起来像知识"到"真的变成我的知识"，中间隔着的那一步，是你自己坐下来读、想、用的过程。</p>
+
+  <p>这不是在否定这些工具的价值。恰恰相反。以前我的注意力被整理、归档、搜索这些事消耗掉了，存了一堆截图和文章，回头找不到，找到了也忘了当初为什么存。现在 AI 把这些体力活清掉了，我才有精力去做真正需要人的那部分。</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>AI 知识库最大的价值，不是替你思考，是帮你腾出思考的空间。格式可以标准化，维护可以自动化，但思考没法代理。</p>
+  </div>
+
+  <p>我给 vault 写的第三条设计原则是"AI 做判断，我做决定"。搭完系统、用了一段时间之后，我觉得这句话还可以再往前推一步：<strong>AI 做整理，我做消化。</strong>系统帮我把信息收进来、分好类、找到关联，但那些信息要变成我下一篇文章的观点、我下一个项目的方向、我对一个趋势的独立判断，需要的不是更好的系统，是我自己坐在那里想一想。</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SOURCES ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Sources</div>
+    <div class="section-title">来源</div>
+  </div>
+
+  <ul class="sources">
+    <li>Andrej Karpathy: <code>llm-wiki.md</code> (GitHub Gist, 2026.04)</li>
+    <li>Google Cloud Blog: "Introducing the Open Knowledge Format" (Sam McVeety &amp; Amir Hormati, 2026.06.12)</li>
+    <li>OKF v0.1 SPEC.md: github.com/GoogleCloudPlatform/knowledge-catalog (Apache 2.0)</li>
+  </ul>
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="closing">
+    <p>源于生活，立足应用。</p>
+    <p style="font-size:12px;color:var(--grey);">实用 > 炫酷 · 能用 > 能看</p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+  <div class="footer">
+    AI Digest by Syneira · Issue #009 · 2026.06<br>
+    内容由 AI 辅助整理，经人工审核编辑
+  </div>
+
+</div>
+
+<!-- ==================== English version ==================== -->
+<div class="wrap note-en">
+
+  <div class="header">
+    <div class="header-brand">AI Digest by Syneira</div>
+    <div class="header-issue">Issue #009</div>
+    <h1 class="header-title">A Quiet Shift in How Knowledge Works with AI</h1>
+    <p class="header-sub">
+      From a personal Markdown vault to Karpathy's LLM Wiki to Google's Open Knowledge Format, three independent developments point the same direction: AI-era knowledge management is about curation and compilation, not storage and retrieval.
+    </p>
+    <div class="header-meta">2026.06.19 &middot; Trend Signal</div>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- ═══ SECTION 1: Starting Point ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Starting Point</div>
+    <div class="section-title">Building a Personal Knowledge System</div>
+  </div>
+
+  <p>Earlier this year, I started building a personal knowledge system. Not because I had a mess to clean up, but because I was outgrowing my own workflow.</p>
+
+  <p>My day job is lead data engineer, working on AI enablement projects in healthcare. Outside of that, I volunteer with a nonprofit AI literacy program in our local community, contribute to a few open-source projects, and write about AI tools and workflows on the side. At any given time I'm tracking multiple threads: technical architecture for work, research for things I'm writing, community education content, tools and frameworks I'm evaluating. I read a lot. I build a lot. I'm always in the middle of several things at once, and I like it that way.</p>
+
+  <p>But I realized that all the learning and practicing I was doing wasn't compounding the way it should. Insights from one project that could inform another stayed in the conversation where I first thought of them. Technical patterns I explored for work never made it into my content planning. My thinking was happening across too many surfaces, and nothing was connecting the dots.</p>
+
+  <p>What I wanted was a system that could grow alongside me. Not just a filing cabinet, but something that captures how I think, what I'm tracking, and how different threads relate to each other. Something where AI handles the intake, the sorting, the cross-referencing, while I stay focused on the parts that actually need me: reading critically, forming opinions, making judgment calls, deciding what matters.</p>
+
+  <p>So I built a local Markdown vault with Claude Code. A navigation file at the root tells the AI the structure of the knowledge base and where different types of input should go. Identity files, writing preferences, project status docs, each in their own Markdown file. AI reads the nav before processing anything new. When it misroutes something, I correct it, the correction gets written back into the nav, and next time it gets it right.</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>Everything is plain text. No database, no proprietary format. Works with any model, any editor, any OS. The vault is mine. The AI is a collaborator, not a dependency.</p>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 2: Karpathy ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">LLM Wiki</div>
+    <div class="section-title">Then Karpathy Published Something</div>
+  </div>
+
+  <p>About two weeks after I got my system running, Andrej Karpathy posted a GitHub gist called <code>llm-wiki.md</code>. One Markdown file. Five thousand stars in two months.</p>
+
+  <p>What he described felt immediately familiar.</p>
+
+  <p>His argument: most people use LLMs with documents through RAG. Upload files, retrieve relevant chunks at query time, generate an answer. It works, but the LLM is rediscovering knowledge from scratch on every question. There's no accumulation. Ask something that requires synthesizing five documents, and the model has to find and piece together the fragments every single time.</p>
+
+  <p>His alternative: instead of only retrieving at query time, have the LLM actively compile and maintain a persistent, structured Markdown knowledge base. When a new source comes in, the LLM reads it, updates the relevant pages, adds cross-references, flags contradictions with existing content. Knowledge gets organized once, then kept current, rather than re-derived on every query.</p>
+
+  <p>He split the system into three layers:</p>
+
+  <div class="progression">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Raw (original sources)</div>
+        <div class="step-desc">Articles, papers, data files. Immutable. The LLM reads but never modifies these.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Wiki (knowledge layer)</div>
+        <div class="step-desc">Generated and maintained entirely by the LLM: entity pages, concept pages, summaries, comparisons.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Schema (configuration layer)</div>
+        <div class="step-desc">A config file (<code>CLAUDE.md</code> in Claude Code) telling the LLM how the knowledge base is structured and what rules to follow.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    One line from the gist stuck with me: "Obsidian is the IDE, the LLM is the programmer, the wiki is the codebase." You rarely write the wiki yourself. Your job is to curate sources, explore directions, and ask the right questions. The bookkeeping, summarizing, cross-referencing, filing, that's all LLM work.
+  </div>
+
+  <p>The things that make humans give up on maintaining wikis are exactly what LLMs are good at. They don't get bored, they don't forget to update cross-references, they can process fifteen files at once.</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 3: Google OKF ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Open Knowledge Format</div>
+    <div class="section-title">Then Google Made It a Standard</div>
+  </div>
+
+  <p>Six weeks later, Google Cloud released Open Knowledge Format, version 0.1.</p>
+
+  <p>In one sentence: OKF takes the pattern Karpathy described, using Markdown to organize knowledge for AI consumption, and turns it into a formal, versioned, open specification.</p>
+
+  <p>An OKF "knowledge bundle" is a folder. Each Markdown file describes one concept: a database table, a business metric, an API, an operating procedure. A small YAML frontmatter block at the top of each file holds structured fields for querying and filtering. The only required field is <code>type</code>. Files link to each other with standard Markdown links.</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>No SDK, no database, no service to sign up for. Apache 2.0 license.</p>
+  </div>
+
+  <p>Google's blog post frames the problem as "context assembly." Enterprise knowledge is scattered across metadata catalogs, wikis, code comments, and various tools. Every new AI agent has to reassemble context from these sources. Every vendor has its own knowledge graph schema, so knowledge gets locked behind whatever tool produced it. OKF's goal is to give knowledge a universal packaging format that any producer can write and any consumer can read.</p>
+
+  <div class="scene">
+    Worth noting: Google simultaneously updated its own Knowledge Catalog to ingest OKF bundles and serve them to Google Cloud agents. The format is open, but the commercial path is already laid.
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 4: Convergence ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Convergence</div>
+    <div class="section-title">What These Three Things Have in Common</div>
+  </div>
+
+  <p>I didn't read Karpathy's gist before building my vault. It hadn't been published yet. Karpathy probably wasn't thinking about Google standardizing his pattern two months later. But all three of us, independently, made similar choices: Markdown over databases, folder structures over proprietary platforms, AI for classification and maintenance, humans for judgment and decisions.</p>
+
+  <p>That's not coincidence. It's a consensus forming.</p>
+
+  <div class="progression">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">RAG: keep the original documents, retrieve at query time</div>
+        <div class="step-desc">Works for many cases, but nothing accumulates. Every query is a one-off.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">LLM Wiki: compile knowledge once, then maintain it continuously</div>
+        <div class="step-desc">As you keep adding sources and correcting classifications, the knowledge base itself gets thicker. Cross-references are already built, contradictions are already flagged, synthesized conclusions already reflect everything you've read. Next time you query, the AI isn't starting from zero.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">OKF: make your compiled knowledge readable by someone else's agent</div>
+        <div class="step-desc">Not just useful to you, but packageable, shareable, interoperable across tools.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SECTION 5: The Human Part ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">The Human Part</div>
+    <div class="section-title">But Here's the Part None of Them Fully Address</div>
+  </div>
+
+  <p>Karpathy's wiki is valuable not because he has a cool folder structure or some advanced prompt. It's because he is one of the sharpest thinkers in the field. He knows what to feed into <code>raw/</code>, what questions to ask the AI, and he can tell whether what the AI wrote back is right, incomplete, or missing something important. The tool amplified his ability. The ability was already his.</p>
+
+  <p>I noticed something similar with my own vault. AI does the sorting, generates summaries, surfaces connections. It's good at that. But when the weekly brief comes back saying "these three notes from different sources could become an article," only I know whether that's actually true. Whether it would resonate with my audience. What angle to take. If I don't sit down and read what's been organized for me, don't think about how the pieces relate, don't make the call on what's worth pursuing and what to let go, the vault is just a very tidy filing cabinet.</p>
+
+  <div class="scene">
+    There's an old model in knowledge management, DIKW: data becomes information through interpretation, information becomes knowledge through thinking, knowledge becomes wisdom through practice. Each transition requires a person. AI can turn data into information, can even arrange information into something that looks like knowledge. But the step from "looks like knowledge" to "actually becomes mine" is the part where you sit down and read, and think, and use it.
+  </div>
+
+  <p>This isn't a critique of the tools. It's the opposite. Before the vault, my attention was split between doing the actual thinking and managing the logistics of where things lived. Now that AI handles intake and organization, I have room for the part that only I can do.</p>
+
+  <div class="tip">
+    <p><span class="tip-mark"></span>So maybe the real picture looks like this: the biggest value of an AI knowledge base isn't that it thinks for you. It's that it clears the space for you to think. Formats can be standardized. Maintenance can be automated. Thinking can't be delegated.</p>
+  </div>
+
+  <p>When I wrote my vault's design principles, one of them was "AI makes judgments, I make decisions." After using the system for a while, I'd push that one step further: <strong>AI does the organizing, I do the digesting.</strong> The system brings information in, sorts it, finds connections. But for that information to become the point of my next article, the direction of my next project, my own read on where a trend is heading, what I need isn't a better system. It's to sit with it for a while.</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <!-- ═══ SOURCES ═══ -->
+
+  <div class="section-head">
+    <div class="section-label">Sources</div>
+    <div class="section-title">References</div>
+  </div>
+
+  <ul class="sources">
+    <li>Andrej Karpathy: <code>llm-wiki.md</code> (GitHub Gist, April 2026)</li>
+    <li>Google Cloud Blog: "Introducing the Open Knowledge Format" (Sam McVeety &amp; Amir Hormati, June 12, 2026)</li>
+    <li>OKF v0.1 SPEC.md: github.com/GoogleCloudPlatform/knowledge-catalog (Apache 2.0)</li>
+  </ul>
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="closing">
+    <p>Life first, tools that work.</p>
+    <p style="font-size:12px;color:var(--grey);">Useful > Flashy &middot; Usable > Impressive</p>
+    <div class="brand">AI Digest by Syneira</div>
+  </div>
+
+  <div class="footer">
+    AI Digest by Syneira &middot; Issue #009 &middot; 2026.06<br>
+    By Syneira Lab &middot; June 2026
+  </div>
+
+</div>
+
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>
