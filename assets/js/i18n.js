@@ -827,8 +827,12 @@ function ensureLanguageToggle() {
 
 ensureLanguageToggle();
 ensureReaderAid();
+const params = new URLSearchParams(window.location.search);
+const queryLang = params.get('lang');
 const savedLang = localStorage.getItem('syneira-digest-lang') || 'zh';
-applyLanguage(savedLang);
+const forcedByQuery = queryLang === 'en' || queryLang === 'zh';
+applyLanguage(forcedByQuery ? queryLang : savedLang);
+if (forcedByQuery) localStorage.setItem('syneira-digest-lang', savedLang);
 
 document.querySelectorAll('[data-lang-toggle]').forEach((toggle) => {
   toggle.addEventListener('click', () => {
