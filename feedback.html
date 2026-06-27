@@ -213,11 +213,33 @@
       <a href="/connect/" data-i18n="nav.connect">Connect</a>
       <a href="/feedback.html" aria-current="page" data-i18n="nav.feedback">Feedback</a>
     </div>
+    <button class="nav-hamburger" type="button" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
     <button class="lang-toggle" type="button" aria-label="Switch language" data-lang-toggle>
       <span data-i18n="nav.lang">EN</span>
     </button>
   </div>
 </nav>
+<script>
+(function(){
+  var btn = document.querySelector('.nav-hamburger');
+  var links = document.querySelector('.nav-links');
+  if (!btn || !links) return;
+  btn.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.innerHTML = open
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';
+  });
+  links.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') { links.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';
+    }
+  });
+})();
+</script>
 
 <!-- FEEDBACK PAGE -->
 <main class="feedback-page">
