@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="connect.meta.title" data-i18n-description="connect.meta.description">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>职场互助 · DMVoice Community</title>
+  <meta
+    name="description"
+    content="DMVoice 社群职场互助板：内推资源、技能交换、求职需求，低门槛登记与浏览。"
+  />
+  <meta name="theme-color" content="#F7F5F1" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/preview-cover.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="职场互助 · DMVoice Community" />
+  <meta property="og:description" content="内推资源、技能交换、求职互助 — DMVoice 社群职场互助板。" />
+  <meta property="og:url" content="https://syneira.org/connect/" />
+  <meta property="og:site_name" content="AI Digest by Syneira Lab" />
+  <meta property="og:image" content="https://syneira.org/assets/images/preview-cover.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/styles.css" />
+
+  <style>
+    .connect-page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 120px 24px 32px;
+    }
+
+    .connect-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6f76b8;
+      margin-bottom: 14px;
+    }
+
+    .connect-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .connect-title em {
+      font-style: italic;
+      color: #7070C4;
+    }
+
+    .connect-lead {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text-body);
+      margin: 0 0 6px;
+    }
+
+    .connect-lead-en {
+      font-size: 13px;
+      color: var(--text-light);
+      letter-spacing: 0.3px;
+      margin: 0 0 24px;
+    }
+
+    .connect-cta-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .connect-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .connect-btn.primary {
+      background: linear-gradient(135deg, #7581b3, #8ba3c7);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(117, 129, 179, 0.22);
+    }
+
+    .connect-btn.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(117, 129, 179, 0.30);
+    }
+
+    .connect-divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 0 0 28px;
+    }
+
+    /* Tabs */
+    .connect-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 24px;
+      background: var(--bg-warm);
+      border-radius: 12px;
+      padding: 4px;
+    }
+
+    .connect-tab {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .connect-tab.active {
+      background: var(--card);
+      color: var(--text);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      font-weight: 600;
+    }
+
+    .connect-tab:hover:not(.active) {
+      color: var(--text-body);
+    }
+
+    /* Card grid */
+    .connect-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 40px;
+      min-height: 120px;
+    }
+
+    .connect-card {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .connect-card:hover {
+      border-color: rgba(139, 163, 199, 0.45);
+      box-shadow: 0 4px 18px rgba(26, 22, 66, 0.05);
+    }
+
+    .connect-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .connect-card-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .connect-card-date {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .connect-card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .connect-card-tag.offer {
+      background: rgba(42, 157, 143, 0.10);
+      color: #2a9d8f;
+    }
+
+    .connect-card-tag.seek {
+      background: rgba(117, 129, 179, 0.10);
+      color: #7581b3;
+    }
+
+    .connect-card-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 8px;
+    }
+
+    .connect-card-contact {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* Empty / loading state */
+    .connect-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    /* Section divider */
+    .connect-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 48px 0 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .connect-section-sub {
+      font-size: 14px;
+      color: var(--text-light);
+      margin: 0 0 20px;
+    }
+
+    /* Experience posts */
+    .connect-exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .connect-exp {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 20px 22px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .connect-exp:hover {
+      border-color: rgba(217, 200, 223, 0.6);
+      box-shadow: 0 4px 18px rgba(26, 22, 66, 0.05);
+    }
+
+    .connect-exp-meta {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    .connect-exp-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .connect-exp-snippet {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    /* Admin notice */
+    .connect-notice {
+      text-align: center;
+      padding: 16px 22px;
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 32px;
+    }
+
+    .connect-notice a {
+      color: #7581b3;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .connect-notice a:hover {
+      text-decoration: underline;
+    }
+
+    /* About section */
+    .connect-about {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      margin-bottom: 32px;
+    }
+
+    .connect-about summary {
+      padding: 16px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .connect-about summary::-webkit-details-marker { display: none; }
+
+    .connect-about summary::before {
+      content: '▸ ';
+      color: var(--text-light);
+    }
+
+    .connect-about[open] summary::before {
+      content: '▾ ';
+    }
+
+    .connect-about-body {
+      padding: 0 20px 20px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-body);
+    }
+
+    .connect-about-body h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 18px 0 6px;
+    }
+
+    .connect-about-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .connect-about-body ul {
+      margin: 0 0 8px;
+      padding-left: 18px;
+    }
+
+    .connect-about-body li {
+      margin-bottom: 4px;
+    }
+
+    .connect-about-body p {
+      margin: 0 0 8px;
+    }
+
+    .connect-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .connect-back:hover { color: var(--accent); }
+
+    /* Byline */
+    .connect-byline {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-light);
+      margin: 32px 0 0;
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 640px) {
+      .connect-page { padding: 96px 18px 28px; }
+      .connect-title { font-size: 34px; }
+      .connect-board { grid-template-columns: 1fr; }
+      .connect-cta-row { flex-direction: column; }
+      .connect-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BRAND MARK DEFS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="mark-iris" viewBox="0 0 80 80">
+      <path d="M40,33 C44,22 44,10 40,4 C36,10 36,22 40,33 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <path d="M47,40 C58,36 70,36 76,40 C70,44 58,44 47,40 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <path d="M40,47 C44,58 44,70 40,76 C36,70 36,58 40,47 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <path d="M33,40 C22,36 10,36 4,40 C10,44 22,44 33,40 Z" fill="#7070C4" fill-opacity="0.14" stroke="#7070C4" stroke-width="1.4" stroke-linejoin="round"></path>
+      <circle cx="40" cy="40" r="17" stroke="#7070C4" stroke-width="0.8" stroke-opacity="0.22" fill="none"></circle>
+      <line x1="53" y1="27" x2="57.5" y2="22.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <line x1="53" y1="53" x2="57.5" y2="57.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <line x1="27" y1="53" x2="22.5" y2="57.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <line x1="27" y1="27" x2="22.5" y2="22.5" stroke="#7070C4" stroke-width="1.3" stroke-linecap="round" stroke-opacity="0.55"></line>
+      <circle cx="40" cy="4" r="1.8" fill="#7070C4"></circle>
+      <circle cx="76" cy="40" r="1.8" fill="#7070C4"></circle>
+      <circle cx="40" cy="76" r="1.8" fill="#7070C4"></circle>
+      <circle cx="4" cy="40" r="1.8" fill="#7070C4"></circle>
+      <circle cx="40" cy="40" r="5.5" fill="#7070C4"></circle>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" aria-label="AI Digest home">
+      <svg class="nav-lockup" viewBox="0 0 210 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest for DMVoice">
+        <use href="#mark-iris" x="0" y="0" width="52" height="52" transform="translate(1,3)"></use>
+        <text x="60" y="28" class="brand-lockup-text" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="700" fill="#1A1A2E">AI Digest</text>
+        <text x="61" y="43" font-family="'Noto Sans SC', sans-serif" font-size="8.4" font-weight="400" fill="#7A7A8A" letter-spacing="2.6">FOR DMVOICE</text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="/#about" data-i18n="nav.about">About</a>
+      <a href="/#latest" data-i18n="nav.latest">Latest</a>
+      <a href="/#issues" data-i18n="nav.issues">Issues</a>
+      <a href="/notes/" data-i18n="nav.notes">Notes</a>
+      <a href="/tools/" data-i18n="nav.tools">Tools</a>
+      <a href="/#archive" data-i18n="nav.archive">Archive</a>
+      <a href="/#who" data-i18n="nav.who">Who</a>
+      <a href="/connect/" aria-current="page" data-i18n="nav.connect">Connect</a>
+      <a href="/feedback.html" data-i18n="nav.feedback">Feedback</a>
+    </div>
+    <button class="lang-toggle" type="button" aria-label="Switch language" data-lang-toggle>
+      <span data-i18n="nav.lang">EN</span>
+    </button>
+  </div>
+</nav>
+
+<!-- CONNECT PAGE -->
+<main class="connect-page">
+
+  <div class="connect-eyebrow" data-i18n="connect.eyebrow">DMVOICE COMMUNITY</div>
+  <h1 class="connect-title" data-i18n-html="connect.title">职场<em>互助</em></h1>
+  <p class="connect-lead" data-i18n="connect.lead">
+    你找人，或被人找到。内推资源、技能交换、求职需求，一个低门槛的社群互助板。
+  </p>
+  <p class="connect-lead-en" data-i18n="connect.leadEn">
+    Referrals, skill exchange, and job search support from the DMVoice community.
+  </p>
+
+  <div class="connect-cta-row">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScw47pD2qYPw7HC4birtlu2graTi4SJ4rn9NmpRFvpPDxHySA/viewform" class="connect-btn primary" id="formLink" target="_blank" rel="noopener" data-i18n="connect.submit">
+      我要登记
+    </a>
+  </div>
+
+  <div class="connect-divider"></div>
+
+  <!-- Tab bar -->
+  <div class="connect-tabs" role="tablist">
+    <button class="connect-tab active" role="tab" aria-selected="true" data-filter="offer" data-i18n="connect.tabOffer">我能帮</button>
+    <button class="connect-tab" role="tab" aria-selected="false" data-filter="seek" data-i18n="connect.tabSeek">我想找</button>
+  </div>
+
+  <!-- Board -->
+  <div class="connect-board" id="connectBoard">
+    <div class="connect-empty" id="connectLoading" data-i18n="connect.loading">加载中...</div>
+  </div>
+
+  <!-- Experience posts -->
+  <h2 class="connect-section-title" data-i18n="connect.expTitle">经验帖</h2>
+  <p class="connect-section-sub" data-i18n="connect.expSub">面经、谈薪、转行心得 - 来自社群成员的真实分享</p>
+
+  <div class="connect-exp-list">
+    <div class="connect-exp">
+      <div class="connect-exp-meta" data-i18n="connect.exp1.meta">2026 Q2 / 匿名群友</div>
+      <div class="connect-exp-title" data-i18n="connect.exp1.title">联邦政府转 contractor 的几个注意点</div>
+      <p class="connect-exp-snippet" data-i18n="connect.exp1.text">
+        从 GS 岗位转 contractor 不是降级, 关键看 clearance 能不能带走, 以及对方给的 PTO 和 benefits 怎么谈。群里聊过几次, 这里整理下重点。
+      </p>
+    </div>
+    <div class="connect-exp">
+      <div class="connect-exp-meta" data-i18n="connect.exp2.meta">2026 Q2 / 匿名群友</div>
+      <div class="connect-exp-title" data-i18n="connect.exp2.title">非 CS 背景转 data analyst 的路径复盘</div>
+      <p class="connect-exp-snippet" data-i18n="connect.exp2.text">
+        政治学本科 + 公共政策硕士, 花了大概一年半转到 data analyst。SQL 和 Tableau 是核心, Python 是加分项, 面试准备方法分享。
+      </p>
+    </div>
+  </div>
+
+  <!-- Admin notice -->
+  <div class="connect-notice" data-i18n-html="connect.notice">
+    信息由管理员审核后展示, 定期维护。需要修改或下架, 请<a href="/feedback.html">联系管理员</a>。
+  </div>
+
+  <!-- About this page -->
+  <details class="connect-about">
+    <summary data-i18n="connect.aboutToggle">关于此页: 怎么用, 怎么建的</summary>
+    <div class="connect-about-body">
+      <h3 data-i18n="connect.aboutHow">怎么用</h3>
+      <ul>
+        <li data-i18n="connect.aboutHow1">浏览: 打开此页, 切换"我能帮"/"我想找"两个 tab。不需要登录。</li>
+        <li data-i18n="connect.aboutHow2">登记: 点"我要登记"按钮, 跳转 Google Form 填写。审核通过后会出现在板上。</li>
+        <li data-i18n="connect.aboutHow3">修改/下架: 联系管理员处理, 没有自助编辑功能。</li>
+      </ul>
+      <h3 data-i18n="connect.aboutPrivacy">隐私与安全</h3>
+      <ul>
+        <li data-i18n="connect.aboutPrivacy1">所有提交先进入私有表格, 管理员审核后才展示。原始数据不对外暴露。</li>
+        <li data-i18n="connect.aboutPrivacy2">联系方式选填, 建议填群内昵称/微信名/可公开邮箱, 不建议手机号。</li>
+        <li data-i18n="connect.aboutPrivacy3">提交时需勾选"我确认以上内容可公开展示"。</li>
+      </ul>
+      <h3 data-i18n="connect.aboutTech">技术实现</h3>
+      <p data-i18n="connect.aboutTechText">
+        整套方案零后端、零数据库、零登录。群友通过 Google Form 提交, 数据进入 Google Sheet, 管理员审核后复制到公开 tab, 页面自动拉取并渲染为卡片。托管在 GitHub Pages, 运行成本为零。
+      </p>
+      <h3 data-i18n="connect.aboutFaq">常见问题</h3>
+      <ul>
+        <li data-i18n="connect.aboutFaq1">填了没看到? 需要审核, 通常 1-2 天。</li>
+        <li data-i18n="connect.aboutFaq2">信息过期? 联系管理员下架, 管理员也会定期清理。</li>
+        <li data-i18n="connect.aboutFaq3">为什么不做登录? 门槛越低越多人用, 让流动先发生。</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="connect-byline" data-i18n="connect.byline">DMVoice AI Group, supported by Syneira Lab</div>
+
+  <a href="/" class="connect-back" data-i18n="connect.back">← 返回首页 / Back to home</a>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand-wrap">
+    <svg class="footer-lockup" viewBox="0 0 240 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Digest by DMVoice">
+      <use href="#mark-iris" x="0" y="0" width="52" height="52" transform="translate(1,3)"></use>
+      <text x="60" y="28" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="700" fill="#1A1A2E" letter-spacing="0.5">AI Digest</text>
+      <text x="61" y="43" font-family="'Noto Sans SC', sans-serif" font-size="8.8" font-weight="400" fill="#7A7A8A" letter-spacing="2.8">BY DMVOICE</text>
+    </svg>
+  </div>
+  <p data-i18n-html="footer.text">
+    由社群成员精选 · 每周一期 · 中英双语<br>
+    筛选标准：实用 &gt; 炫酷 · 能用 &gt; 能看<br><br>
+    Built with ❤️ in DMV
+  </p>
+</footer>
+
+<script src="/assets/js/i18n.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// --- Tab switching ---
+const tabs = document.querySelectorAll('.connect-tab');
+let activeFilter = 'offer';
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    activeFilter = tab.dataset.filter;
+    renderCards();
+  });
+});
+
+// --- i18n helper for dynamic content ---
+function isEn() { return (localStorage.getItem('syneira-digest-lang') || 'zh') === 'en'; }
+
+// re-render dynamic content on language switch
+document.querySelector('[data-lang-toggle]')?.addEventListener('click', () => {
+  setTimeout(showEmptyOrData, 100);
+});
+
+// --- Google Sheet CSV fetch & render ---
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjNWmJYxBNpTNMNzEMfiTQpLPbrZutCNSQJRtO1BrRZHH657B_sJtVQLNIfxksra2-YsY3_YE0EKM4/pub?gid=342773297&single=true&output=csv';
+const board = document.getElementById('connectBoard');
+let allEntries = [];
+
+function parseCSV(text) {
+  const lines = text.split('\n').filter(l => l.trim());
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  return lines.slice(1).map(line => {
+    const vals = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { inQuotes = !inQuotes; }
+      else if (ch === ',' && !inQuotes) { vals.push(current.trim()); current = ''; }
+      else { current += ch; }
+    }
+    vals.push(current.trim());
+    const obj = {};
+    headers.forEach((h, i) => { obj[h] = vals[i] || ''; });
+    return obj;
+  });
+}
+
+function renderCards() {
+  const filtered = allEntries.filter(e => {
+    const cat = (e['type'] || '').trim();
+    if (activeFilter === 'offer') return cat.includes('我能帮');
+    return cat.includes('我想找');
+  });
+
+  if (filtered.length === 0) {
+    board.innerHTML = `<div class="connect-empty">${isEn() ? 'No listings yet' : '暂无条目'}</div>`;
+    return;
+  }
+
+  board.innerHTML = filtered.map(e => {
+    const isOffer = (e['type'] || '').includes('我能帮');
+    const tagClass = isOffer ? 'offer' : 'seek';
+    const tagText = isOffer ? (isEn() ? 'I can help' : '我能帮') : (isEn() ? 'Looking for' : '我想找');
+    const contact = e['contact'] ? `<div class="connect-card-contact">${escapeHtml(e['contact'])}</div>` : '';
+    const date = e['date'] ? formatDate(e['date']) : '';
+    return `
+      <div class="connect-card">
+        <div class="connect-card-header">
+          <span class="connect-card-name">${escapeHtml(e['nickname'] || '匿名')}</span>
+          <span class="connect-card-date">${date}</span>
+        </div>
+        <span class="connect-card-tag ${tagClass}">${tagText}</span>
+        <div class="connect-card-desc">${escapeHtml(e['description'] || '')}</div>
+        ${contact}
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function formatDate(raw) {
+  try {
+    const d = new Date(raw);
+    if (isNaN(d)) return raw;
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  } catch { return raw; }
+}
+
+let loadState = 'loading'; // loading | loaded | error | empty
+
+function showEmptyOrData() {
+  if (loadState === 'loaded') { renderCards(); return; }
+  if (loadState === 'error') {
+    board.innerHTML = `<div class="connect-empty">${isEn() ? 'Failed to load data, please refresh later' : '数据加载失败, 请稍后刷新'}</div>`;
+  } else {
+    board.innerHTML = `<div class="connect-empty">${isEn() ? 'Board coming soon, stay tuned' : '互助板即将上线, 敬请期待'}</div>`;
+  }
+}
+
+if (SHEET_CSV_URL) {
+  fetch(SHEET_CSV_URL)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(csv => {
+      allEntries = parseCSV(csv);
+      loadState = 'loaded';
+      renderCards();
+    })
+    .catch(() => { loadState = 'error'; showEmptyOrData(); });
+} else {
+  loadState = 'empty';
+  showEmptyOrData();
+}
+</script>
+</body>
+</html>
